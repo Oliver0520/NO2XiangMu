@@ -8,4 +8,3 @@
 	<bean id="helloBean" class="com.shj.util.HelloWorld">
 		<property name="name" value="小强"/>
 	</bean>
-</beans>
