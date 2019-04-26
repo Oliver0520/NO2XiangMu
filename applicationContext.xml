@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,3 +8,5 @@
 	<bean id="helloBean" class="com.shj.util.HelloWorld">
 		<property name="name" value="小强"/>
 	</bean>
+</beans>
+what
