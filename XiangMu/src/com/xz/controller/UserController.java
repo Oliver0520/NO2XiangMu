@@ -93,4 +93,9 @@ public class UserController {
       public Integer insertRole(UserRole userRole) {
     	  return userServiceImp.insertRole(userRole);
       }
+      @RequestMapping(value="/deleteRole",method=RequestMethod.POST)
+      @ResponseBody
+      public Integer deleteRole(UserRole userRole) {
+    	  return userServiceImp.deleteRole(userRole);
+      }
 }

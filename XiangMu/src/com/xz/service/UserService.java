@@ -73,4 +73,10 @@ List<Role> selectMyRole(Integer u_id);
  * @return
  */
 Integer insertRole(UserRole userRole);
+/**
+ * É¾³ıÓÃ»§½ÇÉ«
+ * @param userRole
+ * @return
+ */
+Integer deleteRole(UserRole userRole);
 }

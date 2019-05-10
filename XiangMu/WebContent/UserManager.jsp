@@ -143,8 +143,8 @@
 						</table>
 					</td>
 					<td width="100px">
-						<input type="button" value=">>" onclick="addRoles()" /></br>
-						<input type="button" value="<<" onclick="delRoles()" />
+						<input type="button" value="-->" onclick="addRoles()" /></br>
+						<input type="button" value="<--" onclick="delRoles()" />
 					</td>
 					<td width="200px" valign="top">
 						<table id="myRoles" title="当前用户所有角色" class="easyui-datagrid" data-options="rownumbers:true,singleSelect:true,method:'post'">
@@ -362,12 +362,31 @@
 		if(role) {
 			$.post("insertRole", {
 				u_id: u_id,
-				r_id: role.r_id,
+				r_id: role.r_id
 			}, function(res) {
 				if(res>0) {
 					$("#myRoles").datagrid("reload");
 				} else {
 					alert("对不起，新增失败，请重试！！！");
+				}
+			},"json");
+		} else {
+			$.messager.alert("请选择角色名！！！！");
+		}
+	}
+	
+	function delRoles(){  /*此事件为删除用户已有的角色*/
+		var u_id = $("#dg").datagrid("getSelected").u_id;
+		var role = $("#myRoles").datagrid("getSelected");
+		if(role) {
+			$.post("deleteRole", {
+				u_id: u_id,
+				r_id: role.r_id
+			}, function(res) {
+				if(res>0) {
+					$("#myRoles").datagrid("reload");
+				} else {
+					alert("对不起，删除失败，请重试！！！");
 				}
 			},"json");
 		} else {

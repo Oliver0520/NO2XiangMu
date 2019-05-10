@@ -78,5 +78,10 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.addRoles(userRole);
 	}
+	@Override
+	public Integer deleteRole(UserRole userRole) {
+		// TODO Auto-generated method stub
+		return userMapper.deleteRole(userRole);
+	}
 
 }
