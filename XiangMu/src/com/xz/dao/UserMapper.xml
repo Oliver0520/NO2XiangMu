@@ -74,4 +74,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMyRole" parameterType="int" resultType="role">
 	 select r_name,r_id from role where r_id in (select r_id from userrole WHERE u_id=#{u_id})
 	</select>
+	
+	<insert id="addRoles" parameterType="userRole">
+	insert into userrole (u_id,r_id) values(#{u_id},#{r_id})
+	</insert>
 </mapper>

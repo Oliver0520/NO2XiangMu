@@ -355,5 +355,24 @@
 			}
 		}); 
 	}
+	
+	function addRoles() {   /*此事件为给用户添加角色*/
+		var u_id = $("#dg").datagrid("getSelected").u_id;
+		var role = $("#yhRoles").datagrid("getSelected");
+		if(role) {
+			$.post("insertRole", {
+				u_id: u_id,
+				r_id: role.r_id,
+			}, function(res) {
+				if(res>0) {
+					$("#myRoles").datagrid("reload");
+				} else {
+					alert("对不起，新增失败，请重试！！！");
+				}
+			},"json");
+		} else {
+			$.messager.alert("请选择角色名！！！！");
+		}
+	}
 </script>
 </html>

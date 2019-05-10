@@ -1,5 +1,8 @@
 package com.xz.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserRole {
 	private Integer ur_id;
 	private Integer u_id;

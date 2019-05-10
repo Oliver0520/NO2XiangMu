@@ -10,6 +10,7 @@ import com.xz.dao.UserMapper;
 import com.xz.entity.Fenye;
 import com.xz.entity.Role;
 import com.xz.entity.User;
+import com.xz.entity.UserRole;
 @Service
 public class UserServiceImp implements UserService {
      @Resource
@@ -71,6 +72,11 @@ public class UserServiceImp implements UserService {
 	public List<Role> selectMyRole(Integer u_id) {
 		// TODO Auto-generated method stub
 		return userMapper.selectMyRole(u_id);
+	}
+	@Override
+	public Integer insertRole(UserRole userRole) {
+		// TODO Auto-generated method stub
+		return userMapper.addRoles(userRole);
 	}
 
 }

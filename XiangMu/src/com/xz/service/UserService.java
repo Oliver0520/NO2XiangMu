@@ -5,6 +5,7 @@ import java.util.List;
 import com.xz.entity.Fenye;
 import com.xz.entity.Role;
 import com.xz.entity.User;
+import com.xz.entity.UserRole;
 
 public interface UserService {
 	/**
@@ -66,4 +67,10 @@ List<Role> selectRole();
  * @return
  */
 List<Role> selectMyRole(Integer u_id);
+/**
+ * 给用户添加角色
+ * @param userRole
+ * @return
+ */
+Integer insertRole(UserRole userRole);
 }

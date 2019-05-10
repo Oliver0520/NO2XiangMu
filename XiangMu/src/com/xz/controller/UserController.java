@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xz.entity.Fenye;
 import com.xz.entity.Role;
 import com.xz.entity.User;
+import com.xz.entity.UserRole;
 import com.xz.service.UserService;
 
 @Controller
@@ -86,5 +87,10 @@ public class UserController {
       public List<Role> selectMyRole(Integer u_id){
     	  List<Role> rows = userServiceImp.selectMyRole(u_id);
     	  return rows;
+      }
+      @RequestMapping(value="/insertRole",method=RequestMethod.POST)
+      @ResponseBody
+      public Integer insertRole(UserRole userRole) {
+    	  return userServiceImp.insertRole(userRole);
       }
 }
