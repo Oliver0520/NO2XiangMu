@@ -351,7 +351,7 @@
 			url: 'selectMyRole',
 			method:"post",
 			queryParams: {
-				uId: row.Id
+				u_id: row.u_id
 			}
 		}); 
 	}
