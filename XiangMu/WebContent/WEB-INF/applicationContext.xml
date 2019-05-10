@@ -13,14 +13,14 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 	<!--扫描注解bean  -->
-   	<context:component-scan base-package="com.xzx.*" />
+   	<context:component-scan base-package="com.xz.*" />
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/xm?characterEncoding=utf-8" />
 		<property name="username" value="root" />
-		<property name="password" value="admin" />
+		<property name="password" value="980520" />
 		<property name="maxActive" value="30" />
 		<property name="maxIdle" value="5" />
 	</bean>
