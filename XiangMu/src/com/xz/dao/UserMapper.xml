@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xz.dao.UserMapper">
+	<sql id="chaxuntj">
+		<where>
+			<if test="t.u_userName!=null and t.u_userName!=''">
+				and u_userName like "%"#{t.u_userName}"%"
+			</if>
+			<if
+				test="t.stime!=null and t.stime!='' and t.etime!=null and t.etime!=''">
+				and u_createTime between #{t.stime} and #{t.etime}
+			</if>
+			<if test="t.u_lastLoginTime!=null and t.u_lastLoginTime!=''">
+				and u_lastLoginTime =#{t.u_lastLoginTime}
+			</if>
+		</where>
+	</sql>
+	<select id="selectUser" parameterType="fenye" resultType="user">
+		select * from user
+		<include refid="chaxuntj"></include>
+		<if test="t.paixu==0 and t.paixu!=''">
+			order by u_lastLoginTime desc
+		</if>
+		<if test="t.paixu==1 and t.paixu!=''">
+			order by u_createTime desc
+		</if>
+		limit #{page},#{pageSize}
+	</select>
+	<select id="selectUserCount" parameterType="fenye"
+		resultType="int">
+		select count(u_id) from user
+		<include refid="chaxuntj"></include>
+	</select>
+	<select id="selectCountByLname" parameterType="string" resultType="int">
+	select count(u_id) from user <where>	u_loginName=#{u_loginName}</where>
+	</select>
+	<insert id="insertUser" parameterType="user">
+	insert into user (u_loginName,u_password,u_email,u_phoneNumber,u_createTime)
+	values(#{u_loginName},#{u_password},#{u_email},#{u_phoneNumber},#{u_createTime})
+	</insert>
+	<delete id="deleteUser" parameterType="int">
+	delete from user where u_id=#{u_id}
+	</delete>
+	<update id="updateUser" parameterType="user">
+	update user 
+	<set>
+	<if test="u_email!=null and u_email!=''">
+	u_email=#{u_email},
+	</if>
+	<if test="u_phoneNumber!=null and u_phoneNumber!=''">
+	u_phoneNumber=#{u_phoneNumber}
+	</if>
+	</set>
+	<where>
+	u_id=#{u_id}
+	</where>
+	</update>
+	<update id="chongzhimima" parameterType="int">
+	update user set u_password="ysd123" where u_id=#{u_id}
+	</update>
+	<update id="suoding" parameterType="int">
+	update user set u_isLockout="1" where u_id=#{u_id}
+	</update>
+	<update id="jiesuo" parameterType="int">
+	update user set u_isLockout="0" where u_id=#{u_id}
+	</update>
+	
+	<select id="selectRole" resultType="role">
+	select * from role
+	</select>
+	
+	<select id="selectMyRole" parameterType="int" resultType="role">
+	 select r_name,r_id from role where r_id in (select r_id from userrole WHERE u_id=#{u_id})
+	</select>
+</mapper>
