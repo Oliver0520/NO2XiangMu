@@ -5,7 +5,9 @@ import java.util.List;
 import com.xz.entity.Fenye;
 import com.xz.entity.Module;
 import com.xz.entity.ModuleTree;
+import com.xz.entity.Rm;
 import com.xz.entity.Role;
+import com.xz.entity.RoleModule;
 
 public interface RoleService {
 	/**
@@ -39,5 +41,5 @@ Integer deleteRoles(Integer r_id);
  */
 Integer updateRoles(Role role);
 
-List<ModuleTree> selectMoInR();
+List<ModuleTree> selectMoInR(Rm rm);
 }

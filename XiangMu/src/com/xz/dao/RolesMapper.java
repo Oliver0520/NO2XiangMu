@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.xz.entity.Fenye;
 import com.xz.entity.Module;
+import com.xz.entity.Rm;
 import com.xz.entity.Role;
+import com.xz.entity.RoleModule;
 
 public interface RolesMapper {
 	/**
@@ -43,4 +45,6 @@ Integer deleteRoles(Integer r_id);
 Integer updateRoles(Role role);
 
 List<Module> selectMoInR();
+
+Integer selectMoByRid(Rm rm);
 }

@@ -185,7 +185,7 @@ function kongzhi(index) {
 		url: "selectMoInR",
 		lines: true,
 		queryParams: {
-			roleId: row.r_id,
+			r_Id: row.r_id,
 		},
 		onContextMenu: function(e, node) {
 			$("#menuTree").tree('select', node.target);

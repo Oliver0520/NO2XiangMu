@@ -30,5 +30,7 @@ where r_id=#{r_id}
 <select id="selectMoInR" resultType="module">
 select * from module 
 </select>
-
+<select id="selectMoByRid" parameterType="rm" resultType="int">
+select count(m_id) from rolemodule where m_id=#{m_id} and r_id=#{r_id}
+</select>
 </mapper>

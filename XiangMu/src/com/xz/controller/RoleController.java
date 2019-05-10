@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xz.entity.Fenye;
 import com.xz.entity.ModuleTree;
+import com.xz.entity.Rm;
 import com.xz.entity.Role;
 import com.xz.service.RoleService;
 
@@ -53,7 +54,7 @@ public class RoleController {
 	}
 	@RequestMapping(value="/selectMoInR",method=RequestMethod.POST)
 	@ResponseBody
-	public List<ModuleTree> selectMoInR(){
-		return roleServiceImp.selectMoInR();
+	public List<ModuleTree> selectMoInR(Rm rm){
+		return roleServiceImp.selectMoInR(rm);
 	}
 }

@@ -10,7 +10,14 @@ public class Module {
 	private String m_path;
 	private Integer m_weight;
 	private Integer m_int;
-	private String m_string;
+	private String checked;
+	private String message;
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	public Integer getM_id() {
 		return m_id;
 	}
@@ -47,15 +54,16 @@ public class Module {
 	public void setM_int(Integer m_int) {
 		this.m_int = m_int;
 	}
-	public String getM_string() {
-		return m_string;
+	public String getChecked() {
+		return checked;
 	}
-	public void setM_string(String m_string) {
-		this.m_string = m_string;
+	public void setChecked(String checked) {
+		this.checked = checked;
 	}
 	@Override
 	public String toString() {
 		return "Module [m_id=" + m_id + ", m_name=" + m_name + ", m_parentId=" + m_parentId + ", m_path=" + m_path
-				+ ", m_weight=" + m_weight + ", m_int=" + m_int + ", m_string=" + m_string + "]";
+				+ ", m_weight=" + m_weight + ", m_int=" + m_int + ", checked=" + checked + "]";
 	}
+	
 }
