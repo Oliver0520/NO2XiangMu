@@ -126,6 +126,7 @@ function updatebaocun(){
 		if(res.success){
 			$.messager.alert("提示",res.msg);
 			$("#update-dialog").dialog("close");
+			window.location.href = "tuichu";
 		}else{
 			$.messager.alert("提示",res.msg);
 		}
