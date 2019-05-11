@@ -92,4 +92,10 @@ Integer deleteRole(UserRole userRole);
  * @return
  */
 Integer updateLastTime(User user);
+/**
+ * ÓÃ»§ĞŞ¸ÄÃÜÂë
+ * @param user
+ * @return
+ */
+Integer updateMima(User user);
 }

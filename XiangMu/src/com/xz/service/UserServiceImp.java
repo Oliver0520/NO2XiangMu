@@ -3,6 +3,7 @@ package com.xz.service;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,12 @@ import com.xz.entity.Fenye;
 import com.xz.entity.Role;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
+import com.xz.fujie.MD5Util;
 @Service
 public class UserServiceImp implements UserService {
      @Resource
 	private UserMapper userMapper;
+    
 	/**
 	 * 多条件分页查询用户信息
 	 */
@@ -87,6 +90,32 @@ public class UserServiceImp implements UserService {
 	public Integer updateLastTime(User user) {
 		// TODO Auto-generated method stub
 		return userMapper.updateLastTime(user);
+	}
+	@Override
+	public Integer updateMima(User user,HttpServletRequest request) {
+		// TODO Auto-generated method stub
+
+   	 user.setOpwd(MD5Util.string2MD5(user.getOpwd()));
+   	 user.setApwd(MD5Util.string2MD5(user.getApwd()));   	 
+   	 user.setNpwd(MD5Util.string2MD5(user.getNpwd()));
+		Integer jg=0;
+		User user1 = (User)request.getSession().getAttribute("usera");
+		user.setU_id(user1.getU_id());
+		if(user.getOpwd().equals(user1.getU_password())){
+			if(user.getApwd().equals(user.getNpwd())) {
+				if(userMapper.updateMima(user)>0) {
+					return jg=4;
+				}else {
+					return jg=3;
+				}
+			}else {
+				return jg=2;
+			}
+		}else {
+			return jg=1;
+		}
+		
+		
 	}
 
 }

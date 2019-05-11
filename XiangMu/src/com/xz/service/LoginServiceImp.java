@@ -48,7 +48,6 @@ public class LoginServiceImp implements LoginService {
 					List<Module> selectMokuai = loginMapper.selectMokuai(selectJuese.get(i).getR_id());
 					selectJuese.get(i).setModule(selectMokuai); } 
 						  user.setRole(selectJuese);
-						 System.out.println("ÄãºÃÂð"+user);
 						request.getSession().setAttribute("usera", user);
 					}else {
 						jg=4;

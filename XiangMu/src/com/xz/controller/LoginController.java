@@ -32,7 +32,7 @@ public class LoginController {
 		 */
 		SCaptcha ivc = new SCaptcha(); // 用我们的验证码类，生成验证码类对象 
 		BufferedImage image = ivc.getImage();
-		System.out.println(ivc.getText());
+//		System.out.println(ivc.getText());
 		request.getSession().setAttribute("text", ivc.getText()); // 将验证码的文本存在session中
 		ivc.output(image, response.getOutputStream());// 将验证码图片响应给客户端
 

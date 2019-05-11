@@ -23,6 +23,8 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CRM系统&nbsp;&nbsp;欢迎您:${usera.u_userName}  
 			<a href="javascript:void(0)" onclick="tuichu()"
 				style="text-decoration: none; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;安全退出</a>
+				<a href="javascript:void(0)" onclick="xgPwd()"
+				style="text-decoration: none; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;修改登录密码</a>
 			<marquee onMouseOut="this.start()" onMouseOver="this.stop()">
 				<span style="font-weight: bolder; font-size: 20px;">云时代欢迎您！</span>
 			</marquee>
@@ -45,6 +47,35 @@
 			</div>
 		</div>
 	</div>
+	
+<!-- 修改密码窗口  -->
+	<div id="update-dialog" class="easyui-dialog" title="修改密码窗口" style="width:400px;height:300px;"   
+        data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,toolbar:[{
+				text:'保存',
+				iconCls:'icon-edit',
+				handler:function(){updatebaocun();}
+			},{
+				text:'退出',
+				iconCls:'icon-help',
+				handler:function(){exitUpdate();}
+			}]">
+			<form id="upfrm">
+    <table>
+    <tr>
+    <td><label>原密码:</label></td>
+    <td><input class="easyui-textbox" type="text" id="opwd" /> </td>
+    </tr>
+    <tr>
+    <td><label>新密码:</label></td>
+    <td><input class="easyui-textbox" type="text" id="npwd" /> </td>
+    </tr>
+    <tr>
+    <td><label>确认密码:</label></td>
+    <td><input class="easyui-textbox" type="text" id="apwd" /> </td>
+    </tr>
+    </table>   
+    </form>
+</div>
 </body>
 <script type="text/javascript">
 $(function() {
@@ -82,6 +113,26 @@ function tuichu() {
 			window.location.href = "tuichu";
 		}
 	});
+}
+function xgPwd(){
+	$("#update-dialog").dialog("open");
+}
+function updatebaocun(){
+	var opwd=$("#opwd").textbox("getValue");
+	var npwd=$("#npwd").textbox("getValue");
+	var apwd=$("#apwd").textbox("getValue");
+	alert($("#opwd").textbox("getValue")+$("#npwd").textbox("getValue")+$("#apwd").textbox("getValue"))
+	$.post("xiugaimima",{opwd:opwd,npwd:npwd,apwd:apwd},function(res){
+		if(res.success){
+			$.messager.alert("提示",res.msg);
+			$("#update-dialog").dialog("close");
+		}else{
+			$.messager.alert("提示",res.msg);
+		}
+	},"json");
+}
+function exitUpdate(){
+	$("#update-dialog").dialog("closed");
 }
 </script>
 

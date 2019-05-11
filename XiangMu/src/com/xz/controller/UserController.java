@@ -1,8 +1,11 @@
 package com.xz.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import com.xz.entity.Fenye;
 import com.xz.entity.Role;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
+import com.xz.fujie.MD5Util;
 import com.xz.service.UserService;
 
 @Controller
@@ -22,6 +26,7 @@ public class UserController {
       @Resource
       private Fenye<User> fenye;
       
+      private MD5Util m;
       @RequestMapping(value="/selectUser",method=RequestMethod.POST)
       @ResponseBody
       public Fenye<User> selectUser(Integer page,Integer rows,User user){
@@ -97,5 +102,28 @@ public class UserController {
       @ResponseBody
       public Integer deleteRole(UserRole userRole) {
     	  return userServiceImp.deleteRole(userRole);
+      }
+      @RequestMapping(value="/xiugaimima",method=RequestMethod.POST)
+      @ResponseBody
+      public Map<String, Object> xiugaimima(User user,HttpServletRequest request) {
+    	 Integer i = userServiceImp.updateMima(user, request);
+    	  Map<String, Object> map = new HashMap<String, Object>();
+    	  if(i==1) {
+    		  map.put("msg", "原密码不正确,请重新输入!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==2) {
+    		  map.put("msg", "新密码与确认密码不匹配,请重新输入!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==3) {
+    		  map.put("msg", "修改密码失败,请重新尝试!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==4) {
+    		  map.put("msg", "修改成功，请妥善保管您的密码");
+  			  map.put("success", true);
+    	  }
+    	  return map;
       }
 }

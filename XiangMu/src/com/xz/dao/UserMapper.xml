@@ -86,4 +86,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateLastTime" parameterType="user">
 	update user <set> <if test="u_lastLoginTime!=null and u_lastLoginTime!=''">u_lastLoginTime=#{u_lastLoginTime},</if></set><where>u_id=#{u_id}</where>
 	</update>
+	
+	<update id="updateMima" parameterType="user" >
+	update user <set> <if test="apwd!=null and apwd!=''">u_password=#{apwd}</if></set> where u_id=#{u_id}
+	</update>
 </mapper>

@@ -2,6 +2,8 @@ package com.xz.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.xz.entity.Fenye;
 import com.xz.entity.Role;
 import com.xz.entity.User;
@@ -85,4 +87,10 @@ Integer deleteRole(UserRole userRole);
  * @return
  */
 Integer updateLastTime(User user);
+/**
+ * ÓÃ»§ĞŞ¸ÄÃÜÂë
+ * @param user
+ * @return
+ */
+Integer updateMima(User user,HttpServletRequest request);
 }
