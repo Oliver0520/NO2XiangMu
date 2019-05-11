@@ -2,6 +2,7 @@ package com.xz.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +20,15 @@ public class MainController {
     public String hometree(String treeUlId, HttpServletRequest requer) {
 		String hometree = mainServiceImp.hometree(treeUlId, requer);
 		return hometree;
+	}
+    
+    @RequestMapping(value = "tuichu")
+	public String tuichu(HttpServletRequest request,HttpServletResponse response) {
+		request.getSession().setAttribute("usera", null);
+		/*
+		 * cookiesUtil.setCookie(response, "us_name", "", 0);
+		 * cookiesUtil.setCookie(response, "us_password", "", 0);
+		 */
+		return "Login";
 	}
 }

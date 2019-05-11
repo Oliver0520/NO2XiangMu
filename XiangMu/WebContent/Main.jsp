@@ -20,7 +20,9 @@
 <div style="margin: 20px 0;"></div>
 	<div class="easyui-layout" style="width: 100%; height: 700px;">
 		<div data-options="region:'north'" style="height: 70px">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CRM系统&nbsp;&nbsp;欢迎您:${usera.u_userName}&nbsp;&nbsp;&nbsp;&nbsp;安全退出
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CRM系统&nbsp;&nbsp;欢迎您:${usera.u_userName}  
+			<a href="javascript:void(0)" onclick="tuichu()"
+				style="text-decoration: none; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;安全退出</a>
 			<marquee onMouseOut="this.start()" onMouseOver="this.stop()">
 				<span style="font-weight: bolder; font-size: 20px;">云时代欢迎您！</span>
 			</marquee>
