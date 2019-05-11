@@ -23,13 +23,21 @@
 
 	});
 	function inint() {
-
 		$('#dg').datagrid({
 			url : 'chaxun',
 			method : 'post',
-			pagination : true
-		});
+			pagination : true,
+			toolbar : "#bar",
+			singleSelect:true,
+			queryParams : {
+				s_name : $("#Sname").textbox("getValue"),
+				s_phone : $("#Sphone").textbox("getValue"),
+				}
+			},"json");
+		$("#str").form("clear");
+		alert($("#Sname").textbox("getValue"))
 	}
+	
 	function caozuolei(value,row,index){
 		return "<a href='javascript:void(0)' onclick='shanchu("+index+")'>删除</a>"
 	}
@@ -106,5 +114,42 @@
 			</tr>
 		</thead>
 	</table>
+	
+	<div id="bar">
+		<form id="str">
+			<label>用户名:</label>
+				<input class="easyui-textbox" type="text" id=Sname /> 
+			<label>QQ:</label>
+				<input class="easyui-textbox" type="text" id="Sqq" /> 
+			<label>咨询师姓名:</label>
+				<input class="easyui-textbox" type="text" id="Uname" /> 
+			<label>手机号:</label>
+				<input class="easyui-textbox" type="text" id="Sphone" /> 
+			<label>进班时间:</label> 
+				<input class="easyui-datetimebox" type="text" id="stime" /> ~ <input class="easyui-datetimebox" type="text" id="etime" /> 
+			<label>是否缴费:</label>
+				<select id="jiaofei" class="easyui-combobox" name="dept" style="width: 100px;">
+					<option value="aa">--请选择--</option>
+					<option value="0">是</option>
+					<option value="1">否</option>
+				</select> 
+			<label>是否有效:</label>
+				<select id="youxiao" class="easyui-combobox" name="dept" style="width: 100px;">
+					<option value="aa">--请选择--</option>
+					<option value="0">是</option>
+					<option value="1">否</option>
+				</select> 
+			<label>是否回访:</label>
+				<select id="huifang" class="easyui-combobox" name="dept" style="width: 100px;">
+					<option value="aa">--请选择--</option>
+					<option value="0">是</option>
+					<option value="1">否</option>
+				</select> 
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="inint()" data-options="iconCls:'icon-search',plain:true">查询</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="xinzeng()" data-options="iconCls:'icon-add',plain:true">新增</a>
+		</form>
+	</div>
 </body>
 </html>

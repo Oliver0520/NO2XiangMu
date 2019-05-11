@@ -19,9 +19,10 @@ public class StudentController {
 
 	@RequestMapping(value = "/chaxun", method = RequestMethod.POST)
 	@ResponseBody
-	public Fenye<Student> getStudent(Integer page, Integer rows) {
+	public Fenye<Student> getStudent(Integer page, Integer rows,Student student) {
 		fenye.setPage((page - 1) * rows);
 		fenye.setPageSize(rows);
+		fenye.setT(student);
 		fenye = studentService.getStudent(fenye);
 		return fenye;
 	}

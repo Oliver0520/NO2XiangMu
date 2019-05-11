@@ -3,10 +3,16 @@
 <mapper namespace="com.xz.dao.StudentMapper">
 	<select id="selectStudent" parameterType="fenye"
 		resultType="student">
-
 		select * from student
-
-	 limit #{page},#{pageSize} 
+		<where>
+			<if test="t.s_name!=null and t.s_name!=''">
+				and s_name like "%"#{t.s_name}"%"
+			</if>
+			<if test="t.s_phone!=null and t.s_phone!=''">
+				and s_phone=#{t.s_phone}
+			</if>
+		</where>
+		limit #{page},#{pageSize}
 	</select>
 	<select id="selectCountStu" parameterType="fenye"
 		resultType="int">
