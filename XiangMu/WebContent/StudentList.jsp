@@ -90,25 +90,25 @@
 		});
 	}
 	function baobei(value, row, index) {
-		return row.s_baobei == 0 ? "否" : "是";
+		return row.s_baobei == 1 ? "否" : "是";
 	}
 	function huifang(value, row, index) {
-		return row.s_huifang == 0 ? "否" : "是";
+		return row.s_huifang == 1 ? "否" : "是";
 	}
 	function youxiao(value, row, index) {
-		return row.s_youxiao == 0 ? "否" : "是";
+		return row.s_youxiao == 1 ? "否" : "是";
 	}
 	function shangmen(value, row, index) {
-		return row.s_shangmen == 0 ? "否" : "是";
+		return row.s_shangmen == 1 ? "否" : "是";
 	}
 	function jiaofei(value, row, index) {
-		return row.s_jiaofei == 0 ? "否":"是";
+		return row.s_jiaofei == 1 ? "否":"是";
 	}
 	function tuifei(value, row, index) {
-		return row.s_tuifei == 0 ? "否" : "是";
+		return row.s_tuifei == 1 ? "否" : "是";
 	}
 	function jinban(value, row, index) {
-		return row.s_jinban == 0 ? "否" : "是";
+		return row.s_jinban == 1 ? "否" : "是";
 	}
 </script>
 </head>
@@ -177,21 +177,21 @@
 			<label>是否缴费:</label>
 				<select id="sfjiaofei" class="easyui-combobox"  style="width: 100px;">
 				<option value="aa">--请选择--</option>				
-					<option value="0">否</option>
-					<option value="1">是</option>
+					<option value="1">否</option>
+					<option value="2">是</option>
 				</select> 
 			<label>是否有效:</label>
 				<select id="sfyouxiao" class="easyui-combobox"  style="width: 100px;">
 				<option value="aa">--请选择--</option>	
-				     <option value="0">否</option>
-					<option value="1">是</option>
+				     <option value="1">否</option>
+					<option value="2">是</option>
 					
 				</select> 
 			<label>是否回访:</label>
 				<select id="sfhuifang" class="easyui-combobox"  style="width: 100px;">
 					<option value="aa">--请选择--</option>	
-					<option value="1">是</option>
-					<option value="0">否</option>
+					<option value="2">是</option>
+					<option value="1">否</option>
 				</select> 
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="inint()" data-options="iconCls:'icon-search',plain:true">查询</a>

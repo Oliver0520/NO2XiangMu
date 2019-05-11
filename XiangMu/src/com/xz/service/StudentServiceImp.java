@@ -20,6 +20,7 @@ private StudentMapper studentMapper;
 	@Override
 	public Fenye<Student> getStudent(Fenye<Student> fenye) {
 		// TODO Auto-generated method stub
+		System.out.println("¹ş¹ş"+fenye);
 		Integer countStu = studentMapper.selectCountStu(fenye);
 		List<Student> student = studentMapper.selectStudent(fenye);
 		for(int i=0;i<student.size();i++) {
