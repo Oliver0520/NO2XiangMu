@@ -79,4 +79,10 @@ Integer insertRole(UserRole userRole);
  * @return
  */
 Integer deleteRole(UserRole userRole);
+/**
+ * 登陆时更新最后登录时间
+ * @param user
+ * @return
+ */
+Integer updateLastTime(User user);
 }

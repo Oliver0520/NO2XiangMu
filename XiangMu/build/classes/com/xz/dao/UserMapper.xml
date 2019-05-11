@@ -82,4 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteRole" parameterType="userRole" >
 	delete from userrole where u_id=#{u_id} and r_id=#{r_id}
 	</delete>
+	
+	<update id="updateLastTime" parameterType="user">
+	update user <set> <if test="u_lastLoginTime!=null and u_lastLoginTime!=''">u_lastLoginTime=#{u_lastLoginTime},</if></set><where>u_id=#{u_id}</where>
+	</update>
 </mapper>

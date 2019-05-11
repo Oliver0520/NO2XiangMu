@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xz.dao.LoginMapper">
+<select id="selectIs" parameterType="String" resultType="int">
+select count(*) from user where u_loginName=#{u_loginName}
+</select>
+<select id="selectUs" parameterType="user" resultType="user">
+select * from user 
+<where>
+<if test="u_loginName!=null and u_loginName!=''">
+and u_loginName=#{u_loginName}
+</if>
+<if test="u_password!=null and u_password!=''">
+and u_password=#{u_password}
+</if>
+</where>
+</select>
+<select id="selectByuId" parameterType="int" resultType="userRole">
+select u.u_id,u.u_loginName,r.r_id,r.r_name from userrole us inner join user u inner join role r on us.u_id=u.u_id and us.r_id=r.r_id  where u.u_id=#{u_id}
+</select>
+</mapper>

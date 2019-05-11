@@ -83,5 +83,10 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.deleteRole(userRole);
 	}
+	@Override
+	public Integer updateLastTime(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.updateLastTime(user);
+	}
 
 }
