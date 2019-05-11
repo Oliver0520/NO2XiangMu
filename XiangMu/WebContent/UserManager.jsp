@@ -48,7 +48,7 @@
 				class="easyui-datetimebox" type="text" id="stime" /> ~ <input
 				class="easyui-datetimebox" type="text" id="etime" /> <label>用户最后登录时间:</label>
 			<input class="easyui-datetimebox" type="text" id="lastTime" /> <label>排序规则:</label>
-			<select id="paixu" class="easyui-combobox" name="dept"
+			<select id="paixu" class="easyui-combobox" 
 				style="width: 200px;">
 				<option value="aa">--请选择--</option>
 				<option value="0">用户最后登录时间</option>

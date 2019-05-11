@@ -90,4 +90,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateMima" parameterType="user" >
 	update user <set> <if test="apwd!=null and apwd!=''">u_password=#{apwd}</if></set> where u_id=#{u_id}
 	</update>
+	
+	<select id="selectUserQD" parameterType="fenye" resultType="user">
+	select * from user
+	<where>
+			<if test="t.u_userName!=null and t.u_userName!=''">
+				and u_userName like "%"#{t.u_userName}"%"
+			</if>
+			<if
+				test="t.stime!=null and t.stime!='' and t.etime!=null and t.etime!=''">
+				and u_qdshijian between #{t.stime} and #{t.etime}
+			</if>
+			<if test="t.u_qdstatus!=null and t.u_qdstatus!=''">
+				and u_qdstatus=#{t.u_qdstatus}
+			</if>
+		</where>
+		limit #{page},#{limit}
+	</select>
+	<select id="selectCountQD" parameterType="fenye"
+		resultType="int">
+		select count(u_id) from user
+		<where>
+			<if test="t.u_userName!=null and t.u_userName!=''">
+				and u_userName like "%"#{t.u_userName}"%"
+			</if>
+			<if
+				test="t.stime!=null and t.stime!='' and t.etime!=null and t.etime!=''">
+				and u_qdshijian between #{t.stime} and #{t.etime}
+			</if>
+			<if test="t.u_qdstatus!=null and t.u_qdstatus!=''">
+				and u_qdstatus =#{t.u_qdstatus}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectStatusQD" parameterType="int" resultType="int">
+	select count(u_id) from user where u_qdstatus ="已签退" and u_id=#{u_id}
+	</select>
+	<update id="qdcaozuo" parameterType="int" >
+	update user <set>u_qdstatus ="已签退"</set> where u_id=#{u_id}
+	</update>
 </mapper>

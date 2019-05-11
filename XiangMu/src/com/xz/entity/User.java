@@ -16,7 +16,7 @@ public class User {
 	private String	u_email;
 	private String	u_phoneNumber;
 	private String	u_qdshijian;
-	private Integer	u_qdstatus;
+	private String	u_qdstatus;
 	private Integer	u_weight;
 	private String	u_weightbeizhu;
 	private Integer	u_int;
@@ -98,10 +98,11 @@ public class User {
 	public void setU_qdshijian(String u_qdshijian) {
 		this.u_qdshijian = u_qdshijian;
 	}
-	public Integer getU_qdstatus() {
+	
+	public String getU_qdstatus() {
 		return u_qdstatus;
 	}
-	public void setU_qdstatus(Integer u_qdstatus) {
+	public void setU_qdstatus(String u_qdstatus) {
 		this.u_qdstatus = u_qdstatus;
 	}
 	public Integer getU_weight() {

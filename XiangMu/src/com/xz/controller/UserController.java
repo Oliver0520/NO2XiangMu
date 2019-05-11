@@ -26,7 +26,6 @@ public class UserController {
       @Resource
       private Fenye<User> fenye;
       
-      private MD5Util m;
       @RequestMapping(value="/selectUser",method=RequestMethod.POST)
       @ResponseBody
       public Fenye<User> selectUser(Integer page,Integer rows,User user){
@@ -126,4 +125,33 @@ public class UserController {
     	  }
     	  return map;
       }
+      @RequestMapping(value="/selectUserQD",method=RequestMethod.POST)
+      @ResponseBody
+      public Fenye<User> selectUserQD(Integer page,Integer rows,User user){
+    	  fenye.setPage((page-1)*rows);
+    	  fenye.setPageSize(rows);
+    	  fenye.setT(user);
+    	  fenye=userServiceImp.selectUserQD(fenye);
+    	  return fenye;
+      }
+      @RequestMapping(value="/qdCaozuo",method=RequestMethod.POST)
+      @ResponseBody
+      public Map<String, Object> qdCaozuo(Integer u_id){
+    	  Integer i = userServiceImp.updaetQD(u_id);
+    	  Map<String, Object> map = new HashMap<String, Object>();
+    	  if(i==1) {
+    		  map.put("msg", "该用户已签退，不能重复操作!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==2) {
+    		  map.put("msg", "签退失败!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==3) {
+    		  map.put("msg", "签退成功!!!");
+  			  map.put("success", true);
+    	  }
+    	  return map;
+      }
+      
 }

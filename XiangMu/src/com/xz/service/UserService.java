@@ -93,4 +93,12 @@ Integer updateLastTime(User user);
  * @return
  */
 Integer updateMima(User user,HttpServletRequest request);
+/**
+ * 用户签到界面信息查询
+ * @param fenye
+ * @return
+ */
+Fenye<User> selectUserQD(Fenye<User> fenye);
+
+Integer updaetQD(Integer u_id);
 }

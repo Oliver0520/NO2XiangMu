@@ -98,4 +98,24 @@ Integer updateLastTime(User user);
  * @return
  */
 Integer updateMima(User user);
+/**
+ * 用工签到页面的数据查询
+ * @param fenye
+ * @return
+ */
+List<User> selectUserQD(Fenye<User> fenye);
+
+Integer selectCountQD(Fenye<User> fenye);
+/**
+ * 查询用户是否已经为已签到
+ * @param u_id
+ * @return
+ */
+Integer selectStatusQD(Integer u_id);
+/**
+ * 帮助员工签退
+ * @param u_id
+ * @return
+ */
+Integer qdcaozuo(Integer u_id);
 }
