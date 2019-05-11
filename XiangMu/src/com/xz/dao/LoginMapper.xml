@@ -17,7 +17,10 @@ and u_password=#{u_password}
 </if>
 </where>
 </select>
-<select id="selectByuId" parameterType="int" resultType="userRole">
-select u.u_id,u.u_loginName,r.r_id,r.r_name from userrole us inner join user u inner join role r on us.u_id=u.u_id and us.r_id=r.r_id  where u.u_id=#{u_id}
+<select id="selectByuId" parameterType="int" resultType="role">
+select r.r_id,r.r_name,r.r_int,r.r_string from userrole us inner join  role r on  us.r_id=r.r_id  where us.u_id=#{u_id}
+</select>
+<select id="selectMokuai" parameterType="int" resultType="module">
+select m.m_id,m.m_name,m.m_path,m.m_parentId,m.m_int,m.checked,m.m_weight from rolemodule r INNER JOIN  module  m on r.m_id=m.m_id where r.r_id=#{r_id}
 </select>
 </mapper>

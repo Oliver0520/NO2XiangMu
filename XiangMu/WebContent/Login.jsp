@@ -98,7 +98,7 @@
 				
 				$.messager.alert("提示",res.msg);
 				
-				/* window.location.href="main.jsp"; */
+				 window.location.href="Main.jsp";
 			}else{
 				$.messager.alert("提示",res.msg);
 				

@@ -1,5 +1,7 @@
 package com.xz.entity;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -132,6 +134,7 @@ public class User {
 	public void setU_phoneNumber(String u_phoneNumber) {
 		this.u_phoneNumber = u_phoneNumber;
 	}
+	
 	@Override
 	public String toString() {
 		return "User [u_id=" + u_id + ", u_loginName=" + u_loginName + ", u_userName=" + u_userName + ", u_isLockout="
@@ -139,7 +142,13 @@ public class User {
 				+ ", u_password=" + u_password + ", u_email=" + u_email + ", u_phoneNumber=" + u_phoneNumber
 				+ ", u_qdshijian=" + u_qdshijian + ", u_qdstatus=" + u_qdstatus + ", u_weight=" + u_weight
 				+ ", u_weightbeizhu=" + u_weightbeizhu + ", u_int=" + u_int + ", u_string=" + u_string + ", paixu="
-				+ paixu + ", stime=" + stime + ", etime=" + etime + "]";
+				+ paixu + ", stime=" + stime + ", etime=" + etime + ", role=" + role + "]";
 	}
-	
+	private List<Role> role;
+	public List<Role> getRole() {
+		return role;
+	}
+	public void setRole(List<Role> role) {
+		this.role = role;
+	}
 }

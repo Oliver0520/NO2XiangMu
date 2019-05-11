@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import com.xz.dao.LoginMapper;
+import com.xz.entity.Module;
 import com.xz.entity.Role;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
@@ -21,6 +22,8 @@ public class LoginServiceImp implements LoginService {
 	private LoginMapper loginMapper;
      @Resource
 	  private UserService userService;
+     @Resource
+     private Role role;
 	@Override
 	public Integer loginError(User user, String yanzhengma, HttpServletRequest request) {
 		// TODO Auto-generated method stub
@@ -31,7 +34,7 @@ public class LoginServiceImp implements LoginService {
 				user = loginMapper.selectUs(user);
 				if(user!=null) {
 					if(user.getU_isLockout()==0) {
-						/* List<UserRole> selectJuese = loginMapper.selectByuId(user.getU_id()); */
+						
 						User user2=new User();
 						Date date=new Date();
 						SimpleDateFormat format=new SimpleDateFormat("yy-MM-dd hh:mm:ss");
@@ -39,12 +42,14 @@ public class LoginServiceImp implements LoginService {
 						user2.setU_lastLoginTime(format2);
 						user2.setU_id(user.getU_id());
 						userService.updateLastTime(user2);
-						/*
-						 * for(int i=0;i<selectJuese.size();i++) { List<Mokuai> selectMokuai =
-						 * mainMapper.selectMokuai(selectJuese.get(i).getJs_id());
-						 * selectJuese.get(i).setMokuai(selectMokuai); } user.setJuese(selectJuese);
-						 */
-						request.getSession().setAttribute("user", user);
+						 List<Role> selectJuese = loginMapper.selectByuId(user.getU_id()); 
+						
+						  for(int i=0;i<selectJuese.size();i++) { 
+					List<Module> selectMokuai = loginMapper.selectMokuai(selectJuese.get(i).getR_id());
+					selectJuese.get(i).setModule(selectMokuai); } 
+						  user.setRole(selectJuese);
+						 System.out.println("ÄãºÃÂð"+user);
+						request.getSession().setAttribute("usera", user);
 					}else {
 						jg=4;
 					}

@@ -45,20 +45,5 @@ public class UserRole {
 		return "UserRole [ur_id=" + ur_id + ", u_id=" + u_id + ", r_id=" + r_id + ", ur_int=" + ur_int + ", ur_string="
 				+ ur_string + "]";
 	}
-	private String u_LoginName;
-	private String r_name;
-
-	public String getU_LoginName() {
-		return u_LoginName;
-	}
-	public void setU_LoginName(String u_LoginName) {
-		this.u_LoginName = u_LoginName;
-	}
-	public String getR_name() {
-		return r_name;
-	}
-	public void setR_name(String r_name) {
-		this.r_name = r_name;
-	}
 	
 }
