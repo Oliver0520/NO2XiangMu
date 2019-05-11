@@ -9,4 +9,28 @@ select * from role limit #{page},#{pageSize}
 <select id="selectCount" resultType="int">
 select count(r_id) from role
 </select>
+<select id="selectRolesl" parameterType="String" resultType="int">
+select count(r_id) from role where r_name=#{r_name}
+</select>
+<insert id="insertRole" parameterType="String">
+insert into role (r_name) values(#{r_name})
+</insert>
+<delete id="deleteRoles" parameterType="int">
+delete from role where r_id=#{r_id}
+</delete>
+<update id="updateRoles" parameterType="role">
+update role 
+<set>
+<if test="r_name!=null and r_name!=''">
+r_name=#{r_name}
+</if>
+</set>
+where r_id=#{r_id}
+</update>
+<select id="selectMoInR" resultType="module">
+select * from module 
+</select>
+<select id="selectMoByRid" parameterType="rm" resultType="int">
+select count(m_id) from rolemodule where m_id=#{m_id} and r_id=#{r_id}
+</select>
 </mapper>
