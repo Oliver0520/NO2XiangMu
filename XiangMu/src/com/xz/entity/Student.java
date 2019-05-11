@@ -45,6 +45,23 @@ public class Student {
 	private Integer l_id;
 	private Integer s_int;
 	private String s_string;
+	private String name;
+	private String name2;
+	private String stime;
+	private String etime;
+	
+	public String getStime() {
+		return stime;
+	}
+	public void setStime(String stime) {
+		this.stime = stime;
+	}
+	public String getEtime() {
+		return etime;
+	}
+	public void setEtime(String etime) {
+		this.etime = etime;
+	}
 	public Integer getS_id() {
 		return s_id;
 	}
@@ -291,6 +308,34 @@ public class Student {
 	public void setS_string(String s_string) {
 		this.s_string = s_string;
 	}
-
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName2() {
+		return name2;
+	}
+	public void setName2(String name2) {
+		this.name2 = name2;
+	}
+	@Override
+	public String toString() {
+		return "Student [s_id=" + s_id + ", s_name=" + s_name + ", s_age=" + s_age + ", s_sex=" + s_sex + ", s_phone="
+				+ s_phone + ", s_education=" + s_education + ", s_status=" + s_status + ", s_qudao=" + s_qudao
+				+ ", s_wangzhan=" + s_wangzhan + ", s_guanjian=" + s_guanjian + ", s_qq=" + s_qq + ", s_weChat="
+				+ s_weChat + ", s_baobei=" + s_baobei + ", s_beizhu=" + s_beizhu + ", u_id=" + u_id + ", s_quyu="
+				+ s_quyu + ", s_bumen=" + s_bumen + ", s_kecheng=" + s_kecheng + ", s_youxiao=" + s_youxiao
+				+ ", s_dafen=" + s_dafen + ", s_huifang=" + s_huifang + ", s_huifangshijian=" + s_huifangshijian
+				+ ", s_shangmen=" + s_shangmen + ", s_shangmenshijian=" + s_shangmenshijian + ", s_wuxiaoyuanyin="
+				+ s_wuxiaoyuanyin + ", s_jiaofei=" + s_jiaofei + ", s_jiaofeishijian=" + s_jiaofeishijian + ", s_price="
+				+ s_price + ", s_tuifei=" + s_tuifei + ", s_jinban=" + s_jinban + ", s_jinbanshijian=" + s_jinbanshijian
+				+ ", s_jinbanbeizhu=" + s_jinbanbeizhu + ", s_tuifeiyuanyin=" + s_tuifeiyuanyin + ", s_dingjin="
+				+ s_dingjin + ", s_dingjinshijian=" + s_dingjinshijian + ", s_guanzhu=" + s_guanzhu + ", u_idw=" + u_idw
+				+ ", s_zixunbeizhu=" + s_zixunbeizhu + ", l_id=" + l_id + ", s_int=" + s_int + ", s_string=" + s_string
+				+ ", name=" + name + ", name2=" + name2 + "]";
+	}
+	
 
 }

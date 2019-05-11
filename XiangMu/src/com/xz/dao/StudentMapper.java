@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xz.entity.Fenye;
 import com.xz.entity.Student;
+import com.xz.entity.User;
 
 
 public interface StudentMapper {
@@ -37,4 +38,12 @@ Integer insertStudent(Student student);
  * @return
  */
 Integer deleteStudent(Integer s_id);
+
+String selectname(Integer s_id);
+String selectname2(Integer s_id);
+/**
+ * 查询角色为咨询师角色的信息
+ * @return
+ */
+List<User> selectUname();
 }

@@ -11,6 +11,28 @@
 			<if test="t.s_phone!=null and t.s_phone!=''">
 				and s_phone=#{t.s_phone}
 			</if>
+			<if test="t.s_qq!=null and t.s_qq!=''">
+				and s_qq=#{t.s_qq}
+			</if>
+			<if test="t.u_idw!=null and t.u_idw!=''">
+				and u_idw=#{t.u_idw}
+			</if>
+			<if
+				test="t.stime!=null and t.stime!='' and t.etime!=null and t.etime!=''">
+				and s_jinbanshijian between #{t.stime} and #{t.etime}
+			</if>
+			
+			<if test="t.s_huifang!=null and t.s_huifang!=''">
+				and s_huifang=#{t.s_huifang}
+			</if>
+			<if test="t.s_youxiao!=null and t.s_youxiao!=''">
+				and s_youxiao=#{t.s_youxiao}
+			</if>
+			
+			<if test="t.s_jiaofei!=null and t.s_jiaofei!=''">
+				and s_jiaofei=#{t.s_jiaofei}
+			</if>
+			
 		</where>
 		limit #{page},#{pageSize}
 	</select>
@@ -18,6 +40,50 @@
 		resultType="int">
 
 		select count(*) from student
+		<where>
+			<if test="t.s_name!=null and t.s_name!=''">
+				and s_name like "%"#{t.s_name}"%"
+			</if>
+			<if test="t.s_phone!=null and t.s_phone!=''">
+				and s_phone=#{t.s_phone}
+			</if>
+			<if test="t.s_qq!=null and t.s_qq!=''">
+				and s_qq=#{t.s_qq}
+			</if>
+			<if test="t.u_idw!=null and t.u_idw!=''">
+				and u_idw=#{t.u_idw}
+			</if>
+			<if
+				test="t.stime!=null and t.stime!='' and t.etime!=null and t.etime!=''">
+				and s_jinbanshijian between #{t.stime} and #{t.etime}
+			</if>
+			<if test="t.s_huifang!=null and t.s_huifang!=''">
+				and s_huifang=#{t.s_huifang}
+			</if>
+			<if test="t.s_youxiao!=null and t.s_youxiao!=''">
+				and s_youxiao=#{t.s_youxiao}
+			</if>
+			
+			<if test="t.s_jiaofei!=null and t.s_jiaofei!=''">
+				and s_jiaofei=#{t.s_jiaofei}
+			</if>
+			
+		</where>
+	</select>
+	<select id="selectname2" parameterType="int" resultType="String">
+		SELECT u.u_userName from student s,user u
+		<where>
+			u.u_id=s.u_idw and s.s_id=#{s_id}
+		</where>
+
+	</select>
+	<select id="selectname" parameterType="int" resultType="String">
+		SELECT u.u_userName from student s,user u
+		<where>
+
+			u.u_id=s.u_id and s.s_id=#{s_id}
+
+		</where>
 
 	</select>
 	<delete id="deleteStudent" parameterType="student">
@@ -26,4 +92,13 @@
 			s_id=#{s_id}
 		</where>
 	</delete>
+
+	<select id="selectUname" resultType="user">
+		select * from user where
+		u_id in(
+		select u_id from userrole where r_id=(select r_id from role
+		where
+		r_name='咨询师角色') )
+
+	</select>
 </mapper>
