@@ -55,38 +55,48 @@ public class RoleServiceImp implements RoleService {
 	public List<ModuleTree> selectMoInR(Rm rm) {
 		
 		List<ModuleTree> mokuaiTreelist=new ArrayList<ModuleTree>();
+		
 		List<Module> mokuailist = roleMapper.selectMoInR();
-		for(int i=0;i<mokuailist.size();i++) {
-			rm.setM_id(mokuailist.get(i).getM_id());
-			Integer byid = roleMapper.selectMoByRid(rm);
-			if(byid>0) {
-				module.setChecked("true");
-			}else {
-				module.setChecked("false");
-			}
-		}
+		
+		
 		for (int i = 0; i < mokuailist.size(); i++) {
-			if (mokuailist.get(i).getM_parentId() == 0) {
-				addtree(mokuaiTreelist, mokuailist, i);
-			}
+			
+				if (mokuailist.get(i).getM_parentId() == 0) {	
+				  addtree(mokuaiTreelist, mokuailist, i,rm);				
+			         }			
 		}
+	
+		
 		return mokuaiTreelist;
 	}
-	private void addtree(List<ModuleTree> mokuaiTreelist, List<Module> mokuailist, int i) {
+	private void addtree(List<ModuleTree> mokuaiTreelist, List<Module> mokuailist, int i,Rm rm) {
 		ModuleTree mk = new ModuleTree();
 		mk.setId(mokuailist.get(i).getM_id());
-		mk.setText(mokuailist.get(i).getM_name());
-		ModuleTree fortree = fortree(mokuailist, i,mk);
+		mk.setText(mokuailist.get(i).getM_name());	
+		
+		List<Module> mokuailist1= roleMapper.selectMoByRid(rm);
+		
+			for (int f = 0; f < mokuailist1.size(); f++) {
+				if(mokuailist.get(i).getM_id()==mokuailist1.get(f).getM_id()) {
+					mk.setChecked(true);
+				}else {
+					mk.setChecked(false);
+				}
+			
+		}
+		
+					
+		ModuleTree fortree = fortree(mokuailist, i,mk,rm);
 		if(fortree!=null) {
 			mokuaiTreelist.add(fortree);
 		}
 	}
 
-	private ModuleTree fortree(List<Module> mokuailist, int i,ModuleTree mk) {
+	private ModuleTree fortree(List<Module> mokuailist, int i,ModuleTree mk,Rm rm) {
 		List<ModuleTree> treelist = new ArrayList<ModuleTree>();
 		for (int j = 0; j < mokuailist.size(); j++) {
 			if (mokuailist.get(j).getM_parentId() == mokuailist.get(i).getM_id()) {
-				addtree(treelist, mokuailist, j);
+				addtree(treelist, mokuailist, j,rm);
 			}
 		}
 		mk.setChildren(treelist);

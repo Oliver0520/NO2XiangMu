@@ -185,15 +185,14 @@ function kongzhi(index) {
 		url: "selectMoInR",
 		lines: true,
 		queryParams: {
-			r_Id: row.r_id,
+			r_id: row.r_id,
 		},
+		checkbox : true,
 		onContextMenu: function(e, node) {
 			$("#menuTree").tree('select', node.target);
 		}
 	});
-	$("#menuTree").tree({
-		checkbox: true
-	});
+	
 	$("#mkWindow").window("open");
 }
 </script>

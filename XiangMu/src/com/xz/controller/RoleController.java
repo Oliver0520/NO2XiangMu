@@ -55,6 +55,8 @@ public class RoleController {
 	@RequestMapping(value="/selectMoInR",method=RequestMethod.POST)
 	@ResponseBody
 	public List<ModuleTree> selectMoInR(Rm rm){
-		return roleServiceImp.selectMoInR(rm);
+		List<ModuleTree> selectMoInR = roleServiceImp.selectMoInR(rm);
+		System.out.println(selectMoInR);
+		return selectMoInR;
 	}
 }

@@ -46,5 +46,5 @@ Integer updateRoles(Role role);
 
 List<Module> selectMoInR();
 
-Integer selectMoByRid(Rm rm);
+List<Module> selectMoByRid(Rm rm);
 }
