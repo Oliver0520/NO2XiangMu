@@ -111,7 +111,7 @@ Integer selectCountQD(Fenye<User> fenye);
  * @param u_id
  * @return
  */
-Integer selectStatusQD(Integer u_id);
+User selectStatusQD(Integer u_id);
 /**
  * °ïÖúÔ±¹¤Ç©ÍË
  * @param u_id

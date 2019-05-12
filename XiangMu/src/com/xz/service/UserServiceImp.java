@@ -120,9 +120,8 @@ public class UserServiceImp implements UserService {
 	@Override
 	public Fenye<User> selectUserQD(Fenye<User> fenye) {
 		// TODO Auto-generated method stub
-		System.out.println(fenye.getT().getU_qdstatus());
-		List<User> rows = userMapper.selectUser(fenye);
-		Integer total = userMapper.selectUserCount(fenye);
+		List<User> rows = userMapper.selectUserQD(fenye);
+		Integer total = userMapper.selectCountQD(fenye);
 		fenye.setRows(rows);
 		fenye.setTotal(total);
 		return fenye;
@@ -131,7 +130,8 @@ public class UserServiceImp implements UserService {
 	public Integer updaetQD(Integer u_id) {
 		// TODO Auto-generated method stub
 		Integer jg=0;
-		if(userMapper.selectStatusQD(u_id)>0) {
+		User qd = userMapper.selectStatusQD(u_id);
+		if(qd==null) {
 			if(userMapper.qdcaozuo(u_id)>0) {
 				return jg=3;
 			}else {

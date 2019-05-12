@@ -23,7 +23,7 @@
 				<th data-options="field:'u_id'">编号</th>
 				<th data-options="field:'u_userName'">用户名</th>
 				<th data-options="field:'u_qdshijian'">签到时间</th>
-				<th data-options="field:'u_qdstatus'">签到状态</th>
+				<th data-options="field:'u_qdstatus',formatter:xianshiformatter">签到状态</th>
 				<th data-options="field:'caozuo',formatter:caozuoformatter,align:'ceter',title:'操作'"></th>
 				
 			</tr>
@@ -40,10 +40,10 @@
 			<select id="statusqd" class="easyui-combobox" 
 				style="width: 200px;">
 				<option value="aa">--请选择--</option>
-				<option value="已签到">已签到</option>
-				<option value="未签到">未签到</option>
-				<option value="迟到">迟到</option>
-				<option value="已签退">已签退</option>
+				<option value="1">已签到</option>
+				<option value="2">未签到</option>
+				<option value="3">迟到</option>
+				<option value="4">已签退</option>
 			</select> <a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="init()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
@@ -60,7 +60,6 @@ function init(){
 	if (s == "aa") {
 		s = null;
 	}
-alert(s);
 	$("#dg").datagrid({
 		url : "selectUserQD",
 		method : "post",
@@ -76,6 +75,20 @@ alert(s);
 	});
 	$("#str").form("clear");
 }
+function xianshiformatter(value,row,index){
+	if(row.u_qdstatus==1){
+		return "已签到";
+	}
+	if(row.u_qdstatus==2){
+		return "未签到";
+	}
+	if(row.u_qdstatus==3){
+		return "迟到";
+	}
+	if(row.u_qdstatus==4){
+		return "签退";
+	}
+}
 function caozuoformatter(value,row,index){
 	return "<a href='javascript:void(0)' class='easyui-linkbutton' onclick='xiugai("+index+")'>签退</a>  ";
 }
@@ -85,6 +98,7 @@ function xiugai(index){
 	$.post("qdCaozuo",{u_id:row.u_id},function(res){
 		if(res.success){
 			$.messager.alert('提示',res.msg); 
+			$("#dg").datagrid("reload");
 		}else{
 			$.messager.alert('提示',res.msg); 
 		}
