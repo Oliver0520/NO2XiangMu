@@ -23,7 +23,6 @@ $(function() {
 			function(res) { //res是返回的html代码
 				$("#menuTree").html(res);
 				$("#treeUlId").tree(); //让easyUI引擎重新将treeUIId中的html代码转变成树并显示
-				alert(res);
 			},"text");
 });
 //树状结构的节点是否已在中部显示，参数re是标题，html 是路径
