@@ -56,8 +56,7 @@
 							<td align="right" >
 							<img id="yzm_img" style="width: 100px; height: 30px; border-radius: 3px; padding-left: 20%"
 								title="点击刷新验证码" src="getVerifiCode" /></td>
-							<td ><a
-								href="javascript:getVerifiCode()">看不清?</a></td>
+							<td ><a href="javascript:getVerifiCode()">看不清?</a></td>
 						</tr>
 						<!-- <tr>
 							<td><input type="checkbox" value="yes" name="y">自动登录</td>
