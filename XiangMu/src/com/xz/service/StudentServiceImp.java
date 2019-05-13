@@ -12,28 +12,30 @@ import com.xz.dao.StudentMapper;
 import com.xz.entity.Fenye;
 import com.xz.entity.Student;
 import com.xz.entity.User;
+
 @Service
-public class StudentServiceImp implements StudentService{
-@Autowired
-private StudentMapper studentMapper;
+public class StudentServiceImp implements StudentService {
+	@Autowired
+	private StudentMapper studentMapper;
 
 	@Override
 	public Fenye<Student> getStudent(Fenye<Student> fenye) {
 		// TODO Auto-generated method stub
-		System.out.println("哈哈"+fenye);
 		Integer countStu = studentMapper.selectCountStu(fenye);
 		List<Student> student = studentMapper.selectStudent(fenye);
-		for(int i=0;i<student.size();i++) {
-			Integer s_id=student.get(i).getS_id();
+		//循环查询学生ID，通过学生ID分别去查对应的咨询师姓名，再把查询出的咨询师姓名Set进学生ID里
+		for (int i = 0; i < student.size(); i++) {
+			Integer s_id = student.get(i).getS_id();
 			String name = studentMapper.selectname(s_id);
-		    student.get(i).setName(name);
+			student.get(i).setName(name);
 			String name2 = studentMapper.selectname2(s_id);
 			student.get(i).setName2(name2);
-		}		
+		}
 		fenye.setTotal(countStu);
 		fenye.setRows(student);
 		return fenye;
 	}
+
 	@Override
 	public Integer deleteStudent(Integer s_id) {
 		// TODO Auto-generated method stub
@@ -46,6 +48,16 @@ private StudentMapper studentMapper;
 		return studentMapper.selectUname();
 	}
 
+	@Override
+	public Integer updateStudent(Student student) {
+		// TODO Auto-generated method stub
+		return studentMapper.updateStudent(student);
+	}
 
+	@Override
+	public Integer insertStudent(Student student) {
+		// TODO Auto-generated method stub
+		return studentMapper.insertStudent(student);
+	}
 
 }

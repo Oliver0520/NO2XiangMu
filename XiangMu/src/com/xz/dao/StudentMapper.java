@@ -38,8 +38,17 @@ Integer insertStudent(Student student);
  * @return
  */
 Integer deleteStudent(Integer s_id);
-
+/**
+ * 查询咨询师姓名
+ * @param s_id
+ * @return
+ */
 String selectname(Integer s_id);
+/**
+ * 查询网络咨询师姓名
+ * @param s_id
+ * @return
+ */
 String selectname2(Integer s_id);
 /**
  * 查询角色为咨询师角色的信息

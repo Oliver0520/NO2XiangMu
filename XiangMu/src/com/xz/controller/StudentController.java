@@ -40,4 +40,19 @@ public class StudentController {
 	public List<User> selectUname(){
 		return studentService.selectUname();
 	}
+	@RequestMapping(value="/updaStu",method=RequestMethod.POST)
+     @ResponseBody
+	public Integer updateStudent(Student student) {
+		int i=studentService.updateStudent(student);
+		
+		return i;
+	}
+	
+	@RequestMapping(value="/insertStudent",method=RequestMethod.POST)
+	@ResponseBody
+	public Integer insertStudent(Student student) {
+		int i=studentService.insertStudent(student);
+		return i;
+	}
+	
 }
