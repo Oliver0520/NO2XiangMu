@@ -1,6 +1,8 @@
 package com.xz.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xz.entity.Fenye;
 import com.xz.entity.Logo;
+import com.xz.entity.User;
 import com.xz.service.LogoService;
 
 @Controller
@@ -35,7 +38,9 @@ public String selectzrname(Integer s_id) {
 
 @RequestMapping(value="/insertRizhi",method=RequestMethod.POST)
 @ResponseBody
-public Integer insertLogo(Logo logo) {
+public Integer insertLogo(Logo logo,HttpServletRequest Request) {
+	User user = (User) Request.getSession().getAttribute("usera");
+	logo.setU_id(user.getU_id());
 	Integer i=logoService.insertLogo(logo);
 	return i;
 	

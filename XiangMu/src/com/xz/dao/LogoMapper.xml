@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertLogo" parameterType="logo">
 		insert into
-		logo(s_id,l_genzongstartshijian,l_genzongendshijian,l_huifang,l_fangshi,l_xcshijian,l_neirong)
-		values(#{s_id},#{l_genzongstartshijian},#{l_genzongendshijian},#{l_huifang},#{l_fangshi},#{l_xcshijian},#{l_neirong});
+		logo(u_id,s_id,l_genzongstartshijian,l_genzongendshijian,l_huifang,l_fangshi,l_xcshijian,l_neirong)
+		values(#{u_id},#{s_id},#{l_genzongstartshijian},#{l_genzongendshijian},#{l_huifang},#{l_fangshi},#{l_xcshijian},#{l_neirong});
 	</insert>
 	
 	<select id="selectzrname" parameterType="int"

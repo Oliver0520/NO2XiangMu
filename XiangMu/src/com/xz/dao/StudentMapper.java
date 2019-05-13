@@ -55,4 +55,14 @@ String selectname2(Integer s_id);
  * @return
  */
 List<User> selectUname();
+
+Integer selectjs(Integer u_id);
+
+Integer selectjs1(Integer u_id);
+
+
+List<Student> selectzxjs (Fenye<Student> fenye);
+
+Integer countselectzxjs(Fenye<Student> fenye);
+
 }

@@ -3,6 +3,8 @@ package com.xz.service;
 
 import java.util.List;
 
+
+
 import com.xz.entity.Fenye;
 import com.xz.entity.Student;
 import com.xz.entity.User;
@@ -30,10 +32,19 @@ List<User> selectUname();
  * @return
  */
 Integer updateStudent(Student student);
+
+	/* String selectname(Integer s_id); */
 /**
  * 添加学生信息
  * @param student
  * @return
  */
 Integer insertStudent(Student student);
+
+Integer selectjs(Integer u_id);
+
+Integer selectjs1(Integer u_id);
+
+Fenye<Student> getzxjs(Fenye<Student> fenye);
+
 }

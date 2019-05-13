@@ -2,7 +2,10 @@ package com.xz.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +16,8 @@ import com.xz.entity.Student;
 import com.xz.entity.User;
 import com.xz.service.StudentService;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 @Controller
 public class StudentController {
 	@Autowired
@@ -22,11 +27,22 @@ public class StudentController {
 
 	@RequestMapping(value = "/chaxunasd", method = RequestMethod.POST)
 	@ResponseBody
-	public Fenye<Student> getStudent(Integer page, Integer rows,Student student) {
+	public Fenye<Student> getStudent(Integer page, Integer rows,Student student,HttpServletRequest Request) {
 		fenye.setPage((page - 1) * rows);
 		fenye.setPageSize(rows);
 		fenye.setT(student);
-		fenye = studentService.getStudent(fenye);
+		User user = (User) Request.getSession().getAttribute("usera");
+		Integer i=studentService.selectjs(user.getU_id());
+		Integer j=studentService.selectjs1(user.getU_id());
+		if(i>0){
+			student.setU_id(user.getU_id());
+			fenye =studentService.getzxjs(fenye);
+		}
+		if(j>0) {
+			
+			fenye =studentService.getStudent(fenye);
+		}
+		
 		return fenye;
 	}
 
@@ -54,5 +70,11 @@ public class StudentController {
 		int i=studentService.insertStudent(student);
 		return i;
 	}
+	/*
+	 * @RequestMapping(value="/selectname",method=RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String selectname(Integer s_id) { String
+	 * i=studentService.selectname(s_id); return i; }
+	 */
 	
 }

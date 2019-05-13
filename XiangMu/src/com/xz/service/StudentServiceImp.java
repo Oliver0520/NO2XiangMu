@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.jasper.tagplugins.jstl.core.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import com.xz.dao.StudentMapper;
@@ -59,5 +60,40 @@ public class StudentServiceImp implements StudentService {
 		// TODO Auto-generated method stub
 		return studentMapper.insertStudent(student);
 	}
+
+	@Override
+	public Integer selectjs(Integer u_id) {
+		// TODO Auto-generated method stub
+		return studentMapper.selectjs(u_id);
+	}
+
+	@Override
+	public Integer selectjs1(Integer u_id) {
+		// TODO Auto-generated method stub
+		return studentMapper.selectjs1(u_id);
+	}
+
+	@Override
+	public Fenye<Student> getzxjs(Fenye<Student> fenye) {
+		// TODO Auto-generated method stub
+		Integer countStu = studentMapper.countselectzxjs(fenye);
+		List<Student> student = studentMapper.selectzxjs(fenye);
+		fenye.setTotal(countStu);
+		fenye.setRows(student);
+		return fenye;
+	}
+
+
+
+	
+
+	
+
+	
+
+	/*
+	 * @Override public String selectname(Integer s_id) { // TODO Auto-generated
+	 * method stub return studentMapper.selectname(s_id); }
+	 */
 
 }
