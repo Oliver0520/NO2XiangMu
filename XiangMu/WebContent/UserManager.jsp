@@ -15,6 +15,8 @@
 	src="js/jquery-easyui-1.4.3/jquery.easyui.min.js"></script>
 <script type="text/javascript"
 	src="js/jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript"
+	src="js/test.js"></script>
 </head>
 <body>
 	<table id="dg" class="easyui-datagrid">
@@ -26,7 +28,6 @@
 				<th data-options="field:'isLockout',formatter:isLockformatter">是否锁定</th>
 				<th data-options="field:'u_lastLoginTime'">最后一次登录时间</th>
 				<th data-options="field:'u_createTime'">账户创立时间</th>
-				<th data-options="field:'u_password'">密码</th>
 				<th data-options="field:'u_email'">邮箱</th>
 				<th data-options="field:'u_phoneNumber'">手机号码</th>
 				<th data-options="field:'u_qdshijian'">签到时间</th>
