@@ -153,5 +153,10 @@ public class UserController {
     	  }
     	  return map;
       }
+      @RequestMapping(value="/qiantui",method=RequestMethod.POST)
+      @ResponseBody
+      public Integer qiantui() {
+    	  return userServiceImp.updateAllemp();
+      }
       
 }

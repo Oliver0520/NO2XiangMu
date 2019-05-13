@@ -66,8 +66,7 @@ public class MainServiceImp implements MainService {
 			user.setU_qdstatus(3);
 		}else {
 			user.setU_qdstatus(1);
-		}System.out.println(before);
-		System.out.println(user.getU_qdstatus());
+		}
 		Integer i = userMapper.empqd(user);
 		return i;
 	}

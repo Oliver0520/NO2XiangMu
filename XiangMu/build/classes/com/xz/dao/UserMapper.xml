@@ -142,4 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</set>
      <where>u_id=#{u_id}</where>
 	</update>
+	<update id="qiantui">
+	update user set u_qdstatus=4 
+	</update>
 </mapper>

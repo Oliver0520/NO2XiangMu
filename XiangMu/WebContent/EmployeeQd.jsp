@@ -48,6 +48,8 @@
 				onclick="init()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="xinzeng()" data-options="iconCls:'icon-add',plain:true">新增</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="qiantui()" data-options="iconCls:'icon-cancle',plain:true">签退所有员工</a>
 		</form>
 	</div>
 </body>
@@ -105,6 +107,16 @@ function xiugai(index){
 		
 	},"json");
 	
+}
+function qiantui(){
+	$.post("qiantui",function(res){
+		if(res>0){
+			$.messager.alert("提示","所有员工签退成功");
+			$("#dg").datagrid("reload");
+		}else{
+			$.messager.alert("提示","签退失败，请重试");
+		}		
+	},"json");
 }
 </script>
 </html>
