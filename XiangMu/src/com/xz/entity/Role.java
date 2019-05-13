@@ -1,5 +1,7 @@
 package com.xz.entity;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -32,9 +34,17 @@ public class Role {
 	public void setR_string(String r_string) {
 		this.r_string = r_string;
 	}
+	
+	private List<Module> module;
+	public List<Module> getModule() {
+		return module;
+	}
+	public void setModule(List<Module> module) {
+		this.module = module;
+	}
 	@Override
 	public String toString() {
-		return "Role [r_id=" + r_id + ", r_name=" + r_name + ", r_int=" + r_int + ", r_string=" + r_string + "]";
+		return "Role [r_id=" + r_id + ", r_name=" + r_name + ", r_int=" + r_int + ", r_string=" + r_string + ", module="
+				+ module + "]";
 	}
-	
 }

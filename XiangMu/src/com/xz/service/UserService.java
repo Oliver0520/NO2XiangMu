@@ -2,6 +2,8 @@ package com.xz.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.xz.entity.Fenye;
 import com.xz.entity.Role;
 import com.xz.entity.User;
@@ -85,4 +87,19 @@ Integer deleteRole(UserRole userRole);
  * @return
  */
 Integer updateLastTime(User user);
+/**
+ * 用户修改密码
+ * @param user
+ * @return
+ */
+Integer updateMima(User user,HttpServletRequest request);
+/**
+ * 用户签到界面信息查询
+ * @param fenye
+ * @return
+ */
+Fenye<User> selectUserQD(Fenye<User> fenye);
+
+Integer updaetQD(Integer u_id);
+
 }

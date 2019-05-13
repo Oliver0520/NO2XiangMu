@@ -53,11 +53,10 @@
 								data-options="required:true" id="yanzhengma" /></td>
 						</tr>
 						<tr>
-							<td align="right" style="padding-left: 20%">
+							<td align="right" >
 							<img id="yzm_img" style="width: 100px; height: 30px; border-radius: 3px; padding-left: 20%"
 								title="点击刷新验证码" src="getVerifiCode" /></td>
-							<td style="padding-left: 35%"><a
-								href="javascript:getVerifiCode()">看不清?</a></td>
+							<td ><a href="javascript:getVerifiCode()">看不清?</a></td>
 						</tr>
 						<!-- <tr>
 							<td><input type="checkbox" value="yes" name="y">自动登录</td>
@@ -86,8 +85,6 @@
 		$("#subfor").form("reset");
 	}	
 	function denglu() {
-		
-		alert($("#yanzhengma").textbox("getValue"));
 		 $.post("denglu",{
 			u_loginName :$("#username").textbox("getValue"),
 			u_password :$("#pwd").textbox("getValue"),
@@ -98,7 +95,7 @@
 				
 				$.messager.alert("提示",res.msg);
 				
-				/* window.location.href="main.jsp"; */
+				 window.location.href="Main.jsp";
 			}else{
 				$.messager.alert("提示",res.msg);
 				

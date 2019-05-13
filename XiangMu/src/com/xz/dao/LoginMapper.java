@@ -2,8 +2,9 @@ package com.xz.dao;
 
 import java.util.List;
 
+import com.xz.entity.Module;
+import com.xz.entity.Role;
 import com.xz.entity.User;
-import com.xz.entity.UserRole;
 
 public interface LoginMapper {
 	/**
@@ -23,5 +24,11 @@ User selectUs(User user);
  * @param u_id
  * @return
  */
-List<UserRole> selectByuId(Integer u_id); 
+List<Role> selectByuId(Integer u_id); 
+/**
+ * 查询该角色ID下的所有模块
+ * @param r_id
+ * @return
+ */
+List<Module> selectMokuai(Integer r_id);
 }

@@ -76,21 +76,23 @@
     </form>
 </div> 
 
-<div class="easyui-window" id="mkWindow" data-options="closed:true">
-
-			<div class="easyui-layout" style="width:200px;height:400px;">
-
-				<div id="centerTabs" data-options="region:'center',iconCls:'icon-ok',title:'模块信息'" style="width: 530px;">
-					<div id="menuTree">
-						<!--这个地方显示树状结构-->
-
-					</div>
-				</div>
-				<div data-options="region:'south'">
-					<input type="button" onclick="tijiaoModules()" value="提交" />
+	<div id="quanxiantree" class="easyui-window"
+		style="width: 300px; height: 600px"
+		data-options="iconCls:'icon-save',modal:true,closed:true">
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'north',split:true" style="height: 535px">
+				<div id="mkdiv" class="easyui-panel" style="padding: 5px">
+					<ul id="tt" class="easyui-tree"
+						data-options="iconCls:'icon-save',collapsible:true"></ul>
 				</div>
 			</div>
+			<div data-options="region:'center'" style="text-align: right;">
+				<a id="btn" href="javascript:void(0)" style="margin-right: 30px;"
+					class="easyui-linkbutton" onclick="tijiaoModules()"
+					data-options="iconCls:'icon-ok'">保存</a>
+			</div>
 		</div>
+	</div>
 </body>
 <script type="text/javascript">
 $(function(){
@@ -181,20 +183,49 @@ function exitUpdate(){
 function kongzhi(index) {
 	var data = $("#dg").datagrid("getData");
 	var row = data.rows[index];
-	$("#menuTree").tree({
+	$("#tt").tree({
 		url: "selectMoInR",
 		lines: true,
 		queryParams: {
-			r_Id: row.r_id,
+			r_id: row.r_id,
 		},
+		checkbox : true,
 		onContextMenu: function(e, node) {
-			$("#menuTree").tree('select', node.target);
+			$("#tt").tree('select', node.target);
 		}
 	});
-	$("#menuTree").tree({
-		checkbox: true
-	});
-	$("#mkWindow").window("open");
+	jiaoseid = null;
+	jiaoseid = row.r_id;
+	$("#quanxiantree").window("open");
+}
+
+
+function tijiaoModules() {
+	var trees = $("#tt").tree("getChecked", [ "checked", "indeterminate" ]);
+	var ids = "";
+	for (var i = 0; i < trees.length; i++) {
+		if (ids == "") {
+			ids = ids + trees[i].id;
+		} else {
+			ids = ids + "," + trees[i].id;
+		}
+	}
+	$.post("insertRoleModule", {
+		m_id : ids,
+		r_id : jiaoseid
+	}, function(res) {
+		if (res>0) {
+			$.messager.alert("提示","添加成功");
+			$('#quanxiantree').window('close');
+			$("#dg").datagrid("reload");
+			
+		} else {
+			$('#quanxiantree').window('close');
+			$("#dg").datagrid("reload");
+			$.messager.alert("提示","添加失败");
+		}
+	}, "json");
+
 }
 </script>
 </html>

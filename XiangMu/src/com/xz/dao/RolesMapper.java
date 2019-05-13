@@ -46,5 +46,11 @@ Integer updateRoles(Role role);
 
 List<Module> selectMoInR();
 
-Integer selectMoByRid(Rm rm);
+Integer selectMoByRid(RoleModule roleModul);
+
+Integer selectMisnu(Integer m_parentId);
+
+Integer insertRoleModule(List<RoleModule> list_jm);
+
+Integer deleteRoleModule(Integer r_id);
 }

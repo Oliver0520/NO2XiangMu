@@ -41,5 +41,8 @@ Integer deleteRoles(Integer r_id);
  */
 Integer updateRoles(Role role);
 
-List<ModuleTree> selectMoInR(Rm rm);
+List<ModuleTree> selectMoInR(Integer r_id);
+
+
+Integer InsertRolem(String m_id,Integer r_id);
 }

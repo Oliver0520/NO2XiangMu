@@ -10,7 +10,7 @@ public class Module {
 	private String m_path;
 	private Integer m_weight;
 	private Integer m_int;
-	private String checked;
+	private Integer checked;
 	private String message;
 	public String getMessage() {
 		return message;
@@ -54,10 +54,10 @@ public class Module {
 	public void setM_int(Integer m_int) {
 		this.m_int = m_int;
 	}
-	public String getChecked() {
+	public Integer getChecked() {
 		return checked;
 	}
-	public void setChecked(String checked) {
+	public void setChecked(Integer checked) {
 		this.checked = checked;
 	}
 	@Override

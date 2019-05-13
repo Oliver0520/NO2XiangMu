@@ -30,7 +30,19 @@ where r_id=#{r_id}
 <select id="selectMoInR" resultType="module">
 select * from module 
 </select>
-<select id="selectMoByRid" parameterType="rm" resultType="int">
-select count(m_id) from rolemodule where m_id=#{m_id} and r_id=#{r_id}
+<select id="selectMoByRid" parameterType="roleModule" resultType="int">
+SELECT COUNT(rm_id) FROM rolemodule WHERE r_id=#{r_id} AND m_id=#{m_id}
 </select>
+<select id="selectMisnu" parameterType="int" resultType="int">
+	SELECT COUNT(m_id) FROM module WHERE m_parentId=#{m_parentId}
+	</select>
+<insert id="insertRoleModule" parameterType="list">
+INSERT INTO rolemodule(r_id,m_id) VALUES
+	<foreach collection="list" item="item" open="(" separator="),(" close=")">
+	#{item.r_id},#{item.m_id}
+	</foreach>
+</insert>
+<delete id="deleteRoleModule" parameterType="int">
+DELETE FROM rolemodule WHERE r_id=#{r_id}
+</delete>
 </mapper>
