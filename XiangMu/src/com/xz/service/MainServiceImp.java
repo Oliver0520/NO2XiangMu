@@ -1,11 +1,16 @@
 package com.xz.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import com.xz.dao.UserMapper;
 import com.xz.entity.Module;
 import com.xz.entity.Role;
 import com.xz.entity.User;
@@ -13,6 +18,8 @@ import com.xz.entity.User;
 public class MainServiceImp implements MainService {
      
 	private Module module3;
+	@Resource
+	private UserMapper userMapper;
 	@Override
 	public String hometree(String treeUlId,HttpServletRequest requer) {
 		// TODO Auto-generated method stub
@@ -45,5 +52,22 @@ public class MainServiceImp implements MainService {
 		}
 		jg=jg+"</ul>";
 		return jg;
+	}
+	@Override
+	public Integer empqd(User user) throws ParseException {
+		// TODO Auto-generated method stub
+		String u_qdshijian = user.getU_qdshijian();
+		String stime = user.getStime();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date sd1=df.parse(u_qdshijian);
+		Date sd2=df.parse(stime);
+		boolean before = sd1.after(sd2);
+		if(before) {
+			user.setU_qdstatus(3);
+		}else {
+			user.setU_qdstatus(1);
+		}
+		Integer i = userMapper.empqd(user);
+		return i;
 	}
 }

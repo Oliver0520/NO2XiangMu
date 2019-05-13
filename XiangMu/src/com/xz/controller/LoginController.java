@@ -54,7 +54,6 @@ public class LoginController {
 		Integer urid=(Integer) request.getSession().getAttribute("ur_id");
 		
 		String str=(String) request.getSession().getAttribute("username");
-		//System.out.println("³¤¶ÈÎª"+selectuserjuese.size());
 		
 		Integer loginselect = loginService.loginError(user, yanzhengma, request);
 		Map<String, Object> map = new HashMap<String, Object>();

@@ -99,7 +99,15 @@ Integer updateMima(User user,HttpServletRequest request);
  * @return
  */
 Fenye<User> selectUserQD(Fenye<User> fenye);
-
+/**
+ *  单独员工签退
+ * @param u_id
+ * @return
+ */
 Integer updaetQD(Integer u_id);
-
+/**
+ * 所有员工一键签退
+ * @return
+ */
+Integer updateAllemp();
 }

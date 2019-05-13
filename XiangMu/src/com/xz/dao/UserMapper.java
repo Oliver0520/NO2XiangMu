@@ -118,4 +118,17 @@ User selectStatusQD(Integer u_id);
  * @return
  */
 Integer qdcaozuo(Integer u_id);
+/**
+ * 员工签到
+ * @param user
+ * @return
+ */
+Integer empqd(User user);
+
+/**
+ * 一键签退
+ * @param list
+ * @return
+ */
+Integer qiantui();
 }

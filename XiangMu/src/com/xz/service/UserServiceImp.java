@@ -1,6 +1,6 @@
 package com.xz.service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.xz.dao.UserMapper;
 import com.xz.entity.Fenye;
 import com.xz.entity.Role;
-import com.xz.entity.RoleModule;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
 import com.xz.fujie.MD5Util;
@@ -142,6 +141,13 @@ public class UserServiceImp implements UserService {
 		}else {
 		return jg=1;	
 		}
+	}
+	@Override
+	public Integer updateAllemp() {
+		// TODO Auto-generated method stub
+		
+		Integer qiantui = userMapper.qiantui();
+		return qiantui;
 	}
 	
 
