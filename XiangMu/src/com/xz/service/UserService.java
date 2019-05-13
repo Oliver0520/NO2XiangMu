@@ -101,4 +101,5 @@ Integer updateMima(User user,HttpServletRequest request);
 Fenye<User> selectUserQD(Fenye<User> fenye);
 
 Integer updaetQD(Integer u_id);
+
 }

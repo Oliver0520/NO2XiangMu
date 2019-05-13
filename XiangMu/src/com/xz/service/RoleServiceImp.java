@@ -52,7 +52,7 @@ public class RoleServiceImp implements RoleService {
 		return roleMapper.updateRoles(role);
 	}
 	@Override
-	public List<ModuleTree> selectMoInR(Rm rm) {
+	public List<ModuleTree> selectMoInR(Integer r_id) {
 		
 		List<ModuleTree> mokuaiTreelist=new ArrayList<ModuleTree>();
 		
@@ -62,45 +62,71 @@ public class RoleServiceImp implements RoleService {
 		for (int i = 0; i < mokuailist.size(); i++) {
 			
 				if (mokuailist.get(i).getM_parentId() == 0) {	
-				  addtree(mokuaiTreelist, mokuailist, i,rm);				
+				  addtree(mokuaiTreelist, mokuailist, i,r_id);				
 			         }			
 		}
 	
 		
 		return mokuaiTreelist;
 	}
-	private void addtree(List<ModuleTree> mokuaiTreelist, List<Module> mokuailist, int i,Rm rm) {
+	private void addtree(List<ModuleTree> mokuaiTreelist, List<Module> mokuailist, int i,Integer r_id) {
 		ModuleTree mk = new ModuleTree();
 		mk.setId(mokuailist.get(i).getM_id());
-		mk.setText(mokuailist.get(i).getM_name());	
-		
-		List<Module> mokuailist1= roleMapper.selectMoByRid(rm);
-		
-			for (int f = 0; f < mokuailist1.size(); f++) {
-				if(mokuailist.get(i).getM_id()==mokuailist1.get(f).getM_id()) {
-					mk.setChecked(true);
-				}else {
-					mk.setChecked(false);
-				}
-			
+		mk.setText(mokuailist.get(i).getM_name());
+
+		roleModul.setR_id(r_id);
+		roleModul.setM_id(mokuailist.get(i).getM_id());
+		Integer selectMokuai_js_id = roleMapper.selectMoByRid(roleModul);
+		if (mokuailist.get(i).getM_parentId() == 0) {
+			Integer selectMokuai_isyouzi = roleMapper.selectMisnu(mokuailist.get(i).getM_id());
+			if (selectMokuai_isyouzi > 0) {
+				mk.setChecked(false);
+			} else {
+				mk.setChecked(selectMokuai_js_id == 1);
+			}
+		} else {
+			mk.setChecked(selectMokuai_js_id == 1);
 		}
-		
-					
-		ModuleTree fortree = fortree(mokuailist, i,mk,rm);
-		if(fortree!=null) {
+		ModuleTree fortree = fortree(mokuailist, i, mk, r_id);
+		if (fortree != null) {
 			mokuaiTreelist.add(fortree);
 		}
 	}
 
-	private ModuleTree fortree(List<Module> mokuailist, int i,ModuleTree mk,Rm rm) {
+	private ModuleTree fortree(List<Module> mokuailist, int i,ModuleTree mk,Integer r_id) {
 		List<ModuleTree> treelist = new ArrayList<ModuleTree>();
 		for (int j = 0; j < mokuailist.size(); j++) {
 			if (mokuailist.get(j).getM_parentId() == mokuailist.get(i).getM_id()) {
-				addtree(treelist, mokuailist, j,rm);
+				addtree(treelist, mokuailist, j,r_id);
 			}
 		}
 		mk.setChildren(treelist);
 		return mk;
 	}
+	public Integer InsertRolem(String m_id,Integer r_id) {
+		// TODO Auto-generated method stub
+		if(m_id!=null && m_id!="") {
+			String[] split = m_id.split(",");
+			System.out.println(split.length);
+			List<RoleModule> list = new ArrayList<RoleModule>();
+			for (int i = 0; i < split.length; i++) {
+				RoleModule jm = new RoleModule();
+				jm.setM_id(Integer.parseInt(split[i]));
+				jm.setR_id(r_id);
+				list.add(jm);
+			}
 
-}
+			Integer a = roleMapper.deleteRoleModule(r_id);
+			if (a >= 0) {
+				roleMapper.insertRoleModule(list);
+			}
+		}else {
+			roleMapper.deleteRoleModule(r_id);
+		}
+		
+	return 1;
+	}
+	}
+
+
+

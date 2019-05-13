@@ -54,9 +54,14 @@ public class RoleController {
 	}
 	@RequestMapping(value="/selectMoInR",method=RequestMethod.POST)
 	@ResponseBody
-	public List<ModuleTree> selectMoInR(Rm rm){
-		List<ModuleTree> selectMoInR = roleServiceImp.selectMoInR(rm);
-		System.out.println(selectMoInR);
+	public List<ModuleTree> selectMoInR(Integer r_id){
+		List<ModuleTree> selectMoInR = roleServiceImp.selectMoInR(r_id);
 		return selectMoInR;
+	}
+	@RequestMapping(value="/insertRoleModule",method=RequestMethod.POST)
+	@ResponseBody
+	public Integer insertRoleModule(String m_id,Integer r_id) {
+		Integer i = roleServiceImp.InsertRolem(m_id, r_id);
+		return i;
 	}
 }
