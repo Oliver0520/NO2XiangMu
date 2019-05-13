@@ -118,4 +118,6 @@ User selectStatusQD(Integer u_id);
  * @return
  */
 Integer qdcaozuo(Integer u_id);
+
+Integer empqd(User user);
 }

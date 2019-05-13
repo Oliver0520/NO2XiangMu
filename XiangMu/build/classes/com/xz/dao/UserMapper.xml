@@ -124,9 +124,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectStatusQD" parameterType="int" resultType="user">
-	select * from user where u_qdstatus='已签退' and u_id=#{u_id}
+	select * from user where u_qdstatus='4' and u_id=#{u_id}
 	</select>
 	<update id="qdcaozuo" parameterType="int" >
-	update user <set>u_qdstatus ="已签退"</set> where u_id=#{u_id}
+	update user <set>u_qdstatus ="4"</set> where u_id=#{u_id}
+	</update>
+	
+	<update id="empqd" parameterType="user">
+	update user 
+	<set>
+	<if test="u_qdshijian!=null and u_qdshijian!=''">
+	u_qdshijian=#{u_qdshijian},
+	</if>
+	<if test="u_qdstatus!=null and u_qdstatus !=''">
+	u_qdstatus=#{u_qdstatus},
+	</if>
+	</set>
+     <where>u_id=#{u_id}</where>
 	</update>
 </mapper>

@@ -49,6 +49,8 @@ public class LoginServiceImp implements LoginService {
 					selectJuese.get(i).setModule(selectMokuai); } 
 						  user.setRole(selectJuese);
 						request.getSession().setAttribute("usera", user);
+						Integer qdstatus=user.getU_qdstatus();
+						request.getSession().setAttribute("qdstatus", qdstatus);
 					}else {
 						jg=4;
 					}

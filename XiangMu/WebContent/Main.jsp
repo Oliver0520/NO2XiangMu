@@ -18,12 +18,18 @@
 	
 <script type="text/javascript">
 $(function() {
-
+      　 var qdstatus="<%=session.getAttribute("qdstatus")%>";
+    
 	$.post("hometree", {treeUlId: "treeUlId"},
 			function(res) { //res是返回的html代码
 				$("#menuTree").html(res);
 				$("#treeUlId").tree(); //让easyUI引擎重新将treeUIId中的html代码转变成树并显示
 			},"text");
+	 if(qdstatus=="2"&&qdstatus=="3"&&qdstatus=="4"){
+    	
+     }else{
+    	 $.messager.alert("提示","亲，请先去签到，不要迟到哦！！！");
+     }
 });
 //树状结构的节点是否已在中部显示，参数re是标题，html 是路径
 function navTab(re, html) {
@@ -74,6 +80,23 @@ function updatebaocun(){
 function exitUpdate(){
 	$("#update-dialog").dialog("closed");
 }
+function qd(){
+	$.post("empqd",{time:getNowFormatDate()},function(res){
+		if(res>0){
+			$.messager.alert("提示","签到成功，祝您拥有一个美好的一天！！！");
+		}else{
+			$.messager.alert("提示","签到失败，请联系管理员！！！");
+		}
+	},"json");
+}
+/**
+ * 获取系统当前时间
+ */
+function getNowFormatDate() {
+	var mydate = new Date();  
+	 var onedate = mydate.toLocaleString('chinese', { hour12: false }); 
+      return onedate;
+}
 </script>
 </head>
 <body>
@@ -85,6 +108,8 @@ function exitUpdate(){
 				style="text-decoration: none; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;安全退出</a>
 				<a href="javascript:void(0)" onclick="xgPwd()"
 				style="text-decoration: none; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;修改登录密码</a>
+				<a href="javascript:void(0)" onclick="qd()"
+				style="text-decoration: none; color: red;">&nbsp;&nbsp;&nbsp;&nbsp;签到</a>
 			<marquee onMouseOut="this.start()" onMouseOver="this.stop()">
 				<span style="font-weight: bolder; font-size: 20px;">云时代欢迎您！</span>
 			</marquee>
