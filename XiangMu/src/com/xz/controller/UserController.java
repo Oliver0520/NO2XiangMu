@@ -26,6 +26,18 @@ public class UserController {
       @Resource
       private Fenye<User> fenye;
       
+      @RequestMapping(value="/EmployeeQd")
+  	private String EmployeeQd() {
+
+		return "EmployeeQd";
+	}
+      @RequestMapping(value="/UserManager")
+    	private String UserManager() {
+
+    		return "UserManager";
+    	}
+     
+      
       @RequestMapping(value="/selectUser",method=RequestMethod.POST)
       @ResponseBody
       public Fenye<User> selectUser(Integer page,Integer rows,User user){

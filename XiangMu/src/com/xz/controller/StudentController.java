@@ -16,8 +16,6 @@ import com.xz.entity.Student;
 import com.xz.entity.User;
 import com.xz.service.StudentService;
 
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
-
 @Controller
 public class StudentController {
 	@Autowired
@@ -25,24 +23,45 @@ public class StudentController {
 	@Autowired
 	private Fenye<Student> fenye;
 
+	@RequestMapping(value = "/MyStudent")
+	private String MyStudent(HttpServletRequest Request) {
+		User user = (User) Request.getSession().getAttribute("usera");
+		Integer i = studentService.selectjs(user.getU_id());
+		Integer j = studentService.selectjs1(user.getU_id());
+		Request.getSession().setAttribute("zx", i);
+		Request.getSession().setAttribute("zxgl", j);
+		return "MyStudent";
+	}
+	@RequestMapping(value = "/StudentList")
+	private String StudentList(HttpServletRequest Request) {
+		User user = (User) Request.getSession().getAttribute("usera");
+		Integer i = studentService.selectjs(user.getU_id());
+		Integer j = studentService.selectjs1(user.getU_id());
+		Request.getSession().setAttribute("zx", i);
+		Request.getSession().setAttribute("zxgl", j);
+		return "StudentList";
+	}
+
 	@RequestMapping(value = "/chaxunasd", method = RequestMethod.POST)
 	@ResponseBody
-	public Fenye<Student> getStudent(Integer page, Integer rows,Student student,HttpServletRequest Request) {
+	public Fenye<Student> getStudent(Integer page, Integer rows, Student student, HttpServletRequest Request) {
 		fenye.setPage((page - 1) * rows);
 		fenye.setPageSize(rows);
 		fenye.setT(student);
 		User user = (User) Request.getSession().getAttribute("usera");
-		Integer i=studentService.selectjs(user.getU_id());
-		Integer j=studentService.selectjs1(user.getU_id());
-		if(i>0){
-			student.setU_id(user.getU_id());
-			fenye =studentService.getzxjs(fenye);
+		Integer i = studentService.selectjs(user.getU_id());
+		Integer j = studentService.selectjs1(user.getU_id());
+
+		if (j > 0) {
+
+			fenye = studentService.getStudent(fenye);
+		} else {
+			if (i > 0) {
+				student.setU_id(user.getU_id());
+				fenye = studentService.getzxjs(fenye);
+			}
 		}
-		if(j>0) {
-			
-			fenye =studentService.getStudent(fenye);
-		}
-		
+
 		return fenye;
 	}
 
@@ -51,23 +70,25 @@ public class StudentController {
 	public Integer deleteStudent(Integer s_id) {
 		return studentService.deleteStudent(s_id);
 	}
-	@RequestMapping(value="/selectUname",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/selectUname", method = RequestMethod.POST)
 	@ResponseBody
-	public List<User> selectUname(){
+	public List<User> selectUname() {
 		return studentService.selectUname();
 	}
-	@RequestMapping(value="/updaStu",method=RequestMethod.POST)
-     @ResponseBody
+
+	@RequestMapping(value = "/updaStu", method = RequestMethod.POST)
+	@ResponseBody
 	public Integer updateStudent(Student student) {
-		int i=studentService.updateStudent(student);
-		
+		int i = studentService.updateStudent(student);
+
 		return i;
 	}
-	
-	@RequestMapping(value="/insertStudent",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/insertStudent", method = RequestMethod.POST)
 	@ResponseBody
 	public Integer insertStudent(Student student) {
-		int i=studentService.insertStudent(student);
+		int i = studentService.insertStudent(student);
 		return i;
 	}
 	/*
@@ -76,5 +97,5 @@ public class StudentController {
 	 * @ResponseBody public String selectname(Integer s_id) { String
 	 * i=studentService.selectname(s_id); return i; }
 	 */
-	
+
 }

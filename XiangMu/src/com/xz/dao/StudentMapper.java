@@ -61,7 +61,7 @@ Integer selectjs(Integer u_id);
 Integer selectjs1(Integer u_id);
 
 
-List<Student> selectzxjs (Fenye<Student> fenye);
+List<Student> selectMyStudent (Fenye<Student> fenye);
 
 Integer countselectzxjs(Fenye<Student> fenye);
 

@@ -482,8 +482,7 @@
 				<th data-options="field:'s_weChat',width:100">微信</th>
 				<th data-options="field:'s_baobei',width:100,formatter:baobei">是否报备</th>
 				<th data-options="field:'s_beizhu',width:100">备注</th>
-				<th data-options="field:'name2',width:100">咨询师</th>
-				
+				<th data-options="field:'name2',width:100">咨询师</th>	
 				<th data-options="field:'s_quyu',width:100">所在区域</th>
 				<th data-options="field:'s_bumen',width:100">来源部门</th>
 				<th data-options="field:'s_kecheng',width:100">课程方向</th>

@@ -21,6 +21,10 @@ public class RoleController {
     private RoleService roleServiceImp;
 	@Resource
 	private Fenye<Role> fenye;
+	@RequestMapping(value="/RolesManager")
+	private String RolesManager() {
+		return "RolesManager";
+	}
 	
 	
 	@RequestMapping(value="/selectAll",method=RequestMethod.POST)
