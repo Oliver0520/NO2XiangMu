@@ -166,6 +166,21 @@ public class User {
 	public void setApwd(String apwd) {
 		this.apwd = apwd;
 	}
+//	用于接收修改密码时的验证码
+	private String yanzheng;
+	public String getYanzheng() {
+		return yanzheng;
+	}
+	public void setYanzheng(String yanzheng) {
+		this.yanzheng = yanzheng;
+	}
+	private Integer u_psdWrongTime;
+	public Integer getU_psdWrongTime() {
+		return u_psdWrongTime;
+	}
+	public void setU_psdWrongTime(Integer u_psdWrongTime) {
+		this.u_psdWrongTime = u_psdWrongTime;
+	}
 	@Override
 	public String toString() {
 		return "User [u_id=" + u_id + ", u_loginName=" + u_loginName + ", u_userName=" + u_userName + ", u_isLockout="
@@ -174,6 +189,8 @@ public class User {
 				+ ", u_qdshijian=" + u_qdshijian + ", u_qdstatus=" + u_qdstatus + ", u_weight=" + u_weight
 				+ ", u_weightbeizhu=" + u_weightbeizhu + ", u_int=" + u_int + ", u_string=" + u_string + ", paixu="
 				+ paixu + ", stime=" + stime + ", etime=" + etime + ", role=" + role + ", opwd=" + opwd + ", npwd="
-				+ npwd + ", apwd=" + apwd + "]";
+				+ npwd + ", apwd=" + apwd + ", yanzheng=" + yanzheng + ", u_psdWrongTime=" + u_psdWrongTime + "]";
 	}
+	
+	
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xz.entity.User;
 import com.xz.fujie.SCaptcha;
 import com.xz.service.LoginService;
+import com.xz.service.LoginServiceImp;
 
 @Controller
 public class LoginController {
@@ -66,7 +67,7 @@ public class LoginController {
 			map.put("success", false);
 		}
 		if (loginselect == 3) {
-			map.put("msg", "密码输入错误");
+			map.put("msg", "密码输入错误，如果连续输错三次，账号将被锁定，请联系管理员");
 			map.put("success", false);
 		}
 		if (loginselect == 4) {
@@ -82,5 +83,27 @@ public class LoginController {
 		
 		return map;
 	}
-
+	@RequestMapping(value="/forgetMima",method=RequestMethod.POST)
+	@ResponseBody
+    public Map<String, Object> forgetMima(User user,HttpServletRequest request) {
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	Integer i = loginService.forgetPassword(user, request);
+    	if (i == 1) {
+			map.put("msg", "验证码错误");
+			map.put("success", false);
+		}
+    	if (i == 2) {
+			map.put("msg", "用户名不存在");
+			map.put("success", false);
+		}
+    	if (i == 3) {
+			map.put("msg", "重置密码失败");
+			map.put("success", false);
+		}
+    	if (i == 4) {
+			map.put("msg", "您的密码已重置，密码为：ysd123，请妥善保存您的密码！");
+			map.put("success", true);
+		}
+    	return map;
+    }
 }
