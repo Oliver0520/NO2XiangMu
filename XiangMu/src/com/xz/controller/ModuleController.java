@@ -23,6 +23,13 @@ public class ModuleController {
 	private ModuleService moduleServiceImp;
 	@Resource
      private Module module;
+	@RequestMapping(value="/ModuleManager")
+ 	private String ModuleManager() {
+
+		return "ModuleManager";
+	}
+	
+	
      @RequestMapping(value="/selectModule",method=RequestMethod.POST)
      @ResponseBody
      public List<ModuleTree> selectModule(){

@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</where>
 	</update>
 	<update id="chongzhimima" parameterType="int">
-	update user set u_password="ysd123" where u_id=#{u_id}
+	update user set u_password="d776be771e34293953d66ebc052d0524" where u_id=#{u_id}
 	</update>
 	<update id="suoding" parameterType="int">
 	update user set u_isLockout="1" where u_id=#{u_id}

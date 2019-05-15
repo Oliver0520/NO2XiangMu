@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -69,5 +70,21 @@ public class MainServiceImp implements MainService {
 		}
 		Integer i = userMapper.empqd(user);
 		return i;
+	}
+	@Override
+	public String suijiNum(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		String str = "ABCDEFGHIJKLMNOOPQRSTUVWXYZ";
+		str += str.toLowerCase();
+		str += "0123456789";
+		StringBuilder sb = new StringBuilder(6);
+		for(int i = 0;i<6;i++)
+		{
+			char ch = str.charAt(new Random().nextInt(str.length()));
+			sb.append(ch);
+		}
+		String suijishu = sb.toString();
+		request.getSession().setAttribute("suijiNum", suijishu);
+		return suijishu;
 	}
 }

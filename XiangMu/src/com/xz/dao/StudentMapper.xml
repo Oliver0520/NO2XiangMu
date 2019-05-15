@@ -237,7 +237,7 @@
 		r_name="咨询师经理角色")
 		in (select r_id from userrole where u_id=#{u_id})
 	</select>
-	<select id="selectzxje" parameterType="fenye" resultType="user">
+	<select id="selectMyStudent" parameterType="fenye" resultType="student">
 		select * from student
 		<where>
 			<if test="t.s_name!=null and t.s_name!=''">
@@ -271,7 +271,7 @@
 		</where>
 		limit #{page},#{pageSize}
 	</select>
-	<select id="countselectzxje" parameterType="fenye"
+	<select id="countselectzxjs" parameterType="fenye"
 		resultType="int">
 		select count(*) from student
 		<where>

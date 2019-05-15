@@ -26,6 +26,18 @@ public class UserController {
       @Resource
       private Fenye<User> fenye;
       
+      @RequestMapping(value="/EmployeeQd")
+  	private String EmployeeQd() {
+
+		return "EmployeeQd";
+	}
+      @RequestMapping(value="/UserManager")
+    	private String UserManager() {
+
+    		return "UserManager";
+    	}
+     
+      
       @RequestMapping(value="/selectUser",method=RequestMethod.POST)
       @ResponseBody
       public Fenye<User> selectUser(Integer page,Integer rows,User user){
@@ -122,6 +134,10 @@ public class UserController {
     	  if(i==4) {
     		  map.put("msg", "修改成功，请妥善保管您的密码");
   			  map.put("success", true);
+    	  }
+    	  if(i==5) {
+    		  map.put("msg", "验证码不正确，请重新获取验证码");
+  			  map.put("success", false);
     	  }
     	  return map;
       }

@@ -77,7 +77,7 @@ public class StudentServiceImp implements StudentService {
 	public Fenye<Student> getzxjs(Fenye<Student> fenye) {
 		// TODO Auto-generated method stub
 		Integer countStu = studentMapper.countselectzxjs(fenye);
-		List<Student> student = studentMapper.selectzxjs(fenye);
+		List<Student> student = studentMapper.selectMyStudent(fenye);
 		fenye.setTotal(countStu);
 		fenye.setRows(student);
 		return fenye;
