@@ -45,4 +45,15 @@ public class LogoServiceImp implements LogoService {
 		return logomapper.selectzrname(s_id);
 	}
 
+	@Override
+	public Fenye<Logo> getLogo1(Fenye<Logo> fenye) {
+		// TODO Auto-generated method stub
+		Integer countLogo1 = logomapper.selectCountLogo1(fenye);
+		List<Logo> selectLogo1 = logomapper.selectLogo1(fenye);
+		fenye.setTotal(countLogo1);
+		fenye.setRows(selectLogo1);
+		
+		return fenye;
+	}
+
 }

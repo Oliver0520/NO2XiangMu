@@ -16,6 +16,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			l.u_id=u.u_id and l.l_id=#{l_id}
 		</where>
 	</select>
+	<select id="selectLogo1" parameterType="fenye" resultType="logo">
+	
+	select * from logo
+	limit #{page},#{pageSize}
+	
+	</select>
+	<select id="selectCountLogo1" parameterType="fenye" resultType="int">
+	select count(*) from logo
+
+	</select>
+	
 	
 	<select id="selectCount" parameterType="fenye" resultType="int">
 		select count(*) from logo
