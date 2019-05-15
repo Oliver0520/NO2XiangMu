@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import com.xz.entity.Module;
 import com.xz.entity.Role;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
+import com.xz.fujie.CookiesUtil;
 import com.xz.fujie.MD5Util;
 
 @Service
@@ -24,9 +26,10 @@ public class LoginServiceImp implements LoginService {
 	private UserService userService;
 	@Resource
 	private Role role;
-
+	 @Resource
+	    private CookiesUtil cookiesUtil;
 	@Override
-	public Integer loginError(User user, String yanzhengma, HttpServletRequest request) {
+	public Integer loginError(User user, String yanzhengma, HttpServletRequest request,HttpServletResponse response,String y) {
 		// TODO Auto-generated method stub
 		Integer jg = 0;
 		String paduanyong = user.getU_loginName();
@@ -45,7 +48,7 @@ public class LoginServiceImp implements LoginService {
 						user2.setU_id(user.getU_id());
 						userService.updateLastTime(user2);
 						List<Role> selectJuese = loginMapper.selectByuId(user.getU_id());
-
+                        
 						for (int i = 0; i < selectJuese.size(); i++) {
 							List<Module> selectMokuai = loginMapper.selectMokuai(selectJuese.get(i).getR_id());
 							selectJuese.get(i).setModule(selectMokuai);
@@ -56,6 +59,10 @@ public class LoginServiceImp implements LoginService {
 						request.getSession().setAttribute("qdstatus", qdstatus);
 						User deuid = loginMapper.selectUserLoginName(paduanyong);
 						loginMapper.chongzhiUpsdWrongTime(deuid.getU_id());
+						if(y.equals("yes")) {
+							cookiesUtil.setCookie(response, "u_loginName", user.getU_loginName(),7*24*60*60);
+							cookiesUtil.setCookie(response, "u_password", user.getU_password(),7*24*60*60);
+						}
 					} else {
 						jg = 4;
 					}

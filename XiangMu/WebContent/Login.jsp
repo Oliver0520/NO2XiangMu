@@ -58,10 +58,10 @@
 								title="点击刷新验证码" src="getVerifiCode" /></td>
 							<td><a href="javascript:getVerifiCode()">看不清?</a></td>
 						</tr>
-						<!-- <tr>
+						 <tr>
 							<td><input type="checkbox" value="yes" name="y">自动登录</td>
-							<td align="right" colspan="2"><a href="zhuce.jsp">没有账号?点击立即注册</a></td>
-						</tr> -->
+			<!-- 				<td align="right" colspan="2"><a href="zhuce.jsp">没有账号?点击立即注册</a></td> -->
+						</tr>
 						<tr>
 							<td><a id="btn" href="javascript:void(0)"
 								class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
@@ -122,11 +122,13 @@
 		$("#subfor").form("reset");
 	}
 	function denglu() {
+		var y = $("[name = 'y']:checked").val();
+		alert(y);
 		$.post("denglu", {
 			u_loginName : $("#username").textbox("getValue"),
 			u_password : $("#pwd").textbox("getValue"),
-			yanzhengma : $("#yanzhengma").textbox("getValue")
-
+			yanzhengma : $("#yanzhengma").textbox("getValue"),
+           y:y
 		}, function(res) {
 			if (res.success) {
 
