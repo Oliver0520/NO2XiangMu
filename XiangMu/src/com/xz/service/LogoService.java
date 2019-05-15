@@ -1,5 +1,7 @@
 package com.xz.service;
 
+import java.util.List;
+
 import com.xz.entity.Fenye;
 import com.xz.entity.Logo;
 public interface LogoService {
@@ -27,5 +29,6 @@ Integer insertLogo(Logo logo);
  * @return
  */
 String selectzrname(Integer s_id);
+Fenye<Logo> getLogo1(Fenye<Logo> fenye);
 
 }

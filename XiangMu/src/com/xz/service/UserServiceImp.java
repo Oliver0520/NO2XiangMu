@@ -102,6 +102,8 @@ public class UserServiceImp implements UserService {
 		Integer jg=0;
 		User user1 = (User)request.getSession().getAttribute("usera");
 		user.setU_id(user1.getU_id());
+		String yanzhengma = (String) request.getSession().getAttribute("suijiNum");
+		if(user.getYanzheng().equals(yanzhengma)) {
 		if(user.getOpwd().equals(user1.getU_password())){
 			if(user.getApwd().equals(user.getNpwd())) {
 				if(userMapper.updateMima(user)>0) {
@@ -114,6 +116,9 @@ public class UserServiceImp implements UserService {
 			}
 		}else {
 			return jg=1;
+		}
+		}else {
+			return jg=5;
 		}
 		
 		

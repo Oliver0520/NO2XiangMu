@@ -13,4 +13,6 @@ public interface LoginService {
 	 * @return
 	 */
 Integer loginError(User user, String yanzhengma, HttpServletRequest request);
+
+Integer forgetPassword(User user,HttpServletRequest request);
 }

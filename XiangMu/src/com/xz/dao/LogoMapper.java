@@ -14,6 +14,9 @@ public interface LogoMapper {
 	 * @return
 	 */
 List<Logo> selectLogo(Fenye<Logo> fenye );
+
+List<Logo> selectLogo1(Fenye<Logo> fenye );
+Integer selectCountLogo1(Fenye<Logo> fenye);
 /**
  * 分页查询总条数
  * @param fenye

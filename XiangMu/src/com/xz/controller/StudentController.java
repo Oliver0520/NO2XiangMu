@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +16,11 @@ import com.xz.entity.Student;
 import com.xz.entity.User;
 import com.xz.service.StudentService;
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 17774ab387d6ed7db51355c8e57195a0abcb9886
 @Controller
 public class StudentController {
 	@Autowired

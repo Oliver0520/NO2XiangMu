@@ -135,6 +135,10 @@ public class UserController {
     		  map.put("msg", "修改成功，请妥善保管您的密码");
   			  map.put("success", true);
     	  }
+    	  if(i==5) {
+    		  map.put("msg", "验证码不正确，请重新获取验证码");
+  			  map.put("success", false);
+    	  }
     	  return map;
       }
       @RequestMapping(value="/selectUserQD",method=RequestMethod.POST)

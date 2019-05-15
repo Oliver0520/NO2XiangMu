@@ -23,4 +23,25 @@ select r.r_id,r.r_name,r.r_int,r.r_string from userrole us inner join  role r on
 <select id="selectMokuai" parameterType="int" resultType="module">
 select m.m_id,m.m_name,m.m_path,m.m_parentId,m.m_int,m.checked,m.m_weight from rolemodule r INNER JOIN  module  m on r.m_id=m.m_id where r.r_id=#{r_id}
 </select>
+<select id="selectCountLoginName" parameterType="String" resultType="int">
+select count(u_loginName) from user where u_loginName=#{u_loginName}
+</select>
+<select id="selectUserLoginName" parameterType="String" resultType="user">
+select u_id from user where u_loginName=#{u_loginName}
+</select>
+<update id="forgetLoginName" parameterType="int">
+update user set u_password="d776be771e34293953d66ebc052d0524" where u_id=#{u_id}
+</update>
+<update id="updateUpsdWrongTime" parameterType="int">
+update user set u_psdWrongTime=u_psdWrongTime+1 where u_id=#{u_id}
+</update>
+<select id="selectUpsdWrongTime" parameterType="int" resultType="user">
+select u_psdWrongTime from user where u_id=#{u_id}
+</select>
+<update id="updateIslockOUt" parameterType="int">
+update user set u_isLockout=1 where u_id=#{u_id}
+</update>
+<update id="chongzhiUpsdWrongTime" parameterType="int">
+update user set u_psdWrongTime=0 where u_id=#{u_id}
+</update>
 </mapper>

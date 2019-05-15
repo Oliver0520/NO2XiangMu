@@ -47,4 +47,15 @@ public Integer insertLogo(Logo logo,HttpServletRequest Request) {
 	
 }
 
+@RequestMapping(value="/logo",method=RequestMethod.POST)
+@ResponseBody
+public Fenye<Logo> getLogo1(Integer page,Integer rows){
+	fenye.setPage((page-1)*rows);
+	fenye.setPageSize(rows);
+ fenye=logoService.getLogo1(fenye);
+	return fenye;
+	
+	
+}
+
 }
