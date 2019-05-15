@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xz.dao.LogoMapper">
+	<select id="selectLogo" parameterType="fenye" resultType="logo">
+		select * from Logo
+		<where>
+			and s_id=#{t.s_id}
+		</where>
+	</select>
+	
+	<select id="selectname" parameterType="int" resultType="String">
+		SELECT u.u_userName from logo l,user u
+		<where>
+			l.u_id=u.u_id and l.l_id=#{l_id}
+		</where>
+	</select>
+	
+	<select id="selectCount" parameterType="fenye" resultType="int">
+		select count(*) from logo
+		<where>
+			and s_id=#{t.s_id}
+		</where>
+	</select>
+	
+	<insert id="insertLogo" parameterType="logo">
+		insert into
+		logo(u_id,s_id,l_genzongstartshijian,l_genzongendshijian,l_huifang,l_fangshi,l_xcshijian,l_neirong)
+		values(#{u_id},#{s_id},#{l_genzongstartshijian},#{l_genzongendshijian},#{l_huifang},#{l_fangshi},#{l_xcshijian},#{l_neirong});
+	</insert>
+	
+	<select id="selectzrname" parameterType="int"
+		resultType="String">
+		SELECT s.s_name from student s,logo l
+		<where>
+			l.s_id=s.s_id and l.s_id=#{s_id}
+		</where>
+		limit 0,1
+	</select>
+	
+</mapper>
