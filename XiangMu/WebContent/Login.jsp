@@ -39,13 +39,13 @@
 						<tr>
 							<td>登录名:</td>
 							<td><input class="easyui-textbox" type="text"
-								data-options="required:true" id="username" onblur="haha()" /></td>
+								data-options="required:true" id="username" value="${cookie.u_loginName.value }" onblur="haha()" /></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>密码:</td>
 							<td><input class="easyui-textbox" type="password"
-								data-options="required:true,validType:'length[6,15]'" id="pwd" /></td>
+								data-options="required:true,validType:'length[6,15]'" value="${cookid.u_password.value}" id="pwd" /></td>
 						</tr>
 						<tr>
 							<td>请输入验证码:</td>
@@ -175,6 +175,10 @@
 				$.messager.alert("提示", res.msg);
 			}
 		}, "json");
+	}
+	
+	function nihao(){
+		$.post("clearCookie",function(res){},"json");
 	}
 </script>
 </html>

@@ -17,6 +17,7 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.xz.entity.User;
 import com.xz.fujie.Aliyun;
+import com.xz.fujie.CookiesUtil;
 import com.xz.service.MainService;
 
 @Controller
@@ -27,6 +28,8 @@ public class MainController {
     private User user;
     @Resource
     private Aliyun aliyun;
+    @Resource
+    private CookiesUtil cookiesUtil;
     @RequestMapping(value = "/hometree",method = RequestMethod.POST,produces = "text/json;charset=utf-8")
    @ResponseBody
     public String hometree(String treeUlId, HttpServletRequest request) {
@@ -37,10 +40,8 @@ public class MainController {
     @RequestMapping(value = "tuichu")
 	public String tuichu(HttpServletRequest request,HttpServletResponse response) {
 		request.getSession().setAttribute("usera", null);
-		/*
-		 * cookiesUtil.setCookie(response, "us_name", "", 0);
-		 * cookiesUtil.setCookie(response, "us_password", "", 0);
-		 */
+		cookiesUtil.setCookie(response, "u_loginName", "", 0);
+		cookiesUtil.setCookie(response, "u_password", "", 0);
 		return "Login";
 	}
     @RequestMapping(value="/empqd",method=RequestMethod.POST)
