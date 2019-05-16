@@ -25,10 +25,8 @@ $(function() {
 				$("#menuTree").html(res);
 				$("#treeUlId").tree(); //让easyUI引擎重新将treeUIId中的html代码转变成树并显示
 			},"text");
-	 if(qdstatus=="2"&&qdstatus=="3"&&qdstatus=="4"){
-    	
-     }else{
-    	 $.messager.alert("提示","亲，请先去签到，不要迟到哦！！！");
+	 if(qdstatus=="2"&&qdstatus=="4"){
+		 $.messager.alert("提示","亲，请先去签到，不要迟到哦！！！");
      }
 });
 //树状结构的节点是否已在中部显示，参数re是标题，html 是路径

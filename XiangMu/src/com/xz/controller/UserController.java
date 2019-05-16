@@ -174,5 +174,14 @@ public class UserController {
       public Integer qiantui() {
     	  return userServiceImp.updateAllemp();
       }
-      
+      @RequestMapping(value="MyselfInfo")
+      public String MyselfInfo() {
+    	  return "MyselfInfo";
+      }      
+      @RequestMapping(value="/myselfIn",method=RequestMethod.POST)
+      @ResponseBody
+      public User myselfIn(HttpServletRequest req){
+    	  User list = (User) req.getSession().getAttribute("usera");
+    	  return list;
+      }
 }
