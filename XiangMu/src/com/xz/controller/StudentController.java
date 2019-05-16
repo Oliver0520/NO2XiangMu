@@ -97,5 +97,16 @@ public class StudentController {
 	 * @ResponseBody public String selectname(Integer s_id) { String
 	 * i=studentService.selectname(s_id); return i; }
 	 */
-
+	@RequestMapping(value="/selectFenpei",method=RequestMethod.POST)
+	@ResponseBody
+    public Fenye<Student> selectFenpei(Student student,Integer page,Integer rows) {
+    	fenye.setPage((page-1)*rows);
+    	fenye.setPageSize(rows);
+    	fenye.setT(student);
+    	return fenye;
+    }
+	@RequestMapping(value="/Fenpei")
+	public String Fenpei() {
+		return "Fenpei";
+	}
 }

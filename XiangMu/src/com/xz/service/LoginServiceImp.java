@@ -64,16 +64,20 @@ public class LoginServiceImp implements LoginService {
 						request.getSession().setAttribute("qdstatus", qdstatus);
 						User deuid = loginMapper.selectUserLoginName(paduanyong);
 						loginMapper.chongzhiUpsdWrongTime(deuid.getU_id());
-						if ("yes".equals(y)) {
-							/*
-							 * String s = URLEncoder.encode(user.getU_loginName()); String m =
-							 * URLEncoder.encode(user.getU_password());
-							 */
-							cookiesUtil.setCookie(response, "u_loginName", user.getU_loginName(), 7 * 24 * 60 * 60);
-
-							cookiesUtil.setCookie(response, "u_password",user.getU_password(), 7 * 24 * 60 * 60);
-
-						}
+						/*
+						 * if ("yes".equals(y)) {
+						 * 
+						 * String s = URLEncoder.encode(user.getU_loginName()); String m =
+						 * URLEncoder.encode(user.getU_password());
+						 * 
+						 * cookiesUtil.setCookie(response, "u_loginName", user.getU_loginName(), 7 * 24
+						 * * 60 * 60);
+						 * 
+						 * cookiesUtil.setCookie(response, "u_password",user.getU_password(), 7 * 24 *
+						 * 60 * 60);
+						 * 
+						 * }
+						 */
 					} else {
 						jg = 4;
 					}

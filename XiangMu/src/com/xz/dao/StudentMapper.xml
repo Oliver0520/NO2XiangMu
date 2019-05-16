@@ -306,4 +306,28 @@
 			</if>
 		</where>
 	</select>
+	<select id="selectFenpei" parameterType="fenye" resultType="student">
+	select * from student 
+	<where>
+	s_id not in (select s_id from student where u_idw>0)
+	<if test="t.s_name!=null and t.s_name!=''">
+	and s_name like  "%"#{t.s_name}"%"
+	</if>
+	<if test="t.s_age!=null and t.s_age!=''">
+	and s_age=#{s_age}
+	</if>	
+	</where>
+	</select>
+	<select id="selectFenpeiCount" parameterType="fenye" resultType="int">
+	select count(*) from student 
+	<where>
+	s_id not in (select s_id from student where u_idw>0)
+	<if test="t.s_name!=null and t.s_name!=''">
+	and s_name like  "%"#{t.s_name}"%"
+	</if>
+	<if test="t.s_age!=null and t.s_age!=''">
+	and s_age=#{s_age}
+	</if>	
+	</where>
+	</select>
 </mapper>

@@ -3,6 +3,7 @@ package com.xz.controller;
 import javax.servlet.http.Cookie;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,9 +33,13 @@ public class LoginController {
      public String relogin(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		User user=new User();
 		
+		
 		Cookie u_loginName = cookiesUtil.getCookieByName(request, "u_loginName");
+		/* String u_loginName = URLDecoder.decode(u_loginName.,"UTF-8"); */
+		
 		Cookie u_password = cookiesUtil.getCookieByName(request, "u_password");
-		if(u_loginName!=null&&u_password!=null&&u_password.getValue()!=""&&u_loginName.getValue()!="") {
+//		String u_password = URLDecoder.decode(upassword.getValue(),"UTF-8");
+		if(u_loginName!=null&&u_password!=null&&u_loginName.getValue()!=null&&u_password.getValue()!=null) {
 			user.setU_loginName(u_loginName.getValue());
 			user.setU_password(u_password.getValue());
 			
@@ -72,18 +77,9 @@ public class LoginController {
 	@RequestMapping(value="/denglu",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> yanzhengma(HttpServletRequest request, String yanzhengma, User user,String y,HttpServletResponse response)
-			throws IOException, ServletException {
-		
-		Cookie u_loginName = cookiesUtil.getCookieByName(request, "u_loginName");
-		Cookie u_password = cookiesUtil.getCookieByName(request, "u_password");
-		if(u_loginName!=null&&u_password!=null&&u_password.getValue()!=""&&u_loginName.getValue()!="") {
-			user.setU_loginName(u_loginName.getValue());
-			user.setU_password(u_password.getValue());
-		}
-		Integer urid=(Integer) request.getSession().getAttribute("ur_id");
-		
-		String str=(String) request.getSession().getAttribute("username");
-		
+			throws IOException, ServletException {		
+		Integer urid=(Integer) request.getSession().getAttribute("ur_id");		
+		String str=(String) request.getSession().getAttribute("username");		
 		Integer loginselect = loginService.loginError(user, yanzhengma, request,response,y);
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (loginselect == 1) {
@@ -107,6 +103,12 @@ public class LoginController {
 			map.put("success", true);
 			map.put("usedata", str);
 			map.put("urid",urid);
+			if("yes".equals(y)) {
+				cookiesUtil.setCookie(response, "u_loginName", user.getU_loginName(), 7 * 24 * 60 * 60);
+				cookiesUtil.setCookie(response, "u_password",user.getU_password(), 7 * 24 * 60 * 60);
+			}
+			
+			
 		}
 		
 		return map;

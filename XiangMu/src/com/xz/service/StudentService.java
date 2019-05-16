@@ -47,4 +47,6 @@ Integer selectjs1(Integer u_id);
 
 Fenye<Student> getzxjs(Fenye<Student> fenye);
 
+
+Fenye<Student> selectFenpei(Fenye<Student> fenye);
 }

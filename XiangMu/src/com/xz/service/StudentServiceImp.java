@@ -83,6 +83,16 @@ public class StudentServiceImp implements StudentService {
 		return fenye;
 	}
 
+	@Override
+	public Fenye<Student> selectFenpei(Fenye<Student> fenye) {
+		// TODO Auto-generated method stub
+		List<Student> rows = studentMapper.selectFenpei(fenye);
+		Integer total = studentMapper.selectCountStu(fenye);
+		fenye.setRows(rows);
+		fenye.setTotal(total);
+		return fenye;
+	}
+
 
 
 	

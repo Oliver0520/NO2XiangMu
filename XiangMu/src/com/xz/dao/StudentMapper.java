@@ -64,5 +64,16 @@ Integer selectjs1(Integer u_id);
 List<Student> selectMyStudent (Fenye<Student> fenye);
 
 Integer countselectzxjs(Fenye<Student> fenye);
-
+/**
+ * 查询未被分配咨询师的学生
+ * @param fenye
+ * @return
+ */
+List<Student> selectFenpei(Fenye<Student> fenye);
+/**
+ * 查询未被分配咨询师的条数
+ * @param fenye
+ * @return
+ */
+Integer selectFenpeiCount(Fenye<Student> fenye);
 }
