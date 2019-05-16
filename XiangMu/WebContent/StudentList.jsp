@@ -30,6 +30,8 @@
 		
 
 		inint();
+		$('#zxid').next().hide(); 
+		$('#zxglid').next().hide(); 
 
 	});
 	function inint() {
@@ -67,19 +69,22 @@
 		$("#str").form("clear");
 
 	}
-
 	function caozuolei(value, row, index) {
-		return "<a href='javascript:void(0)' onclick='shanchu("
-				+ index
-				+ ")'>删除</a>   <a href='javascript:void(0)' onclick='chakan("
-				+ index
-				+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
-				+ index
-				+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
-				+ index
-				+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
-				+ index + ")'>添加日志</a>"
-	}
+		var zxid = $("#zxid").textbox("getValue");
+		var zxglid = $("#zxglid").textbox("getValue");
+		
+		
+	
+		if(zxglid>0){
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
+		 }
+		else{
+			if(zxid>0){
+				return " <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
+
+				}
+			} 
+		}
 	function shanchu(index) {
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
@@ -468,6 +473,9 @@
 </script>
 </head>
 <body>
+ <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
+<input class="easyui-textbox" type="text" id="zxglid" value="<%=session.getAttribute("zxgl") %>"/>
+ 
 	<table class="easyui-datagrid" id="dg">
 		<thead>
 			<tr>

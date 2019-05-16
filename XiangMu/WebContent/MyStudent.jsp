@@ -30,6 +30,8 @@
 		});
 
 		inint();
+		$('#zxid').next().hide(); 
+		$('#zxglid').next().hide(); 
 
 	});
 	function inint() {
