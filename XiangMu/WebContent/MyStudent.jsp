@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8;"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,10 +16,9 @@
 	src="js/jquery-easyui-1.4.3/jquery.easyui.min.js"></script>
 <script type="text/javascript"
 	src="js/jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="js/test.js"></script>
- 
+	<script type="text/javascript"
+	src="js/test.js"></script>
 <script type="text/javascript">
-
 	$(function() {
 		$('#zxname').combobox({
 			url : 'selectUname',
@@ -28,10 +27,13 @@
 			textField : 'u_userName'
 
 		});
+		
 
 		inint();
 		$('#zxid').next().hide(); 
 		$('#zxglid').next().hide(); 
+		
+		
 
 	});
 	function inint() {
@@ -52,6 +54,7 @@
 			method : "post",
 			pagination : true,
 			toolbar : "#bar",
+
 			singleSelect : true,
 			queryParams : {
 				s_name : $("#Sname").textbox("getValue"),
@@ -62,15 +65,12 @@
 				etime : $("#etime").textbox("getValue"),
 				s_huifang : hf,
 				s_youxiao : yx,
-				s_jiaofei : jf,
+				s_jiaofei : jf
 			}
-		
 		});
-	
 		$("#str").form("clear");
 
 	}
-
 	function caozuolei(value, row, index) {
 		var zxid = $("#zxid").textbox("getValue");
 		var zxglid = $("#zxglid").textbox("getValue");
@@ -87,8 +87,6 @@
 				}
 			} 
 		}
-
-	
 	function shanchu(index) {
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
@@ -353,13 +351,13 @@
 		if (baobei == "是") {
 			baobei = 2
 		}
-		if (s_sex == "男") {
-			s_sex = 1
-
+		if(s_sex=="男"){
+			s_sex=1
+			
 		}
-		if (s_sex == "女") {
-			s_sex = 2
-
+		if(s_sex=="女"){
+			s_sex=2
+			
 		}
 		alert(baobei)
 		$.post("insertStudent", {
@@ -387,7 +385,7 @@
 			}
 		}, "json");
 		$("#insertfrm").form("clear");
-
+		
 	}
 	function exitInsert() {
 		$("#insert-dialog").dialog("close");
@@ -432,11 +430,12 @@
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
 		$("#s_ida").textbox("setValue", row.s_id);
+		$("#u_ida").textbox("setValue", row.u_id);
 		$("#tjrizhi-dialog").dialog("open");
-
 	}
 	function rizhibaocun() {
 		var s_id = $("#s_ida").textbox("getValue");
+		var u_id = $("#u_ida").textbox("getValue");
 		var l_id = $("#l_id").textbox("getValue");
 		var l_genzongstartshijian = $("#l_genzongstartshijian").textbox(
 				"getValue");
@@ -447,6 +446,7 @@
 		var l_neirong = $("#l_neirong").textbox("getValue");
 
 		$.post("insertRizhi", {
+			u_id:u_id,
 			s_id : s_id,
 			l_id : l_id,
 			l_genzongstartshijian : l_genzongstartshijian,
@@ -472,6 +472,17 @@
 		$("#tjrizhi-dialog").dialog("close");
 
 	}
+	function rizhicaozuolei(value,row,index){
+		
+		return "<a href='javascript:void(0)'  onclick='rizhixiangxi("+ index+ ")'>查看</a>"
+		
+	}
+	function rizhixiangxi(index){
+		var data = $("#rizhidg").datagrid("getData");
+		var row = data.rows[index];
+		$("#rizhixiangxifrm").form("load", row);
+		$("#rizhixiangxidiv").dialog("open");
+	}
 </script>
 </head>
 <body>
@@ -494,8 +505,7 @@
 				<th data-options="field:'s_weChat',width:100">微信</th>
 				<th data-options="field:'s_baobei',width:100,formatter:baobei">是否报备</th>
 				<th data-options="field:'s_beizhu',width:100">备注</th>
-				<th data-options="field:'name2',width:100">咨询师</th>
-
+				<th data-options="field:'name2',width:100">咨询师</th>	
 				<th data-options="field:'s_quyu',width:100">所在区域</th>
 				<th data-options="field:'s_bumen',width:100">来源部门</th>
 				<th data-options="field:'s_kecheng',width:100">课程方向</th>
@@ -532,11 +542,9 @@
 					<th data-options="field:'rzname',width:100">姓名</th>
 					<th data-options="field:'l_genzongstartshijian',width:100">回访开始时间</th>
 					<th data-options="field:'l_genzongendshijian',width:100">回访结束时间</th>
-					<th data-options="field:'l_huifang',width:100">回访情况</th>
-					<th data-options="field:'l_fangshi',width:100">回访方式</th>
 					<th data-options="field:'l_xcshijian',width:100">下次回访时间</th>
 					<th data-options="field:'l_neirong',width:100">回访内容</th>
-
+					<th data-options="field:'caozuo',title:'操作',formatter:rizhicaozuolei"></th>
 				</tr>
 			</thead>
 		</table>
@@ -544,10 +552,6 @@
 
 	<div id="bar">
 		<form id="str">
-		
-<%-- 		<input id="zxid" type="text" value="<%=session.getAttribute("zx") %>">  
-<input id="zxglid" type="text" value="<%=session.getAttribute("zxgl") %>">  --%>
-
 			<label>用户名:</label> <input class="easyui-textbox" type="text"
 				id=Sname /> <label>QQ:</label> <input class="easyui-textbox"
 				type="text" id="sqq" /> <label>咨询师姓名:</label> <select
@@ -580,7 +584,7 @@
 	</div>
 
 	<div id="chakan-dialog" class="easyui-dialog" title="查看"
-		style="width: 840px; height: 520px;"
+		style="width: 600px; height: 400px;"
 		data-options="resizable:true,modal:true,closed:true">
 		<form id="chakanfrm">
 			<div style="float: left">
@@ -660,7 +664,7 @@
 
 				</table>
 			</div>
-			<div style="float: left">
+			<div style="float: right">
 				<table>
 					<tr>
 						<td><label>咨询师部分:</label></td>
@@ -726,14 +730,6 @@
 						<td><label>是否缴费:</label></td>
 						<td><input class="easyui-textbox" type="text" id="ajiaofei"
 							disabled="disabled" /></td>
-					</tr>
-				</table>
-			</div>
-			<div style="float: left">
-				<table>
-					<tr>
-						<td>&ensp;</td>
-						<td>&ensp;</td>
 					</tr>
 					<tr>
 						<td><label>缴费时间:</label></td>
@@ -802,7 +798,7 @@
 		</form>
 	</div>
 	<div id="xiugai-dialog" class="easyui-dialog" title="修改"
-		style="width: 840px; height: 540px;"
+		style="width: 600px; height: 400px;"
 		data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,toolbar:[{
 				text:'保存',
 				iconCls:'icon-edit',
@@ -896,7 +892,7 @@
 					</tr>
 				</table>
 			</div>
-			<div style="float: left">
+			<div style="float: right">
 				<table>
 					<tr>
 						<td><label>咨询师录入:</label></td>
@@ -904,7 +900,7 @@
 					</tr>
 					<tr>
 						<td><label>咨询姓名:</label></td>
-						<td><select class="easyui-combobox" id="zxname2"
+						<td><select class="easyui-combobox" id="zxname1"
 							style="width: 100px;">
 						</select></td>
 					</tr>
@@ -975,15 +971,6 @@
 								<option value="1">否</option>
 						</select></td>
 					</tr>
-
-				</table>
-			</div>
-			<div style="float: left">
-				<table>
-					<tr>
-						<td>&ensp;</td>
-						<td>&ensp;</td>
-					</tr>
 					<tr>
 						<td><label>缴费时间:</label></td>
 						<td><input class="easyui-datetimebox" type="text"
@@ -1042,7 +1029,7 @@
 					</tr>
 					<tr>
 						<td><label>咨询师(面见):</label></td>
-						<td><select class="easyui-combobox" id="zxname1"
+						<td><select class="easyui-combobox" id="zxname2"
 							style="width: 100px;">
 						</select></td>
 					</tr>
@@ -1053,11 +1040,10 @@
 					</tr>
 				</table>
 			</div>
-
 		</form>
 	</div>
 	<div id="insert-dialog" class="easyui-dialog" title="添加"
-		style="width: 500px; height: 560px;"
+		style="width: 500px; height: 400px;"
 		data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,toolbar:[{
 				text:'保存',
 				iconCls:'icon-edit',
@@ -1087,12 +1073,12 @@
 					<td><label>性别:</label></td>
 					<td><select id="tjs_sex" class="easyui-combobox"
 						style="width: 100px;">
-							<option value="0">--请选择--</option>
+						<option value="0">--请选择--</option>
 							<option value="2">女</option>
 							<option value="1">男</option>
 					</select></td>
 				</tr>
-
+				
 				<tr>
 					<td><label>电话:</label></td>
 					<td><input class="easyui-textbox" type="text" id="tjs_phone"
@@ -1137,7 +1123,7 @@
 					<td><label>是否报备:</label></td>
 					<td><select id="tjbaobei" class="easyui-combobox"
 						style="width: 100px;">
-							<option value="0">--请选择--</option>
+						<option value="0">--请选择--</option>
 							<option value="2">是</option>
 							<option value="1">否</option>
 					</select></td>
@@ -1168,6 +1154,9 @@
 			<table>
 				<tr style="display: none">
 					<td><input class="easyui-textbox" type="text" id="s_ida"></td>
+				</tr>
+				<tr style="display: none">
+					<td><input class="easyui-textbox" type="text" id="u_ida"></td>
 				</tr>
 				<tr style="display: none">
 					<td><input class="easyui-textbox" type="text" id="l_id"
@@ -1210,6 +1199,46 @@
 		</form>
 	</div>
 
-
+ <div id="rizhixiangxidiv" class="easyui-dialog" title="查看日志详细信息"
+		style="width: 600px; height: 400px;"
+		data-options="resizable:true,modal:true,closed:true">
+		<form id="rizhixiangxifrm">
+			
+				<table>
+					<tr style="display: none">
+						<td><input class="easyui-textbox" type="text" 
+							name="l_id"></td>
+					</tr>
+					<tr>
+						<td><label>学生名称:</label></td>
+				
+						<td><input class="easyui-textbox" type="text" 
+							name="rzname" disabled="disabled"></td>
+					</tr>
+					<tr>
+						<td><label>回访开始时间:</label></td>
+						<td><input class="easyui-textbox" type="text" 
+							name="l_genzongstartshijian" disabled="disabled" /></td>
+					</tr>
+					<tr>
+						<td><label>回访结束时间:</label></td>
+						<td><input class="easyui-textbox" type="text" 
+							name="l_genzongendshijian" disabled="disabled" /></td>
+					</tr>
+					<tr>
+						<td><label>回访内容:</label></td>
+						<td><input class="easyui-textbox" type="text" 
+							name="l_neirong" disabled="disabled" /></td>
+					</tr>
+					<tr>
+						<td><label>下次回访时间:</label></td>
+						<td><input class="easyui-textbox" type="text"
+							name="l_xcshijian" disabled="disabled" /></td>
+					</tr>
+					
+				</table>
+			
+		</form>
+	</div>
 </body>
 </html>

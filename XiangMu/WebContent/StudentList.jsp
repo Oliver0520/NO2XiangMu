@@ -32,6 +32,8 @@
 		inint();
 		$('#zxid').next().hide(); 
 		$('#zxglid').next().hide(); 
+		
+		
 
 	});
 	function inint() {
@@ -470,6 +472,17 @@
 		$("#tjrizhi-dialog").dialog("close");
 
 	}
+	function rizhicaozuolei(value,row,index){
+		
+		return "<a href='javascript:void(0)'  onclick='rizhixiangxi("+ index+ ")'>查看</a>"
+		
+	}
+	function rizhixiangxi(index){
+		var data = $("#rizhidg").datagrid("getData");
+		var row = data.rows[index];
+		$("#rizhixiangxifrm").form("load", row);
+		$("#rizhixiangxidiv").dialog("open");
+	}
 </script>
 </head>
 <body>
@@ -526,15 +539,12 @@
 		<table id="rizhidg" class="easyui-datagrid">
 			<thead>
 				<tr>
-				<th  style="display: none" data-options="field:'u_id',width:100">姓名</th>
 					<th data-options="field:'rzname',width:100">姓名</th>
 					<th data-options="field:'l_genzongstartshijian',width:100">回访开始时间</th>
 					<th data-options="field:'l_genzongendshijian',width:100">回访结束时间</th>
-					<th data-options="field:'l_huifang',width:100">回访情况</th>
-					<th data-options="field:'l_fangshi',width:100">回访方式</th>
 					<th data-options="field:'l_xcshijian',width:100">下次回访时间</th>
 					<th data-options="field:'l_neirong',width:100">回访内容</th>
-
+					<th data-options="field:'caozuo',title:'操作',formatter:rizhicaozuolei"></th>
 				</tr>
 			</thead>
 		</table>
@@ -1189,6 +1199,46 @@
 		</form>
 	</div>
 
-
+ <div id="rizhixiangxidiv" class="easyui-dialog" title="查看日志详细信息"
+		style="width: 600px; height: 400px;"
+		data-options="resizable:true,modal:true,closed:true">
+		<form id="rizhixiangxifrm">
+			
+				<table>
+					<tr style="display: none">
+						<td><input class="easyui-textbox" type="text" 
+							name="l_id"></td>
+					</tr>
+					<tr>
+						<td><label>学生名称:</label></td>
+				
+						<td><input class="easyui-textbox" type="text" 
+							name="rzname" disabled="disabled"></td>
+					</tr>
+					<tr>
+						<td><label>回访开始时间:</label></td>
+						<td><input class="easyui-textbox" type="text" 
+							name="l_genzongstartshijian" disabled="disabled" /></td>
+					</tr>
+					<tr>
+						<td><label>回访结束时间:</label></td>
+						<td><input class="easyui-textbox" type="text" 
+							name="l_genzongendshijian" disabled="disabled" /></td>
+					</tr>
+					<tr>
+						<td><label>回访内容:</label></td>
+						<td><input class="easyui-textbox" type="text" 
+							name="l_neirong" disabled="disabled" /></td>
+					</tr>
+					<tr>
+						<td><label>下次回访时间:</label></td>
+						<td><input class="easyui-textbox" type="text"
+							name="l_xcshijian" disabled="disabled" /></td>
+					</tr>
+					
+				</table>
+			
+		</form>
+	</div>
 </body>
 </html>

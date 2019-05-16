@@ -122,7 +122,7 @@
 	}
 	function denglu() {
 		var y = $("[name = 'y']:checked").val();
-		alert(y);
+		
 		$.post("denglu", {
 			u_loginName : $("#username").textbox("getValue"),
 			u_password : $("#pwd").textbox("getValue"),

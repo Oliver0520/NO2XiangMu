@@ -77,11 +77,11 @@
     <table>
     <tr>
     <td><label>登录名:</label></td>
-    <td><input class="easyui-textbox" type="text" id="lname" /> </td>
+    <td><input class="easyui-textbox" type="text"  data-options="required:true" id="lname" /> </td>
     </tr>
     <tr>
     <td><label>密码:</label></td>
-    <td><input class="easyui-textbox" type="password" id="pwd" /> </td>
+    <td><input class="easyui-textbox" type="password" data-options="required:true" id="pwd" /> </td>
     </tr>
     <tr>
     <td><label>邮箱:</label></td>
@@ -89,7 +89,7 @@
     </tr>
     <tr>
     <td><label>手机号:</label></td>
-    <td><input class="easyui-textbox" type="text" id="phone" /></td>
+    <td><input class="easyui-textbox" type="text"  data-options="required:true" id="phone" /></td>
     </tr>
     </table>   
 </div> 
@@ -391,7 +391,7 @@
 				}
 			},"json");
 		} else {
-			$.messager.alert("请选择角色名！！！！");
+			$.messager.alert("提示！！！！！！","请选择角色名！！！！");
 		}
 	}
 </script>

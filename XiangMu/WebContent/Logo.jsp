@@ -89,8 +89,9 @@ function xiugai(index){
         <input class="easyui-textbox" id="huifangqingkuang" type="text" name="name" data-options="required:true" />
     <label>回访方式:</label>   
         <input class="easyui-textbox" id="genzongfs" type="text" name="name" data-options="required:true" />
+    </br>
     <label>回访开始时间:</label>   
-        <input class="easyui-datetimebox" id="genzongstartfs" type="text" name="name" data-options="required:true" />      
+        <input class="easyui-datetimebox" id="genzongstartfs" type="text" name="name" data-options="required:true" />~    
     <label>回访结束时间:</label>   
         <input class="easyui-datetimebox" id="genzongendfs" type="text" name="name" data-options="required:true" />
         <a href="javascript:void(0)" class="easyui-linkbutton"
