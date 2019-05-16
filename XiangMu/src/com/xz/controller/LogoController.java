@@ -59,28 +59,9 @@ public Fenye<Logo> getLogo1(Integer page,Integer rows,Logo logo){
 	
 	
 	return fenye;
-<<<<<<< HEAD
-	
-	
-=======
-}
-@RequestMapping(value="/showrzname",method=RequestMethod.POST)
-@ResponseBody
-public String selectzrname(Integer s_id) {
-	String i=logoService.selectzrname(s_id);
-	return i;
+
 }
 
-@RequestMapping(value="/insertRizhi")
-@ResponseBody
-public Integer insertLogo(Logo logo,HttpServletRequest Request) {
-	User user = (User) Request.getSession().getAttribute("usera");
-	logo.setU_id(user.getU_id());
-	Integer i=logoService.insertLogo(logo);
-	return i;
-
->>>>>>> 209e21270d304639f06ee1196a861af710e7b6f3
-}
 	/*
 	 * @RequestMapping(value=("/logoname"),method = RequestMethod.POST)
 	 * 
