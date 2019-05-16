@@ -53,9 +53,8 @@ public class ModuleController {
      @RequestMapping(value="/selectByid",method=RequestMethod.POST)
      @ResponseBody
      public Module selectByid(Integer m_id){
-    	 String adfs = moduleServiceImp.selectByid(m_id);
-    	 module.setMessage(adfs);
-    	 return module;
+    	 Module adfs = moduleServiceImp.selectByid(m_id);
+    	 return adfs;
      }
      @RequestMapping(value="/deleteMod",method=RequestMethod.POST)
      @ResponseBody
