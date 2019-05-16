@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<where>
 			and s_id=#{t.s_id}
 		</where>
+		limit #{page},#{pageSize}
 	</select>
 	
 	<select id="selectname" parameterType="int" resultType="String">

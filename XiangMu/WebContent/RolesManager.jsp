@@ -77,17 +77,17 @@
 </div> 
 
 	<div id="quanxiantree" class="easyui-window"
-		style="width: 300px; height: 600px"
+		style="width: 300px; height: 460px"
 		data-options="iconCls:'icon-save',modal:true,closed:true">
 		<div class="easyui-layout" data-options="fit:true">
-			<div data-options="region:'north',split:true" style="height: 535px">
+			<div data-options="region:'north',split:true" style="height: 380px">
 				<div id="mkdiv" class="easyui-panel" style="padding: 5px">
 					<ul id="tt" class="easyui-tree"
 						data-options="iconCls:'icon-save',collapsible:true"></ul>
 				</div>
 			</div>
-			<div data-options="region:'center'" style="text-align: right;">
-				<a id="btn" href="javascript:void(0)" style="margin-right: 30px;"
+			<div data-options="region:'center'" style="text-align: center;">
+				<a id="btn" href="javascript:void(0)" 
 					class="easyui-linkbutton" onclick="tijiaoModules()"
 					data-options="iconCls:'icon-ok'">保存</a>
 			</div>
