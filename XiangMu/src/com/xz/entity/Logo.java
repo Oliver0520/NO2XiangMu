@@ -16,6 +16,7 @@ public class Logo {
 	private Integer l_int;
 	private String l_string;
 	
+<<<<<<< HEAD
 	private String studentname;
 	private String username;
 	private String s_name;
@@ -53,6 +54,8 @@ public class Logo {
 		this.username = username;
 	}
 
+=======
+>>>>>>> 209e21270d304639f06ee1196a861af710e7b6f3
 	private String rzname;
 
 	public Integer getL_id() {
@@ -142,6 +145,15 @@ public class Logo {
 	public void setL_string(String l_string) {
 		this.l_string = l_string;
 	}
+	public String getRzname() {
+		return rzname;
+	}
+	public void setRzname(String rzname) {
+		this.rzname = rzname;
+	}
+	
+	
+	
 
 	public String getRzname() {
 		return rzname;

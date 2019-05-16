@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import com.xz.entity.Module;
 import com.xz.entity.Role;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
+import com.xz.fujie.CookiesUtil;
 import com.xz.fujie.MD5Util;
 
 @Service
@@ -24,15 +27,21 @@ public class LoginServiceImp implements LoginService {
 	private UserService userService;
 	@Resource
 	private Role role;
+	@Resource
+	private CookiesUtil cookiesUtil;
 
 	@Override
-	public Integer loginError(User user, String yanzhengma, HttpServletRequest request) {
+	public Integer loginError(User user, String yanzhengma, HttpServletRequest request, HttpServletResponse response,
+			String y) {
 		// TODO Auto-generated method stub
 		Integer jg = 0;
 		String paduanyong = user.getU_loginName();
+		String upsd = user.getU_password();
 		if (request.getSession().getAttribute("text").equals(yanzhengma)) {
 			if (loginMapper.selectIs(user.getU_loginName()) == 1) {
-				user.setU_password(MD5Util.string2MD5(user.getU_password()));
+				if (!("asdfas".equals(y)))  {
+					user.setU_password(MD5Util.string2MD5(user.getU_password()));
+				}
 				user = loginMapper.selectUs(user);
 				if (user != null) {
 					if (user.getU_isLockout() == 0) {
@@ -56,15 +65,30 @@ public class LoginServiceImp implements LoginService {
 						request.getSession().setAttribute("qdstatus", qdstatus);
 						User deuid = loginMapper.selectUserLoginName(paduanyong);
 						loginMapper.chongzhiUpsdWrongTime(deuid.getU_id());
+						if ("yes".equals(y)) {
+//							Cookie u_loginName=new Cookie("u_loginName",user.getU_loginName());
+//							u_loginName.setPath("/");
+//							u_loginName.setMaxAge(604800);
+//							response.addCookie(u_loginName);
+//							Cookie u_password=new Cookie("u_password",user.getU_password());
+//							u_password.setPath("/");
+//							u_password.setMaxAge(604800);
+//							response.addCookie(u_password);
+
+							cookiesUtil.setCookie(response, "u_loginName", user.getU_loginName(), 7 * 24 * 60 * 60);
+
+							cookiesUtil.setCookie(response, "u_password", user.getU_password(), 7 * 24 * 60 * 60);
+
+						}
 					} else {
 						jg = 4;
 					}
-				} else {					
+				} else {
 					User deuid = loginMapper.selectUserLoginName(paduanyong);
 					loginMapper.updateUpsdWrongTime(deuid.getU_id());
 					User uwrongTime = loginMapper.selectUpsdWrongTime(deuid.getU_id());
-					if(uwrongTime.getU_psdWrongTime()>2) {
-						 loginMapper.updateIslockOUt(deuid.getU_id());
+					if (uwrongTime.getU_psdWrongTime() > 2) {
+						loginMapper.updateIslockOUt(deuid.getU_id());
 					}
 					jg = 3;
 				}
@@ -86,7 +110,7 @@ public class LoginServiceImp implements LoginService {
 		String suijiNum = (String) request.getSession().getAttribute("suijiNum");
 		if (user.getYanzheng().equals(suijiNum)) {
 			Integer scln = loginMapper.selectCountLoginName(u_loginName);
-			if ( scln> 0) {
+			if (scln > 0) {
 				User lname = loginMapper.selectUserLoginName(u_loginName);
 				Integer forgetLoginName = loginMapper.forgetLoginName(lname.getU_id());
 				if (forgetLoginName > 0) {

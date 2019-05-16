@@ -39,13 +39,13 @@
 						<tr>
 							<td>登录名:</td>
 							<td><input class="easyui-textbox" type="text"
-								data-options="required:true" id="username" onblur="haha()" /></td>
+								data-options="required:true" id="username" value="${cookie.u_loginName.value }" onblur="haha()" /></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>密码:</td>
 							<td><input class="easyui-textbox" type="password"
-								data-options="required:true,validType:'length[6,15]'" id="pwd" /></td>
+								data-options="required:true,validType:'length[6,15]'" value="${cookid.u_password.value}" id="pwd" /></td>
 						</tr>
 						<tr>
 							<td>请输入验证码:</td>
@@ -58,10 +58,10 @@
 								title="点击刷新验证码" src="getVerifiCode" /></td>
 							<td><a href="javascript:getVerifiCode()">看不清?</a></td>
 						</tr>
-						<!-- <tr>
+						 <tr>
 							<td><input type="checkbox" value="yes" name="y">自动登录</td>
-							<td align="right" colspan="2"><a href="zhuce.jsp">没有账号?点击立即注册</a></td>
-						</tr> -->
+			<!-- 				<td align="right" colspan="2"><a href="zhuce.jsp">没有账号?点击立即注册</a></td> -->
+						</tr>
 						<tr>
 							<td><a id="btn" href="javascript:void(0)"
 								class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
@@ -122,11 +122,13 @@
 		$("#subfor").form("reset");
 	}
 	function denglu() {
+		var y = $("[name = 'y']:checked").val();
+		alert(y);
 		$.post("denglu", {
 			u_loginName : $("#username").textbox("getValue"),
 			u_password : $("#pwd").textbox("getValue"),
-			yanzhengma : $("#yanzhengma").textbox("getValue")
-
+			yanzhengma : $("#yanzhengma").textbox("getValue"),
+           y:y
 		}, function(res) {
 			if (res.success) {
 
@@ -173,6 +175,10 @@
 				$.messager.alert("提示", res.msg);
 			}
 		}, "json");
+	}
+	
+	function nihao(){
+		$.post("clearCookie",function(res){},"json");
 	}
 </script>
 </html>

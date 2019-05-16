@@ -29,7 +29,17 @@ Integer insertLogo(Logo logo);
  */
 String selectzrname(Integer s_id);
 
+<<<<<<< HEAD
 Fenye<Logo> getLogo1(Fenye<Logo> fenye);
+=======
+
+
+
+
+
+
+
+>>>>>>> 209e21270d304639f06ee1196a861af710e7b6f3
 
 
 }

@@ -1,5 +1,6 @@
 package com.xz.controller;
 
+import javax.servlet.http.Cookie;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,12 +20,32 @@ import com.xz.entity.User;
 import com.xz.fujie.SCaptcha;
 import com.xz.service.LoginService;
 import com.xz.service.LoginServiceImp;
+import com.xz.fujie.CookiesUtil;
 
 @Controller
 public class LoginController {
      @Resource
 	private LoginService loginService;
-	
+     @Resource
+    private CookiesUtil cookiesUtil;
+	@RequestMapping(value="login")
+     public String relogin(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+		User user=new User();
+		
+		Cookie u_loginName = cookiesUtil.getCookieByName(request, "u_loginName");
+		Cookie u_password = cookiesUtil.getCookieByName(request, "u_password");
+		if(u_loginName!=null&&u_password!=null&&u_password.getValue()!=""&&u_loginName.getValue()!="") {
+			user.setU_loginName(u_loginName.getValue());
+			user.setU_password(u_password.getValue());
+			
+			request.getSession().setAttribute("text", "123");
+			
+			yanzhengma(request,"123",user,"asdfas",response);		
+			return "Main";		
+		}else {
+    	 return "Login";}
+     }
+     
 	@RequestMapping(value="/getVerifiCode")
 	@ResponseBody
 	public void getVerifiCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -50,13 +71,20 @@ public class LoginController {
 	}
 	@RequestMapping(value="/denglu",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> yanzhengma(HttpServletRequest request, String yanzhengma, User user,String y)
+	public Map<String, Object> yanzhengma(HttpServletRequest request, String yanzhengma, User user,String y,HttpServletResponse response)
 			throws IOException, ServletException {
+		
+		Cookie u_loginName = cookiesUtil.getCookieByName(request, "u_loginName");
+		Cookie u_password = cookiesUtil.getCookieByName(request, "u_password");
+		if(u_loginName!=null&&u_password!=null&&u_password.getValue()!=""&&u_loginName.getValue()!="") {
+			user.setU_loginName(u_loginName.getValue());
+			user.setU_password(u_password.getValue());
+		}
 		Integer urid=(Integer) request.getSession().getAttribute("ur_id");
 		
 		String str=(String) request.getSession().getAttribute("username");
 		
-		Integer loginselect = loginService.loginError(user, yanzhengma, request);
+		Integer loginselect = loginService.loginError(user, yanzhengma, request,response,y);
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (loginselect == 1) {
 			map.put("msg", "ÑéÖ¤Âë´íÎó");
@@ -106,4 +134,9 @@ public class LoginController {
 		}
     	return map;
     }
+	@RequestMapping(value="/clearCookie",method=RequestMethod.POST)
+	public void ClearCookie(HttpServletResponse response) {
+		cookiesUtil.setCookie(response, "u_loginName", "", 0);
+		cookiesUtil.setCookie(response, "u_password", "", 0);
+	}
 }
