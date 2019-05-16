@@ -24,6 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	
+	
+	
 	<insert id="insertLogo" parameterType="logo">
 		insert into
 		logo(u_id,s_id,l_genzongstartshijian,l_genzongendshijian,l_huifang,l_fangshi,l_xcshijian,l_neirong)
@@ -38,5 +40,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 		limit 0,1
 	</select>
+	<select id="selectstudentname" parameterType="int" resultType="String">
+	   select s.s_name from student s,logo l where s.s_id=l.s_id and s.s_id=#{s_id}
+	   limit 0,1
+	</select>
+    <select id="selectusername" parameterType="int" resultType="String">
+    select u.u_username from user u,logo l where u.u_id=l.u_id and u.u_id=#{u_id}
+	   limit 0,1
+	</select>
+	
+	
+	
+	
+	
+	<select id="selectLogo1" parameterType="fenye" resultType="logo">
+	select * from logo 
+	<where>
+	<if test="t.s_name!=null and t.s_name!=''">
+		and s_id in(SELECT s_id from student where s_name LIKE "%"#{t.s_name}"%")
+	</if>
+	<if test="t.u_userName!=null and t.u_userName!=''">
+		and u_id in(SELECT u_id from user where u_userName LIKE "%"#{t.u_userName}"%")
+	</if>
+		<if test="t.l_genzongstartshijian!=null and t.l_genzongstartshijian!='' and t.l_genzongendshijian!=null and t.l_genzongendshijian!=''  ">
+		and l_genzongstartshijian between #{t.l_genzongstartshijian} and #{t.l_genzongendshijian}
+	</if>	
+			<if test="t.l_huifang!=null and t.l_huifang!=''">
+		and l_huifang like "%"#{t.l_huifang}"%"
+	</if>	
+				<if test="t.l_fangshi!=null and t.l_fangshi!=''">
+		and l_fangshi like "%"#{t.l_fangshi}"%"
+	</if>	
+	</where>
+	limit #{page},#{pageSize}
+	</select>
+	
+	
+	
+	
+	<select id="selectCountLogo1" parameterType="fenye" resultType="int">
+	select count(*) from logo
+		<where>
+	<if test="t.s_name!=null and t.s_name!=''">
+		and s_id in(SELECT s_id from student where s_name LIKE "%"#{t.s_name}"%")
+	</if>
+		<if test="t.u_userName!=null and t.u_userName!=''">
+		and u_id in(SELECT u_id from user where u_userName LIKE "%"#{t.u_userName}"%")
+	</if>
+		<if test="t.l_genzongstartshijian!=null and t.l_genzongstartshijian!='' and t.l_genzongendshijian!=null and t.l_genzongendshijian!=''  ">
+		and l_genzongstartshijian between #{t.l_genzongstartshijian} and #{t.l_genzongendshijian}
+	</if>	
+		<if test="t.l_huifang!=null and t.l_huifang!=''">
+		and l_huifang like "%"#{t.l_huifang}"%"
+	</if>	
+				<if test="t.l_fangshi!=null and t.l_fangshi!=''">
+		and l_fangshi like "%"#{t.l_fangshi}"%"
+	</if>	
+	</where>
+	</select>
+	
 	
 </mapper>
