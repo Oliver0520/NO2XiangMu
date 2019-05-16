@@ -65,7 +65,9 @@ public class LoginServiceImp implements LoginService {
 						loginMapper.chongzhiUpsdWrongTime(deuid.getU_id());
 						if ("yes".equals(y)) {
 							cookiesUtil.setCookie(response, "u_loginName", user.getU_loginName(), 7 * 24 * 60 * 60);
+
 							cookiesUtil.setCookie(response, "u_password", user.getU_password(), 7 * 24 * 60 * 60);
+
 						}
 					} else {
 						jg = 4;
