@@ -124,9 +124,9 @@ function sendyanzhengma(){
 				style="text-decoration: none; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;修改登录密码</a>
 			<a href="javascript:void(0)" onclick="qd()"
 				style="text-decoration: none; color: red;">&nbsp;&nbsp;&nbsp;&nbsp;签到</a>
-			<marquee onMouseOut="this.start()" onMouseOver="this.stop()">
+			<!-- <marquee onMouseOut="this.start()" onMouseOver="this.stop()">
 				<span style="font-weight: bolder; font-size: 20px;">云时代欢迎您！</span>
-			</marquee>
+			</marquee> -->
 
 		</div>
 		<div data-options="region:'south',split:true" style="height: 50px;"></div>

@@ -74,14 +74,18 @@
 						</td>
 					</tr>
 					<tr>
-						<td>URL:</td>
+						<td>路径:</td>
 						<td><input class="easyui-textbox" type="text" name="m_path" id="url" data-options="required:true"></input>
 						</td>
 					</tr>
-
+					<tr>
+						<td>模块ID:</td>
+						<td><input class="easyui-textbox" type="text" name="m_id" id="m_id" data-options="required:true"></input>
+						</td>
+					</tr>
 					<tr>
 						<td>模块名称:</td>
-						<td><input type="text" class="easyui-textbox" id="m_name" name="namey" data-options="required:true"></td>
+						<td><input type="text" class="easyui-textbox" id="namey" name="m_name" data-options="required:true"></td>
 					</tr>
 				</table>
 			</form>
@@ -158,28 +162,28 @@ function updateInfo() {
 	$.post("selectByid", {
 		m_id: nodes.id,
 	}, function(res) {
-		alert(res.message);
-		var sss = res.message ;
+		/* alert(res.message);
+		var sss = res.message ; */
 			mokuai = null;
-			mokuai = sss;
-			$('#updateuserForm').form('load', sss);
+			mokuai = res;
+			$('#updateuserForm').form('load', mokuai);
 			$('#update_window').window('open');
 			}, "json");
 
 }
 
 function submitupdateUserForm() {
-	var weight = $("#weight").val();
-	var mkurl = $("#url").val();
-	var name = $("#namey").val();
+	var weight = $("#weight").textbox("getValue");
+	var mkurl = $("#url").textbox("getValue");
+	var name = $("#namey").textbox("getValue");
+	var m_id = $("#m_id").textbox("getValue");
 	$.post("updateModu", {
-		m_id: mokuai.id,
+		m_id: m_id,
 		m_name: name,
-		m_parentId: mokuai.parentId,
 		m_path: mkurl,
 		m_weight: weight
 	}, function(res) {
-		if(res.success) {
+		if(res>0) {
 			$('#update_window').window('close');
 			myTree();
 			$.messager.alert("提示", "更新成功");

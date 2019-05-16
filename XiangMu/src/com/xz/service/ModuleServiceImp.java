@@ -65,17 +65,20 @@ public class ModuleServiceImp implements ModuleService {
 		return moduleMapper.updateModu(module);
 	}
 	@Override
-	public String selectByid(Integer m_id) {
+	public Module selectByid(Integer m_id) {
 		// TODO Auto-generated method stub
-		List<Module> a = moduleMapper.selectByid(m_id);
+	Module a = moduleMapper.selectByid(m_id);
 		/*"{'message':'{\'m_id\':"+a.get(0).getM_id()+",\'m_name\':\'"+a.get(0).getM_name()+"\',\'m_parentId\':"+a.get(0).getM_parentId()+",\'m_path\':"+a.get(0).getM_path()+"',\'m_weight\':"+a.get(0).getM_weight()+"}','remark':'','success':true}";
 				*/
 		
-		String message=  "'{\'m_id\':"+a.get(0).getM_id()+",\'m_name\':\'"+a.get(0).getM_name()+
-		  "\',\'m_parentId\':"+a.get(0).getM_parentId()+",\'m_path\':\'"+a.get(0).
-		  getM_path()+"',\'m_weight\':"+a.get(0).getM_weight()+"}'";
+		/*
+		 * String message=
+		 * "'{\'m_id\':"+a.get(0).getM_id()+",\'m_name\':\'"+a.get(0).getM_name()+
+		 * "\',\'m_parentId\':"+a.get(0).getM_parentId()+",\'m_path\':\'"+a.get(0).
+		 * getM_path()+"',\'m_weight\':"+a.get(0).getM_weight()+"}'";
+		 */
 		 
-		return message;
+		return a;
 	}
 	@Override
 	public Integer deleteMod(Integer m_id) {

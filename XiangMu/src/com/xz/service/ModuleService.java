@@ -34,7 +34,7 @@ Integer updateModu(Module module);
  * @param m_id
  * @return
  */
-String selectByid(Integer m_id);
+Module selectByid(Integer m_id);
 /**
  * É¾³ıÄ£¿éĞÅÏ¢
  * @param m_id
