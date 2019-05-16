@@ -72,8 +72,10 @@ public Fenye<Logo> getLogo1(Integer page,Integer rows,Logo logo){
 	 * 
 	 * }
 	 */
-
-
+     @RequestMapping(value="/Logo")
+    public String Logo() {
+    	return "Logo";
+    }
 
 
 
