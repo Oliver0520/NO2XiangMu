@@ -53,7 +53,6 @@ public class StudentController {
 		Integer j = studentService.selectjs1(user.getU_id());
 
 		if (j > 0) {
-
 			fenye = studentService.getStudent(fenye);
 		} else {
 			if (i > 0) {
