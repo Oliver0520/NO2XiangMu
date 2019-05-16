@@ -2,6 +2,7 @@ package com.xz.service;
 
 import com.xz.entity.Fenye;
 import com.xz.entity.Logo;
+import com.xz.entity.Student;
 public interface LogoService {
 	/**
 	 * 分页多条件查询学生信息
@@ -29,10 +30,7 @@ Integer insertLogo(Logo logo);
 String selectzrname(Integer s_id);
 
 
-
-
-
-
+Fenye<Logo> getLogo1(Fenye<Logo> fenye);
 
 
 

@@ -45,7 +45,6 @@ public class LoginServiceImp implements LoginService {
 				user = loginMapper.selectUs(user);
 				if (user != null) {
 					if (user.getU_isLockout() == 0) {
-
 						User user2 = new User();
 						Date date = new Date();
 						SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd hh:mm:ss");
@@ -54,7 +53,6 @@ public class LoginServiceImp implements LoginService {
 						user2.setU_id(user.getU_id());
 						userService.updateLastTime(user2);
 						List<Role> selectJuese = loginMapper.selectByuId(user.getU_id());
-
 						for (int i = 0; i < selectJuese.size(); i++) {
 							List<Module> selectMokuai = loginMapper.selectMokuai(selectJuese.get(i).getR_id());
 							selectJuese.get(i).setModule(selectMokuai);
@@ -66,15 +64,6 @@ public class LoginServiceImp implements LoginService {
 						User deuid = loginMapper.selectUserLoginName(paduanyong);
 						loginMapper.chongzhiUpsdWrongTime(deuid.getU_id());
 						if ("yes".equals(y)) {
-//							Cookie u_loginName=new Cookie("u_loginName",user.getU_loginName());
-//							u_loginName.setPath("/");
-//							u_loginName.setMaxAge(604800);
-//							response.addCookie(u_loginName);
-//							Cookie u_password=new Cookie("u_password",user.getU_password());
-//							u_password.setPath("/");
-//							u_password.setMaxAge(604800);
-//							response.addCookie(u_password);
-
 							cookiesUtil.setCookie(response, "u_loginName", user.getU_loginName(), 7 * 24 * 60 * 60);
 
 							cookiesUtil.setCookie(response, "u_password", user.getU_password(), 7 * 24 * 60 * 60);

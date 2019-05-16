@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 import com.xz.dao.LogoMapper;
 import com.xz.entity.Fenye;
 import com.xz.entity.Logo;
+import com.xz.entity.Student;
 
 @Service
 public class LogoServiceImp implements LogoService {
+	@Autowired
+	private Logo logo;
 	@Autowired
 	private LogoMapper logomapper;
 	@Override
@@ -44,6 +47,38 @@ public class LogoServiceImp implements LogoService {
 		// TODO Auto-generated method stub
 		return logomapper.selectzrname(s_id);
 	}
+
+	
+
+	  @Override 
+	  public Fenye<Logo> getLogo1(Fenye<Logo> fenye) {
+		  // TODOAuto-generated method stub 
+		  Integer countLogo1 =logomapper.selectCountLogo1(fenye); 
+		  List<Logo> selectLogo1 =logomapper.selectLogo1(fenye); 
+		  for(int i=0; i< selectLogo1.size(); i++) {
+			  
+			  Integer s_id = selectLogo1.get(i).getS_id();
+			  String stuname =logomapper.selectstudentname(s_id);
+			  selectLogo1.get(i).setStudentname(stuname);
+			  
+			  Integer u_id =selectLogo1.get(i).getU_id();
+			  String uname =logomapper.selectusername(u_id);
+			  selectLogo1.get(i).setUsername(uname);
+		  }
+		  
+		  
+		  
+		  fenye.setTotal(countLogo1); 
+		  fenye.setRows(selectLogo1);
+		 
+	 return fenye; 
+	 }
+	 
+
+	/*
+	 * @Override public String selects_name(Student student) { // TODO
+	 * Auto-generated method stub return logomapper.selects_name(student); }
+	 */
 
 	
 }

@@ -16,8 +16,12 @@ public class Logo {
 	private Integer l_int;
 	private String l_string;
 	
-	private String rzname;
 
+	private String studentname;
+	private String username;
+	private String s_name;
+	private String rzname;
+	private String u_userName;
 	public Integer getL_id() {
 		return l_id;
 	}
@@ -84,14 +88,38 @@ public class Logo {
 	public void setL_string(String l_string) {
 		this.l_string = l_string;
 	}
+	public String getStudentname() {
+		return studentname;
+	}
+	public void setStudentname(String studentname) {
+		this.studentname = studentname;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getS_name() {
+		return s_name;
+	}
+	public void setS_name(String s_name) {
+		this.s_name = s_name;
+	}
 	public String getRzname() {
 		return rzname;
 	}
 	public void setRzname(String rzname) {
 		this.rzname = rzname;
 	}
+	public String getU_userName() {
+		return u_userName;
+	}
+	public void setU_userName(String u_userName) {
+		this.u_userName = u_userName;
+	}
 	
 	
 	
-
+	
 }
