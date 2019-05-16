@@ -1,5 +1,6 @@
 package com.xz.service;
 
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -64,9 +65,11 @@ public class LoginServiceImp implements LoginService {
 						User deuid = loginMapper.selectUserLoginName(paduanyong);
 						loginMapper.chongzhiUpsdWrongTime(deuid.getU_id());
 						if ("yes".equals(y)) {
-							cookiesUtil.setCookie(response, "u_loginName", user.getU_loginName(), 7 * 24 * 60 * 60);
+							String s = URLEncoder.encode(user.getU_loginName());
+							String m = URLEncoder.encode(user.getU_password());
+							cookiesUtil.setCookie(response, "u_loginName", s, 7 * 24 * 60 * 60);
 
-							cookiesUtil.setCookie(response, "u_password", user.getU_password(), 7 * 24 * 60 * 60);
+							cookiesUtil.setCookie(response, "u_password",m, 7 * 24 * 60 * 60);
 
 						}
 					} else {
