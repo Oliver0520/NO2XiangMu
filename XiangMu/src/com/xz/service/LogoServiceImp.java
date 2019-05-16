@@ -49,7 +49,7 @@ public class LogoServiceImp implements LogoService {
 	}
 
 	
-<<<<<<< HEAD
+
 	  @Override 
 	  public Fenye<Logo> getLogo1(Fenye<Logo> fenye) {
 		  // TODOAuto-generated method stub 
@@ -81,6 +81,4 @@ public class LogoServiceImp implements LogoService {
 	 */
 
 	
-=======
->>>>>>> 209e21270d304639f06ee1196a861af710e7b6f3
 }
