@@ -30,6 +30,8 @@
 		
 
 		inint();
+		$("#zxid").next().hide();
+		$("#zxglid").next().hide();
 
 	});
 	function inint() {
@@ -472,6 +474,8 @@
 </script>
 </head>
 <body>
+ <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
+<input  class="easyui-textbox" type="text" id="zxglid" value="<%=session.getAttribute("zxgl") %>"/>
 	<table class="easyui-datagrid" id="dg">
 		<thead>
 			<tr>
@@ -565,6 +569,8 @@
 				onclick="inint()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="insert()" data-options="iconCls:'icon-add',plain:true">新增</a>
+				
+ 
 
 		</form>
 	</div>

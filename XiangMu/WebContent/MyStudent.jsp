@@ -28,8 +28,11 @@
 			textField : 'u_userName'
 
 		});
-
+		
+		
 		inint();
+		$("#zxid").next().hide();
+		$("#zxglid").next().hide();
 
 	});
 	function inint() {
@@ -473,7 +476,8 @@
 </script>
 </head>
 <body>
- <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
+
+   <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
 <input class="easyui-textbox" type="text" id="zxglid" value="<%=session.getAttribute("zxgl") %>"/>
  
 	<table class="easyui-datagrid" id="dg">
