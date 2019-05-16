@@ -36,15 +36,21 @@ public String selectzrname(Integer s_id) {
 	return i;
 }
 
-@RequestMapping(value="/insertRizhi",method=RequestMethod.POST)
+@RequestMapping(value="/insertRizhi")
 @ResponseBody
 public Integer insertLogo(Logo logo,HttpServletRequest Request) {
 	User user = (User) Request.getSession().getAttribute("usera");
 	logo.setU_id(user.getU_id());
 	Integer i=logoService.insertLogo(logo);
 	return i;
-	
-	
+
 }
+
+
+
+
+
+
+
 
 }

@@ -28,4 +28,13 @@ Integer insertLogo(Logo logo);
  */
 String selectzrname(Integer s_id);
 
+
+
+
+
+
+
+
+
+
 }

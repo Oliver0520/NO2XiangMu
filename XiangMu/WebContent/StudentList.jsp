@@ -423,11 +423,12 @@
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
 		$("#s_ida").textbox("setValue", row.s_id);
+		$("#u_ida").textbox("setValue", row.u_id);
 		$("#tjrizhi-dialog").dialog("open");
-
 	}
 	function rizhibaocun() {
 		var s_id = $("#s_ida").textbox("getValue");
+		var u_id = $("#u_ida").textbox("getValue");
 		var l_id = $("#l_id").textbox("getValue");
 		var l_genzongstartshijian = $("#l_genzongstartshijian").textbox(
 				"getValue");
@@ -438,6 +439,7 @@
 		var l_neirong = $("#l_neirong").textbox("getValue");
 
 		$.post("insertRizhi", {
+			u_id:u_id,
 			s_id : s_id,
 			l_id : l_id,
 			l_genzongstartshijian : l_genzongstartshijian,
@@ -516,6 +518,7 @@
 		<table id="rizhidg" class="easyui-datagrid">
 			<thead>
 				<tr>
+				<th  style="display: none" data-options="field:'u_id',width:100">姓名</th>
 					<th data-options="field:'rzname',width:100">姓名</th>
 					<th data-options="field:'l_genzongstartshijian',width:100">回访开始时间</th>
 					<th data-options="field:'l_genzongendshijian',width:100">回访结束时间</th>
@@ -1133,6 +1136,9 @@
 			<table>
 				<tr style="display: none">
 					<td><input class="easyui-textbox" type="text" id="s_ida"></td>
+				</tr>
+				<tr style="display: none">
+					<td><input class="easyui-textbox" type="text" id="u_ida"></td>
 				</tr>
 				<tr style="display: none">
 					<td><input class="easyui-textbox" type="text" id="l_id"

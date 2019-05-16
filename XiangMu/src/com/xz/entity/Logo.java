@@ -17,13 +17,7 @@ public class Logo {
 	private String l_string;
 	
 	private String rzname;
-	
-	public String getRzname() {
-		return rzname;
-	}
-	public void setRzname(String rzname) {
-		this.rzname = rzname;
-	}
+
 	public Integer getL_id() {
 		return l_id;
 	}
@@ -90,5 +84,14 @@ public class Logo {
 	public void setL_string(String l_string) {
 		this.l_string = l_string;
 	}
+	public String getRzname() {
+		return rzname;
+	}
+	public void setRzname(String rzname) {
+		this.rzname = rzname;
+	}
+	
+	
+	
 
 }

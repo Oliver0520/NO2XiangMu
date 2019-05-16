@@ -45,4 +45,5 @@ public class LogoServiceImp implements LogoService {
 		return logomapper.selectzrname(s_id);
 	}
 
+	
 }

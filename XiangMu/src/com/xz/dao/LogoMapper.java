@@ -32,4 +32,10 @@ Integer insertLogo(Logo logo);
  * @return
  */
 String selectzrname(Integer s_id);
+
+
+
+
+
+
 }
