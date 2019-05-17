@@ -145,4 +145,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="qiantui">
 	update user set u_qdstatus=4 
 	</update>
+	
+	<select id="selectZxs" resultType="user">
+	select u.* from user u INNER JOIN userrole ur INNER JOIN role r on u.u_id =ur.u_id and ur.r_id=r.r_id where r.r_name="咨询师角色"
+	</select>
 </mapper>

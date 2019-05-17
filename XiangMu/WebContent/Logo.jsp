@@ -82,18 +82,18 @@ function xiugai(index){
 
 <form id="ff">   
     <label>学生姓名:</label>   
-        <input class="easyui-textbox" id="xueshengmingcheng" type="text" name="name" data-options="required:true" />
+        <input class="easyui-textbox" id="xueshengmingcheng" type="text" name="name"  />
     <label>咨询师姓名:</label>   
-        <input class="easyui-textbox" id="gengzongzhe" type="text" name="name" data-options="required:true" />
+        <input class="easyui-textbox" id="gengzongzhe" type="text" name="name"  />
     <label>回访内容:</label>   
-        <input class="easyui-textbox" id="huifangqingkuang" type="text" name="name" data-options="required:true" />
+        <input class="easyui-textbox" id="huifangqingkuang" type="text" name="name" />
     <label>回访方式:</label>   
-        <input class="easyui-textbox" id="genzongfs" type="text" name="name" data-options="required:true" />
+        <input class="easyui-textbox" id="genzongfs" type="text" name="name" />
     </br>
     <label>回访开始时间:</label>   
-        <input class="easyui-datetimebox" id="genzongstartfs" type="text" name="name" data-options="required:true" />~    
+        <input class="easyui-datetimebox" id="genzongstartfs" type="text" name="name" />~    
     <label>回访结束时间:</label>   
-        <input class="easyui-datetimebox" id="genzongendfs" type="text" name="name" data-options="required:true" />
+        <input class="easyui-datetimebox" id="genzongendfs" type="text" name="name"  />
         <a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="inint()" data-options="iconCls:'icon-search',plain:true">查询</a>
 </form> 
@@ -106,38 +106,38 @@ function xiugai(index){
 			
 				<table>
 					<tr style="display: none">
-						<td><input class="easyui-textbox" type="text" id="s_id"
+						<td><input class="easyui-textbox" type="text" 
 							name="l_id"></td>
 					</tr>
 					<tr>
 						<td><label>学生名称:</label></td>
 				
-						<td><input class="easyui-textbox" type="text" id="s_id"
+						<td><input class="easyui-textbox" type="text" 
 							name="studentname" disabled="disabled"></td>
 					</tr>
 					<tr>
 						<td><label>回访者:</label></td>
-						<td><input class="easyui-textbox" type="text" id="s_name"
+						<td><input class="easyui-textbox" type="text" 
 							name="username" disabled="disabled" /></td>
 					</tr>
 					<tr>
 						<td><label>回访情况:</label></td>
-						<td><input class="easyui-textbox" type="text" id="s_name"
+						<td><input class="easyui-textbox" type="text" 
 							name="l_huifang" disabled="disabled" /></td>
 					</tr>
 					<tr>
 						<td><label>回访方式:</label></td>
-						<td><input class="easyui-textbox" type="text" id="s_age"
+						<td><input class="easyui-textbox" type="text" 
 							name="l_fangshi" disabled="disabled" /></td>
 					</tr>
 					<tr>
 						<td><label>回访开始时间:</label></td>
-						<td><input class="easyui-textbox" type="text" id="s_sex"
+						<td><input class="easyui-textbox" type="text" 
 							name="l_genzongstartshijian" disabled="disabled" /></td>
 					</tr>
 					<tr>
 						<td><label>回访结束时间:</label></td>
-						<td><input class="easyui-textbox" type="text" id="s_phone"
+						<td><input class="easyui-textbox" type="text" 
 							name="l_genzongendshijian" disabled="disabled" /></td>
 					</tr>
 				</table>

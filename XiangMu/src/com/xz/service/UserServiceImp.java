@@ -154,6 +154,11 @@ public class UserServiceImp implements UserService {
 		Integer qiantui = userMapper.qiantui();
 		return qiantui;
 	}
+	@Override
+	public List<User> selectZixs() {
+		// TODO Auto-generated method stub
+		return userMapper.selectZxs();
+	}
 	
 
 }

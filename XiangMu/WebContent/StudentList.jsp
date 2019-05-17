@@ -60,7 +60,7 @@
 				s_name : $("#Sname").textbox("getValue"),
 				s_phone : $("#Sphone").textbox("getValue"),
 				s_qq : $("#sqq").textbox("getValue"),
-				u_idw : $("#zxname").combobox("getValue"),
+				u_id : $("#zxname").combobox("getValue"),
 				stime : $("#stime").textbox("getValue"),
 				etime : $("#etime").textbox("getValue"),
 				s_huifang : hf,
@@ -505,7 +505,7 @@
 				<th data-options="field:'s_weChat',width:100">微信</th>
 				<th data-options="field:'s_baobei',width:100,formatter:baobei">是否报备</th>
 				<th data-options="field:'s_beizhu',width:100">备注</th>
-				<th data-options="field:'name2',width:100">咨询师</th>	
+				<th data-options="field:'name',width:100">咨询师</th>	
 				<th data-options="field:'s_quyu',width:100">所在区域</th>
 				<th data-options="field:'s_bumen',width:100">来源部门</th>
 				<th data-options="field:'s_kecheng',width:100">课程方向</th>
@@ -527,7 +527,7 @@
 				<th data-options="field:'s_dingjin',width:100">定金金额</th>
 				<th data-options="field:'s_dingjinshijian',width:100">定金时间</th>
 				<th data-options="field:'s_guanzhu',width:100">学生关注</th>
-				<th data-options="field:'name',width:100">咨询师(面见)</th>
+				<th data-options="field:'name2',width:100">咨询师(面见)</th>
 				<th data-options="field:'s_zixunbeizhu',width:100">咨询师备注</th>
 				<th data-options="field:'caozuo',title:'操作',formatter:caozuolei"></th>
 			</tr>
@@ -584,7 +584,7 @@
 	</div>
 
 	<div id="chakan-dialog" class="easyui-dialog" title="查看"
-		style="width: 600px; height: 400px;"
+		style="width: 600px; height: 520px;"
 		data-options="resizable:true,modal:true,closed:true">
 		<form id="chakanfrm">
 			<div style="float: left">

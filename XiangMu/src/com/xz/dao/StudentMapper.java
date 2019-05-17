@@ -58,7 +58,7 @@ List<User> selectUname();
 
 Integer selectjs(Integer u_id);
 
-Integer selectjs1(Integer u_id);
+Integer selectjs1(Integer u_idw);
 
 
 List<Student> selectMyStudent (Fenye<Student> fenye);
@@ -76,4 +76,10 @@ List<Student> selectFenpei(Fenye<Student> fenye);
  * @return
  */
 Integer selectFenpeiCount(Fenye<Student> fenye);
+/**
+ * ÊÖ¶¯·ÖÅä
+ * @param student
+ * @return
+ */
+Integer fenpeizx(Student student);
 }

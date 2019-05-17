@@ -4,7 +4,7 @@
 
 	<select id="selectStudent" parameterType="fenye"
 		resultType="student">
-		select * from student
+		select * from student where u_id &gt; 0
 		<where>
 			<if test="t.s_name!=null and t.s_name!=''">
 				and s_name like "%"#{t.s_name}"%"
@@ -309,7 +309,7 @@
 	<select id="selectFenpei" parameterType="fenye" resultType="student">
 	select * from student 
 	<where>
-	s_id not in (select s_id from student where u_idw>0)
+	s_id not in (select s_id from student where u_id>0)
 	<if test="t.s_name!=null and t.s_name!=''">
 	and s_name like  "%"#{t.s_name}"%"
 	</if>
@@ -321,7 +321,7 @@
 	<select id="selectFenpeiCount" parameterType="fenye" resultType="int">
 	select count(*) from student 
 	<where>
-	s_id not in (select s_id from student where u_idw>0)
+	s_id not in (select s_id from student where u_id>0)
 	<if test="t.s_name!=null and t.s_name!=''">
 	and s_name like  "%"#{t.s_name}"%"
 	</if>
@@ -330,4 +330,12 @@
 	</if>	
 	</where>
 	</select>
+	<update id="fenpeizx" parameterType="student">
+	update student <set>
+	<if test="u_id!=null and u_id!=''">
+	u_id=#{u_id},
+	</if>
+	</set>
+	<where>s_id=#{s_id}</where>
+	</update>
 </mapper>

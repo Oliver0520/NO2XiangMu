@@ -93,6 +93,12 @@ public class StudentServiceImp implements StudentService {
 		return fenye;
 	}
 
+	@Override
+	public Integer fenpeizx(Student student) {
+		// TODO Auto-generated method stub
+		return studentMapper.fenpeizx(student);
+	}
+
 
 
 	

@@ -15,6 +15,7 @@ import com.xz.entity.Fenye;
 import com.xz.entity.Student;
 import com.xz.entity.User;
 import com.xz.service.StudentService;
+import com.xz.service.StudentServiceImp;
 
 @Controller
 public class StudentController {
@@ -103,10 +104,16 @@ public class StudentController {
     	fenye.setPage((page-1)*rows);
     	fenye.setPageSize(rows);
     	fenye.setT(student);
+    	fenye=studentService.selectFenpei(fenye);
     	return fenye;
     }
 	@RequestMapping(value="/Fenpei")
 	public String Fenpei() {
 		return "Fenpei";
+	}
+	@RequestMapping(value="/fenpeizx",method=RequestMethod.POST)
+	@ResponseBody
+	public Integer fenpeizx(Student student) {
+		return studentService.fenpeizx(student);
 	}
 }

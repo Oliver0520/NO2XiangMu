@@ -110,4 +110,6 @@ Integer updaetQD(Integer u_id);
  * @return
  */
 Integer updateAllemp();
+
+List<User> selectZixs();
 }

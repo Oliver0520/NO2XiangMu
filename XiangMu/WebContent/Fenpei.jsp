@@ -44,6 +44,36 @@
 				onclick="init()" data-options="iconCls:'icon-search',plain:true">查询</a>
 		</form>
 	</div>
+	
+	<div id="update-dialog" class="easyui-dialog" title="查看"
+		style="width: 600px; height: 400px;"
+		data-options="resizable:true,modal:true,closed:true,toolbar:[{
+				text:'保存',
+				iconCls:'icon-edit',
+				handler:function(){updatebaocun();}
+			},{
+				text:'退出',
+				iconCls:'icon-cancel',
+				handler:function(){exitUpdate();}}]">
+		<form id="xgfrm">
+			<div style="float: left">
+				<table>
+					<tr style="display: none">
+						<td><input class="easyui-textbox" type="text" id="s_id"
+							name="s_id"></td>
+					</tr>
+					<tr>
+						<td><label>咨询师:</label></td>
+						<td>
+						<select id="zixunshi" class="easyui-combobox" 
+				style="width: 200px;">
+			</select>
+						</td>
+					</tr>
+					</table>
+					</div>
+					</form>
+					</div>
 </body>
 <script type="text/javascript">
 $(function(){
@@ -70,6 +100,37 @@ function init(){
 
 function xzixunformatter(value,row,index){
 	return "<a href='javascript:void(0)' class='easyui-linkbutton' onclick='xiugai("+index+")'>分配</a>";
+}
+
+function xiugai(index){
+	$("#zixunshi").combobox({
+		url:'selectZXS',    
+	    valueField:'u_id',    
+	    textField:'u_userName' 
+	});
+	var data = $("#dg").datagrid("getData");
+	var row = data.rows[index];
+	$("#xgfrm").form("load",row);
+	$("#update-dialog").dialog("open");
+}
+function updatebaocun(){
+	var s = $("#zixunshi").combobox("getValue");
+	var s_id=$("#s_id").textbox("getValue");
+	$.post("fenpeizx",{
+		s_id:s_id,
+		u_id:s
+	},function(res){
+		if(res>0){
+			$.messager.alert("提示","分配成功");
+			$("#update-dialog").dialog("close");
+			$("#dg").datagrid("reload");
+		}else{
+			$.messager.alert("提示","分配失败");
+		}
+	},"json");
+}
+function exitUpdate(){
+	$("#update-dialog").dialog("close");
 }
 </script>
 

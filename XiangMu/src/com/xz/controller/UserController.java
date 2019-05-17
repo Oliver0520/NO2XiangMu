@@ -184,4 +184,9 @@ public class UserController {
     	  User list = (User) req.getSession().getAttribute("usera");
     	  return list;
       }
+      @RequestMapping(value="/selectZXS",method=RequestMethod.POST)
+      @ResponseBody
+      public List<User> selectZXS(){
+    	  return userServiceImp.selectZixs();
+      }
 }

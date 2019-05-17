@@ -43,10 +43,12 @@ Integer insertStudent(Student student);
 
 Integer selectjs(Integer u_id);
 
-Integer selectjs1(Integer u_id);
+Integer selectjs1(Integer u_idw);
 
 Fenye<Student> getzxjs(Fenye<Student> fenye);
 
 
 Fenye<Student> selectFenpei(Fenye<Student> fenye);
+
+Integer fenpeizx(Student student);
 }

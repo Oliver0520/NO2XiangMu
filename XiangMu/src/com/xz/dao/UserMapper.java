@@ -132,4 +132,5 @@ Integer empqd(User user);
  */
 Integer qiantui();
 
+List<User> selectZxs();
 }
