@@ -3,6 +3,7 @@ package com.xz.dao;
 import java.util.List;
 
 import com.xz.entity.Fenye;
+import com.xz.entity.IsFenpei;
 import com.xz.entity.Student;
 import com.xz.entity.User;
 
@@ -82,4 +83,6 @@ Integer selectFenpeiCount(Fenye<Student> fenye);
  * @return
  */
 Integer fenpeizx(Student student);
+
+IsFenpei isORnot();
 }

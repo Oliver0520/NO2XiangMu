@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.xz.entity.User;
 
-
+@Component
 public class FenPei {
 	public static User fenpei(List<User> userlist) {
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();

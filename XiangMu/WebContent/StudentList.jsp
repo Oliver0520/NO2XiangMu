@@ -27,14 +27,9 @@
 			textField : 'u_userName'
 
 		});
-		
-
 		inint();
 		$('#zxid').next().hide(); 
 		$('#zxglid').next().hide(); 
-		
-		
-
 	});
 	function inint() {
 		var hf = $("#sfhuifang").combobox("getValue");
@@ -54,7 +49,6 @@
 			method : "post",
 			pagination : true,
 			toolbar : "#bar",
-
 			singleSelect : true,
 			queryParams : {
 				s_name : $("#Sname").textbox("getValue"),
@@ -69,14 +63,10 @@
 			}
 		});
 		$("#str").form("clear");
-
 	}
 	function caozuolei(value, row, index) {
 		var zxid = $("#zxid").textbox("getValue");
 		var zxglid = $("#zxglid").textbox("getValue");
-		
-		
-	
 		if(zxglid>0){
 			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
 		 }
@@ -93,27 +83,22 @@
 
 		$.messager.confirm('确认', '你确认要删除吗?', function(res) {
 			if (res) {
-
 				$.post("deleteStudent", {
 					s_id : row.s_id
 				}, function(r) {
 					if (r > 0) {
 						$("#dg").datagrid("reload");
 						$.messager.alert("提示 ", "删除成功");
-
 					} else {
 						$.messager.alert("提示 ", "删除失败");
 					}
 				}, "json");
-
 			}
-
 		});
 	}
 	function chakan(index) {
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
-
 		$("#chakanfrm").form("load", row);
 		$("#abaobei").textbox("setValue", row.s_baobei == 1 ? "否" : "是");
 		$("#ahuifang").textbox("setValue", row.s_huifang == 1 ? "否" : "是");
@@ -138,20 +123,17 @@
 		$("#uptuifei").combobox("setValue", row.s_tuifei == 1 ? "否" : "是");
 		$("#upjinban").combobox("setValue", row.s_jinban == 1 ? "否" : "是");
 		$("#ups_sex").textbox("setValue", row.s_sex == 1 ? "男" : "女");
-
 		$('#zxname1').combobox({
 			url : 'selectUname',
 			method : "post",
 			valueField : 'u_id',
 			textField : 'u_userName',
-
 		});
 		$('#zxname2').combobox({
 			url : 'selectUname',
 			method : "post",
 			valueField : 'u_id',
 			textField : 'u_userName',
-
 		});
 		$("#xiugai-dialog").dialog("open");
 	}
@@ -183,7 +165,6 @@
 	}
 	function xingbie(value, row, index) {
 		return row.s_sex == 1 ? "男" : "女";
-
 	}
 	function updatebaocun() {
 		var s_id = $("#ups_id").textbox("getValue");
@@ -230,7 +211,6 @@
 		if (baobei == "是") {
 			baobei = 2
 		}
-
 		if (huifang == "否") {
 			huifang = 1
 		}
@@ -269,11 +249,9 @@
 		}
 		if (s_sex == "男") {
 			s_sex = 1
-
 		}
 		if (s_sex == "女") {
 			s_sex = 2
-
 		}
 		$.post("updaStu", {
 			s_id : s_id,
@@ -314,7 +292,6 @@
 			s_guanzhu : s_guanzhu,
 			u_idw : name2,
 			s_zixunbeizhu : s_zixunbeizhu
-
 		}, function(res) {
 			if (res > 0) {
 				$("#dg").datagrid("reload");
@@ -344,7 +321,6 @@
 		var s_weChat = $("#tjs_weChat").textbox("getValue");
 		var baobei = $("#tjbaobei").combobox("getValue");
 		var s_beizhu = $("#tjs_beizhu").textbox("getValue");
-
 		if (baobei == "否") {
 			baobei = 1
 		}
@@ -356,8 +332,7 @@
 			
 		}
 		if(s_sex=="女"){
-			s_sex=2
-			
+			s_sex=2			
 		}
 		alert(baobei)
 		$.post("insertStudent", {
@@ -374,7 +349,6 @@
 			s_qq : s_qq,
 			s_weChat : s_weChat,
 			s_baobei : baobei,
-
 		}, function(res) {
 			if (res > 0) {
 				$("#dg").datagrid("reload");
@@ -384,23 +358,17 @@
 				$.messager.alert('提示', '添加失败');
 			}
 		}, "json");
-		$("#insertfrm").form("clear");
-		
+		$("#insertfrm").form("clear");		
 	}
 	function exitInsert() {
 		$("#insert-dialog").dialog("close");
 	}
 	function insert(index) {
-
 		$("#insert-dialog").dialog("open");
-
 	}
 	function exitInsert() {
-
 		$("#insert-dialog").dialog("close");
-
 	}
-
 	function chakanrizhi(index) {
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
@@ -410,7 +378,6 @@
 			valueField : 's_id',
 			textField : 's_name',
 		});
-
 		$("#rizhi-dialog").dialog("open");
 		$("#rizhidg").datagrid({
 			url : 'chakanrizhia',
@@ -418,14 +385,10 @@
 			pagination : true,
 			queryParams : {
 				s_id : row.s_id,
-
 			}
 		}
-
 		);
-
 	}
-
 	function insertrizhi(index) {
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
@@ -437,14 +400,12 @@
 		var s_id = $("#s_ida").textbox("getValue");
 		var u_id = $("#u_ida").textbox("getValue");
 		var l_id = $("#l_id").textbox("getValue");
-		var l_genzongstartshijian = $("#l_genzongstartshijian").textbox(
-				"getValue");
+		var l_genzongstartshijian = $("#l_genzongstartshijian").textbox("getValue");
 		var l_genzongendshijian = $("#l_genzongendshijian").textbox("getValue");
 		var l_huifang = $("#l_huifang").textbox("getValue");
 		var l_fangshi = $("#l_fangshi").textbox("getValue");
 		var l_xcshijian = $("#l_xcshijian").textbox("getValue");
 		var l_neirong = $("#l_neirong").textbox("getValue");
-
 		$.post("insertRizhi", {
 			u_id:u_id,
 			s_id : s_id,
@@ -455,13 +416,11 @@
 			l_fangshi : l_fangshi,
 			l_xcshijian : l_xcshijian,
 			l_neirong : l_neirong,
-
 		}, function(res) {
 			if (res > 0) {
 				$("#dg").datagrid("reload");
 				$.messager.alert('提示', '添加成功');
 				$("#tjrizhi-dialog").dialog("close");
-
 			} else {
 				$.messager.alert('提示', '添加失败');
 			}
@@ -470,12 +429,9 @@
 	}
 	function tuichu() {
 		$("#tjrizhi-dialog").dialog("close");
-
 	}
-	function rizhicaozuolei(value,row,index){
-		
-		return "<a href='javascript:void(0)'  onclick='rizhixiangxi("+ index+ ")'>查看</a>"
-		
+	function rizhicaozuolei(value,row,index){		
+		return "<a href='javascript:void(0)'  onclick='rizhixiangxi("+ index+ ")'>查看</a>"		
 	}
 	function rizhixiangxi(index){
 		var data = $("#rizhidg").datagrid("getData");
@@ -488,7 +444,6 @@
 <body>
  <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
 <input class="easyui-textbox" type="text" id="zxglid" value="<%=session.getAttribute("zxgl") %>"/>
- 
 	<table class="easyui-datagrid" id="dg">
 		<thead>
 			<tr>
@@ -569,7 +524,6 @@
 				<option value="aa">--请选择--</option>
 				<option value="1">否</option>
 				<option value="2">是</option>
-
 			</select> <label>是否回访:</label> <select id="sfhuifang" class="easyui-combobox"
 				style="width: 100px;">
 				<option value="aa">--请选择--</option>
@@ -579,7 +533,6 @@
 				onclick="inint()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="insert()" data-options="iconCls:'icon-add',plain:true">新增</a>
-
 		</form>
 	</div>
 

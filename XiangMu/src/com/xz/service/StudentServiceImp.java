@@ -10,15 +10,18 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import com.xz.dao.StudentMapper;
+import com.xz.dao.UserMapper;
 import com.xz.entity.Fenye;
 import com.xz.entity.Student;
 import com.xz.entity.User;
+import com.xz.fujie.FenPei;
 
 @Service
 public class StudentServiceImp implements StudentService {
 	@Autowired
 	private StudentMapper studentMapper;
-
+    @Autowired
+	private UserMapper userMapper;
 	@Override
 	public Fenye<Student> getStudent(Fenye<Student> fenye) {
 		// TODO Auto-generated method stub
@@ -58,6 +61,16 @@ public class StudentServiceImp implements StudentService {
 	@Override
 	public Integer insertStudent(Student student) {
 		// TODO Auto-generated method stub
+	   List<User> zxs = userMapper.selectZxs();
+	   for (int i = 0; i < zxs.size(); i++) {
+		   System.out.println(zxs.get(i).getU_id());
+	}
+	   
+	   User fenpei = FenPei.fenpei(zxs);
+	   Integer u_id = fenpei.getU_id();
+	   System.out.println("ÓÃ»§ID"+u_id);
+	   if(studentMapper.isORnot().getFenpei()==1) {
+	   student.setU_id(u_id);}
 		return studentMapper.insertStudent(student);
 	}
 

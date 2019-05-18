@@ -224,8 +224,8 @@
 
 	<insert id="insertStudent" parameterType="student">
 		insert into
-		student(s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei)
-		values(#{s_name},#{s_age},#{s_sex},#{s_phone},#{s_education},#{s_status},#{s_qudao},#{s_wangzhan},#{s_guanjian},#{s_qq},#{s_weChat},#{s_baobei});
+		student(s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,u_id)
+		values(#{s_name},#{s_age},#{s_sex},#{s_phone},#{s_education},#{s_status},#{s_qudao},#{s_wangzhan},#{s_guanjian},#{s_qq},#{s_weChat},#{s_baobei},#{u_id});
 	</insert>
 	<select id="selectjs" parameterType="int" resultType="int">
 		select count(*) from userrole where
@@ -341,4 +341,7 @@
 	</set>
 	<where>s_id=#{s_id}</where>
 	</update>
+	<select id="isORnot" resultType="isFenpei">
+	select id,fenpei from isfenpei 
+	</select>
 </mapper>
