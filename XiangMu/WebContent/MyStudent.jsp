@@ -581,8 +581,8 @@
 				<option value="1">否</option>
 			</select> <a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="inint()" data-options="iconCls:'icon-search',plain:true">查询</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton"
-				onclick="insert()" data-options="iconCls:'icon-add',plain:true">新增</a>
+			<!-- <a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="insert()" data-options="iconCls:'icon-add',plain:true">新增</a> -->
 
 		</form>
 	</div>
