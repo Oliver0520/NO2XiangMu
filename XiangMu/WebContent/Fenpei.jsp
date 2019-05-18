@@ -105,7 +105,7 @@ function xzixunformatter(value,row,index){
 function xiugai(index){
 	$("#zixunshi").combobox({
 		url:'selectZXS',    
-	    valueField:'u_id',    
+	    valueField:'u_id',
 	    textField:'u_userName' 
 	});
 	var data = $("#dg").datagrid("getData");

@@ -4,8 +4,9 @@
 
 	<select id="selectStudent" parameterType="fenye"
 		resultType="student">
-		select * from student where u_id &gt; 0
+		select * from student 
 		<where>
+		u_id &gt; 0
 			<if test="t.s_name!=null and t.s_name!=''">
 				and s_name like "%"#{t.s_name}"%"
 			</if>
@@ -15,8 +16,8 @@
 			<if test="t.s_qq!=null and t.s_qq!=''">
 				and s_qq=#{t.s_qq}
 			</if>
-			<if test="t.u_idw!=null and t.u_idw!=''">
-				and u_idw=#{t.u_idw}
+			<if test="t.u_id!=null and t.u_id!=''">
+				and u_id=#{t.u_id}
 			</if>
 			<if
 				test="t.stime!=null and t.stime!='' and t.etime!=null and t.etime!=''">
@@ -38,8 +39,9 @@
 
 	<select id="selectCountStu" parameterType="fenye"
 		resultType="int">
-		select count(*) from student
+		select count(*) from student 
 		<where>
+		 u_id &gt; 0
 			<if test="t.s_name!=null and t.s_name!=''">
 				and s_name like "%"#{t.s_name}"%"
 			</if>
@@ -49,8 +51,8 @@
 			<if test="t.s_qq!=null and t.s_qq!=''">
 				and s_qq=#{t.s_qq}
 			</if>
-			<if test="t.u_idw!=null and t.u_idw!=''">
-				and u_idw=#{t.u_idw}
+			<if test="t.u_id!=null and t.u_id!=''">
+				and u_id=#{t.u_id}
 			</if>
 			<if
 				test="t.stime!=null and t.stime!='' and t.etime!=null and t.etime!=''">
@@ -67,6 +69,7 @@
 				and s_jiaofei=#{t.s_jiaofei}
 			</if>
 		</where>
+		
 	</select>
 
 	<select id="selectname2" parameterType="int" resultType="String">

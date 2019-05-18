@@ -40,6 +40,7 @@
 		var hf = $("#sfhuifang").combobox("getValue");
 		var yx = $("#sfyouxiao").combobox("getValue");
 		var jf = $("#sfjiaofei").combobox("getValue");
+		var nana=$("#zxname").combobox("getValue");
 		if (hf == "aa") {
 			hf = null;
 		}
@@ -56,17 +57,20 @@
 			toolbar : "#bar",
 
 			singleSelect : true,
+		
 			queryParams : {
+				
 				s_name : $("#Sname").textbox("getValue"),
 				s_phone : $("#Sphone").textbox("getValue"),
 				s_qq : $("#sqq").textbox("getValue"),
-				u_idw : $("#zxname").combobox("getValue"),
+				u_id:nana,
 				stime : $("#stime").textbox("getValue"),
 				etime : $("#etime").textbox("getValue"),
 				s_huifang : hf,
 				s_youxiao : yx,
 				s_jiaofei : jf
 			}
+	
 		});
 		$("#str").form("clear");
 
@@ -149,7 +153,7 @@
 		$('#zxname2').combobox({
 			url : 'selectUname',
 			method : "post",
-			valueField : 'u_id',
+			valueField : 'u_idw',
 			textField : 'u_userName',
 
 		});
