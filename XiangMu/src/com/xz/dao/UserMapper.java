@@ -131,6 +131,27 @@ Integer empqd(User user);
  * @return
  */
 Integer qiantui();
-
+/**
+ * 查询出所有角色为咨询师的用户信息
+ * @return
+ */
 List<User> selectZxs();
+/**
+ * 查询员工的权重相关信息
+ * @param fenye
+ * @return
+ */
+List<User> selectUweight(Fenye<User> fenye);
+/**
+ * 查询员工权重信息的总条数
+ * @param fenye
+ * @return
+ */
+Integer selectUweightCount(Fenye<User> fenye);
+/**
+ * 调整员工分量顺序
+ * @param user
+ * @return
+ */
+Integer updateUweight(User user);
 }

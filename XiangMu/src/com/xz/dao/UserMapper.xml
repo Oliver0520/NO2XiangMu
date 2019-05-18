@@ -149,4 +149,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectZxs" resultType="user">
 	select u.* from user u INNER JOIN userrole ur INNER JOIN role r on u.u_id =ur.u_id and ur.r_id=r.r_id where r.r_name="咨询师角色"
 	</select>
+	
+	<select id="selectUweight" parameterType="fenye" resultType="user">
+	select u.u_id,u.u_userName,u.u_weight,u.u_weightbeizhu from user u INNER JOIN userrole ur INNER JOIN role r on u.u_id =ur.u_id and ur.r_id=r.r_id 
+	<where>
+	 r.r_name="咨询师角色"
+	<if test="t.u_userName!=null and t.u_userName !=''">
+	  and u.u_userName like "%"#{t.u_userName}"%"
+	</if>
+	</where>
+	limit #{page},#{pageSize}
+	</select>
+	
+	<select id="selectUweightCount" parameterType="fenye" resultType="int">
+	select count(*) from user u INNER JOIN userrole ur INNER JOIN role r on u.u_id =ur.u_id and ur.r_id=r.r_id 
+	<where>
+	 r.r_name="咨询师角色"
+	<if test="t.u_userName!=null and t.u_userName !=''">
+	  and u.u_userName like "%"#{t.u_userName}"%"
+	</if>
+	</where>
+	</select>
+	
+	<update id="updateUweight" parameterType="user">
+	update user <set>
+	<if test="u_weight!=null and u_weight!=''">
+	u_weight=#{u_weight},
+	</if>
+	<if test="u_weightbeizhu!=null and u_weightbeizhu!=''">
+	u_weightbeizhu=#{u_weightbeizhu},
+	</if>
+	</set>
+	<where>
+	u_id=#{u_id}
+	</where>
+	</update>
 </mapper>

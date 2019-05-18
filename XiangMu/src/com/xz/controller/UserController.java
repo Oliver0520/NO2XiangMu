@@ -189,4 +189,23 @@ public class UserController {
       public List<User> selectZXS(){
     	  return userServiceImp.selectZixs();
       }
+      @RequestMapping(value="/selectUweight",method = RequestMethod.POST)
+      @ResponseBody
+      public Fenye<User> selectUweight(Integer page,Integer rows,User user){
+    	  fenye.setPage((page-1)*rows);
+    	  fenye.setPageSize(rows);
+    	  fenye.setT(user);
+    	  fenye=userServiceImp.selectWeight(fenye);
+    	  return fenye;
+      }
+      @RequestMapping(value="/Empweight")
+      public String Empweight() {
+    	  return "EmpWeight";
+      }
+      @RequestMapping(value="/updateUweight",method=RequestMethod.POST)
+      @ResponseBody
+      public Integer updateUweight(User user) {
+    	  return userServiceImp.updateUweight(user);
+      }
+      
 }

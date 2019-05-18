@@ -110,6 +110,21 @@ Integer updaetQD(Integer u_id);
  * @return
  */
 Integer updateAllemp();
-
+/**
+ * 查询角色为咨询师角色的用户名
+ * @return
+ */
 List<User> selectZixs();
+/**
+ * 分页显示用户角色为咨询师的信息
+ * @param fenye
+ * @return
+ */
+Fenye<User> selectWeight(Fenye<User> fenye);
+/**
+ * 调整员工分量
+ * @param user
+ * @return
+ */
+Integer updateUweight(User user);
 }

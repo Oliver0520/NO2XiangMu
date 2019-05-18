@@ -159,6 +159,20 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.selectZxs();
 	}
+	@Override
+	public Fenye<User> selectWeight(Fenye<User> fenye) {
+		// TODO Auto-generated method stub
+		List<User> rows = userMapper.selectUweight(fenye);
+		Integer total = userMapper.selectUweightCount(fenye);
+		fenye.setTotal(total);
+		fenye.setRows(rows);
+		return fenye;
+	}
+	@Override
+	public Integer updateUweight(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.updateUweight(user);
+	}
 	
 
 }
