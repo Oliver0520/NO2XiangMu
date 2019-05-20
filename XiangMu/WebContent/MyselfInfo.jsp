@@ -49,11 +49,11 @@
 				<td><input class="easyui-textbox" type="text" id="u_id"
 				  value="${usera.u_id}" disabled="disabled" ></td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<td><label>登录名:</label></td>
 				<td><input class="easyui-textbox" type="text" id="loname"
-					 value="${usera.u_loginName}" disabled="disabled" /></td>
-			</tr>
+					 value="${ulname}" disabled="disabled" /></td>
+			</tr> --%>
 			<tr>
 				<td><label>用户名:</label></td>
 				<td><input class="easyui-textbox" type="text" id="userName"
