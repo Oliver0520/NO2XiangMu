@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xz.dao.LogoMapper">
 	<select id="selectLogo" parameterType="fenye" resultType="logo">
-		select * from Logo
+		select s_id,u_id, l_genzongstartshijian,l_genzongendshijian,l_huifang,l_fangshi,l_xcshijian,l_neirong from Logo
 		<where>
 			and s_id=#{t.s_id}
 		</where>
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="selectLogo1" parameterType="fenye" resultType="logo">
-	select * from logo 
+	select s_id,u_id, l_genzongstartshijian,l_genzongendshijian,l_huifang,l_fangshi,l_xcshijian,l_neirong from Logo 
 	<where>
 	<if test="t.s_name!=null and t.s_name!=''">
 		and s_id in(SELECT s_id from student where s_name LIKE "%"#{t.s_name}"%")

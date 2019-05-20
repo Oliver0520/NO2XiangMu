@@ -74,7 +74,7 @@ function xiugai(index){
 				<th data-options="field:'l_xcshijian',width:100">下次回访时间</th>
 				<th data-options="field:'l_neirong',width:100">回访内容</th><!-- 
 				 <th data-options="field:'caozuosa',width:100,formatter:caozuolie"></th>  -->
-<th data-options="field:'caozuo',formatter:caozuoformatter,align:'ceter',title:'操作'"></th>
+				<th data-options="field:'caozuo',formatter:caozuoformatter,align:'ceter',title:'操作'"></th>
 			</tr>
 		</thead>
 	</table>

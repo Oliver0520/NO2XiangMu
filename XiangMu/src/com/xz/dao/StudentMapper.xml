@@ -4,7 +4,8 @@
 
 	<select id="selectStudent" parameterType="fenye"
 		resultType="student">
-		select * from student 
+		select s_id,s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,s_beizhu,u_id,s_quyu,s_bumen,s_kecheng,s_youxiao,s_dafen,s_huifang,s_huifangshijian,s_shangmen,s_shangmenshijian,s_wuxiaoyuanyin,s_jiaofei,s_jiaofeishijian,s_price,s_tuifei,s_jinban,s_jinbanshijian,s_jinbanbeizhu,s_tuifeiyuanyin,s_dingjin,s_dingjinshijian,s_guanzhu,u_idw,s_zixunbeizhu,l_id,s_int,s_string
+ from student 
 		<where>
 		u_id &gt; 0
 			<if test="t.s_name!=null and t.s_name!=''">
@@ -241,7 +242,8 @@
 		in (select r_id from userrole where u_id=#{u_id})
 	</select>
 	<select id="selectMyStudent" parameterType="fenye" resultType="student">
-		select * from student
+		select s_id,s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,s_beizhu,u_id,s_quyu,s_bumen,s_kecheng,s_youxiao,s_dafen,s_huifang,s_huifangshijian,s_shangmen,s_shangmenshijian,s_wuxiaoyuanyin,s_jiaofei,s_jiaofeishijian,s_price,s_tuifei,s_jinban,s_jinbanshijian,s_jinbanbeizhu,s_tuifeiyuanyin,s_dingjin,s_dingjinshijian,s_guanzhu,u_idw,s_zixunbeizhu,l_id,s_int,s_string
+ from student
 		<where>
 			<if test="t.s_name!=null and t.s_name!=''">
 				and s_name like "%"#{t.s_name}"%"
@@ -310,14 +312,18 @@
 		</where>
 	</select>
 	<select id="selectFenpei" parameterType="fenye" resultType="student">
-	select * from student 
+	select s_id,s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,s_beizhu,u_id,s_quyu,s_bumen,s_kecheng,s_youxiao,s_dafen,s_huifang,s_huifangshijian,s_shangmen,s_shangmenshijian,s_wuxiaoyuanyin,s_jiaofei,s_jiaofeishijian,s_price,s_tuifei,s_jinban,s_jinbanshijian,s_jinbanbeizhu,s_tuifeiyuanyin,s_dingjin,s_dingjinshijian,s_guanzhu,u_idw,s_zixunbeizhu,l_id,s_int,s_string
+ from student 
 	<where>
 	s_id not in (select s_id from student where u_id>0)
 	<if test="t.s_name!=null and t.s_name!=''">
 	and s_name like  "%"#{t.s_name}"%"
 	</if>
 	<if test="t.s_age!=null and t.s_age!=''">
-	and s_age=#{s_age}
+	and s_age=#{t.s_age}
+	</if>
+		<if test="t.s_sex!=null and t.s_sex!=''">
+	and s_sex=#{t.s_sex}
 	</if>	
 	</where>
 	</select>
@@ -329,7 +335,10 @@
 	and s_name like  "%"#{t.s_name}"%"
 	</if>
 	<if test="t.s_age!=null and t.s_age!=''">
-	and s_age=#{s_age}
+	and s_age=#{t.s_age}
+	</if>	
+		<if test="t.s_sex!=null and t.s_sex!=''">
+	and s_sex=#{t.s_sex}
 	</if>	
 	</where>
 	</select>

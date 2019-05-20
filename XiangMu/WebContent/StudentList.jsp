@@ -359,7 +359,7 @@
 			s_sex=2
 			
 		}
-		alert(baobei)
+	
 		$.post("insertStudent", {
 			s_id : s_id,
 			s_name : s_name,
