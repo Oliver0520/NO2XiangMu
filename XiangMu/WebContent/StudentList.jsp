@@ -32,38 +32,50 @@
 		$('#zxglid').next().hide(); 
 	});
 	function inint() {
-		var hf = $("#sfhuifang").combobox("getValue");
-		var yx = $("#sfyouxiao").combobox("getValue");
-		var jf = $("#sfjiaofei").combobox("getValue");
-		if (hf == "aa") {
-			hf = null;
-		}
-		if (yx == "aa") {
-			yx = null;
-		}
-		if (jf == "aa") {
-			jf = null;
-		}
-		$('#dg').datagrid({
-			url : 'chaxunasd',
-			method : "post",
-			pagination : true,
-			toolbar : "#bar",
-			singleSelect : true,
-			queryParams : {
-				s_name : $("#Sname").textbox("getValue"),
-				s_phone : $("#Sphone").textbox("getValue"),
-				s_qq : $("#sqq").textbox("getValue"),
-				u_id : $("#zxname").combobox("getValue"),
-				stime : $("#stime").textbox("getValue"),
-				etime : $("#etime").textbox("getValue"),
-				s_huifang : hf,
-				s_youxiao : yx,
-				s_jiaofei : jf
+	
+	
+			var hf = $("#sfhuifang").combobox("getValue");
+			var yx = $("#sfyouxiao").combobox("getValue");
+			var jf = $("#sfjiaofei").combobox("getValue");
+		
+
+			if (hf == "aa") {
+				hf = null;
 			}
-		});
-		$("#str").form("clear");
-	}
+			if (yx == "aa") {
+				yx = null;
+			}
+			if (jf == "aa") {
+				jf = null;
+			}
+		
+			$('#dg').datagrid({
+				url : 'chaxunasd',
+				method : "post",
+				pagination : true,
+				toolbar : "#bar",
+				singleSelect : true,
+			
+				queryParams : {
+					
+					s_name : $("#Sname").textbox("getValue"),
+					s_phone : $("#Sphone").textbox("getValue"),
+					s_qq : $("#sqq").textbox("getValue"),
+					u_id : $("#zxname").combobox("getValue"),
+					stime : $("#stime").textbox("getValue"),
+					etime : $("#etime").textbox("getValue"),
+					s_huifang : hf,
+					s_youxiao : yx,
+					s_jiaofei : jf
+				}
+			});
+		
+			$("#str").form("clear");
+			alert($("#zxname").combobox("getValue"));
+	
+		}
+	
+ 
 	function caozuolei(value, row, index) {
 		var zxid = $("#zxid").textbox("getValue");
 		var zxglid = $("#zxglid").textbox("getValue");
@@ -100,13 +112,13 @@
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
 		$("#chakanfrm").form("load", row);
-		$("#abaobei").textbox("setValue", row.s_baobei == 1 ? "否" : "是");
-		$("#ahuifang").textbox("setValue", row.s_huifang == 1 ? "否" : "是");
-		$("#ayouxiao").textbox("setValue", row.s_youxiao == 1 ? "否" : "是");
-		$("#ashangmen").textbox("setValue", row.s_shangmen == 1 ? "否" : "是");
-		$("#ajiaofei").textbox("setValue", row.s_jiaofei == 1 ? "否" : "是");
-		$("#atuifei").textbox("setValue", row.s_tuifei == 1 ? "否" : "是");
-		$("#ajinban").textbox("setValue", row.s_jinban == 1 ? "否" : "是");
+		$("#abaobei").textbox("setValue",row.s_baobei==2?"是":"否");
+		$("#ahuifang").textbox("setValue", row.s_huifang == 2?"是":"否");
+		$("#ayouxiao").textbox("setValue", row.s_youxiao == 2?"是":"否");
+		$("#ashangmen").textbox("setValue", row.s_shangmen == 2?"是":"否");
+		$("#ajiaofei").textbox("setValue", row.s_jiaofei == 2?"是":"否");
+		$("#atuifei").textbox("setValue", row.s_tuifei == 2?"是":"否");
+		$("#ajinban").textbox("setValue", row.s_jinban == 2?"是":"否");
 		$("#s_sex").textbox("setValue", row.s_sex == 1 ? "男" : "女");
 		$("#chakan-dialog").dialog("open");
 	}
@@ -115,13 +127,13 @@
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
 		$("#xiugaifrm").form("load", row);
-		$("#upbaobei").combobox("setValue", row.s_baobei == 1 ? "否" : "是");
-		$("#uphuifang").combobox("setValue", row.s_huifang == 1 ? "否" : "是");
-		$("#upyouxiao").combobox("setValue", row.s_youxiao == 1 ? "否" : "是");
-		$("#upshangmen").combobox("setValue", row.s_shangmen == 1 ? "否" : "是");
-		$("#upjiaofei").combobox("setValues", row.s_jiaofei == 1 ? "否" : "是");
-		$("#uptuifei").combobox("setValue", row.s_tuifei == 1 ? "否" : "是");
-		$("#upjinban").combobox("setValue", row.s_jinban == 1 ? "否" : "是");
+		$("#upbaobei").combobox("setValue", row.s_baobei==2?"是":"否");
+		$("#uphuifang").combobox("setValue", row.s_huifang == 2?"是":"否");
+		$("#upyouxiao").combobox("setValue", row.s_youxiao == 2?"是":"否");
+		$("#upshangmen").combobox("setValue", row.s_shangmen == 2?"是":"否");
+		$("#upjiaofei").combobox("setValues", row.s_jiaofei == 2?"是":"否");
+		$("#uptuifei").combobox("setValue", row.s_tuifei == 2?"是":"否");
+		$("#upjinban").combobox("setValue", row.s_jinban == 2?"是":"否");
 		$("#ups_sex").textbox("setValue", row.s_sex == 1 ? "男" : "女");
 		$('#zxname1').combobox({
 			url : 'selectUname',
@@ -143,28 +155,28 @@
 	}
 
 	function baobei(value, row, index) {
-		return row.s_baobei == 1 ? "否" : "是";
+		return row.s_huifang == 2 ? "是" : "否";
 	}
 	function huifang(value, row, index) {
-		return row.s_huifang == 1 ? "否" : "是";
+		return row.s_huifang == 2 ? "是" : "否";
 	}
 	function youxiao(value, row, index) {
-		return row.s_youxiao == 1 ? "否" : "是";
+		return row.s_youxiao == 2 ? "是" : "否";
 	}
 	function shangmen(value, row, index) {
-		return row.s_shangmen == 1 ? "否" : "是";
+		return row.s_shangmen == 2 ? "是" : "否";
 	}
 	function jiaofei(value, row, index) {
-		return row.s_jiaofei == 1 ? "否" : "是";
+		return row.s_jiaofei == 2 ? "是" : "否";
 	}
 	function tuifei(value, row, index) {
-		return row.s_tuifei == 1 ? "否" : "是";
+		return row.s_tuifei == 2 ? "是" : "否";
 	}
 	function jinban(value, row, index) {
-		return row.s_jinban == 1 ? "否" : "是";
+		return row.s_jinban == 2 ? "是" : "否";
 	}
 	function xingbie(value, row, index) {
-		return row.s_sex == 1 ? "男" : "女";
+		return row.s_sex == 2 ? "是" : "否";;
 	}
 	function updatebaocun() {
 		var s_id = $("#ups_id").textbox("getValue");
@@ -211,6 +223,7 @@
 		if (baobei == "是") {
 			baobei = 2
 		}
+	
 		if (huifang == "否") {
 			huifang = 1
 		}
@@ -360,7 +373,7 @@
 		}, "json");
 		$("#insertfrm").form("clear");		
 	}
-	function exitInsert() {
+	function exitInsert() {s
 		$("#insert-dialog").dialog("close");
 	}
 	function insert(index) {
@@ -834,6 +847,7 @@
 						<td><label>是否报备:</label></td>
 						<td><select id="upbaobei" class="easyui-combobox"
 							style="width: 100px;">
+							<option value="3">待定</option>
 								<option value="2">是</option>
 								<option value="1">否</option>
 						</select></td>
