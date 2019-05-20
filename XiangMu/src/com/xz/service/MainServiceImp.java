@@ -37,7 +37,7 @@ public class MainServiceImp implements MainService {
 		}
 		String jg="<ul id=\"treeUlId\" class=\"easyui-tree\"><li>";
 		List<Module> mokuai = moduleMapper.selectByUserid(list);
-		System.out.println(mokuai);
+
 			for(int j=0;j<mokuai.size();j++) {
 				Module module2 = mokuai.get(j);
 				if(module2.getM_parentId()==0) {
