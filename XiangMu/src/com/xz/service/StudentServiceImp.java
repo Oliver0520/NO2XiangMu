@@ -64,7 +64,7 @@ public class StudentServiceImp implements StudentService {
 	   List<User> zxs = userMapper.selectZxs();
 	   User fenpei = FenPei.fenpei(zxs);
 	   Integer u_id = fenpei.getU_id();
-	   if(studentMapper.isORnot().getFenpei()==1) {
+	   if(studentMapper.isORnot().getFenpei()==2) {
 	   student.setU_id(u_id);}
 		return studentMapper.insertStudent(student);
 	}
