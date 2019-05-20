@@ -40,4 +40,6 @@ Module selectByid(Integer m_id);
  * @return
  */
 Integer deleteMod(Integer m_id);
+
+List<Module> selectByUserid(List<Integer> list);
 }

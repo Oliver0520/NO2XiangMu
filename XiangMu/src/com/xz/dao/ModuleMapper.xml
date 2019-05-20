@@ -36,4 +36,13 @@ select * from module where m_id=#{m_id}
 <delete id="deleteMod" parameterType="int">
 delete from module where m_id=#{m_id}
 </delete>
+<select id="selectByUserid" parameterType="list" resultType="module">
+		SELECT  DISTINCT * from module m where m.m_id in (SELECT m_id from rolemodule where r_id in <foreach collection="list" item="item" index="index" open="(" separator="," close=")"> 
+		            #{item} 
+		       </foreach>  
+) 
+		
+		
+		</select>
+
 </mapper>

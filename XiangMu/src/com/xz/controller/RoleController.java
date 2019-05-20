@@ -1,6 +1,8 @@
 package com.xz.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -43,13 +45,41 @@ public class RoleController {
 	}
 	@RequestMapping(value="/insertRoles",method=RequestMethod.POST)
 	@ResponseBody
-	public Integer insertRoles(String r_name) {
-		return roleServiceImp.insertRole(r_name);
+	public Map<String, Object> insertRoles(String r_name) {
+		Integer i = roleServiceImp.insertRole(r_name);
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (i == 1) {
+			map.put("msg", "角色名已被占用，请重试");
+			map.put("success", false);
+		}
+		if (i == 2) {
+			map.put("msg", "新增失败");
+			map.put("success", false);
+		}
+		if (i == 3) {
+			map.put("msg", "新增成功");
+			map.put("success", true);
+		}
+		return map;
 	}
 	@RequestMapping(value="/deleteRoles",method=RequestMethod.POST)
 	@ResponseBody
-	public Integer deleteRoles(Integer r_id) {
-		return roleServiceImp.deleteRoles(r_id);
+	public Map<String, Object> deleteRoles(Integer r_id) {
+		Integer i = roleServiceImp.deleteRoles(r_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (i == 1) {
+			map.put("msg", "该角色还有用户在使用，请先解绑在进行尝试");
+			map.put("success", false);
+		}
+		if (i == 2) {
+			map.put("msg", "删除失败");
+			map.put("success", false);
+		}
+		if (i == 3) {
+			map.put("msg", "删除成功");
+			map.put("success", true);
+		}
+		return map;
 	}
 	@RequestMapping(value="/updateRoles",method=RequestMethod.POST)
 	@ResponseBody
