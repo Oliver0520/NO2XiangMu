@@ -30,13 +30,14 @@ public class MainServiceImp implements MainService {
 		// TODO Auto-generated method stub
 		User user = (User)requer.getSession().getAttribute("usera");
 		List<Role> juese = user.getRole();
+		System.out.println("sssss");
 		List<Integer> list=new ArrayList<Integer>();
 		for (int i = 0; i < juese.size(); i++) {
 			list.add(juese.get(i).getR_id());
 		}
 		String jg="<ul id=\"treeUlId\" class=\"easyui-tree\"><li>";
 		List<Module> mokuai = moduleMapper.selectByUserid(list);
-		
+		System.out.println(mokuai);
 			for(int j=0;j<mokuai.size();j++) {
 				Module module2 = mokuai.get(j);
 				if(module2.getM_parentId()==0) {

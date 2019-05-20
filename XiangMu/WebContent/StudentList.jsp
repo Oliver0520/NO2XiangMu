@@ -71,8 +71,7 @@
 			});
 		
 			$("#str").form("clear");
-			alert($("#zxname").combobox("getValue"));
-	
+
 		}
 	
  
