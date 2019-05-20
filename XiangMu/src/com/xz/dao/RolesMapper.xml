@@ -45,4 +45,7 @@ INSERT INTO rolemodule(r_id,m_id) VALUES
 <delete id="deleteRoleModule" parameterType="int">
 DELETE FROM rolemodule WHERE r_id=#{r_id}
 </delete>
+<select id="selectIShere" parameterType="int" resultType="int">
+select count(*) from userrole WHERE r_id=#{r_id}
+</select>
 </mapper>

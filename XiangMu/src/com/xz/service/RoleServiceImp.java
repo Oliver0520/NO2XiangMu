@@ -39,12 +39,36 @@ public class RoleServiceImp implements RoleService {
 	@Override
 	public Integer insertRole(String r_name) {
 		// TODO Auto-generated method stub
-		return roleMapper.insertRole(r_name);
+		Integer jg=0;
+		Integer i =roleMapper.insertRole(r_name);
+		Integer j=roleMapper.selectRname(r_name);
+		if(!(j>0)) {
+			if(i>0) {
+				jg=3;
+			}else {
+				jg=2;
+			}
+		}else {
+			jg=1;
+		}
+		return jg;
 	}
 	@Override
 	public Integer deleteRoles(Integer r_id) {
 		// TODO Auto-generated method stub
-		return roleMapper.deleteRoles(r_id);
+		Integer jg=0;
+		Integer i = roleMapper.deleteRoles(r_id);
+		Integer j=roleMapper.selectIShere(r_id);
+		if(!(j>0)) {
+			if(i>0) {
+				jg=3;
+			}else {
+				jg=2;
+			}
+		}else {
+			jg=1;
+		}
+		return jg;
 	}
 	@Override
 	public Integer updateRoles(Role role) {

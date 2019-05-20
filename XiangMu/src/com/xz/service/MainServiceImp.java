@@ -2,6 +2,7 @@ package com.xz.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import com.xz.dao.ModuleMapper;
 import com.xz.dao.UserMapper;
 import com.xz.entity.Module;
 import com.xz.entity.Role;
@@ -21,14 +23,20 @@ public class MainServiceImp implements MainService {
 	private Module module3;
 	@Resource
 	private UserMapper userMapper;
+	@Resource
+	private ModuleMapper moduleMapper;
 	@Override
 	public String hometree(String treeUlId,HttpServletRequest requer) {
 		// TODO Auto-generated method stub
 		User user = (User)requer.getSession().getAttribute("usera");
 		List<Role> juese = user.getRole();
+		List<Integer> list=new ArrayList<Integer>();
+		for (int i = 0; i < juese.size(); i++) {
+			list.add(juese.get(i).getR_id());
+		}
 		String jg="<ul id=\"treeUlId\" class=\"easyui-tree\"><li>";
-		for(int i=0;i<juese.size();i++) {
-			List<Module> mokuai = juese.get(i).getModule();
+		List<Module> mokuai = moduleMapper.selectByUserid(list);
+		
 			for(int j=0;j<mokuai.size();j++) {
 				Module module2 = mokuai.get(j);
 				if(module2.getM_parentId()==0) {
@@ -36,7 +44,7 @@ public class MainServiceImp implements MainService {
 					jg = tree(jg, mokuai, module2);
 				}
 			}
-		}
+		
 		jg=jg+"</li></ul>";
 		return jg;
 	}

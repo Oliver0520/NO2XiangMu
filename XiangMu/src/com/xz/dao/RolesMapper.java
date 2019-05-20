@@ -53,4 +53,16 @@ Integer selectMisnu(Integer m_parentId);
 Integer insertRoleModule(List<RoleModule> list_jm);
 
 Integer deleteRoleModule(Integer r_id);
+/**
+ * 查询当前角色下是否分配了用户
+ * @param r_id
+ * @return
+ */
+Integer selectIShere(Integer r_id);
+/**
+ * 查询当前角色名是否重复
+ * @param r_name
+ * @return
+ */
+Integer selectRname(String r_name);
 }

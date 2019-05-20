@@ -137,11 +137,11 @@ function shanchu(index){
 	$.messager.confirm('确认','您确认想要删除记录吗？',function(r){    
 	    if (r){    
 	    	$.post("deleteRoles",{r_id:row.r_id},function(res){
-				if(res>0){
+				if(res.success){
 					$("#dg").datagrid("reload");
-					$.messager.alert('提示','删除成功'); 
+					$.messager.alert("提示", res.msg);
 				}else{
-					$.messager.alert('提示','删除失败'); 
+					$.messager.alert("提示", res.msg);
 				}
 			},"json");
 	    }    
@@ -214,15 +214,15 @@ function tijiaoModules() {
 		m_id : ids,
 		r_id : jiaoseid
 	}, function(res) {
-		if (res>0) {
-			$.messager.alert("提示","添加成功");
+		if (res.success) {
+			$.messager.alert("提示", res.msg);
 			$('#quanxiantree').window('close');
 			$("#dg").datagrid("reload");
 			
 		} else {
 			$('#quanxiantree').window('close');
 			$("#dg").datagrid("reload");
-			$.messager.alert("提示","添加失败");
+			$.messager.alert("提示", res.msg);
 		}
 	}, "json");
 
