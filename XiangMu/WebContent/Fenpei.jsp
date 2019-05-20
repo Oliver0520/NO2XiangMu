@@ -42,6 +42,7 @@
 				<option value="2">女</option>
 			</select> <a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="init()" data-options="iconCls:'icon-search',plain:true">查询</a>
+				<a href="javascript:void(0)" onclick="zidong()"><input class="easyui-switchbutton"  id="kaiguan" data-options="onText:'Yes',offText:'No'"></a>
 		</form>
 	</div>
 	
@@ -78,6 +79,14 @@
 <script type="text/javascript">
 $(function(){
 	init();
+	$.post("selectIsORNot",function(res){
+		if(res==1){
+			$("#kaiguan").switchbutton("uncheck");
+		}
+		if(res==2){
+			$("#kaiguan").switchbutton("check");
+		}
+	},"json");
 });
 function init(){
 	var s = $("#sex").combobox("getValue");
@@ -131,6 +140,23 @@ function updatebaocun(){
 }
 function exitUpdate(){
 	$("#update-dialog").dialog("close");
+}
+function zidong(){
+	var zhi=$("#kaiguan")[0].checked;
+	var fenpei=null;
+	if(zhi){
+		fenpei=2;
+	}else{
+		fenpei=1;
+	}
+	$.post("updateIsFenpei",{
+		fenpei:fenpei},function(res){
+			if(res.success){
+				$.messager.alert('提示',res.msg); 
+			}else{
+				$.messager.alert('提示',res.msg); 
+			}
+		},"json");
 }
 </script>
 

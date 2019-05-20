@@ -62,13 +62,8 @@ public class StudentServiceImp implements StudentService {
 	public Integer insertStudent(Student student) {
 		// TODO Auto-generated method stub
 	   List<User> zxs = userMapper.selectZxs();
-	   for (int i = 0; i < zxs.size(); i++) {
-		   System.out.println(zxs.get(i).getU_id());
-	}
-	   
 	   User fenpei = FenPei.fenpei(zxs);
 	   Integer u_id = fenpei.getU_id();
-	   System.out.println("ÓÃ»§ID"+u_id);
 	   if(studentMapper.isORnot().getFenpei()==1) {
 	   student.setU_id(u_id);}
 		return studentMapper.insertStudent(student);

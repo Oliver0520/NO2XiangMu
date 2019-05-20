@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.xz.entity.Fenye;
+import com.xz.entity.IsFenpei;
 import com.xz.entity.Role;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
@@ -127,4 +128,16 @@ Fenye<User> selectWeight(Fenye<User> fenye);
  * @return
  */
 Integer updateUweight(User user);
+
+/**
+ * 打开或关闭自动分配
+ * @param isfenpei
+ * @return
+ */
+Integer updateIsFenpei(IsFenpei isfenpei);
+/**
+ * 查询数据库中分配是否开启
+ * @return
+ */
+Integer selectIsORNot();
 }

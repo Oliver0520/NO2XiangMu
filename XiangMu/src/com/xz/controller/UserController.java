@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xz.entity.Fenye;
+import com.xz.entity.IsFenpei;
 import com.xz.entity.Role;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
@@ -207,5 +208,32 @@ public class UserController {
       public Integer updateUweight(User user) {
     	  return userServiceImp.updateUweight(user);
       }
-      
+      @RequestMapping(value="/updateIsFenpei",method=RequestMethod.POST)
+      @ResponseBody
+      public Map<String, Object> updateIsFenpei(IsFenpei isFenpei) {
+    	  Integer i = userServiceImp.updateIsFenpei(isFenpei);
+    	  Map<String, Object> map = new HashMap<String, Object>();
+    	  if(i==0) {
+    		  map.put("msg", "开启自动分配失败!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==1) {
+    		  map.put("msg", "开启自动分配成功!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==2) {
+    		  map.put("msg", "自动分配已开启!!!");
+  			  map.put("success", true);
+    	  }
+    	  if(i==3) {
+    		  map.put("msg", "自动分配已关闭!!!");
+  			  map.put("success", true);
+    	  }
+    	  return map;
+      }
+      @RequestMapping(value="/selectIsORNot",method=RequestMethod.POST)
+      @ResponseBody
+      public Integer selectIsORNot() {
+    	  return userServiceImp.selectIsORNot();
+      }
 }

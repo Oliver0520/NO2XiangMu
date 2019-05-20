@@ -3,6 +3,7 @@ package com.xz.dao;
 import java.util.List;
 
 import com.xz.entity.Fenye;
+import com.xz.entity.IsFenpei;
 import com.xz.entity.Role;
 import com.xz.entity.User;
 import com.xz.entity.UserRole;
@@ -154,4 +155,10 @@ Integer selectUweightCount(Fenye<User> fenye);
  * @return
  */
 Integer updateUweight(User user);
+/**
+ * 打开或关闭自动分配
+ * @param isfenpei
+ * @return
+ */
+Integer updateIsFenpei(IsFenpei isfenpei);
 }

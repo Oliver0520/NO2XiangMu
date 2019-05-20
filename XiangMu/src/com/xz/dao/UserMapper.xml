@@ -184,4 +184,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	u_id=#{u_id}
 	</where>
 	</update>
+	
+	<update id="updateIsFenpei" parameterType="isFenpei">
+	update isfenpei
+	<set>
+	<if test="fenpei>0">
+	fenpei=#{fenpei}
+	</if>
+	</set>
+	<where>
+	id=1
+	</where>
+	</update>
 </mapper>
