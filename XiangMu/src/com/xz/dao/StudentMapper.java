@@ -56,7 +56,12 @@ String selectname2(Integer s_id);
  * @return
  */
 List<User> selectUname();
-
+/**
+ * 根据id查询用户
+ * @param u_id
+ * @return
+ */
+User selectUseru_id(Integer u_id);
 Integer selectjs(Integer u_id);
 
 Integer selectjs1(Integer u_id);
@@ -85,4 +90,5 @@ Integer selectFenpeiCount(Fenye<Student> fenye);
 Integer fenpeizx(Student student);
 
 IsFenpei isORnot();
+List<Student> selectStudent_xuanzhong(List<Integer> list);
 }

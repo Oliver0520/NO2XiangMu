@@ -53,7 +53,8 @@
 				method : "post",
 				pagination : true,
 				toolbar : "#bar",
-				singleSelect : true,		
+			
+				checkbox:true,
 				queryParams : {				
 					s_name : $("#Sname").textbox("getValue"),
 					s_phone : $("#Sphone").textbox("getValue"),
@@ -566,6 +567,36 @@
 		$("#rizhixiangxifrm").form("load", row);
 		$("#rizhixiangxidiv").dialog("open");
 	}
+	function daochuexcel() {
+		var row = $("#dg").datagrid("getSelections");
+		if (row != null && row != "") {
+			var s_ids = "";
+			for (var i = 0; i < row.length; i++) {
+				if (i == 0) {
+					s_ids = s_ids + row[i].s_id;
+				} else {
+					s_ids = s_ids + "," + row[i].s_id;
+				}
+			}
+			$.messager.confirm('确认', '您确认想要把当前数据导出Excel吗？', function(r) {
+				if (r) {
+					window.location.href = "daochuexcel?s_ids=" + s_ids;
+				}
+			});
+
+		} else {
+			$.messager.show({
+				title : '我的消息',
+				msg : '还未选择学生，请选择！',
+				timeout : 1000,
+				showType : 'slide',
+				style : {
+					top : document.body.scrollTop
+							+ document.documentElement.scrollTop,
+				}
+			});
+		}
+	}
 </script>
 </head>
 <body>
@@ -576,6 +607,8 @@
 	<table class="easyui-datagrid" id="dg">
 		<thead>
 			<tr>
+			<th data-options="field:'checkbox',checkbox:true">选择</th>
+			<th data-options="field:'s_id',width:100">学生编号</th>
 				<th data-options="field:'s_name',width:100">姓名</th>
 				<th data-options="field:'s_age',width:100">年龄</th>
 				<th data-options="field:'s_sex',width:100,formatter:xingbie">性别</th>
@@ -662,6 +695,9 @@
 				onclick="chaxun()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="insert()" data-options="iconCls:'icon-add',plain:true">新增</a>
+				<a
+					href="javascript:void(0)" class="easyui-linkbutton"
+					onclick="daochuexcel()" data-options="iconCls:'icon-redo'">导出Excel</a>
 		</form>
 	</div>
 

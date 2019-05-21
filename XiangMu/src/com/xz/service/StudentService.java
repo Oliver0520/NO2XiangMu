@@ -1,9 +1,11 @@
 package com.xz.service;
 
 
+import java.io.IOException;
 import java.util.List;
 
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.xz.entity.Fenye;
 import com.xz.entity.Student;
@@ -51,4 +53,7 @@ Fenye<Student> getzxjs(Fenye<Student> fenye);
 Fenye<Student> selectFenpei(Fenye<Student> fenye);
 
 Integer fenpeizx(Student student);
+void daochuexcel(HttpServletRequest request,HttpServletResponse response,String s_ids) throws IOException;
+
+
 }

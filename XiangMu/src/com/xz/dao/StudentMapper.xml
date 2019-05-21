@@ -352,4 +352,20 @@
 	<select id="isORnot" resultType="isFenpei">
 	select id,fenpei from isfenpei 
 	</select>
+	<select id="selectStudent_xuanzhong" parameterType="list"
+		resultType="student">
+		SELECT
+		s_id,s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,s_beizhu,u_id,s_quyu,s_bumen,s_kecheng,s_youxiao,s_dafen,s_huifang,s_huifangshijian,s_shangmen,s_shangmenshijian,s_wuxiaoyuanyin,s_jiaofei,s_jiaofeishijian,s_price,s_tuifei,s_jinban,s_jinbanshijian,s_jinbanbeizhu,s_tuifeiyuanyin,s_dingjin,s_dingjinshijian,s_guanzhu,u_idw,s_zixunbeizhu
+		FROM student WHERE s_id in
+		<foreach collection="list" item="item" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</select>
+	<select id="selectUseru_id" parameterType="int"
+		resultType="user">
+		select
+		u_userName from
+		user where u_id=#{u_id}
+	</select>
 </mapper>

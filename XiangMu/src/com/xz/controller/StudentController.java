@@ -1,8 +1,10 @@
 package com.xz.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -125,5 +127,11 @@ public class StudentController {
 	@ResponseBody
 	public Integer fenpeizx(Student student) {
 		return studentService.fenpeizx(student);
+	}
+	@RequestMapping(value="/daochuexcel")
+	@ResponseBody
+	public void daochuexcel(HttpServletRequest request,HttpServletResponse response,String s_ids) throws IOException {
+		
+		studentService.daochuexcel(request, response, s_ids);
 	}
 }

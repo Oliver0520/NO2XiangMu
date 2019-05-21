@@ -30,7 +30,7 @@ public class MainServiceImp implements MainService {
 		// TODO Auto-generated method stub
 		User user = (User)requer.getSession().getAttribute("usera");
 		List<Role> juese = user.getRole();
-		System.out.println("sssss");
+		
 		List<Integer> list=new ArrayList<Integer>();
 		for (int i = 0; i < juese.size(); i++) {
 			list.add(juese.get(i).getR_id());
