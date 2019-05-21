@@ -30,15 +30,15 @@
 		inint();
 		$('#zxid').next().hide(); 
 		$('#zxglid').next().hide(); 
+		$('#zxgljsid').next().hide(); 
 	});
 	function inint() {
+
 	
 	
 			var hf = $("#sfhuifang").combobox("getValue");
 			var yx = $("#sfyouxiao").combobox("getValue");
 			var jf = $("#sfjiaofei").combobox("getValue");
-		
-
 			if (hf == "aa") {
 				hf = null;
 			}
@@ -53,8 +53,9 @@
 				method : "post",
 				pagination : true,
 				toolbar : "#bar",
-				singleSelect : true,
-				queryParams : {
+			
+				checkbox:true,
+				queryParams : {				
 					s_name : $("#Sname").textbox("getValue"),
 					s_phone : $("#Sphone").textbox("getValue"),
 					s_qq : $("#sqq").textbox("getValue"),
@@ -67,25 +68,141 @@
 				}
 			});
 			$("#str").form("clear");
-	
 		}
 	
+ function chaxun(){
+		var zxid=$("#zxid").textbox("getValue");
+		var zxglid=$("#zxglid").textbox("getValue");
+		var zxgljsid=$("#zxgljsid").textbox("getValue");
+		var dengluren=$("#zxname").textbox("getValue");
+	if(zxgljsid>0){
+		var hf = $("#sfhuifang").combobox("getValue");
+		var yx = $("#sfyouxiao").combobox("getValue");
+		var jf = $("#sfjiaofei").combobox("getValue");
+		if (hf == "aa") {
+			hf = null;
+		}
+		if (yx == "aa") {
+			yx = null;
+		}
+		if (jf == "aa") {
+			jf = null;
+		}
+		$('#dg').datagrid({
+			url : 'chaxunasd',
+			method : "post",
+			pagination : true,
+			toolbar : "#bar",
+			singleSelect : true,		
+			queryParams : {				
+				s_name : $("#Sname").textbox("getValue"),
+				s_phone : $("#Sphone").textbox("getValue"),
+				s_qq : $("#sqq").textbox("getValue"),
+				u_id : $("#zxname").combobox("getValue"),
+				stime : $("#stime").textbox("getValue"),
+				etime : $("#etime").textbox("getValue"),
+				s_huifang : hf,
+				s_youxiao : yx,
+				s_jiaofei : jf
+			}
+		});
+		$("#str").form("clear");
+	}
+
 	
+	else if(zxglid>0){
+		var hf = $("#sfhuifang").combobox("getValue");
+		var yx = $("#sfyouxiao").combobox("getValue");
+		var jf = $("#sfjiaofei").combobox("getValue");
+		if (hf == "aa") {
+			hf = null;
+		}
+		if (yx == "aa") {
+			yx = null;
+		}
+		if (jf == "aa") {
+			jf = null;
+		}
+		$('#dg').datagrid({
+			url : 'chaxunasd',
+			method : "post",
+			pagination : true,
+			toolbar : "#bar",
+			singleSelect : true,		
+			queryParams : {				
+				s_name : $("#Sname").textbox("getValue"),
+				s_phone : $("#Sphone").textbox("getValue"),
+				s_qq : $("#sqq").textbox("getValue"),
+				u_id : $("#zxname").combobox("getValue"),
+				stime : $("#stime").textbox("getValue"),
+				etime : $("#etime").textbox("getValue"),
+				s_huifang : hf,
+				s_youxiao : yx,
+				s_jiaofei : jf
+			}
+		});
+		$("#str").form("clear");
+	}
+
+	
+	else{
+		if(zxid>0 && dengluren==""){
+			var hf = $("#sfhuifang").combobox("getValue");
+			var yx = $("#sfyouxiao").combobox("getValue");
+			var jf = $("#sfjiaofei").combobox("getValue");
+			if (hf == "aa") {
+				hf = null;
+			}
+			if (yx == "aa") {
+				yx = null;
+			}
+			if (jf == "aa") {
+				jf = null;
+			}
+			$('#dg').datagrid({
+				url : 'chaxunasd',
+				method : "post",
+				pagination : true,
+				toolbar : "#bar",
+				singleSelect : true,		
+				queryParams : {				
+					s_name : $("#Sname").textbox("getValue"),
+					s_phone : $("#Sphone").textbox("getValue"),
+					s_qq : $("#sqq").textbox("getValue"),
+					u_id : $("#zxname").combobox("getValue"),
+					stime : $("#stime").textbox("getValue"),
+					etime : $("#etime").textbox("getValue"),
+					s_huifang : hf,
+					s_youxiao : yx,
+					s_jiaofei : jf
+				}
+			});
+			$("#str").form("clear");
+		}
+		if(zxid>0 && dengluren!=""){
+			alert("您没有权限根据咨询师姓名查询！！！");
+			$("#str").form("clear");
+			$("#dg").datagrid("reload");
+		}
+	}
+ }
 	function caozuolei(value, row, index) {
-	 	var zxid = $("#zxid").textbox("getValue");
+		var zxid = $("#zxid").textbox("getValue");
 		var zxglid = $("#zxglid").textbox("getValue");
-		if(zxglid>0){
+		var zxgljsid = $("#zxgljsid").textbox("getValue");
+		if(zxgljsid>0){
 			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
-		
 		}
+		
+		else if(zxglid>0){
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
+		 }
 		else{
 			if(zxid>0){
 				return " <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
 
 				}
-			}  
-		return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
-		
+			} 
 		}
 	function shanchu(index) {
 		var data = $("#dg").datagrid("getData");
@@ -317,9 +434,69 @@
 	function exitUpdate() {
 		$("#xiugai-dialog").dialog("close");
 	}
-	
-
-
+	function insertbaocun() {
+		var s_id = $("#tjs_id").textbox("getValue");
+		var s_name = $("#tjs_name").textbox("getValue");
+		var s_age = $("#tjs_age").textbox("getValue");
+		var s_sex = $("#tjs_sex").textbox("getValue");
+		var s_phone = $("#tjs_phone").textbox("getValue");
+		var s_education = $("#tjs_education").textbox("getValue");
+		var s_status = $("#tjs_status").textbox("getValue");
+		var s_qudao = $("#tjs_qudao").textbox("getValue");
+		var s_wangzhan = $("#tjs_wangzhan").textbox("getValue");
+		var s_guanjian = $("#tjs_guanjian").textbox("getValue");
+		var s_qq = $("#tjs_qq").textbox("getValue");
+		var s_weChat = $("#tjs_weChat").textbox("getValue");
+		var baobei = $("#tjbaobei").combobox("getValue");
+		var s_beizhu = $("#tjs_beizhu").textbox("getValue");
+		if (baobei == "否") {
+			baobei = 1
+		}
+		if (baobei == "是") {
+			baobei = 2
+		}
+		if(s_sex=="男"){
+			s_sex=1
+			
+		}
+		if(s_sex=="女"){
+			s_sex=2			
+		}
+		alert(baobei)
+		$.post("insertStudent", {
+			s_id : s_id,
+			s_name : s_name,
+			s_age : s_age,
+			s_sex : s_sex,
+			s_phone : s_phone,
+			s_education : s_education,
+			s_status : s_status,
+			s_qudao : s_qudao,
+			s_wangzhan : s_wangzhan,
+			s_guanjian : s_guanjian,
+			s_qq : s_qq,
+			s_weChat : s_weChat,
+			s_baobei : baobei,
+		}, function(res) {
+			if (res > 0) {
+				$("#dg").datagrid("reload");
+				$.messager.alert('提示', '添加成功');
+				$("#insert-dialog").dialog("close");
+			} else {
+				$.messager.alert('提示', '添加失败');
+			}
+		}, "json");
+		$("#insertfrm").form("clear");		
+	}
+	function exitInsert() {s
+		$("#insert-dialog").dialog("close");
+	}
+	function insert(index) {
+		$("#insert-dialog").dialog("open");
+	}
+	function exitInsert() {
+		$("#insert-dialog").dialog("close");
+	}
 	function chakanrizhi(index) {
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
@@ -390,14 +567,48 @@
 		$("#rizhixiangxifrm").form("load", row);
 		$("#rizhixiangxidiv").dialog("open");
 	}
+	function daochuexcel() {
+		var row = $("#dg").datagrid("getSelections");
+		if (row != null && row != "") {
+			var s_ids = "";
+			for (var i = 0; i < row.length; i++) {
+				if (i == 0) {
+					s_ids = s_ids + row[i].s_id;
+				} else {
+					s_ids = s_ids + "," + row[i].s_id;
+				}
+			}
+			$.messager.confirm('确认', '您确认想要把当前数据导出Excel吗？', function(r) {
+				if (r) {
+					window.location.href = "daochuexcel?s_ids=" + s_ids;
+				}
+			});
+
+		} else {
+			$.messager.show({
+				title : '我的消息',
+				msg : '还未选择学生，请选择！',
+				timeout : 1000,
+				showType : 'slide',
+				style : {
+					top : document.body.scrollTop
+							+ document.documentElement.scrollTop,
+				}
+			});
+		}
+	}
 </script>
 </head>
 <body>
  <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
 <input class="easyui-textbox" type="text" id="zxglid" value="<%=session.getAttribute("zxgl") %>"/>
+	<input class="easyui-textbox" type="text" id="zxgljsid" value="<%=session.getAttribute("zxgljs") %>"/>
+	
 	<table class="easyui-datagrid" id="dg">
 		<thead>
 			<tr>
+			<th data-options="field:'checkbox',checkbox:true">选择</th>
+			<th data-options="field:'s_id',width:100">学生编号</th>
 				<th data-options="field:'s_name',width:100">姓名</th>
 				<th data-options="field:'s_age',width:100">年龄</th>
 				<th data-options="field:'s_sex',width:100,formatter:xingbie">性别</th>
@@ -481,8 +692,12 @@
 				<option value="2">是</option>
 				<option value="1">否</option>
 			</select> <a href="javascript:void(0)" class="easyui-linkbutton"
-				onclick="inint()" data-options="iconCls:'icon-search',plain:true">查询</a>
-			
+				onclick="chaxun()" data-options="iconCls:'icon-search',plain:true">查询</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="insert()" data-options="iconCls:'icon-add',plain:true">新增</a>
+				<a
+					href="javascript:void(0)" class="easyui-linkbutton"
+					onclick="daochuexcel()" data-options="iconCls:'icon-redo'">导出Excel</a>
 		</form>
 	</div>
 
@@ -946,7 +1161,101 @@
 			</div>
 		</form>
 	</div>
-	
+	<div id="insert-dialog" class="easyui-dialog" title="添加"
+		style="width: 500px; height: 400px;"
+		data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,toolbar:[{
+				text:'保存',
+				iconCls:'icon-edit',
+				handler:function(){insertbaocun();}
+			},{
+				text:'退出',
+				iconCls:'icon-cancel',
+				handler:function(){exitInsert();}}]">
+		<form id="insertfrm">
+
+			<table>
+				<tr style="display: none">
+					<td><input class="easyui-textbox" type="text" id="tjs_id"
+						name="s_id"></td>
+				</tr>
+				<tr>
+					<td><label>姓名:</label></td>
+					<td><input class="easyui-textbox" type="text" id="tjs_name"
+						name="s_name" /></td>
+				</tr>
+				<tr>
+					<td><label>年龄:</label></td>
+					<td><input class="easyui-textbox" type="text" id="tjs_age"
+						name="s_age" /></td>
+				</tr>
+				<tr>
+					<td><label>性别:</label></td>
+					<td><select id="tjs_sex" class="easyui-combobox"
+						style="width: 100px;">
+						<option value="0">--请选择--</option>
+							<option value="2">女</option>
+							<option value="1">男</option>
+					</select></td>
+				</tr>
+				
+				<tr>
+					<td><label>电话:</label></td>
+					<td><input class="easyui-textbox" type="text" id="tjs_phone"
+						name="s_phone" /></td>
+				</tr>
+				<tr>
+					<td><label>学历:</label></td>
+					<td><input class="easyui-textbox" type="text"
+						id="tjs_education" name="s_education" /></td>
+				</tr>
+				<tr>
+					<td><label>状态:</label></td>
+					<td><input class="easyui-textbox" type="text" id="tjs_status"
+						name="s_status" /></td>
+				</tr>
+				<tr>
+					<td><label>来源渠道:</label></td>
+					<td><input class="easyui-textbox" type="text" id="tjs_qudao"
+						name="s_qudao" /></td>
+				</tr>
+				<tr>
+					<td><label>来源网站:</label></td>
+					<td><input class="easyui-textbox" type="text"
+						id="tjs_wangzhan" name="s_wangzhan" /></td>
+				</tr>
+				<tr>
+					<td><label>来源关键词:</label></td>
+					<td><input class="easyui-textbox" type="text"
+						id="tjs_guanjian" name="s_guanjian" /></td>
+				</tr>
+				<tr>
+					<td><label>QQ:</label></td>
+					<td><input class="easyui-textbox" type="text" id="tjs_qq"
+						name="s_qq" /></td>
+				</tr>
+				<tr>
+					<td><label>微信:</label></td>
+					<td><input class="easyui-textbox" type="text" id="tjs_weChat"
+						name="s_weChat" /></td>
+				</tr>
+				<tr>
+					<td><label>是否报备:</label></td>
+					<td><select id="tjbaobei" class="easyui-combobox"
+						style="width: 100px;">
+						<option value="0">--请选择--</option>
+							<option value="2">是</option>
+							<option value="1">否</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td><label>备注:</label></td>
+					<td><input class="easyui-textbox" type="text" id="tjs_beizhu"
+						name="s_beizhu" /></td>
+				</tr>
+
+			</table>
+		</form>
+	</div>
 
 
 	<div id="tjrizhi-dialog" class="easyui-dialog" title="添加日志"

@@ -68,7 +68,7 @@ public class MD5Util {
 
        
 
-        String s = new String("不好");  
+        String s = new String("admin");  
 
         System.out.println("原始：" + s);  
         System.out.println("MD5后：" + string2MD5(s));  
