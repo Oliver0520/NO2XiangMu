@@ -20,30 +20,30 @@ public class ModuleServiceImp implements ModuleService {
 	@Override
 	public List<ModuleTree> selectModules() {
 		
-		List<ModuleTree> mokuaiTreelist=new ArrayList<ModuleTree>();
-		List<Module> mokuailist = moduleMapper.selectModule();
-		for (int i = 0; i < mokuailist.size(); i++) {
-			if (mokuailist.get(i).getM_parentId() == 0) {
-				addtree(mokuaiTreelist, mokuailist, i);
+		List<ModuleTree> moduleTreelist=new ArrayList<ModuleTree>();
+		List<Module> modulelist = moduleMapper.selectModule();
+		for (int i = 0; i < modulelist.size(); i++) {
+			if (modulelist.get(i).getM_parentId() == 0) {
+				addtree(moduleTreelist, modulelist, i);
 			}
 		}
-		return mokuaiTreelist;
+		return moduleTreelist;
 	}
-	private void addtree(List<ModuleTree> mokuaiTreelist, List<Module> mokuailist, int i) {
+	private void addtree(List<ModuleTree> moduleTreelist, List<Module> modulelist, int i) {
 		ModuleTree mk = new ModuleTree();
-		mk.setId(mokuailist.get(i).getM_id());
-		mk.setText(mokuailist.get(i).getM_name());
-		ModuleTree fortree = fortree(mokuailist, i,mk);
+		mk.setId(modulelist.get(i).getM_id());
+		mk.setText(modulelist.get(i).getM_name());
+		ModuleTree fortree = fortree(modulelist, i,mk);
 		if(fortree!=null) {
-			mokuaiTreelist.add(fortree);
+			moduleTreelist.add(fortree);
 		}
 	}
 
-	private ModuleTree fortree(List<Module> mokuailist, int i,ModuleTree mk) {
+	private ModuleTree fortree(List<Module> modulelist, int i,ModuleTree mk) {
 		List<ModuleTree> treelist = new ArrayList<ModuleTree>();
-		for (int j = 0; j < mokuailist.size(); j++) {
-			if (mokuailist.get(j).getM_parentId() == mokuailist.get(i).getM_id()) {
-				addtree(treelist, mokuailist, j);
+		for (int j = 0; j < modulelist.size(); j++) {
+			if (modulelist.get(j).getM_parentId() == modulelist.get(i).getM_id()) {
+				addtree(treelist, modulelist, j);
 			}
 		}
 		mk.setChildren(treelist);

@@ -36,27 +36,27 @@ public class MainServiceImp implements MainService {
 			list.add(juese.get(i).getR_id());
 		}
 		String jg="<ul id=\"treeUlId\" class=\"easyui-tree\"><li>";
-		List<Module> mokuai = moduleMapper.selectByUserid(list);
+		List<Module> module = moduleMapper.selectByUserid(list);
 
-			for(int j=0;j<mokuai.size();j++) {
-				Module module2 = mokuai.get(j);
+			for(int j=0;j<module.size();j++) {
+				Module module2 = module.get(j);
 				if(module2.getM_parentId()==0) {
 					jg=jg+"<span><a title=\""+module2.getM_id()+"\" onclick=\"navTab('"+module2.getM_name()+"','')\">"+module2.getM_name()+"</a></span>";
-					jg = tree(jg, mokuai, module2);
+					jg = tree(jg, module, module2);
 				}
 			}
 		
 		jg=jg+"</li></ul>";
 		return jg;
 	}
-	private String tree(String jg, List<Module> mokuai, Module module2) {
+	private String tree(String jg, List<Module> module, Module module2) {
 		jg=jg+"<ul>";
-		for(int j2=0;j2<mokuai.size();j2++) {
-			module3 = mokuai.get(j2);
+		for(int j2=0;j2<module.size();j2++) {
+			module3 = module.get(j2);
 			if(module3.getM_parentId()==module2.getM_id()) {
 				jg=jg+"<li>";
 				jg=jg+"<span><a title=\""+module3.getM_id()+"\" onclick=\"navTab('"+module3.getM_name()+"','"+module3.getM_path()+"')\">"+module3.getM_name()+"</a></span>";
-				jg = tree(jg, mokuai, module3);
+				jg = tree(jg, module, module3);
 				jg=jg+"</li>";
 			}
 		}
