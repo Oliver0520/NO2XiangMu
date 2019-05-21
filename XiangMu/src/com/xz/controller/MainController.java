@@ -3,6 +3,8 @@ package com.xz.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +48,7 @@ public class MainController {
 	}
     @RequestMapping(value="/empqd",method=RequestMethod.POST)
     @ResponseBody
-    public Integer empqd(String time,HttpServletRequest request) throws ParseException {
+    public Map<String, Object> empqd(String time,HttpServletRequest request) throws ParseException {
     	user.setU_qdshijian(time);
         User usera = (User) request.getSession().getAttribute("usera");  
         user.setU_id( usera.getU_id());
@@ -54,7 +56,20 @@ public class MainController {
         String a=df.format(new Date())+" 09:00:00";
         user.setStime(a);
         Integer i = mainServiceImp.empqd(user);
-    	return i;
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (i == 1) {
+			map.put("msg", "今天已签到，请不要重复签到");
+			map.put("success", false);
+		}
+		if (i == 2) {
+			map.put("msg", "签到失败，请联系管理员");
+			map.put("success", false);
+		}
+		if (i == 3) {
+			map.put("msg", "签到成功，祝您拥有一个美好的一天！！！");
+			map.put("success", true);
+		}
+    	return map;
     }
     @RequestMapping(value="/sendyanzhengma",method = RequestMethod.POST)
     @ResponseBody
