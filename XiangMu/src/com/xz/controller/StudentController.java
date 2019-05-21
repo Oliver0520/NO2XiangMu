@@ -29,8 +29,10 @@ public class StudentController {
 		User user = (User) Request.getSession().getAttribute("usera");
 		Integer i = studentService.selectjs(user.getU_id());
 		Integer j = studentService.selectjs1(user.getU_id());
+		Integer g = studentService.selectjs2(user.getU_id());
 		Request.getSession().setAttribute("zx", i);
 		Request.getSession().setAttribute("zxgl", j);
+		Request.getSession().setAttribute("zxgljs", g);
 		return "MyStudent";
 	}
 	@RequestMapping(value = "/StudentList")
@@ -38,8 +40,10 @@ public class StudentController {
 		User user = (User) Request.getSession().getAttribute("usera");
 		Integer i = studentService.selectjs(user.getU_id());
 		Integer j = studentService.selectjs1(user.getU_id());
+		Integer g = studentService.selectjs2(user.getU_id());
 		Request.getSession().setAttribute("zx", i);
 		Request.getSession().setAttribute("zxgl", j);
+		Request.getSession().setAttribute("zxgljs", g);
 		return "StudentList";
 	}
 
@@ -52,8 +56,12 @@ public class StudentController {
 		User user = (User) Request.getSession().getAttribute("usera");
 		Integer i = studentService.selectjs(user.getU_id());
 		Integer j = studentService.selectjs1(user.getU_id());
-
-		if (j > 0) {
+		Integer g=studentService.selectjs2(user.getU_id());
+		if(g>0) {
+			
+			fenye = studentService.getStudent(fenye);
+		}
+		else if (j > 0) {
 
 			fenye = studentService.getStudent(fenye);
 		} else {
@@ -63,6 +71,8 @@ public class StudentController {
 			}
 		}
 
+		
+	
 		return fenye;
 	}
 

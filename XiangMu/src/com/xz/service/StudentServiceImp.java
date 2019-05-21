@@ -86,6 +86,14 @@ public class StudentServiceImp implements StudentService {
 		// TODO Auto-generated method stub
 		Integer countStu = studentMapper.countselectzxjs(fenye);
 		List<Student> student = studentMapper.selectMyStudent(fenye);
+		for (int i = 0; i < student.size(); i++) {
+			Integer s_id = student.get(i).getS_id();
+			String name = studentMapper.selectname(s_id);
+			student.get(i).setName(name);
+			String name2 = studentMapper.selectname2(s_id);
+			student.get(i).setName2(name2);
+		}
+		
 		fenye.setTotal(countStu);
 		fenye.setRows(student);
 		return fenye;
@@ -105,6 +113,12 @@ public class StudentServiceImp implements StudentService {
 	public Integer fenpeizx(Student student) {
 		// TODO Auto-generated method stub
 		return studentMapper.fenpeizx(student);
+	}
+
+	@Override
+	public Integer selectjs2(Integer u_id) {
+		// TODO Auto-generated method stub
+		return studentMapper.selectjs2(u_id);
 	}
 
 
