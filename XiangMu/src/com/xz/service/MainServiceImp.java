@@ -66,6 +66,7 @@ public class MainServiceImp implements MainService {
 	@Override
 	public Integer empqd(User user) throws ParseException {
 		// TODO Auto-generated method stub
+		Integer jg=0;
 		String u_qdshijian = user.getU_qdshijian();
 		String stime = user.getStime();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -77,8 +78,19 @@ public class MainServiceImp implements MainService {
 		}else {
 			user.setU_qdstatus(1);
 		}
-		Integer i = userMapper.empqd(user);
-		return i;
+		Integer a = userMapper.selectCOuntQd(user.getU_id());
+		
+		if(a>0) {
+			Integer i = userMapper.empqd(user);
+			if(i>0) {
+				jg=3;
+			}else {
+				jg=2;
+			}
+		}else {
+			jg=1;
+		}
+		return jg;
 	}
 	@Override
 	public String suijiNum(HttpServletRequest request) {

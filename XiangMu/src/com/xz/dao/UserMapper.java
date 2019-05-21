@@ -161,4 +161,10 @@ Integer updateUweight(User user);
  * @return
  */
 Integer updateIsFenpei(IsFenpei isfenpei);
+/**
+ * 查询用户是否为已签到
+ * @param u_id
+ * @return
+ */
+Integer selectCOuntQd(Integer u_id);
 }

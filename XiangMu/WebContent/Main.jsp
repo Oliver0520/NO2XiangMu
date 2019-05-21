@@ -80,10 +80,10 @@ function exitUpdate(){
 }
 function qd(){
 	$.post("empqd",{time:getNowFormatDate()},function(res){
-		if(res>0){
-			$.messager.alert("提示","签到成功，祝您拥有一个美好的一天！！！");
+		if(res.success){
+			$.messager.alert("提示", res.msg);
 		}else{
-			$.messager.alert("提示","签到失败，请联系管理员！！！");
+			$.messager.alert("提示", res.msg);
 		}
 	},"json");
 }

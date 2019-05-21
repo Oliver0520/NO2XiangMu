@@ -199,4 +199,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectRname" parameterType="int" resultType="String">
 	select count(*) from role where r_name=#{r_name}
 	</select>
+	<select id="selectCOuntQd" parameterType="int" resultType="int">
+	select count(*) from user where u_id=#{u_id} and u_qdstatus not in (1,2,3)
+	</select>
 </mapper>
