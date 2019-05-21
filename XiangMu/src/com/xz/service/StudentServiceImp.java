@@ -95,7 +95,7 @@ public class StudentServiceImp implements StudentService {
 	public Fenye<Student> selectFenpei(Fenye<Student> fenye) {
 		// TODO Auto-generated method stub
 		List<Student> rows = studentMapper.selectFenpei(fenye);
-		Integer total = studentMapper.selectCountStu(fenye);
+		Integer total = studentMapper.selectFenpeiCount(fenye);
 		fenye.setRows(rows);
 		fenye.setTotal(total);
 		return fenye;
