@@ -41,7 +41,7 @@
 	</script>
 </head>
 <body>
-
+<div style="margin-left:500px;">
 	<form id="upfrm">
 		<table>
 			<tr>
@@ -115,7 +115,7 @@
 			</tr>
 		</table>
 	</form>
-
+</div>
 
 </body>
 
