@@ -59,8 +59,8 @@ List<User> selectUname();
 
 Integer selectjs(Integer u_id);
 
-Integer selectjs1(Integer u_idw);
-
+Integer selectjs1(Integer u_id);
+Integer selectjs2(Integer u_id);
 
 List<Student> selectMyStudent (Fenye<Student> fenye);
 

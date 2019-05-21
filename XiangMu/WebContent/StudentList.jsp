@@ -30,15 +30,15 @@
 		inint();
 		$('#zxid').next().hide(); 
 		$('#zxglid').next().hide(); 
+		$('#zxgljsid').next().hide(); 
 	});
 	function inint() {
+
 	
 	
 			var hf = $("#sfhuifang").combobox("getValue");
 			var yx = $("#sfyouxiao").combobox("getValue");
 			var jf = $("#sfjiaofei").combobox("getValue");
-		
-
 			if (hf == "aa") {
 				hf = null;
 			}
@@ -48,16 +48,13 @@
 			if (jf == "aa") {
 				jf = null;
 			}
-		
 			$('#dg').datagrid({
 				url : 'chaxunasd',
 				method : "post",
 				pagination : true,
 				toolbar : "#bar",
-				singleSelect : true,
-			
-				queryParams : {
-					
+				singleSelect : true,		
+				queryParams : {				
 					s_name : $("#Sname").textbox("getValue"),
 					s_phone : $("#Sphone").textbox("getValue"),
 					s_qq : $("#sqq").textbox("getValue"),
@@ -69,16 +66,134 @@
 					s_jiaofei : jf
 				}
 			});
-		
 			$("#str").form("clear");
-
 		}
 	
- 
+ function chaxun(){
+		var zxid=$("#zxid").textbox("getValue");
+		var zxglid=$("#zxglid").textbox("getValue");
+		var zxgljsid=$("#zxgljsid").textbox("getValue");
+		var dengluren=$("#zxname").textbox("getValue");
+	if(zxgljsid>0){
+		var hf = $("#sfhuifang").combobox("getValue");
+		var yx = $("#sfyouxiao").combobox("getValue");
+		var jf = $("#sfjiaofei").combobox("getValue");
+		if (hf == "aa") {
+			hf = null;
+		}
+		if (yx == "aa") {
+			yx = null;
+		}
+		if (jf == "aa") {
+			jf = null;
+		}
+		$('#dg').datagrid({
+			url : 'chaxunasd',
+			method : "post",
+			pagination : true,
+			toolbar : "#bar",
+			singleSelect : true,		
+			queryParams : {				
+				s_name : $("#Sname").textbox("getValue"),
+				s_phone : $("#Sphone").textbox("getValue"),
+				s_qq : $("#sqq").textbox("getValue"),
+				u_id : $("#zxname").combobox("getValue"),
+				stime : $("#stime").textbox("getValue"),
+				etime : $("#etime").textbox("getValue"),
+				s_huifang : hf,
+				s_youxiao : yx,
+				s_jiaofei : jf
+			}
+		});
+		$("#str").form("clear");
+	}
+
+	
+	else if(zxglid>0){
+		var hf = $("#sfhuifang").combobox("getValue");
+		var yx = $("#sfyouxiao").combobox("getValue");
+		var jf = $("#sfjiaofei").combobox("getValue");
+		if (hf == "aa") {
+			hf = null;
+		}
+		if (yx == "aa") {
+			yx = null;
+		}
+		if (jf == "aa") {
+			jf = null;
+		}
+		$('#dg').datagrid({
+			url : 'chaxunasd',
+			method : "post",
+			pagination : true,
+			toolbar : "#bar",
+			singleSelect : true,		
+			queryParams : {				
+				s_name : $("#Sname").textbox("getValue"),
+				s_phone : $("#Sphone").textbox("getValue"),
+				s_qq : $("#sqq").textbox("getValue"),
+				u_id : $("#zxname").combobox("getValue"),
+				stime : $("#stime").textbox("getValue"),
+				etime : $("#etime").textbox("getValue"),
+				s_huifang : hf,
+				s_youxiao : yx,
+				s_jiaofei : jf
+			}
+		});
+		$("#str").form("clear");
+	}
+
+	
+	else{
+		if(zxid>0 && dengluren==""){
+			var hf = $("#sfhuifang").combobox("getValue");
+			var yx = $("#sfyouxiao").combobox("getValue");
+			var jf = $("#sfjiaofei").combobox("getValue");
+			if (hf == "aa") {
+				hf = null;
+			}
+			if (yx == "aa") {
+				yx = null;
+			}
+			if (jf == "aa") {
+				jf = null;
+			}
+			$('#dg').datagrid({
+				url : 'chaxunasd',
+				method : "post",
+				pagination : true,
+				toolbar : "#bar",
+				singleSelect : true,		
+				queryParams : {				
+					s_name : $("#Sname").textbox("getValue"),
+					s_phone : $("#Sphone").textbox("getValue"),
+					s_qq : $("#sqq").textbox("getValue"),
+					u_id : $("#zxname").combobox("getValue"),
+					stime : $("#stime").textbox("getValue"),
+					etime : $("#etime").textbox("getValue"),
+					s_huifang : hf,
+					s_youxiao : yx,
+					s_jiaofei : jf
+				}
+			});
+			$("#str").form("clear");
+		}
+		if(zxid>0 && dengluren!=""){
+			alert("您没有权限根据咨询师姓名查询！！！");
+			$("#str").form("clear");
+			$("#dg").datagrid("reload");
+		}
+	}
+ }
 	function caozuolei(value, row, index) {
 		var zxid = $("#zxid").textbox("getValue");
 		var zxglid = $("#zxglid").textbox("getValue");
-		if(zxglid>0){
+		var zxgljsid = $("#zxgljsid").textbox("getValue");
+		if(zxgljsid>0){
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
+		}
+		
+		else if(zxglid>0){
 			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>"
 		 }
 		else{
@@ -456,6 +571,8 @@
 <body>
  <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
 <input class="easyui-textbox" type="text" id="zxglid" value="<%=session.getAttribute("zxgl") %>"/>
+	<input class="easyui-textbox" type="text" id="zxgljsid" value="<%=session.getAttribute("zxgljs") %>"/>
+	
 	<table class="easyui-datagrid" id="dg">
 		<thead>
 			<tr>
@@ -542,7 +659,7 @@
 				<option value="2">是</option>
 				<option value="1">否</option>
 			</select> <a href="javascript:void(0)" class="easyui-linkbutton"
-				onclick="inint()" data-options="iconCls:'icon-search',plain:true">查询</a>
+				onclick="chaxun()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="insert()" data-options="iconCls:'icon-add',plain:true">新增</a>
 		</form>

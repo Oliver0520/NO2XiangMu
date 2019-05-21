@@ -43,8 +43,8 @@ Integer insertStudent(Student student);
 
 Integer selectjs(Integer u_id);
 
-Integer selectjs1(Integer u_idw);
-
+Integer selectjs1(Integer u_id);
+Integer selectjs2(Integer u_id);
 Fenye<Student> getzxjs(Fenye<Student> fenye);
 
 
