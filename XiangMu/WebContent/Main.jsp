@@ -29,7 +29,30 @@ $.post("hometree", {treeUlId: "treeUlId"},
  if(qdstatus=="2"||qdstatus=="4"){
 	 $.messager.alert("提示","亲，请先去签到，不要迟到哦！！！");
  }
+ $.post("CopyCount",function(res){
+	if(res.success){
+		$("#weidu-window").window("open");
+	} else{
+		$.messager.alert("提示",res.msg);
+		
+		$("#weidu-window").window("close");
+	}
+ });
 });
+function showDynamic(){
+	 var url="Dynamic.jsp";
+	  $('#tt').tabs('add', { //在tt选项卡中，创建一个选项页
+        title: '动态消息',
+        closable: true,	
+        content:"<iframe frameborder='0' src='"+url+"' style='width:100%;height:520px;'/>" //推荐使用iframe引入一个完整页面
+    });
+	  closeDynamic();
+
+}
+
+function closeDynamic(){
+	$("#weidu-window").window("close");
+}
 </script>
  
 
@@ -107,6 +130,22 @@ $.post("hometree", {treeUlId: "treeUlId"},
 			</table>
 		</form>
 	</div>
+	<div id="weidu-window" class="easyui-window" title="My Window" style="width:250px;height:140px"   
+        data-options="iconCls:'icon-save',modal:true,close:true">   
+   <table>
+				<tr >
+					<td colspan="2">您有${weidu}条未读消息</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><a href="javascript:void(0)" onclick="showDynamic()"
+				class="easyui-linkbutton" data-options="iconCls:'icon-ok'">查看</a></td>
+					<td><a href="javascript:void(0)" onclick="closeDynamic()"
+				class="easyui-linkbutton" data-options="iconCls:'icon-no'">暂不查看</a></td>
+				</tr>
+				
+			</table>
+     </div>  
 </body>
 
 </html>

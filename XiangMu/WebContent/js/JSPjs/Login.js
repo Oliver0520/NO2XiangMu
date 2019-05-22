@@ -9,9 +9,9 @@ function getVerifiCode() {
 		var y = $("[name = 'y']:checked").val();
 		
 		$.post("denglu", {
-			u_loginName : $("#username").textbox("getValue"),
-			u_password : $("#pwd").textbox("getValue"),
-			yanzhengma : $("#yanzhengma").textbox("getValue"),
+			u_loginName : $("#username").val(),
+			u_password : $("#pwd").val(),
+			yanzhengma : $("#yanzhengma").val(),
            y:y
 		}, function(res) {
 			if (res.success) {
