@@ -327,6 +327,9 @@
 	<if test="t.s_age!=null and t.s_age!=''">
 	and s_age=#{t.s_age}
 	</if>	
+	<if test="t.s_sex!=null and t.s_sex!=''">
+	and s_sex=#{t.s_sex}
+	</if>
 	</where>
 	</select>
 	<select id="selectFenpeiCount" parameterType="fenye" resultType="int">
@@ -339,6 +342,9 @@
 	<if test="t.s_age!=null and t.s_age!=''">
 	and s_age=#{t.s_age}
 	</if>	
+	<if test="t.s_sex!=null and t.s_sex!=''">
+	and s_sex=#{t.s_sex}
+	</if>
 	</where>
 	</select>
 	<update id="fenpeizx" parameterType="student">

@@ -24,7 +24,7 @@
 			<tr>
 				<th data-options="field:'s_id'">编号</th>
 				<th data-options="field:'s_name'">姓名</th>
-				<th data-options="field:'s_sex'">性别</th>
+				<th data-options="field:'s_sex',formatter:xingbie">性别</th>
 				<th data-options="field:'s_age'">年龄</th>
 				<th data-options="field:'s_phone'">电话</th>
 				<th data-options="field:'uqdstatus',formatter:xzixunformatter">分配咨询师</th>				
@@ -35,7 +35,7 @@
 		<form id="str">
 			<label>姓名:</label> <input class="easyui-textbox" type="text" id="name" /> 
 				<label>年龄:</label> <input
-				class="easyui-datetimebox" type="text" id="age" />  
+				class="easyui-textbox" type="text" id="age" />  
 				 <label>性别:</label>
 			<select id="sex" class="easyui-combobox" 
 				style="width: 200px;">

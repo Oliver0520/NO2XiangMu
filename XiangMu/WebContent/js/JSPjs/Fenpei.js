@@ -10,10 +10,19 @@ $(function(){
 	},"json");
 });
 function init(){
-	var s = $("#sex").combobox("getValue");
-	if (s == "aa") {
-		s = null;
+	var xb=$("#sex").combobox("getValue");
+	if(xb=="aa"){
+		xb=null;
 	}
+	if(xb=="男"){
+		
+		xb=1;
+	}
+	if(xb=="女"){
+		
+		xb=2;
+	}
+
 	$("#dg").datagrid({
 		url:"selectFenpei",
 		method:"post",
@@ -21,15 +30,20 @@ function init(){
 		toolbar : "#bar",
 		singleSelect:true,
 		queryParams : {
-			s_sname : $("#name").textbox("getValue"),
+			s_name : $("#name").textbox("getValue"),
 			s_age : $("#age").textbox("getValue"),
-			s_sex : s
+			s_sex :xb
 		}
 	});
+	$("#str").form("clear");	
+	
+}
+function xingbie(value, row, index) {
+	return row.s_sex == 1 ? "男" : "女";
 }
 
 function xzixunformatter(value,row,index){
-	return "<a href='javascript:void(0)' class='easyui-linkbutton' onclick='xiugai("+index+")'>����</a>";
+	return "<a href='javascript:void(0)' class='easyui-linkbutton' onclick='xiugai("+index+")'>分配</a>";
 }
 
 function xiugai(index){
