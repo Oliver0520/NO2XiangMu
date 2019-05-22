@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xz.dao.DynamicMapper">
+<insert id="SendDynamic" parameterType="dynamic">
+insert into dynamic (s_name,u_nameSend,d_sendTime,u_nameCopy,d_body,d_bit)
+ values(#{s_name},#{u_nameSend},#{d_sendTime},#{u_nameCopy},#{d_body},#{d_bit})
+</insert>
+<select id="selectStuUid" parameterType="int" resultType="int">
+select u_id from student where s_id=#{s_id}
+</select>
+<select id="copyDynamic" parameterType="fenye" resultType="dynamic">
+select d_id,s_name,u_nameSend,d_sendTime,u_nameCopy,d_body,d_bit from dynamic
+where u_nameCopy =#{t.u_nameCopy} and d_bit=2
+limit #{page},#{pageSize}
+</select>
+<select id="copyDynamicCount" parameterType="fenye" resultType="int">
+select count(*) from dynamic
+where u_nameCopy =#{t.u_nameCopy} and d_bit=2
+</select>
+<select id="selectDyUname" parameterType="int" resultType="String">
+select u_userName from user where u_id=#{u_nameCopy}
+</select>
+<select id="selectDyCount" parameterType="int" resultType="int">
+select count(*) from dynamic where u_nameCopy=#{u_nameCopy} and d_bit=2
+</select>
+<update id="updateDyBit" parameterType="int">
+update dynamic <set>d_bit=1</set>
+<where>
+d_id=#{d_id}
+</where>
+</update>
+</mapper>

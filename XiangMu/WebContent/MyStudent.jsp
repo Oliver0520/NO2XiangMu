@@ -781,5 +781,41 @@
 			
 		</form>
 	</div>
+	<div id="dynamic-dialog" class="easyui-dialog" title="查看日志详细信息"
+		style="width: 600px; height: 400px;"
+		data-options="resizable:true,modal:true,closed:true,toolbar:[{
+				text:'发送',
+				iconCls:'icon-edit',
+				handler:function(){sendDynamic();}
+			},{
+				text:'取消',
+				iconCls:'icon-help',
+				handler:function(){exitDynamic();}
+			}]">
+		<form id="dynamicfrm">
+			
+				<table>
+					<tr style="display:none">
+						<td><label>学生编号:</label></td>
+				
+						<td><input class="easyui-textbox" type="text" 
+							id="sid" disabled="disabled"></td>
+					</tr>
+					<tr style="display:none">
+						<td><label>学生名称:</label></td>
+				
+						<td><input class="easyui-textbox" type="text" 
+							id="sname" disabled="disabled"></td>
+					</tr>
+					<tr>
+						<td><label>动态内容:</label></td>
+						<td><textarea id="d_body" cols="80" rows="11"></textarea></td>
+					</tr>
+					
+					
+				</table>
+			
+		</form>
+	</div>
 </body>
 </html>
