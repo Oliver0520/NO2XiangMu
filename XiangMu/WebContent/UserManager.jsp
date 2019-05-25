@@ -19,6 +19,43 @@
 	src="js/test.js"></script>
 	<script type="text/javascript"
 	src="js/JSPjs/UserManager.js"></script>
+	<script type="text/javascript">
+	function yincang(){
+		$("#abd").window("open");
+	}
+	function hideCol(){
+		var spCodesTemp = "";
+		$('input:checkbox[name=asdf]:checked').each(function(i){
+		if(0==i){
+		spCodesTemp = $(this).val();
+		}else{
+		spCodesTemp += (","+$(this).val());
+		}
+		});
+		var strs= new Array(); //定义一数组 
+		strs=spCodesTemp.split(","); //字符分割 
+		for (i=0;i<strs.length ;i++ ) 
+		{ 
+			$('#dg').datagrid('hideColumn',strs[i]);
+		}
+		 }
+			function showCol(){
+				var spCodesTemp = "";
+		$('input:checkbox[name=asdf]:checked').each(function(i){
+		if(0==i){
+		spCodesTemp = $(this).val();
+		}else{
+		spCodesTemp += (","+$(this).val());
+		}
+		});
+		var strs= new Array(); //定义一数组 
+		strs=spCodesTemp.split(","); //字符分割 
+		for (i=0;i<strs.length ;i++ ) 
+		{ 
+			$('#dg').datagrid('showColumn',strs[i]);
+		}
+			}
+	</script>
 </head>
 <body>
 	<table id="dg" class="easyui-datagrid">
@@ -60,6 +97,7 @@
 				onclick="init()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="xinzeng()" data-options="iconCls:'icon-add',plain:true">新增</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="yincang()">隐藏</a>
 		</form>
 	</div>
 	
@@ -158,6 +196,61 @@
 								</tr>
 							</thead>
 						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="easyui-window" id="abd" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:700px;height:300px;padding:10px;" >
+			<table>
+				<tr>
+					<td>
+						<input type="checkbox" value="u_id" name="asdf" />编号
+					</td>
+					<td>
+						<input type="checkbox" value="u_loginName" name="asdf" />登录名
+					</td>
+					<td>
+						<input type="checkbox" value="u_userName" name="asdf" />用户名
+					</td>
+					<td>
+						<input type="checkbox" value="isLockout" name="asdf" />是否锁定
+					</td>
+					<td>
+						<input type="checkbox" value="u_lastLoginTime" name="asdf" />最后一次登录时间
+					</td>
+					<td>
+						<input type="checkbox" value="u_createTime" name="asdf" />账户创立时间
+					</td>					
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" value="u_email" name="asdf" />邮箱
+					</td>
+					<td>
+						<input type="checkbox" value="u_phoneNumber" name="asdf" />手机号码
+					</td>
+					<td>
+						<input type="checkbox" value="u_qdshijian" name="asdf" />签到时间
+					</td>
+					<td>
+						<input type="checkbox" value="u_qdstatus" name="asdf" />签到状态
+					</td>
+					<td>
+						<input type="checkbox" value="u_weight" name="asdf" />权重
+					</td>
+					<td>
+						<input type="checkbox" value="u_weightbeizhu" name="asdf" />权重备注
+					</td>					
+				</tr>
+				<tr>
+					
+					<td><input type="button" onclick="hideCol()" value="隐藏">  
+					</td>
+					
+					<td>
+						<input type="button" onclick="showCol()" value="显示">
+						
 					</td>
 				</tr>
 			</table>

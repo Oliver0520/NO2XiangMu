@@ -73,9 +73,7 @@ function closeDynamic(){
 			</marquee> -->
 
 		</div>
-		<div data-options="region:'south',split:true" style="height: 50px;"></div>
-		<!--<div data-options="region:'east',split:true" title="East" style="width:100px;"></div>-->
-		<div data-options="region:'west',split:true" title="导航应用"
+	<div data-options="region:'west',split:true" title="导航应用"
 			style="width: 150px;">
 			<div id="menuTree">
 				<!--这个地方显示树状结构-->

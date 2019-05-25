@@ -100,7 +100,7 @@ public class LoginServiceImp implements LoginService {
 	public Integer forgetPassword(User user, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		Integer jg = 0;
-		String u_loginName = user.getU_loginName();
+		String u_loginName =MD5Util.string2MD5(user.getU_loginName()).toString() ;
 
 		String suijiNum = (String) request.getSession().getAttribute("suijiNum");
 		if (user.getYanzheng().equals(suijiNum)) {

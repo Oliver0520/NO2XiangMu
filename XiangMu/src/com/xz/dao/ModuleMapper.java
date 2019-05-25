@@ -40,6 +40,16 @@ Module selectByid(Integer m_id);
  * @return
  */
 Integer deleteMod(Integer m_id);
-
+/**
+ * 查询当前用户所有模块ID
+ * @param list
+ * @return
+ */
 List<Module> selectByUserid(List<Integer> list);
+/**
+ * 查询当前模块是否被应用
+ * @param m_id
+ * @return
+ */
+Integer selectMidIsNo(Integer m_id);
 }
