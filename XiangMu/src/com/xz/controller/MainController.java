@@ -73,13 +73,17 @@ public class MainController {
     }
     @RequestMapping(value="/sendyanzhengma",method = RequestMethod.POST)
     @ResponseBody
-    public String sendyanzhengma(String phone,HttpServletRequest request) throws ClientException {
+    public Integer sendyanzhengma(String phone,HttpServletRequest request) throws ClientException {
     	String suijiNum = mainServiceImp.suijiNum(request);
     	String templateCode="SMS_165109439";
     	String templateParam="{'code':'"+suijiNum+"'}";
     	SendSmsResponse sendSms = Aliyun.sendSms(phone,templateParam,templateCode);    	
 //    	System.out.println(sendSms.getCode());
-    	String fhz = sendSms.getCode().toString();
-    	return fhz;
+    	String fhz = sendSms.getCode();
+    	Integer rez=0;
+    	if("OK".equals(fhz)) {
+    		rez=1;
+    	}
+    	return rez;
     }
 }

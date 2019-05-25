@@ -114,11 +114,11 @@ var mokuai = null;
 				$.post("deleteMod", {
 					m_id : nodes.id
 				}, function(res) {
-					if (res > 0) {
-						$.messager.alert("提示", "删除成功");
+					if (res.success) {
+						$.messager.alert("提示", res.msg);
 						myTree();
 					} else {
-						$.messager.alert("提示", "删除失败");
+						$.messager.alert("提示", res.msg);
 					}
 				}, "json");
 			}

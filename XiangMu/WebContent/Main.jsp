@@ -75,10 +75,15 @@ function closeDynamic(){
 			</marquee> -->
 
 		</div>
+
 		
 		<!--<div data-options="region:'east',split:true" title="East" style="width:100px;"></div>-->
 		<div data-options="region:'west',split:true" title="导航应用"
 			style="width: 200px;background-image: url(assets/img/QQ截图20190523204935.png);">
+
+	<div data-options="region:'west',split:true" title="导航应用"
+			style="width: 120px;">
+
 			<div id="menuTree">
 				<!--这个地方显示树状结构-->
 

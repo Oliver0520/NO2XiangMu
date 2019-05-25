@@ -2,7 +2,9 @@ package com.xz.controller;
 
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -58,7 +60,21 @@ public class ModuleController {
      }
      @RequestMapping(value="/deleteMod",method=RequestMethod.POST)
      @ResponseBody
-     public Integer deleteMod(Integer m_id) {
-    	 return moduleServiceImp.deleteMod(m_id);
+     public Map<String, Object> deleteMod(Integer m_id) {
+    	 Integer i = moduleServiceImp.deleteMod(m_id);
+    	 Map<String, Object> map = new HashMap<String, Object>();
+ 		if (i == 1) {
+ 			map.put("msg", "删除成功");
+ 			map.put("success", true);
+ 		}
+ 		if (i == 2) {
+ 			map.put("msg", "删除失败");
+ 			map.put("success", false);
+ 		}
+ 		if (i == 3) {
+ 			map.put("msg", "本模块正在被应用，不能删除");
+ 			map.put("success", false);
+ 		}
+    	 return map;
      }
 }

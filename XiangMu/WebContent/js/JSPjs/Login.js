@@ -36,10 +36,10 @@ function getVerifiCode() {
 		$.post("sendyanzhengma",
 				{phone:$("#phone").textbox("getValue")},
 				function(res){
-			if(res=="OK"){
-				$.messager.alert("提示","验证码已发送，请注意查收！");
-			}else{
+			if(res>0){
 				$.messager.alert("提示","验证码发送失败，请重试！");
+			}else{
+				$.messager.alert("提示","验证码已发送，请注意查收！");				
 			}
 		},"json");
 		

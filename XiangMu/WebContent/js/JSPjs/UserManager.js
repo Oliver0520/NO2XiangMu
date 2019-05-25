@@ -230,3 +230,39 @@ $(function() {
 			$.messager.alert("提示！！！！！！","请选择角色名！！！！");
 		}
 	}
+	
+/*	function yincang(){
+		$("#abd").window("open");
+	}
+	function hideCol(){
+		var spCodesTemp = "";
+		$('input:checkbox[name=asdf]:checked').each(function(i){
+		if(0==i){
+		spCodesTemp = $(this).val();
+		}else{
+		spCodesTemp += (","+$(this).val());
+		}
+		});
+		var strs= new Array(); //定义一数组 
+		strs=spCodesTemp.split(","); //字符分割 
+		for (i=0;i<strs.length ;i++ ) 
+		{ 
+			$('#dg').datagrid('hideColumn',strs[i]);
+		}
+		 }
+			function showCol(){
+				var spCodesTemp = "";
+		$('input:checkbox[name=asdf]:checked').each(function(i){
+		if(0==i){
+		spCodesTemp = $(this).val();
+		}else{
+		spCodesTemp += (","+$(this).val());
+		}
+		});
+		var strs= new Array(); //定义一数组 
+		strs=spCodesTemp.split(","); //字符分割 
+		for (i=0;i<strs.length ;i++ ) 
+		{ 
+			$('#dg').datagrid('showColumn',strs[i]);
+		}
+			}*/

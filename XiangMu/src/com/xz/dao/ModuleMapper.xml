@@ -41,8 +41,8 @@ delete from module where m_id=#{m_id}
 		            #{item} 
 		       </foreach>  
 ) 
-		
-		
 		</select>
-
+<select id="selectMidIsNo" parameterType="int" resultType="int">
+select count(*) from rolemodule WHERE m_id=#{m_id}
+</select>
 </mapper>
