@@ -17,6 +17,8 @@
 	src="js/jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript"
 	src="js/JSPjs/Main.js"></script>
+			<style>.tree-node-selected{background-color:#8D8D8D;color:#E68900}</style>
+			<style>.tree-node{color:white;}</style>
 <script type="text/javascript">
 $(function() {
  var qdstatus="<%=session.getAttribute("qdstatus")%>";
@@ -59,8 +61,8 @@ function closeDynamic(){
 </head>
 <body>
 	<div style="margin: 20px 0;"></div>
-	<div class="easyui-layout" style="width: 100%; height: 700px;">
-		<div data-options="region:'north'" style="height: 70px">
+	<div class="easyui-layout" style="width: 100%; height: 750px;color:white">
+		<div data-options="region:'north'" style="height: 50px;background-image: url(assets/img/QQ截图20190523200046.png);">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CRM系统&nbsp;&nbsp;欢迎您:${usera.u_userName}
 			<a href="javascript:void(0)" onclick="tuichu()"
 				style="text-decoration: none; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;安全退出</a>
@@ -73,17 +75,17 @@ function closeDynamic(){
 			</marquee> -->
 
 		</div>
-		<div data-options="region:'south',split:true" style="height: 50px;"></div>
+		
 		<!--<div data-options="region:'east',split:true" title="East" style="width:100px;"></div>-->
 		<div data-options="region:'west',split:true" title="导航应用"
-			style="width: 150px;">
+			style="width: 200px;background-image: url(assets/img/QQ截图20190523204935.png);">
 			<div id="menuTree">
 				<!--这个地方显示树状结构-->
 
 			</div>
 		</div>
 		<div id="centerTabs" data-options="region:'center',iconCls:'icon-ok'"
-			style="width: 530px;">
+			style="width: 530px;background-image: url(assets/img/QQ截图20190523201228.png);">
 			<div id="tt" class="easyui-tabs">
 				<!--这个地方采用tabs控件进行布局-->
 
