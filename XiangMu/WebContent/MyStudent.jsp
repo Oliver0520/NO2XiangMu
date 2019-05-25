@@ -20,6 +20,44 @@
 	src="js/test.js"></script>
 	<script type="text/javascript"
 	src="js/JSPjs/MyStudent.js"></script>
+	
+	<script type="text/javascript">
+	function yincang() {
+		$("#abd").window("open");
+	}
+	function hideCol() {
+		var spCodesTemp = "";
+		$('input:checkbox[name=yc]:checked').each(function(i) {
+			if (0 == i) {
+				spCodesTemp = $(this).val();
+			} else {
+				spCodesTemp += ("," + $(this).val());
+			}
+		});
+		var strs = new Array(); //定义一数组 
+		strs = spCodesTemp.split(","); //字符分割 
+		for (i = 0; i < strs.length; i++) {
+			$('#dg').datagrid('hideColumn', strs[i]);
+		}
+	}
+	function showCol() {
+		var spCodesTemp = "";
+		$('input:checkbox[name=yc]:checked').each(function(i) {
+			if (0 == i) {
+				spCodesTemp = $(this).val();
+			} else {
+				spCodesTemp += ("," + $(this).val());
+			}
+		});
+		var strs = new Array(); //定义一数组 
+		strs = spCodesTemp.split(","); //字符分割 
+		for (i = 0; i < strs.length; i++) {
+			$('#dg').datagrid('showColumn', strs[i]);
+		}
+	}
+</script>
+	
+	
 </head>
 <body>
  <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
@@ -51,7 +89,7 @@
 				<th data-options="field:'s_youxiao',width:100,formatter:youxiao">是否有效</th>
 				<th data-options="field:'s_dafen',width:100">打分</th>
 				<th data-options="field:'s_huifang',width:100,formatter:huifang">是否回访</th>
-				<th data-options="field:'s_huifangshijian',width:100">首次回访时间</th>
+				<th data-options="field:'s_huifangshijian',width:100">是否进班 </th>
 				<th data-options="field:'s_shangmen',width:100,formatter:shangmen">是否上门</th>
 				<th data-options="field:'s_shangmenshijian',width:100">上门时间</th>
 				<th data-options="field:'s_wuxiaoyuanyin',width:100">无效原因</th>
@@ -120,6 +158,9 @@
 				<a
 					href="javascript:void(0)" class="easyui-linkbutton"
 					onclick="daochuexcel()" data-options="iconCls:'icon-redo'">导出Excel</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+				data-options="iconCls:'icon-add',plain:true" onclick="yincang()">隐藏</a>
+		
 		</form>
 	</div>
 
@@ -816,6 +857,92 @@
 				</table>
 			
 		</form>
+	</div>
+	<div class="easyui-window" id="abd"
+		data-options="modal:true,closed:true,iconCls:'icon-save'"
+		style="width: 700px; height: 300px; padding: 10px;">
+		<table>
+			<tr>
+				<td><input type="checkbox" value="s_id" name="yc" />学生编号</td>
+				<td><input type="checkbox" value="s_name" name="yc" />姓名</td>
+				<td><input type="checkbox" value="s_age" name="yc" />年龄</td>
+				<td><input type="checkbox" value="s_sex" name="yc" />性别</td>
+				<td><input type="checkbox" value="s_phone" name="yc" />电话
+				</td>
+				<td><input type="checkbox" value="s_education" name="yc" />学历
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="s_status" name="yc" />状态</td>
+				<td><input type="checkbox" value="s_qudao" name="yc" />来源渠道</td>
+				<td><input type="checkbox" value="s_wangzhan" name="yc" />来源网站
+				</td>
+				<td><input type="checkbox" value="s_guanjian" name="yc" />来源关键词
+				</td>
+				<td><input type="checkbox" value="s_qq" name="yc" />QQ</td>
+				<td><input type="checkbox" value="s_weChat" name="yc" />微信</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="s_baobei" name="yc" />是否报备</td>
+				<td><input type="checkbox" value="s_beizhu" name="yc" />备注</td>
+				<td><input type="checkbox" value="name" name="yc" />咨询师</td>
+				<td><input type="checkbox" value="s_quyu" name="yc" />所在区域</td>
+				<td><input type="checkbox" value="s_bumen" name="yc" />来源部门</td>
+				<td><input type="checkbox" value="s_kecheng" name="yc" />课程方向
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="s_youxiao" name="yc" />是否有效</td>
+				<td><input type="checkbox" value="s_dafen" name="yc" />打分</td>
+				<td><input type="checkbox" value="s_huifang" name="yc" />是否回访
+				</td>
+				<td><input type="checkbox" value="s_huifangshijian" name="yc" />首次回访时间
+				</td>
+				<td><input type="checkbox" value="s_shangmen" name="yc" />是否上门</td>
+				<td><input type="checkbox" value="s_shangmenshijian" name="yc" />上门时间
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="s_wuxiaoyuanyin" name="yc" />无效原因
+				</td>
+				<td><input type="checkbox" value="jiaofei" name="yc" />是否缴费</td>
+				<td><input type="checkbox" value="s_jiaofeishijian" name="yc" />缴费时间
+				</td>
+				<td><input type="checkbox" value="s_price" name="yc" />金额</td>
+				<td><input type="checkbox" value="s_tuifei" name="yc" />是否退费</td>
+				<td><input type="checkbox" value="s_jinban" name="yc" />是否进班
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value=s_jinbanshijian name="yc" />进班时间
+				</td>
+				<td><input type="checkbox" value="s_jinbanbeizhu" name="yc" />进班备注
+				</td>
+				<td><input type="checkbox" value="s_tuifeiyuanyin" name="yc" />退费原因
+				</td>
+				<td><input type="checkbox" value="s_dingjin" name="yc" />定金金额
+				</td>
+				<td><input type="checkbox" value="s_dingjinshijian" name="yc" />定金时间
+				</td>
+				<td><input type="checkbox" value="s_guanzhu" name="yc" />学生关注
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="name2" name="yc" />咨询师(面见)</td>
+				<td><input type="checkbox" value="s_zixunbeizhu" name="yc" />咨询师备注
+				</td>
+
+			</tr>
+			<tr>
+
+				<td><input type="button" onclick="hideCol()" value="隐藏">
+				</td>
+
+				<td><input type="button" onclick="showCol()" value="显示">
+
+				</td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

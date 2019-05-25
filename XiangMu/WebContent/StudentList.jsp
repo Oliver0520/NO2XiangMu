@@ -16,21 +16,57 @@
 	src="js/jquery-easyui-1.4.3/jquery.easyui.min.js"></script>
 <script type="text/javascript"
 	src="js/jquery-easyui-1.4.3/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript"
-	src="js/test.js"></script>
-	<script type="text/javascript"
-	src="js/JSPjs/StudentList.js"></script>
+<script type="text/javascript" src="js/test.js"></script>
+<script type="text/javascript" src="js/JSPjs/StudentList.js"></script>
+<script type="text/javascript">
+	function yincang() {
+		$("#abd").window("open");
+	}
+	function hideCol() {
+		var spCodesTemp = "";
+		$('input:checkbox[name=yc]:checked').each(function(i) {
+			if (0 == i) {
+				spCodesTemp = $(this).val();
+			} else {
+				spCodesTemp += ("," + $(this).val());
+			}
+		});
+		var strs = new Array(); //定义一数组 
+		strs = spCodesTemp.split(","); //字符分割 
+		for (i = 0; i < strs.length; i++) {
+			$('#dg').datagrid('hideColumn', strs[i]);
+		}
+	}
+	function showCol() {
+		var spCodesTemp = "";
+		$('input:checkbox[name=yc]:checked').each(function(i) {
+			if (0 == i) {
+				spCodesTemp = $(this).val();
+			} else {
+				spCodesTemp += ("," + $(this).val());
+			}
+		});
+		var strs = new Array(); //定义一数组 
+		strs = spCodesTemp.split(","); //字符分割 
+		for (i = 0; i < strs.length; i++) {
+			$('#dg').datagrid('showColumn', strs[i]);
+		}
+	}
+</script>
 </head>
 <body>
- <input class="easyui-textbox" type="text" id="zxid" value="<%=session.getAttribute("zx") %>"/>
-<input class="easyui-textbox" type="text" id="zxglid" value="<%=session.getAttribute("zxgl") %>"/>
-	<input class="easyui-textbox" type="text" id="zxgljsid" value="<%=session.getAttribute("zxgljs") %>"/>
-	
+	<input class="easyui-textbox" type="text" id="zxid"
+		value="<%=session.getAttribute("zx")%>" />
+	<input class="easyui-textbox" type="text" id="zxglid"
+		value="<%=session.getAttribute("zxgl")%>" />
+	<input class="easyui-textbox" type="text" id="zxgljsid"
+		value="<%=session.getAttribute("zxgljs")%>" />
+
 	<table class="easyui-datagrid" id="dg">
 		<thead>
 			<tr>
-			<th data-options="field:'checkbox',checkbox:true">选择</th>
-			<th data-options="field:'s_id',width:110">学生编号</th>
+				<th data-options="field:'checkbox',checkbox:true">选择</th>
+				<th data-options="field:'s_id',width:110">学生编号</th>
 				<th data-options="field:'s_name',width:110">姓名</th>
 				<th data-options="field:'s_age',width:110">年龄</th>
 				<th data-options="field:'s_sex',width:110,formatter:xingbie">性别</th>
@@ -44,7 +80,7 @@
 				<th data-options="field:'s_weChat',width:110">微信</th>
 				<th data-options="field:'s_baobei',width:110,formatter:baobei">是否报备</th>
 				<th data-options="field:'s_beizhu',width:110">备注</th>
-				<th data-options="field:'name',width:110">咨询师</th>	
+				<th data-options="field:'name',width:110">咨询师</th>
 				<th data-options="field:'s_quyu',width:110">所在区域</th>
 				<th data-options="field:'s_bumen',width:110">来源部门</th>
 				<th data-options="field:'s_kecheng',width:110">课程方向</th>
@@ -83,7 +119,8 @@
 					<th data-options="field:'l_genzongendshijian',width:110">回访结束时间</th>
 					<th data-options="field:'l_xcshijian',width:110">下次回访时间</th>
 					<th data-options="field:'l_neirong',width:110">回访内容</th>
-					<th data-options="field:'caozuo',title:'操作',formatter:rizhicaozuolei"></th>
+					<th
+						data-options="field:'caozuo',title:'操作',formatter:rizhicaozuolei"></th>
 				</tr>
 			</thead>
 		</table>
@@ -117,9 +154,10 @@
 				onclick="chaxun()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="insert()" data-options="iconCls:'icon-add',plain:true">新增</a>
-				<a
-					href="javascript:void(0)" class="easyui-linkbutton"
-					onclick="daochuexcel()" data-options="iconCls:'icon-redo'">导出Excel</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="daochuexcel()" data-options="iconCls:'icon-redo'">导出Excel</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				data-options="iconCls:'icon-add',plain:true" onclick="yincang()">隐藏</a>
 		</form>
 	</div>
 
@@ -174,10 +212,7 @@
 					<tr>
 						<td><label>来源网站:</label></td>
 						<td><input class="easyui-textbox" type="text" id="s_wangzhan"
-							name="s_wangzhan" disabled="disabled" />
-							
-							
-							</td>
+							name="s_wangzhan" disabled="disabled" /></td>
 					</tr>
 					<tr>
 						<td><label>来源关键词:</label></td>
@@ -387,80 +422,70 @@
 					</tr>
 					<tr>
 						<td><label>学历:</label></td>
-						<td>
-							
-						<select id="ups_education" class="easyui-combobox"  name="s_education" style="width: 110px;">
-							<option>未知</option>
-							<option>大专</option>
-							<option>高中</option>
-							<option>中专</option>
-							<option>初中</option>
-							<option>本科</option>
-							<option>其它</option>
-						</select>
-							</td>
+						<td><select id="ups_education" class="easyui-combobox"
+							name="s_education" style="width: 110px;">
+								<option>未知</option>
+								<option>大专</option>
+								<option>高中</option>
+								<option>中专</option>
+								<option>初中</option>
+								<option>本科</option>
+								<option>其它</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>状态:</label></td>
-						<td>
-							
-					<select id="ups_status" class="easyui-combobox"  name="s_status" style="width: 110px;">
-							<option>未知</option>
-							<option>待业</option>
-							<option>在职</option>
-							<option>在读</option>
+						<td><select id="ups_status" class="easyui-combobox"
+							name="s_status" style="width: 110px;">
+								<option>未知</option>
+								<option>待业</option>
+								<option>在职</option>
+								<option>在读</option>
 
-						</select>
-							
-							</td>
-							
+						</select></td>
+
 					</tr>
 					<tr>
 						<td><label>来源渠道:</label></td>
-						<td>
-							<select id="ups_qudao" class="easyui-combobox"  name="s_qudao" style="width: 110px;">
-						
-							<option>未知</option>
-							<option>百度</option>
-							<option>百度移动端</option>
-							<option>360</option>
-							<option>360移动端</option>
-							<option>搜狗</option>
-							<option>搜狗移动端</option>
-							<option>UC移动端</option>
-							<option>直接输入</option>
-							<option>自然流量</option>
-							<option>直电</option>
-							<option>微信</option>
-							<option>QQ</option>
-						</select>
-							</td>
+						<td><select id="ups_qudao" class="easyui-combobox"
+							name="s_qudao" style="width: 110px;">
+
+								<option>未知</option>
+								<option>百度</option>
+								<option>百度移动端</option>
+								<option>360</option>
+								<option>360移动端</option>
+								<option>搜狗</option>
+								<option>搜狗移动端</option>
+								<option>UC移动端</option>
+								<option>直接输入</option>
+								<option>自然流量</option>
+								<option>直电</option>
+								<option>微信</option>
+								<option>QQ</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>来源网站:</label></td>
-						<td>
-							<select id="ups_wangzhan" class="easyui-combobox"  name="s_wangzhan" style="width: 110px;">
-							
-							<option>其它</option>
-							<option>职英B站</option>
-							<option>高考站</option>
-							<option>职英A站</option>
-						</select>
-							</td>
+						<td><select id="ups_wangzhan" class="easyui-combobox"
+							name="s_wangzhan" style="width: 110px;">
+
+								<option>其它</option>
+								<option>职英B站</option>
+								<option>高考站</option>
+								<option>职英A站</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>来源关键词:</label></td>
-						<td>
-							
-							<select id="ups_guanjian" class="easyui-combobox"  name="s_guanjian" style="width: 110px;">
-							
-							<option>统招</option>
-							<option>单招</option>
-							<option>预科</option>
-							<option>其他</option>
-						</select>
-							
-							</td>
+						<td><select id="ups_guanjian" class="easyui-combobox"
+							name="s_guanjian" style="width: 110px;">
+
+								<option>统招</option>
+								<option>单招</option>
+								<option>预科</option>
+								<option>其他</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>QQ:</label></td>
@@ -476,7 +501,7 @@
 						<td><label>是否报备:</label></td>
 						<td><select id="upbaobei" class="easyui-combobox"
 							style="width: 110px;">
-							<option value="3">待定</option>
+								<option value="3">待定</option>
 								<option value="2">是</option>
 								<option value="1">否</option>
 						</select></td>
@@ -502,58 +527,54 @@
 					</tr>
 					<tr>
 						<td><label>所在区域:</label></td>
-						<td>
-							<select id="ups_quyu" class="easyui-combobox"  name="s_quyu" style="width: 110px;">
-					
-							<option>未知</option>
-							<option>其它</option>
-							<option>郑州</option>
-							<option>开封</option>
-							<option>洛阳</option>
-							<option>南阳</option>
-							<option>漯河</option>
-							<option>三门峡</option>
-							<option>平顶山</option>
-							<option>周口</option>
-							<option>驻马店</option>
-							<option>新乡</option>
-							<option>鹤壁</option>
-							<option>焦作</option>
-							<option>濮阳</option>
-							<option>安阳</option>
-							<option>商丘</option>
-							<option>信阳</option>
-							<option>济源</option>
-						</select>
-							
-							</td>
+						<td><select id="ups_quyu" class="easyui-combobox"
+							name="s_quyu" style="width: 110px;">
+
+								<option>未知</option>
+								<option>其它</option>
+								<option>郑州</option>
+								<option>开封</option>
+								<option>洛阳</option>
+								<option>南阳</option>
+								<option>漯河</option>
+								<option>三门峡</option>
+								<option>平顶山</option>
+								<option>周口</option>
+								<option>驻马店</option>
+								<option>新乡</option>
+								<option>鹤壁</option>
+								<option>焦作</option>
+								<option>濮阳</option>
+								<option>安阳</option>
+								<option>商丘</option>
+								<option>信阳</option>
+								<option>济源</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>来源部门:</label></td>
-						<td>
-							<select id="ups_bumen" class="easyui-combobox"  name="s_bumen" style="width: 110px;">
-							
-							<option>网络</option>
-							<option>市场</option>
-							<option>教质</option>
-							<option>学术</option>
-							<option>就业</option>
-						
-						</select>
-							</td>
+						<td><select id="ups_bumen" class="easyui-combobox"
+							name="s_bumen" style="width: 110px;">
+
+								<option>网络</option>
+								<option>市场</option>
+								<option>教质</option>
+								<option>学术</option>
+								<option>就业</option>
+
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>课程方向:</label></td>
-						<td>
-								<select id="ups_kecheng" class="easyui-combobox"  name="s_kecheng" style="width: 110px;">
-							
-							<option>软件开发</option>
-							<option>软件设计</option>
-							<option>网络营销</option>
-							
-						
-						</select>
-							</td>
+						<td><select id="ups_kecheng" class="easyui-combobox"
+							name="s_kecheng" style="width: 110px;">
+
+								<option>软件开发</option>
+								<option>软件设计</option>
+								<option>网络营销</option>
+
+
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>是否有效:</label></td>
@@ -565,14 +586,13 @@
 					</tr>
 					<tr>
 						<td><label>打分:</label></td>
-						<td>
-						<select id="ups_dafen" class="easyui-combobox"  name="s_dafen" style="width: 110px;">
-							<option>A、近期可报名</option>
-							<option>B、一个月内可报名</option>
-							<option>C、长期跟踪</option>
-							<option>D、无效</option>
-						</select>
-						</td>
+						<td><select id="ups_dafen" class="easyui-combobox"
+							name="s_dafen" style="width: 110px;">
+								<option>A、近期可报名</option>
+								<option>B、一个月内可报名</option>
+								<option>C、长期跟踪</option>
+								<option>D、无效</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td><label>是否回访:</label></td>
@@ -715,12 +735,12 @@
 					<td><label>性别:</label></td>
 					<td><select id="tjs_sex" class="easyui-combobox"
 						style="width: 110px;">
-						<option value="0">--请选择--</option>
+							<option value="0">--请选择--</option>
 							<option value="2">女</option>
 							<option value="1">男</option>
 					</select></td>
 				</tr>
-				
+
 				<tr>
 					<td><label>电话:</label></td>
 					<td><input class="easyui-textbox" type="text" id="tjs_phone"
@@ -728,8 +748,8 @@
 				</tr>
 				<tr>
 					<td><label>学历:</label></td>
-					<td>
-						<select id="tjs_education" class="easyui-combobox"  name="s_education" style="width: 110px;">
+					<td><select id="tjs_education" class="easyui-combobox"
+						name="s_education" style="width: 110px;">
 							<option value="aa">--请选择--</option>
 							<option>未知</option>
 							<option>大专</option>
@@ -738,26 +758,23 @@
 							<option>初中</option>
 							<option>本科</option>
 							<option>其它</option>
-						</select>
-						</td>
+					</select></td>
 				</tr>
 				<tr>
 					<td><label>状态:</label></td>
-					<td>
-						<select id="tjs_status" class="easyui-combobox"  name="s_status" style="width: 110px;">
+					<td><select id="tjs_status" class="easyui-combobox"
+						name="s_status" style="width: 110px;">
 							<option value="aa">--请选择--</option>
-						<option>未知</option>
+							<option>未知</option>
 							<option>待业</option>
 							<option>在职</option>
 							<option>在读</option>
-						</select>
-						
-						</td>
+					</select></td>
 				</tr>
 				<tr>
 					<td><label>来源渠道:</label></td>
-					<td>
-						<select id="tjs_qudao" class="easyui-combobox"  name="s_qudao" style="width: 110px;">
+					<td><select id="tjs_qudao" class="easyui-combobox"
+						name="s_qudao" style="width: 110px;">
 							<option value="aa">--请选择--</option>
 							<option>未知</option>
 							<option>百度</option>
@@ -772,36 +789,30 @@
 							<option>直电</option>
 							<option>微信</option>
 							<option>QQ</option>
-						</select>
-	
-						</td>
+					</select></td>
 				</tr>
 				<tr>
 					<td><label>来源网站:</label></td>
-					<td>
-						
-						<select id="tjs_wangzhan" class="easyui-combobox"  name="s_wangzhan" style="width: 110px;">
+					<td><select id="tjs_wangzhan" class="easyui-combobox"
+						name="s_wangzhan" style="width: 110px;">
 							<option value="aa">--请选择--</option>
 							<option>其它</option>
 							<option>职英B站</option>
 							<option>高考站</option>
 							<option>职英A站</option>
-						</select>
-						</td>
+					</select></td>
 				</tr>
 				<tr>
 					<td><label>来源关键词:</label></td>
-					<td>
-						
-						<select id="tjs_guanjian" class="easyui-combobox"  name="s_guanjian" style="width: 110px;">
+					<td><select id="tjs_guanjian" class="easyui-combobox"
+						name="s_guanjian" style="width: 110px;">
 							<option value="aa">--请选择--</option>
 							<option>统招</option>
 							<option>单招</option>
 							<option>预科</option>
 							<option>其他</option>
-							
-						</select>
-						</td>
+
+					</select></td>
 				</tr>
 				<tr>
 					<td><label>QQ:</label></td>
@@ -817,7 +828,7 @@
 					<td><label>是否报备:</label></td>
 					<td><select id="tjbaobei" class="easyui-combobox"
 						style="width: 110px;">
-						<option value="0">--请选择--</option>
+							<option value="0">--请选择--</option>
 							<option value="2">是</option>
 							<option value="1">否</option>
 					</select></td>
@@ -893,46 +904,133 @@
 		</form>
 	</div>
 
- <div id="rizhixiangxidiv" class="easyui-dialog" title="查看日志详细信息"
+	<div id="rizhixiangxidiv" class="easyui-dialog" title="查看日志详细信息"
 		style="width: 600px; height: 400px;"
 		data-options="resizable:true,modal:true,closed:true">
 		<form id="rizhixiangxifrm">
-			
-				<table>
-					<tr style="display: none">
-						<td><input class="easyui-textbox" type="text" 
-							name="l_id"></td>
-					</tr>
-					<tr>
-						<td><label>学生名称:</label></td>
-				
-						<td><input class="easyui-textbox" type="text" 
-							name="rzname" disabled="disabled"></td>
-					</tr>
-					<tr>
-						<td><label>回访开始时间:</label></td>
-						<td><input class="easyui-textbox" type="text" 
-							name="l_genzongstartshijian" disabled="disabled" /></td>
-					</tr>
-					<tr>
-						<td><label>回访结束时间:</label></td>
-						<td><input class="easyui-textbox" type="text" 
-							name="l_genzongendshijian" disabled="disabled" /></td>
-					</tr>
-					<tr>
-						<td><label>回访内容:</label></td>
-						<td><input class="easyui-textbox" type="text" 
-							name="l_neirong" disabled="disabled" /></td>
-					</tr>
-					<tr>
-						<td><label>下次回访时间:</label></td>
-						<td><input class="easyui-textbox" type="text"
-							name="l_xcshijian" disabled="disabled" /></td>
-					</tr>
-					
-				</table>
-			
+
+			<table>
+				<tr style="display: none">
+					<td><input class="easyui-textbox" type="text" name="l_id"></td>
+				</tr>
+				<tr>
+					<td><label>学生名称:</label></td>
+
+					<td><input class="easyui-textbox" type="text" name="rzname"
+						disabled="disabled"></td>
+				</tr>
+				<tr>
+					<td><label>回访开始时间:</label></td>
+					<td><input class="easyui-textbox" type="text"
+						name="l_genzongstartshijian" disabled="disabled" /></td>
+				</tr>
+				<tr>
+					<td><label>回访结束时间:</label></td>
+					<td><input class="easyui-textbox" type="text"
+						name="l_genzongendshijian" disabled="disabled" /></td>
+				</tr>
+				<tr>
+					<td><label>回访内容:</label></td>
+					<td><input class="easyui-textbox" type="text" name="l_neirong"
+						disabled="disabled" /></td>
+				</tr>
+				<tr>
+					<td><label>下次回访时间:</label></td>
+					<td><input class="easyui-textbox" type="text"
+						name="l_xcshijian" disabled="disabled" /></td>
+				</tr>
+
+			</table>
+
 		</form>
 	</div>
+
+	<div class="easyui-window" id="abd"
+		data-options="modal:true,closed:true,iconCls:'icon-save'"
+		style="width: 700px; height: 300px; padding: 10px;">
+		<table>
+			<tr>
+				<td><input type="checkbox" value="s_id" name="yc" />学生编号</td>
+				<td><input type="checkbox" value="s_name" name="yc" />姓名</td>
+				<td><input type="checkbox" value="s_age" name="yc" />年龄</td>
+				<td><input type="checkbox" value="s_sex" name="yc" />性别</td>
+				<td><input type="checkbox" value="s_phone" name="yc" />电话
+				</td>
+				<td><input type="checkbox" value="s_education" name="yc" />学历
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="s_status" name="yc" />状态</td>
+				<td><input type="checkbox" value="s_qudao" name="yc" />来源渠道</td>
+				<td><input type="checkbox" value="s_wangzhan" name="yc" />来源网站
+				</td>
+				<td><input type="checkbox" value="s_guanjian" name="yc" />来源关键词
+				</td>
+				<td><input type="checkbox" value="s_qq" name="yc" />QQ</td>
+				<td><input type="checkbox" value="s_weChat" name="yc" />微信</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="s_baobei" name="yc" />是否报备</td>
+				<td><input type="checkbox" value="s_beizhu" name="yc" />备注</td>
+				<td><input type="checkbox" value="name" name="yc" />咨询师</td>
+				<td><input type="checkbox" value="s_quyu" name="yc" />所在区域</td>
+				<td><input type="checkbox" value="s_bumen" name="yc" />来源部门</td>
+				<td><input type="checkbox" value="s_kecheng" name="yc" />课程方向
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="s_youxiao" name="yc" />是否有效</td>
+				<td><input type="checkbox" value="s_dafen" name="yc" />打分</td>
+				<td><input type="checkbox" value="s_huifang" name="yc" />是否回访
+				</td>
+				<td><input type="checkbox" value="s_huifangshijian" name="yc" />首次回访时间
+				</td>
+				<td><input type="checkbox" value="s_shangmen" name="yc" />是否上门</td>
+				<td><input type="checkbox" value="s_shangmenshijian" name="yc" />上门时间
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="s_wuxiaoyuanyin" name="yc" />无效原因
+				</td>
+				<td><input type="checkbox" value="jiaofei" name="yc" />是否缴费</td>
+				<td><input type="checkbox" value="s_jiaofeishijian" name="yc" />缴费时间
+				</td>
+				<td><input type="checkbox" value="s_price" name="yc" />金额</td>
+				<td><input type="checkbox" value="s_tuifei" name="yc" />是否退费</td>
+				<td><input type="checkbox" value="s_jinban" name="yc" />是否进班
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value=s_jinbanshijian name="yc" />进班时间
+				</td>
+				<td><input type="checkbox" value="s_jinbanbeizhu" name="yc" />进班备注
+				</td>
+				<td><input type="checkbox" value="s_tuifeiyuanyin" name="yc" />退费原因
+				</td>
+				<td><input type="checkbox" value="s_dingjin" name="yc" />定金金额
+				</td>
+				<td><input type="checkbox" value="s_dingjinshijian" name="yc" />定金时间
+				</td>
+				<td><input type="checkbox" value="s_guanzhu" name="yc" />学生关注
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" value="name2" name="yc" />咨询师(面见)</td>
+				<td><input type="checkbox" value="s_zixunbeizhu" name="yc" />咨询师备注
+				</td>
+
+			</tr>
+			<tr>
+
+				<td><input type="button" onclick="hideCol()" value="隐藏">
+				</td>
+
+				<td><input type="button" onclick="showCol()" value="显示">
+
+				</td>
+			</tr>
+		</table>
+	</div>
+
 </body>
 </html>
