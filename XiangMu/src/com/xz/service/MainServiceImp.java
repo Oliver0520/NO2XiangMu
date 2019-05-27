@@ -108,4 +108,35 @@ public class MainServiceImp implements MainService {
 		request.getSession().setAttribute("suijiNum", suijishu);
 		return suijishu;
 	}
+	@Override
+	public Integer empqt(User user) throws ParseException {
+		// TODO Auto-generated method stub
+		Integer jg=0;
+		String u_qdshijian = user.getU_qdshijian();
+		String stime = user.getStime();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date sd1=df.parse(u_qdshijian);
+		Date sd2=df.parse(stime);
+		boolean asfd = sd1.before(sd2);
+		if(asfd) {
+			jg=4;//不到下班时间不能签退
+			
+		}else {
+			System.out.println("是否判断成功"+asfd);
+			user.setU_qdstatus(4);
+			Integer a = userMapper.selectuserqd(user.getU_id());
+			if(a>0) {
+				Integer i = userMapper.updateUsergerenqd(user);
+				if(i>0) {
+					jg=1;//签退成功
+				}else {
+					jg=2;
+				}
+			}else {
+				jg=3;//用户未签到，不能进行签退操作
+			}
+		}
+		
+		return jg;
+	}
 }

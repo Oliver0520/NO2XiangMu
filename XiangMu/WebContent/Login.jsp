@@ -50,6 +50,20 @@
 		// content:'<h1>hello my first jquery</h1>'  //显示的内容
 		});
 	});
+	
+	function sendyanzhengma(){
+		$.post("sendyanzhengma",
+				{phone:$("#phone").textbox("getValue")},
+				function(res){
+			if(res==1){
+				$.messager.alert("提示","验证码已发送，请注意查收！");
+				
+			}else{
+				$.messager.alert("提示","验证码发送失败，请重试！");			
+			}
+		},"json");
+		
+	}
 </script>
 </head>
 <body class="login-page sidebar-collapse">

@@ -170,15 +170,15 @@ $(function() {
 		var zxglid = $("#zxglid").textbox("getValue");
 		var zxgljsid = $("#zxgljsid").textbox("getValue");
 		if(zxgljsid>0){
-			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  "
 		}
 		
 		else if(zxglid>0){
-			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  "
 		 }
 		else{
 			if(zxid>0){
-				return " <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a> "
+				return " <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>   "
 
 				}
 			} 
@@ -577,32 +577,4 @@ $(function() {
 		}
 	}
 	
-	function insertDynamic(index){
-		var data=$("#dg").datagrid("getData");
-		var row=data.rows[index];
-		$("#sid").textbox("setValue",row.s_id);
-		$("#sname").textbox("setValue",row.s_name);
-		$("#dynamic-dialog").dialog("open");
-	}
 	
-	function sendDynamic(){
-		var s_id=$("#sid").val();
-		var s_name=$("#sname").val();
-		var d_body=$("#d_body").val();
-		$.post("SendDynamic",{
-			s_id:s_id,
-			s_name:s_name,
-			d_body:d_body
-		},function(res){
-			if(res.success){
-				$.messager.alert("提示",res.msg);
-				$("#dynamic-dialog").dialog("close");
-			}else{
-				$.messager.alert("提示",res.msg);
-			}
-		},"json");
-	}
-	
-	function exitDynamic(){
-		$("#dynamic-dialog").dialog("close");
-	}

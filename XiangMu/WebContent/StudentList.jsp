@@ -19,6 +19,48 @@
 <script type="text/javascript" src="js/test.js"></script>
 <script type="text/javascript" src="js/JSPjs/StudentList.js"></script>
 <script type="text/javascript">
+function caozuolei(value, row, index) {
+	var zxid = $("#zxid").textbox("getValue");
+	var zxglid = $("#zxglid").textbox("getValue");
+	var zxgljsid = $("#zxgljsid").textbox("getValue");
+	if (zxgljsid > 0) {
+		return "<a href='javascript:void(0)'  onclick='shanchu("
+				+ index
+				+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("
+				+ index
+				+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
+				+ index
+				+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
+				+ index
+				+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
+				+ index + ")'>添加日志</a>  <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+	}
+
+	else if (zxglid > 0) {
+		return "<a href='javascript:void(0)'  onclick='shanchu("
+				+ index
+				+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("
+				+ index
+				+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
+				+ index
+				+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
+				+ index
+				+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
+				+ index + ")'>添加日志</a>   <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+	} else {
+		if (zxid > 0) {
+			return " <a href='javascript:void(0)' onclick='chakan("
+					+ index
+					+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
+					+ index
+					+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
+					+ index
+					+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
+					+ index + ")'>添加日志</a>   <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+
+		}
+	}
+}
 	function yincang() {
 		$("#abd").window("open");
 	}
@@ -52,6 +94,107 @@
 			$('#dg').datagrid('showColumn', strs[i]);
 		}
 	}
+	var us_name="${usera.u_userName}";
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws:localhost:8080/XiangMu/dynamic/"+us_name);
+    }
+    else {
+        alert('当前浏览器 Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        //setMessageInnerHTML("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        //setMessageInnerHTML("您已进入聊天室！");
+        //websocket.send("您已进入聊天室！");
+        //send();
+        
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+    	//alert("111")
+       // setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+       // setMessageInnerHTML("您已离开入聊天室！");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        closeWebSocket();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+    //发送消息
+    function send(jsr) {
+        //var message = $("#nr_lt_neirong").val();
+        websocket.send(jsr);
+    }
+    function insertDynamic(index){
+		var data=$("#dg").datagrid("getData");
+		var row=data.rows[index];
+		$("#sid").textbox("setValue",row.s_id);
+		$("#sname").textbox("setValue",row.s_name);
+		$("#dynamic-dialog").dialog("open");
+	}
+    function sendDynamic(){
+		var s_id=$("#sid").val();
+		var s_name=$("#sname").val();
+		var d_body=$("#d_body").val();
+		var uname=$("#uname").val();
+		$.post("SendDynamic",{
+			s_id:s_id,
+			s_name:s_name,
+			d_body:d_body
+		},function(res){
+			if(res.success){
+				$.messager.alert("提示",res.msg);
+				$("#dynamic-dialog").dialog("close");
+				send(uname);
+			}else{
+				$.messager.alert("提示",res.msg);
+			}
+		},"json");
+	}
+    function sendDynamic(){
+		var s_id=$("#sid").val();
+		var s_name=$("#sname").val();
+		var d_body=$("#d_body").val();
+		$.post("SendDynamic",{
+			s_id:s_id,
+			s_name:s_name,
+			d_body:d_body
+		},function(res){
+			if(res.success){
+				$.messager.alert("提示",res.msg);
+				$("#dynamic-dialog").dialog("close");
+			}else{
+				$.messager.alert("提示",res.msg);
+			}
+		},"json");
+	}
+	
+	function exitDynamic(){
+		$("#dynamic-dialog").dialog("close");
+	}
+
 </script>
 </head>
 <body>
@@ -1030,6 +1173,42 @@
 				</td>
 			</tr>
 		</table>
+	</div>
+<div id="dynamic-dialog" class="easyui-dialog" title="查看日志详细信息"
+		style="width: 600px; height: 400px;"
+		data-options="resizable:true,modal:true,closed:true,toolbar:[{
+				text:'发送',
+				iconCls:'icon-edit',
+				handler:function(){sendDynamic();}
+			},{
+				text:'取消',
+				iconCls:'icon-help',
+				handler:function(){exitDynamic();}
+			}]">
+		<form id="dynamicfrm">
+			
+				<table>
+					<tr style="display:none">
+						<td><label>学生编号:</label></td>
+				
+						<td><input class="easyui-textbox" type="text" 
+							id="sid" disabled="disabled"></td>
+					</tr>
+					<tr style="display:none">
+						<td><label>学生名称:</label></td>
+				
+						<td><input class="easyui-textbox" type="text" 
+							id="sname" disabled="disabled"></td>
+					</tr>
+					<tr>
+						<td><label>动态内容:</label></td>
+						<td><textarea id="d_body" cols="80" rows="11"></textarea></td>
+					</tr>
+					
+					
+				</table>
+			
+		</form>
 	</div>
 
 </body>

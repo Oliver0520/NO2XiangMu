@@ -137,6 +137,12 @@ Integer qiantui();
  * @return
  */
 List<User> selectZxs();
+
+/**
+ * 查询出所有角色为咨询师并且签到的用户信息
+ * @return
+ */
+List<User> selectZxsFenpei();
 /**
  * 查询员工的权重相关信息
  * @param fenye
@@ -167,4 +173,8 @@ Integer updateIsFenpei(IsFenpei isfenpei);
  * @return
  */
 Integer selectCOuntQd(Integer u_id);
+
+Integer selectuserqd(Integer u_id);
+
+Integer updateUsergerenqd(User user);
 }

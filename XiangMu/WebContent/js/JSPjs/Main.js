@@ -57,6 +57,7 @@ function qd(){
 		}
 	},"json");
 }
+
 /**
  * 获取系统当前时间
  */
@@ -66,16 +67,5 @@ function getNowFormatDate() {
       return onedate;
 }
 
-function sendyanzhengma(){
-	$.post("sendyanzhengma",
-			{phone:$("#phone").textbox("getValue")},
-			function(res){
-		if(res=="OK"){
-			$.messager.alert("提示","验证码已发送，请注意查收！");
-		}else{
-			$.messager.alert("提示","验证码发送失败，请重试！");
-		}
-	},"json");
-	
-}
+
 
