@@ -38,7 +38,7 @@ $.post("hometree", {treeUlId: "treeUlId"},
 		$.messager.alert("提示",res.msg);
 		
 		$("#weidu-window").window("close");
-	}g
+	}
  });
 });
 function showDynamic(){
@@ -132,6 +132,22 @@ function qt(){
 			$.messager.alert("提示", res.msg);
 		}else{
 			$.messager.alert("提示", res.msg);
+		}
+	},"json");
+}
+function updatebaocun(){
+	var opwd=$("#opwd").textbox("getValue");
+	var npwd=$("#npwd").textbox("getValue");
+	var apwd=$("#apwd").textbox("getValue");
+	var phone=$("#phone").textbox("getValue");
+	var yanzheng=$("#yanzheng").textbox("getValue");
+	$.post("xiugaimima",{opwd:opwd,npwd:npwd,apwd:apwd,yanzheng:yanzheng,phone:phone},function(res){
+		if(res.success){
+			$.messager.alert("提示",res.msg);
+			$("#update-dialog").dialog("close");
+			window.location.href = "tuichu";
+		}else{
+			$.messager.alert("提示",res.msg);
 		}
 	},"json");
 }

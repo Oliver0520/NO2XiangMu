@@ -30,21 +30,7 @@ function tuichu() {
 function xgPwd(){
 	$("#update-dialog").dialog("open");
 }
-function updatebaocun(){
-	var opwd=$("#opwd").textbox("getValue");
-	var npwd=$("#npwd").textbox("getValue");
-	var apwd=$("#apwd").textbox("getValue");
-	var yanzheng=$("#yanzheng").textbox("getValue");
-	$.post("xiugaimima",{opwd:opwd,npwd:npwd,apwd:apwd,yanzheng:yanzheng},function(res){
-		if(res.success){
-			$.messager.alert("提示",res.msg);
-			$("#update-dialog").dialog("close");
-			window.location.href = "tuichu";
-		}else{
-			$.messager.alert("提示",res.msg);
-		}
-	},"json");
-}
+
 function exitUpdate(){
 	$("#update-dialog").dialog("closed");
 }

@@ -96,4 +96,47 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+function insertbaocun(){
+	var r_name= $("#rname").textbox("getValue");
+	
+			$.post("insertRoles",{r_name:r_name},function(res){
+				if(res.success){
+					$("#dg").datagrid("reload");
+					$.messager.alert('提示',res.msg);
+					$("#insert-dialog").dialog("close");
+				}else{
+					$.messager.alert('提示',res.msg);
+				}
+			},"json");
+}
+
+function tijiaoModules() {
+	var trees = $("#tt").tree("getChecked", [ "checked", "indeterminate" ]);
+	var ids = "";
+	for (var i = 0; i < trees.length; i++) {
+		if (ids == "") {
+			ids = ids + trees[i].id;
+		} else {
+			ids = ids + "," + trees[i].id;
+		}
+	}
+	$.post("insertRoleModule", {
+		m_id : ids,
+		r_id : jiaoseid
+	}, function(res) {
+		if (res>0) {
+			$.messager.alert("提示", "设置成功");
+			$('#quanxiantree').window('close');
+			$("#dg").datagrid("reload");
+			
+		} else {
+			$('#quanxiantree').window('close');
+			$("#dg").datagrid("reload");
+			$.messager.alert("提示", "设置失败");
+		}
+	}, "json");
+
+}
+</script>
 </html>

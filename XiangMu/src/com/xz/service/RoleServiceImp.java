@@ -40,9 +40,11 @@ public class RoleServiceImp implements RoleService {
 	public Integer insertRole(String r_name) {
 		// TODO Auto-generated method stub
 		Integer jg=0;
-		Integer i =roleMapper.insertRole(r_name);
+		
 		Integer j=roleMapper.selectRname(r_name);
-		if(!(j>0)) {
+		System.out.println(j);
+		if(j==0) {
+			Integer i =roleMapper.insertRole(r_name);
 			if(i>0) {
 				jg=3;
 			}else {
