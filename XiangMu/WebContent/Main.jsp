@@ -30,6 +30,11 @@ $.post("hometree", {treeUlId: "treeUlId"},
 		},"text");
  if(qdstatus=="2"||qdstatus=="4"){
 	 $.messager.alert("提示","亲，请先去签到，不要迟到哦！！！");
+	 $("#qiantui").hide();
+	 $("#qiandao").show();
+ }else{
+	 $("#qiantui").show();
+	 $("#qiandao").hide();
  }
  $.post("CopyCount",function(res){
 	if(res.success){
@@ -75,21 +80,18 @@ $(function(){
 
     //连接成功建立的回调方法
     websocket.onopen = function () {
-        //setMessageInnerHTML("您已进入聊天室！");
-        //websocket.send("您已进入聊天室！");
         //send();
-        
     }
 
     //接收到消息的回调方法
     websocket.onmessage = function (event) {
+    	$("#weidu-window").window("open");
     	window.location.reload();
        // setMessageInnerHTML(event.data);
     }
 
     //连接关闭的回调方法
     websocket.onclose = function () {
-       // setMessageInnerHTML("您已离开入聊天室！");
     }
 
     //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
@@ -125,13 +127,29 @@ function sendyanzhengma(){
 	},"json");
 	
 }
-
+function qd(){
+	$.post("empqd",{time:getNowFormatDate()},function(res){
+		if(res.success){
+			$.messager.alert("提示", res.msg);
+			 $("#qiantui").show();
+			 $("#qiandao").hide();
+		}else{
+			$.messager.alert("提示", res.msg);
+			 $("#qiantui").hide();
+			 $("#qiandao").show();
+		}
+	},"json");
+}
 function qt(){
 	$.post("empqt",{time:getNowFormatDate()},function(res){
 		if(res.success){
 			$.messager.alert("提示", res.msg);
+			 $("#qiantui").hide();
+			 $("#qiandao").show();
 		}else{
 			$.messager.alert("提示", res.msg);
+			 $("#qiantui").show();
+			 $("#qiandao").hide();
 		}
 	},"json");
 }
@@ -165,9 +183,9 @@ function updatebaocun(){
 			<a href="javascript:void(0)" onclick="xgPwd()"
 				style="text-decoration: none; color: black;">&nbsp;&nbsp;&nbsp;&nbsp;修改登录密码</a>
 			<a href="javascript:void(0)" onclick="qd()"
-				style="text-decoration: none; color: red;">&nbsp;&nbsp;&nbsp;&nbsp;签到</a>
+				style="text-decoration: none; color: red;" id="qiandao">&nbsp;&nbsp;&nbsp;&nbsp;签到</a>
 			<a href="javascript:void(0)" onclick="qt()"
-				style="text-decoration: none; color: red;">&nbsp;&nbsp;&nbsp;&nbsp;签退</a>
+				style="text-decoration: none; color: red;" id="qiantui">&nbsp;&nbsp;&nbsp;&nbsp;签退</a>
 
 		</div>
 

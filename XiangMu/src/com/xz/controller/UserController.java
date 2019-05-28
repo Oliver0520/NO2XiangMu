@@ -174,6 +174,10 @@ public class UserController {
     		  map.put("msg", "签退成功!!!");
   			  map.put("success", true);
     	  }
+    	  if(i==4) {
+    		  map.put("msg", "该用户未签到，不能进行签退操作!!!");
+  			  map.put("success", false);
+    	  }
     	  return map;
       }
       @RequestMapping(value="/qiantui",method=RequestMethod.POST)

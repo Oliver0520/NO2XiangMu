@@ -36,10 +36,13 @@ $(function() {
 		var lname=$("#lname").val();
 		var pwd=$("#pwd").textbox("getValue");
 		var email=$("#email").val();
-		var phone=$("#phone").textbox("getValue");
+		var phone=$("#phone").val();
+		var forma=$("#addfrm").form("validate");
+		if(forma){
 		if(lname==null){
 			$.messager.alert('提示','登录名不能为空');
 		}else{
+			
 		$.post("selectCountByLname",{
 			u_loginName:lname
 		},function(res){
@@ -63,6 +66,8 @@ $(function() {
 				},"json");
 			}
 		},"json");
+		}}else{
+			$.messager.alert("提示","格式不正确");	
 		}
 	}
 	/* 关闭新增dialog窗口 */
@@ -101,24 +106,7 @@ $(function() {
 		$("#upfrm").form("load",row);
 		$("#update-dialog").dialog("open");		
 	}
-	function updatebaocun(){
-		var email=$("#uemail").val();
-		var phone=$("#uphone").textbox("getValue");
-		var u_id=$("#u_id").textbox("getValue");
-		$.post("updateUser",{
-			u_email:email,
-			u_phoneNumber:phone,
-			u_id:u_id
-		},function(res){
-			if(res>0){
-				$("#dg").datagrid("reload");
-				$.messager.alert('提示','编辑成功'); 
-				$("#update-dialog").dialog("close");
-			}else{
-				$.messager.alert('提示','编辑失败'); 
-			}
-		},"json");
-	}
+	
 	function exitUpdate(){
 		$("#update-dialog").dialog("close");
 	}
@@ -231,38 +219,3 @@ $(function() {
 		}
 	}
 	
-/*	function yincang(){
-		$("#abd").window("open");
-	}
-	function hideCol(){
-		var spCodesTemp = "";
-		$('input:checkbox[name=asdf]:checked').each(function(i){
-		if(0==i){
-		spCodesTemp = $(this).val();
-		}else{
-		spCodesTemp += (","+$(this).val());
-		}
-		});
-		var strs= new Array(); //定义一数组 
-		strs=spCodesTemp.split(","); //字符分割 
-		for (i=0;i<strs.length ;i++ ) 
-		{ 
-			$('#dg').datagrid('hideColumn',strs[i]);
-		}
-		 }
-			function showCol(){
-				var spCodesTemp = "";
-		$('input:checkbox[name=asdf]:checked').each(function(i){
-		if(0==i){
-		spCodesTemp = $(this).val();
-		}else{
-		spCodesTemp += (","+$(this).val());
-		}
-		});
-		var strs= new Array(); //定义一数组 
-		strs=spCodesTemp.split(","); //字符分割 
-		for (i=0;i<strs.length ;i++ ) 
-		{ 
-			$('#dg').datagrid('showColumn',strs[i]);
-		}
-			}*/

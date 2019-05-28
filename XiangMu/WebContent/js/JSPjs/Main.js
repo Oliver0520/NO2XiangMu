@@ -34,15 +34,7 @@ function xgPwd(){
 function exitUpdate(){
 	$("#update-dialog").dialog("closed");
 }
-function qd(){
-	$.post("empqd",{time:getNowFormatDate()},function(res){
-		if(res.success){
-			$.messager.alert("提示", res.msg);
-		}else{
-			$.messager.alert("提示", res.msg);
-		}
-	},"json");
-}
+
 
 /**
  * 获取系统当前时间

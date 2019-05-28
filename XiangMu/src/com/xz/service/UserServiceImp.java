@@ -144,9 +144,7 @@ public class UserServiceImp implements UserService {
 		} else {
 			return jg = 5;
 		}
-
 	}
-
 	@Override
 	public Fenye<User> selectUserQD(Fenye<User> fenye) {
 		// TODO Auto-generated method stub
@@ -162,15 +160,21 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		Integer jg = 0;
 		User qd = userMapper.selectStatusQD(u_id);
-		if (qd == null) {
-			if (userMapper.qdcaozuo(u_id) > 0) {
-				return jg = 3;
+		User qd2=userMapper.selectStatusintwo(u_id);
+		if(qd2==null) {
+			if (qd == null) {
+				if (userMapper.qdcaozuo(u_id) > 0) {
+					return jg = 3;
+				} else {
+					return jg = 2;
+				}
 			} else {
-				return jg = 2;
+				return jg = 1;
 			}
-		} else {
-			return jg = 1;
+		}else {
+			return jg=4;
 		}
+		
 	}
 
 	@Override

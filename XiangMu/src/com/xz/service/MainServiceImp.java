@@ -80,7 +80,7 @@ public class MainServiceImp implements MainService {
 		}
 		Integer a = userMapper.selectCOuntQd(user.getU_id());
 		
-		if(a>0) {
+		if(a==1) {
 			Integer i = userMapper.empqd(user);
 			if(i>0) {
 				jg=3;

@@ -152,6 +152,7 @@ function caozuolei(value, row, index) {
 		var row=data.rows[index];
 		$("#sid").textbox("setValue",row.s_id);
 		$("#sname").textbox("setValue",row.s_name);
+		$("#uname").textbox("setValue",row.name);
 		$("#dynamic-dialog").dialog("open");
 	}
     function sendDynamic(){
@@ -167,30 +168,14 @@ function caozuolei(value, row, index) {
 			if(res.success){
 				$.messager.alert("提示",res.msg);
 				$("#dynamic-dialog").dialog("close");
+				$("#dynamicfrm").form("clear");
 				send(uname);
 			}else{
 				$.messager.alert("提示",res.msg);
 			}
 		},"json");
 	}
-    function sendDynamic(){
-		var s_id=$("#sid").val();
-		var s_name=$("#sname").val();
-		var d_body=$("#d_body").val();
-		$.post("SendDynamic",{
-			s_id:s_id,
-			s_name:s_name,
-			d_body:d_body
-		},function(res){
-			if(res.success){
-				$.messager.alert("提示",res.msg);
-				$("#dynamic-dialog").dialog("close");
-			}else{
-				$.messager.alert("提示",res.msg);
-			}
-		},"json");
-	}
-	
+   
 	function exitDynamic(){
 		$("#dynamic-dialog").dialog("close");
 	}
@@ -1193,6 +1178,8 @@ function caozuolei(value, row, index) {
 				
 						<td><input class="easyui-textbox" type="text" 
 							id="sid" disabled="disabled"></td>
+							<td><input class="easyui-textbox" type="text" 
+							id="uname" disabled="disabled"></td>
 					</tr>
 					<tr style="display:none">
 						<td><label>学生名称:</label></td>

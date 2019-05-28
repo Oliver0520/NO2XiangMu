@@ -114,6 +114,12 @@ Integer selectCountQD(Fenye<User> fenye);
  */
 User selectStatusQD(Integer u_id);
 /**
+ * 查询用户是否已经为未签到
+ * @param u_id
+ * @return
+ */
+User selectStatusintwo(Integer u_id);
+/**
  * 帮助员工签退
  * @param u_id
  * @return
