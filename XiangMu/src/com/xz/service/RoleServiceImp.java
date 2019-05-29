@@ -105,13 +105,20 @@ public class RoleServiceImp implements RoleService {
 		Integer selectMokuai_js_id = roleMapper.selectMoByRid(roleModul);
 		if (mokuailist.get(i).getM_parentId() == 0) {
 			Integer selectMokuai_isyouzi = roleMapper.selectMisnu(mokuailist.get(i).getM_id());
+			
 			if (selectMokuai_isyouzi > 0) {
 				mk.setChecked(false);
 			} else {
 				mk.setChecked(selectMokuai_js_id == 1);
 			}
 		} else {
-			mk.setChecked(selectMokuai_js_id == 1);
+			Integer selectMokuai_isyouzi = roleMapper.selectMisnu(mokuailist.get(i).getM_id());
+		
+			if (selectMokuai_isyouzi > 0) {
+				mk.setChecked(false);
+			} else {
+				mk.setChecked(selectMokuai_js_id == 1);
+			}
 		}
 		ModuleTree fortree = fortree(mokuailist, i, mk, r_id);
 		if (fortree != null) {
