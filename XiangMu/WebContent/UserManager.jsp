@@ -60,7 +60,7 @@
 				var lname=$("#lname").val();
 				var pwd=$("#pwd").textbox("getValue");
 				var email=$("#email").val();
-				var phone=$("#phone").textbox("getValue");
+				var phone=$("#phone").val();
 				var yhname=$("#yhname").val();
 				if(lname==null){
 					$.messager.alert('提示','登录名不能为空');
