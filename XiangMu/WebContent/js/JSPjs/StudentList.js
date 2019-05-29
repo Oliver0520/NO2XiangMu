@@ -252,36 +252,9 @@ function chakan(index) {
 	$("#chakan-dialog").dialog("open");
 }
 
-function xiugai(index) {
-	var data = $("#dg").datagrid("getData");
-	var row = data.rows[index];
-	$("#xiugaifrm").form("load", row);
-	$("#upbaobei").combobox("setValue", row.s_baobei == 2 ? "是" : "否");
-	$("#uphuifang").combobox("setValue", row.s_huifang == 2 ? "是" : "否");
-	$("#upyouxiao").combobox("setValue", row.s_youxiao == 2 ? "是" : "否");
-	$("#upshangmen").combobox("setValue", row.s_shangmen == 2 ? "是" : "否");
-	$("#upjiaofei").combobox("setValues", row.s_jiaofei == 2 ? "是" : "否");
-	$("#uptuifei").combobox("setValue", row.s_tuifei == 2 ? "是" : "否");
-	$("#upjinban").combobox("setValue", row.s_jinban == 2 ? "是" : "否");
-	$("#ups_sex").textbox("setValue", row.s_sex == 1 ? "男" : "女");
-	$('#zxname1').combobox({
-		url : 'selectUname',
-		method : "post",
-		valueField : 'u_id',
-		textField : 'u_userName',
-	});
-	$('#zxname2').combobox({
-		url : 'selectUname',
-		method : "post",
-		valueField : 'u_id',
-		textField : 'u_userName',
-	});
-	$("#xiugai-dialog").dialog("open");
-}
 
-function exitUpdate() {
-	$("#xiugai-dialog").dialog("close");
-}
+
+
 
 function baobei(value, row, index) {
 	return row.s_huifang == 2 ? "是" : "否";
@@ -306,226 +279,18 @@ function jinban(value, row, index) {
 }
 function xingbie(value, row, index) {
 	return row.s_sex == 1 ? "男" : "女";
-	;
+	
 }
-function updatebaocun() {
-	var s_id = $("#ups_id").textbox("getValue");
-	var s_name = $("#ups_name").textbox("getValue");
-	var s_age = $("#ups_age").textbox("getValue");
-	var s_sex = $("#ups_sex").textbox("getValue");
-	var s_phone = $("#ups_phone").textbox("getValue");
-	var s_education = $("#ups_education").combobox("getValue");
-	var s_status = $("#ups_status").combobox("getValue");
-	var s_qudao = $("#ups_qudao").combobox("getValue");
-	var s_wangzhan = $("#ups_wangzhan").combobox("getValue");
-	var s_guanjian = $("#ups_guanjian").combobox("getValue");
-	var s_qq = $("#ups_qq").textbox("getValue");
-	var s_weChat = $("#ups_weChat").textbox("getValue");
-	var baobei = $("#upbaobei").combobox("getValue");
-	var s_beizhu = $("#ups_beizhu").textbox("getValue");
-	var name = $("#zxname1").combobox("getValue");
-	var s_quyu = $("#ups_quyu").combobox("getValue");
-	var s_bumen = $("#ups_bumen").combobox("getValue");
-	var s_kecheng = $("#ups_kecheng").combobox("getValue");
-	var youxiao = $("#upyouxiao").combobox("getValue");
-	var s_dafen = $("#ups_dafen").combobox("getValue");
-	var huifang = $("#uphuifang").combobox("getValue");
-	var s_huifangshijian = $("#ups_huifangshijian").textbox("getValue");
-	var shangmen = $("#upshangmen").combobox("getValue");
-	var s_shangmenshijian = $("#ups_shangmenshijian").textbox("getValue");
-	var s_wuxiaoyuanyin = $("#ups_wuxiaoyuanyin").textbox("getValue");
-	var jiaofei = $("#upjiaofei").combobox("getValue");
-	var s_jiaofeishijian = $("#ups_jiaofeishijian").textbox("getValue");
-	var s_price = $("#ups_price").textbox("getValue");
-	var tuifei = $("#uptuifei").combobox("getValue");
-	var jinban = $("#upjinban").combobox("getValue");
-	var s_jinbanshijian = $("#ups_jinbanshijian").textbox("getValue");
-	var s_jinbanbeizhu = $("#ups_jinbanbeizhu").textbox("getValue");
-	var s_tuifeiyuanyin = $("#ups_tuifeiyuanyin").textbox("getValue");
-	var s_dingjin = $("#ups_dingjin").textbox("getValue");
-	var s_dingjinshijian = $("#ups_dingjinshijian").textbox("getValue");
-	var s_guanzhu = $("#ups_guanzhu").textbox("getValue");
-	var name2 = $("#zxname2").combobox("getValue");
-	var s_zixunbeizhu = $("#ups_zixunbeizhu").textbox("getValue");
-	if (baobei == "否") {
-		baobei = 1
-	}
-	if (baobei == "是") {
-		baobei = 2
-	}
 
-	if (huifang == "否") {
-		huifang = 1
-	}
-	if (huifang == "是") {
-		huifang = 2
-	}
-	if (youxiao == "否") {
-		youxiao = 1
-	}
-	if (youxiao == "是") {
-		youxiao = 2
-	}
-	if (shangmen == "否") {
-		shangmen = 1
-	}
-	if (shangmen == "是") {
-		shangmen = 2
-	}
-	if (jiaofei == "否") {
-		jiaofei = 1
-	}
-	if (jiaofei == "是") {
-		jiaofei = 2
-	}
-	if (tuifei == "否") {
-		tuifei = 1
-	}
-	if (tuifei == "是") {
-		tuifei = 2
-	}
-	if (jinban == "否") {
-		jinban = 1
-	}
-	if (jinban == "是") {
-		jinban = 2
-	}
-	if (s_sex == "男") {
-		s_sex = 1
-	}
-	if (s_sex == "女") {
-		s_sex = 2
-	}
-	$.post("updaStu", {
-		s_id : s_id,
-		s_name : s_name,
-		s_age : s_age,
-		s_sex : s_sex,
-		s_phone : s_phone,
-		s_education : s_education,
-		s_status : s_status,
-		s_qudao : s_qudao,
-		s_wangzhan : s_wangzhan,
-		s_guanjian : s_guanjian,
-		s_qq : s_qq,
-		s_weChat : s_weChat,
-		s_baobei : baobei,
-		s_beizhu : s_beizhu,
-		u_id : name,
-		s_quyu : s_quyu,
-		s_bumen : s_bumen,
-		s_kecheng : s_kecheng,
-		s_youxiao : youxiao,
-		s_dafen : s_dafen,
-		s_huifang : huifang,
-		s_huifangshijian : s_huifangshijian,
-		s_shangmen : shangmen,
-		s_shangmenshijian : s_shangmenshijian,
-		s_wuxiaoyuanyin : s_wuxiaoyuanyin,
-		s_jiaofei : jiaofei,
-		s_jiaofeishijian : s_jiaofeishijian,
-		s_price : s_price,
-		s_tuifei : tuifei,
-		s_jinban : jinban,
-		s_jinbanshijian : s_jinbanshijian,
-		s_jinbanbeizhu : s_jinbanbeizhu,
-		s_tuifeiyuanyin : s_tuifeiyuanyin,
-		s_dingjin : s_dingjin,
-		s_dingjinshijian : s_dingjinshijian,
-		s_guanzhu : s_guanzhu,
-		u_idw : name2,
-		s_zixunbeizhu : s_zixunbeizhu
-	}, function(res) {
-		if (res > 0) {
-			$("#dg").datagrid("reload");
-			$.messager.alert('提示', '编辑成功');
-			$("#xiugai-dialog").dialog("close");
-		} else {
-			$.messager.alert('提示', '编辑失败');
-		}
-	}, "json");
-	$("#xiugaifrm").form("clear");
-
-}
 function exitUpdate() {
 	$("#xiugai-dialog").dialog("close");
 }
-function insertbaocun() {
-	var s_id = $("#tjs_id").textbox("getValue");
-	var s_name = $("#tjs_name").textbox("getValue");
-	var s_age = $("#tjs_age").textbox("getValue");
-	var s_sex = $("#tjs_sex").textbox("getValue");
-	var s_phone = $("#tjs_phone").textbox("getValue");
-	var s_education = $("#tjs_education").combobox("getValue");
-	var s_status = $("#tjs_status").combobox("getValue");
-	var s_qudao = $("#tjs_qudao").combobox("getValue");
-	var s_wangzhan = $("#tjs_wangzhan").combobox("getValue");
-	var s_guanjian = $("#tjs_guanjian").combobox("getValue");
-	var s_qq = $("#tjs_qq").textbox("getValue");
-	var s_weChat = $("#tjs_weChat").textbox("getValue");
-	var baobei = $("#tjbaobei").combobox("getValue");
-	var s_beizhu = $("#tjs_beizhu").textbox("getValue");
-	if (s_education == "aa") {
-		s_education = null;
-	}
-	if (s_status == "aa") {
-		s_status = null;
-	}
-	if (s_qudao == "aa") {
-		s_qudao = null;
-	}
-	if (s_wangzhan == "aa") {
-		s_wangzhan = null;
-	}
-	if (s_guanjian == "aa") {
-		s_guanjian = null;
-	}
-	if (baobei == "否") {
-		baobei = 1
-	}
-	if (baobei == "是") {
-		baobei = 2
-	}
-	if (s_sex == "男") {
-		s_sex = 1
 
-	}
-	if (s_sex == "女") {
-		s_sex = 2
-	}
-
-	$.post("insertStudent", {
-		s_id : s_id,
-		s_name : s_name,
-		s_age : s_age,
-		s_sex : s_sex,
-		s_phone : s_phone,
-		s_education : s_education,
-		s_status : s_status,
-		s_qudao : s_qudao,
-		s_wangzhan : s_wangzhan,
-		s_guanjian : s_guanjian,
-		s_qq : s_qq,
-		s_weChat : s_weChat,
-		s_baobei : baobei,
-	}, function(res) {
-		if (res > 0) {
-			$("#dg").datagrid("reload");
-			$.messager.alert('提示', '添加成功');
-			$("#insert-dialog").dialog("close");
-		} else {
-			$.messager.alert('提示', '添加失败');
-		}
-	}, "json");
-	$("#insertfrm").form("clear");
-}
 function exitInsert() {
-	s
+	
 	$("#insert-dialog").dialog("close");
 }
-function insert(index) {
-	$("#insert-dialog").dialog("open");
-}
+
 function exitInsert() {
 	$("#insert-dialog").dialog("close");
 }
@@ -548,13 +313,7 @@ function chakanrizhi(index) {
 		}
 	});
 }
-function insertrizhi(index) {
-	var data = $("#dg").datagrid("getData");
-	var row = data.rows[index];
-	$("#s_ida").textbox("setValue", row.s_id);
-	$("#u_ida").textbox("setValue", row.u_id);
-	$("#tjrizhi-dialog").dialog("open");
-}
+
 function rizhibaocun() {
 	var s_id = $("#s_ida").textbox("getValue");
 	var u_id = $("#u_ida").textbox("getValue");

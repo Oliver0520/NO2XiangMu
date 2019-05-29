@@ -6,6 +6,7 @@
 		resultType="student">
 		select * from student 
 		<where>
+	
 		and u_id &gt; 0
 			<if test="t.s_name!=null and t.s_name!=''">
 				and s_name like "%"#{t.s_name}"%"
@@ -34,7 +35,9 @@
 			</if>
 
 		</where>
+	ORDER BY s_id DESC 
 		limit #{page},#{pageSize}
+			
 	</select>
 
 	<select id="selectCountStu" parameterType="fenye"
@@ -280,6 +283,7 @@
 				and u_id=#{t.u_id}
 			</if>
 		</where>
+		ORDER BY s_id DESC 
 		limit #{page},#{pageSize}
 	</select>
 	<select id="countselectzxjs" parameterType="fenye"
@@ -330,6 +334,8 @@
 	<if test="t.s_sex!=null and t.s_sex!=''">
 	and s_sex=#{t.s_sex}
 	</if>
+	ORDER BY s_id DESC 
+	limit #{page},#{pageSize}
 	</where>
 	</select>
 	<select id="selectFenpeiCount" parameterType="fenye" resultType="int">

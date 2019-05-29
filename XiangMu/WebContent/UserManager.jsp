@@ -55,6 +55,41 @@
 			$('#dg').datagrid('showColumn',strs[i]);
 		}
 			}
+			function insertbaocun(){
+				var lname=$("#lname").val();
+				var pwd=$("#pwd").textbox("getValue");
+				var email=$("#email").val();
+				var phone=$("#phone").textbox("getValue");
+				var yhname=$("#yhname").val();
+				if(lname==null){
+					$.messager.alert('提示','登录名不能为空');
+				}else{
+				$.post("selectCountByLname",{
+					u_loginName:lname
+				},function(res){
+					if(res>0){
+						$.messager.alert('提示','登录名已被占用，请更换！！！');    
+					}else{
+						$.post("insertUser",{
+							u_loginName:lname,
+							u_userName:yhname,
+							u_password:pwd,
+							u_email:email,
+							u_phoneNumber:phone,
+							u_createTime:getNowFormatDate()
+						},function(res){
+							if(res.success){
+								$("#dg").datagrid("reload");
+								$.messager.alert('提示',res.msg); 
+								$("#insert-dialog").dialog("close");
+							}else{
+								$.messager.alert('提示',res.msg); 
+							}
+						},"json");
+					}
+				},"json");
+				}
+			}
 	</script>
 </head>
 <body>
@@ -118,6 +153,10 @@
     <tr>
     <td><label>登录名:</label></td>
     <td><input class="easyui-textbox" type="text"  data-options="required:true" id="lname" /> </td>
+    </tr>
+        <tr>
+    <td><label>用户名:</label></td>
+    <td><input class="easyui-textbox" type="text"  data-options="required:true" id="yhname" /> </td>
     </tr>
     <tr>
     <td><label>密码:</label></td>

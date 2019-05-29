@@ -140,4 +140,8 @@ Integer updateIsFenpei(IsFenpei isfenpei);
  * @return
  */
 Integer selectIsORNot();
+
+
+
+
 }

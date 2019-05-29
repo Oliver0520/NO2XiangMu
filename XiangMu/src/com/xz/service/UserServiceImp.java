@@ -40,13 +40,35 @@ public class UserServiceImp implements UserService {
 	@Override
 	public Integer selectCountBylname(String u_loginName) {
 		// TODO Auto-generated method stub
-		return userMapper.selectCountByLname(u_loginName);
+
+		String string2md5 = MD5Util.string2MD5(u_loginName);
+
+		return userMapper.selectCountByLname(string2md5);
 	}
 
 	@Override
 	public Integer insertUser(User user) {
 		// TODO Auto-generated method stub
-		return userMapper.insertUser(user);
+		String u_loginName = user.getU_loginName();
+		String string2md5 = MD5Util.string2MD5(u_loginName);
+		user.setU_loginName(string2md5);
+		
+		Integer j=userMapper.selectUserisok(user.getU_userName());
+		Integer pd=0;
+		if(j==0) {
+			Integer i=userMapper.insertUser(user);
+			if(i>0) {
+				pd=1;
+			}
+				else {
+				pd=2;
+				}
+		}
+		else {
+			pd=3;
+		}
+
+		return pd;
 	}
 
 	@Override
@@ -220,5 +242,7 @@ public class UserServiceImp implements UserService {
 		Integer fenpei = studentMapper.isORnot().getFenpei();
 		return fenpei;
 	}
+
+	
 
 }

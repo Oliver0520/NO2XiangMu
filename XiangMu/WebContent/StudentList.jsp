@@ -52,7 +52,353 @@
 			$('#dg').datagrid('showColumn', strs[i]);
 		}
 	}
-</script>
+
+	function xiugai(index) {
+
+		$('#zxname1').combobox({
+			url : 'selectUname',
+			method : "post",
+			valueField : 'u_id',
+			textField : 'u_userName',
+		});
+		$('#zxname2').combobox({
+			url : 'selectUname',
+			method : "post",
+			valueField : 'u_id',
+			textField : 'u_userName',
+		});
+
+		var zxid = $("#zxid").textbox("getValue");
+		var zxglid = $("#zxglid").textbox("getValue");
+		var zxgljsid = $("#zxgljsid").textbox("getValue");
+		var data = $("#dg").datagrid("getData");
+		var row = data.rows[index];
+
+	
+		$("#xiugaixs").form("load", row);
+		$("#upbaobei").combobox("setValue", row.s_baobei == 2 ? "是" : "否");
+		$("#uphuifang").combobox("setValue", row.s_huifang == 2 ? "是" : "否");
+		$("#upyouxiao").combobox("setValue", row.s_youxiao == 2 ? "是" : "否");
+		$("#upshangmen").combobox("setValue", row.s_shangmen == 2 ? "是" : "否");
+		$("#upjiaofei").combobox("setValues", row.s_jiaofei == 2 ? "是" : "否");
+		$("#uptuifei").combobox("setValue", row.s_tuifei == 2 ? "是" : "否");
+		$("#upjinban").combobox("setValue", row.s_jinban == 2 ? "是" : "否");
+		$("#ups_sex").textbox("setValue", row.s_sex == 1 ? "男" : "女");
+		$("#zxname1").combobox("setValue", row.u_id);
+		$("#zxname2").combobox("setValue", row.u_idw);
+
+		if (zxgljsid > 0) {
+			$("#xiugai-dialog").dialog("open");
+		}
+
+		else if (zxglid > 0) {
+			$("#xiugai-dialog").dialog("open");
+		} else {
+			if (zxid > 0) {
+				$("#xiugai-dialog").dialog("open");
+				$('input', $('form[id="xiugaizxs"]')).prop('disabled', true);
+				$('#zxname1').combobox('disable');
+				$('#ups_quyu').combobox('disable');
+				$('#ups_bumen').combobox('disable');
+				$('#ups_kecheng').combobox('disable');
+				$('#upyouxiao').combobox('disable');
+				$('#ups_dafen').combobox('disable');
+				$('#uphuifang').combobox('disable');
+				$('#upshangmen').combobox('disable');
+				$('#upjiaofei').combobox('disable');
+				$('#uptuifei').combobox('disable');
+				$('#upjinban').combobox('disable');
+				$('#zxname2').combobox('disable');
+				$('#ups_huifangshijian').datebox({
+					disabled : true
+				});
+				$('#ups_shangmenshijian').datebox({
+					disabled : true
+				});
+
+			}
+		}
+	}
+	$.extend($.fn.validatebox.defaults.rules, {
+		phoneRex : {
+			validator : function(value) {
+				var rex = /^1[3-8]+\d{9}$/;
+				//var rex=/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+				//区号：前面一个0，后面跟2-3位数字 ： 0\d{2,3}
+				//电话号码：7-8位数字： \d{7,8
+				//分机号：一般都是3位数字： \d{3,}
+				//这样连接起来就是验证电话的正则表达式了：/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/        
+				var rex2 = /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+				if (rex.test(value) || rex2.test(value)) {
+					// alert('t'+value);
+					return true;
+				} else {
+					//alert('false '+value);
+					return false;
+				}
+
+			},
+			message : '请输入正确电话或手机格式'
+		}
+	});
+	function insert(index) {
+	var s_sex = $("#tjs_sex").textbox("getValue");
+		if(s_sex=="0"){
+			s_sex=null
+		}
+	
+		$("#insert-dialog").dialog("open");
+	}
+	function insertbaocun() {
+		var s_id = $("#tjs_id").textbox("getValue");
+		var s_name = $("#tjs_name").textbox("getValue");
+		var s_age = $("#tjs_age").textbox("getValue");
+		var s_sex = $("#tjs_sex").textbox("getValue");
+		var s_phone = $("#tjs_phone").val();
+		var s_education = $("#tjs_education").combobox("getValue");
+		var s_status = $("#tjs_status").combobox("getValue");
+		var s_qudao = $("#tjs_qudao").combobox("getValue");
+		var s_wangzhan = $("#tjs_wangzhan").combobox("getValue");
+		var s_guanjian = $("#tjs_guanjian").combobox("getValue");
+		var s_qq = $("#tjs_qq").textbox("getValue");
+		var s_weChat = $("#tjs_weChat").textbox("getValue");
+		var baobei = $("#tjbaobei").combobox("getValue");
+		var s_beizhu = $("#tjs_beizhu").textbox("getValue");
+		var forma = $("#insertfrm").form("validate");
+		if (s_education == "aa") {
+			s_education = null;
+		}
+		if (s_status == "aa") {
+			s_status = null;
+		}
+		if (s_qudao == "aa") {
+			s_qudao = null;
+		}
+		if (s_wangzhan == "aa") {
+			s_wangzhan = null;
+		}
+		if (s_guanjian == "aa") {
+			s_guanjian = null;
+		}
+		if (baobei == "否") {
+			baobei = 1
+		}
+		if (baobei == "是") {
+			baobei = 2
+		}
+		if (s_sex == "男") {
+			s_sex = 1
+
+		}
+		if (s_sex == "女") {
+			s_sex = 2
+		}
+		if (forma) {
+			$.post("insertStudent", {
+				s_id : s_id,
+				s_name : s_name,
+				s_age : s_age,
+				s_sex : s_sex,
+				s_phone : s_phone,
+				s_education : s_education,
+				s_status : s_status,
+				s_qudao : s_qudao,
+				s_wangzhan : s_wangzhan,
+				s_guanjian : s_guanjian,
+				s_qq : s_qq,
+				s_weChat : s_weChat,
+				s_baobei : baobei,
+			}, function(res) {
+				if (res > 0) {
+					$("#dg").datagrid("reload");
+					$.messager.alert('提示', '添加成功');
+					$("#insert-dialog").dialog("close");
+				} else {
+					$.messager.alert('提示', '添加失败');
+				}
+			}, "json");
+	
+		} else {
+			$.messager.alert("提示", "格式不正确");
+		}
+	}
+	function updatebaocun() {
+	 	var s_id = $("#ups_id").textbox("getValue");
+		var s_name = $("#ups_name").textbox("getValue");
+		var s_age = $("#ups_age").textbox("getValue");
+		var s_sex = $("#ups_sex").combobox("getValue");
+		var s_phone = $("#ups_phone").val();
+		var s_education = $("#ups_education").combobox("getValue");
+		var s_status = $("#ups_status").combobox("getValue");
+		var s_qudao = $("#ups_qudao").combobox("getValue");
+		var s_wangzhan = $("#ups_wangzhan").combobox("getValue");
+		var s_guanjian = $("#ups_guanjian").combobox("getValue");
+		var s_qq = $("#ups_qq").textbox("getValue"); 
+		 var s_weChat = $("#ups_weChat").textbox("getValue");
+		var baobei = $("#upbaobei").combobox("getValue");
+		var s_beizhu = $("#ups_beizhu").textbox("getValue");
+		var name = $("#zxname1").combobox("getValue");
+		var s_quyu = $("#ups_quyu").combobox("getValue");
+		var s_bumen = $("#ups_bumen").combobox("getValue");
+		var s_kecheng = $("#ups_kecheng").combobox("getValue");
+		var youxiao = $("#upyouxiao").combobox("getValue");
+		var s_dafen = $("#ups_dafen").combobox("getValue");
+		var huifang = $("#uphuifang").combobox("getValue");
+		var s_huifangshijian = $("#ups_huifangshijian").textbox("getValue");
+		var shangmen = $("#upshangmen").combobox("getValue");
+		var s_shangmenshijian = $("#ups_shangmenshijian").textbox("getValue");
+		var s_wuxiaoyuanyin = $("#ups_wuxiaoyuanyin").textbox("getValue");
+		var jiaofei = $("#upjiaofei").combobox("getValue");
+		var s_jiaofeishijian = $("#ups_jiaofeishijian").textbox("getValue");
+		var s_price = $("#ups_price").textbox("getValue"); 
+	 	 var tuifei = $("#uptuifei").combobox("getValue");
+		var jinban = $("#upjinban").combobox("getValue");
+		var s_jinbanshijian = $("#ups_jinbanshijian").textbox("getValue"); 
+		
+		 var s_jinbanbeizhu = $("#ups_jinbanbeizhu").textbox("getValue");
+		var s_tuifeiyuanyin = $("#ups_tuifeiyuanyin").textbox("getValue");
+		var s_dingjin = $("#ups_dingjin").textbox("getValue");
+		var s_dingjinshijian = $("#ups_dingjinshijian").textbox("getValue"); 
+		 var s_guanzhu = $("#ups_guanzhu").textbox("getValue"); 
+		 var name2 = $("#zxname2").combobox("getValue"); 
+		 var s_zixunbeizhu = $("#ups_zixunbeizhu").textbox("getValue"); 
+		 var fromup = $("#xiugaixs").form("validate"); 
+
+	
+		if(fromup){
+			
+		
+		if (baobei == "否") {
+			baobei = 1
+		}
+		if (baobei == "是") {
+			baobei = 2
+		}
+
+		if (huifang == "否") {
+			huifang = 1
+		}
+		if (huifang == "是") {
+			huifang = 2
+		}
+		if (youxiao == "否") {
+			youxiao = 1
+		}
+		if (youxiao == "是") {
+			youxiao = 2
+		}
+		if (shangmen == "否") {
+			shangmen = 1
+		}
+		if (shangmen == "是") {
+			shangmen = 2
+		}
+		if (jiaofei == "否") {
+			jiaofei = 1
+		}
+		if (jiaofei == "是") {
+			jiaofei = 2
+		}
+		if (tuifei == "否") {
+			tuifei = 1
+		}
+		if (tuifei == "是") {
+			tuifei = 2
+		}
+		if (jinban == "否") {
+			jinban = 1
+		}
+		if (jinban == "是") {
+			jinban = 2
+		}
+		if (s_sex == "男") {
+			s_sex = 1
+		}
+		if (s_sex == "女") {
+			s_sex = 2
+		} 
+		
+			$.post("updaStu", {
+				 s_id : s_id,
+				s_name : s_name,
+				s_age : s_age,
+				s_sex : s_sex,
+				 s_phone : s_phone, 
+				s_education : s_education,
+				s_status : s_status,
+				s_qudao : s_qudao,
+				s_wangzhan : s_wangzhan,
+				s_guanjian : s_guanjian,
+				s_qq : s_qq, 
+				  s_weChat : s_weChat,
+				s_baobei : baobei,
+				s_beizhu : s_beizhu,
+				u_id : name,
+				s_quyu : s_quyu,
+				s_bumen : s_bumen,
+				s_kecheng : s_kecheng,
+				s_youxiao : youxiao,
+				s_dafen : s_dafen, 
+				s_huifang : huifang,
+				s_huifangshijian : s_huifangshijian,
+				s_shangmen : shangmen,
+				s_shangmenshijian : s_shangmenshijian,
+				s_wuxiaoyuanyin : s_wuxiaoyuanyin,
+				s_jiaofei : jiaofei,
+				s_jiaofeishijian : s_jiaofeishijian,
+				s_price : s_price, 
+			 	 s_tuifei : tuifei,
+				s_jinban : jinban,
+				s_jinbanshijian : s_jinbanshijian, 
+				 s_jinbanbeizhu : s_jinbanbeizhu,
+				s_tuifeiyuanyin : s_tuifeiyuanyin,
+				s_dingjin : s_dingjin,
+				s_dingjinshijian : s_dingjinshijian, 
+				 s_guanzhu : s_guanzhu, 
+				 u_idw : name2,  
+				 s_zixunbeizhu : s_zixunbeizhu 
+			}, function(res) {
+				if (res > 0) {
+					$("#dg").datagrid("reload");
+					$.messager.alert('提示', '编辑成功');
+					$("#xiugai-dialog").dialog("close");
+				} else {
+					$.messager.alert('提示', '编辑失败');
+				}
+			}, "json");
+		}
+			else {
+				$.messager.alert("提示", "格式不正确");
+			}
+	}
+	function insertrizhi(index) {
+		var data = $("#dg").datagrid("getData");
+		var row = data.rows[index];
+		$("#s_ida").textbox("setValue", row.s_id);
+		$("#u_ida").textbox("setValue", row.u_id);
+		$('#l_genzongstartshijian').datebox({
+			disabled : true
+		});
+		$("#tjrizhi-dialog").dialog("open");
+		$(document).ready(
+				function() {
+					$("#l_genzongstartshijian").datebox("setValue",
+							myformatter(new Date()));
+					$(".datebox :text").attr("readonly", "readonly");
+					
+				});
+	}
+
+	function myformatter(date) {
+		var y = date.getFullYear();
+		var m = date.getMonth() + 1;
+		var d = date.getDate();
+		var s = date.get
+		return y + '-' + (m < 10 ? ('0' + m) : m) + '-'
+				+ (d < 10 ? ('0' + d) : d);
+	}
+	
+ </script>
 </head>
 <body>
 	<input class="easyui-textbox" type="text" id="zxid"
@@ -385,13 +731,15 @@
 				text:'退出',
 				iconCls:'icon-cancel',
 				handler:function(){exitUpdate();}}]">
-		<form id="xiugaifrm">
+		<form id="xiugaixs">
+
 			<div style="float: left">
 				<table>
 					<tr>
 						<td><label>在线录入:</label></td>
 
 					</tr>
+
 					<tr style="display: none">
 						<td><input class="easyui-textbox" type="text" id="ups_id"
 							name="s_id"></td>
@@ -399,12 +747,12 @@
 					<tr>
 						<td><label>姓名:</label></td>
 						<td><input class="easyui-textbox" type="text" id="ups_name"
-							name="s_name" /></td>
+							name="s_name" data-options="required:true"/></td>
 					</tr>
 					<tr>
 						<td><label>年龄:</label></td>
 						<td><input class="easyui-textbox" type="text" id="ups_age"
-							name="s_age" /></td>
+							name="s_age" data-options="required:true"/></td>
 					</tr>
 					<tr>
 						<td><label>性别:</label></td>
@@ -417,9 +765,12 @@
 
 					<tr>
 						<td><label>电话:</label></td>
-						<td><input class="easyui-textbox" type="text" id="ups_phone"
-							name="s_phone" /></td>
-					</tr>
+						<td>
+							
+							<input class="easyui-validatebox"
+						data-options="required:true,validType:'phoneRex'" id="ups_phone"
+						name="s_phone" /></td>
+					</tr> 
 					<tr>
 						<td><label>学历:</label></td>
 						<td><select id="ups_education" class="easyui-combobox"
@@ -513,6 +864,7 @@
 					</tr>
 				</table>
 			</div>
+		
 			<div style="float: right">
 				<table>
 					<tr>
@@ -523,8 +875,11 @@
 						<td><label>咨询姓名:</label></td>
 						<td><select class="easyui-combobox" id="zxname1"
 							style="width: 110px;">
+
+
 						</select></td>
 					</tr>
+					
 					<tr>
 						<td><label>所在区域:</label></td>
 						<td><select id="ups_quyu" class="easyui-combobox"
@@ -642,8 +997,8 @@
 						<td><label>金额:</label></td>
 						<td><input class="easyui-textbox" type="text" id="ups_price"
 							name="s_price" /></td>
-					</tr>
-					<tr>
+					</tr> 
+					 <tr>
 						<td><label>是否退费:</label></td>
 						<td><select id="uptuifei" class="easyui-combobox"
 							style="width: 110px;">
@@ -663,7 +1018,7 @@
 						<td><label>进班时间:</label></td>
 						<td><input class="easyui-datetimebox" type="text"
 							id="ups_jinbanshijian" name="s_jinbanshijian" /></td>
-					</tr>
+					</tr> 
 					<tr>
 						<td><label>进班备注:</label></td>
 						<td><input class="easyui-textbox" type="text"
@@ -688,18 +1043,18 @@
 						<td><label>学生关注:</label></td>
 						<td><input class="easyui-textbox" type="text"
 							id="ups_guanzhu" name="s_guanzhu" /></td>
-					</tr>
-					<tr>
+					</tr>  
+				 <tr>
 						<td><label>咨询师(面见):</label></td>
 						<td><select class="easyui-combobox" id="zxname2"
 							style="width: 110px;">
 						</select></td>
-					</tr>
+					</tr>  
 					<tr>
 						<td><label>咨询师备注:</label></td>
 						<td><input class="easyui-textbox" type="text"
 							id="ups_zixunbeizhu" name="s_zixunbeizhu" /></td>
-					</tr>
+					</tr> 
 				</table>
 			</div>
 		</form>
@@ -724,18 +1079,18 @@
 				<tr>
 					<td><label>姓名:</label></td>
 					<td><input class="easyui-textbox" type="text" id="tjs_name"
-						name="s_name" /></td>
+						name="s_name" data-options="required:true" /></td>
 				</tr>
 				<tr>
 					<td><label>年龄:</label></td>
 					<td><input class="easyui-textbox" type="text" id="tjs_age"
-						name="s_age" /></td>
+						name="s_age" data-options="required:true" /></td>
 				</tr>
 				<tr>
 					<td><label>性别:</label></td>
 					<td><select id="tjs_sex" class="easyui-combobox"
-						style="width: 110px;">
-							<option value="0">--请选择--</option>
+						style="width: 110px;" data-options="required:true">
+							<option value="0"></option>
 							<option value="2">女</option>
 							<option value="1">男</option>
 					</select></td>
@@ -743,7 +1098,8 @@
 
 				<tr>
 					<td><label>电话:</label></td>
-					<td><input class="easyui-textbox" type="text" id="tjs_phone"
+					<td><input class="easyui-validatebox"
+						data-options="required:true,validType:'phoneRex'" id="tjs_phone"
 						name="s_phone" /></td>
 				</tr>
 				<tr>
@@ -867,10 +1223,13 @@
 					<td><input class="easyui-textbox" type="text" id="l_id"
 						name="l_id"></td>
 				</tr>
-				<tr>
+				<tr  style="display: none">
 					<td><label>回访开始时间:</label></td>
 					<td><input class="easyui-datetimebox"
-						id="l_genzongstartshijian" name="l_genzongstartshijian" /></td>
+						id="l_genzongstartshijian" name="l_genzongstartshijian" /> <input class="easyui-datetimebox" 
+    data-options="onShowPanel:function(){
+        $(this).datetimebox('spinner').timespinner('setValue','00:00:00');
+    }" name="l_genzongstartshijian" id="l_genzongstartshijian"/> </td>
 				</tr>
 				<tr>
 					<td><label>回访结束时间:</label></td>
@@ -954,8 +1313,7 @@
 				<td><input type="checkbox" value="s_name" name="yc" />姓名</td>
 				<td><input type="checkbox" value="s_age" name="yc" />年龄</td>
 				<td><input type="checkbox" value="s_sex" name="yc" />性别</td>
-				<td><input type="checkbox" value="s_phone" name="yc" />电话
-				</td>
+				<td><input type="checkbox" value="s_phone" name="yc" />电话</td>
 				<td><input type="checkbox" value="s_education" name="yc" />学历
 				</td>
 			</tr>
@@ -997,8 +1355,7 @@
 				</td>
 				<td><input type="checkbox" value="s_price" name="yc" />金额</td>
 				<td><input type="checkbox" value="s_tuifei" name="yc" />是否退费</td>
-				<td><input type="checkbox" value="s_jinban" name="yc" />是否进班
-				</td>
+				<td><input type="checkbox" value="s_jinban" name="yc" />是否进班</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" value=s_jinbanshijian name="yc" />进班时间

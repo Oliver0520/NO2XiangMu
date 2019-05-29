@@ -93,7 +93,10 @@
 					<tr>
 						<td><label>回访开始时间:</label></td>
 						<td><input class="easyui-textbox" type="text" 
-							name="l_genzongstartshijian" disabled="disabled" /></td>
+							name="l_genzongstartshijian" disabled="disabled" />
+							
+							
+							</td>
 					</tr>
 					<tr>
 						<td><label>回访结束时间:</label></td>

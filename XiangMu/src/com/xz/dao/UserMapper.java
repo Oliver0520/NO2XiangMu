@@ -167,4 +167,6 @@ Integer updateIsFenpei(IsFenpei isfenpei);
  * @return
  */
 Integer selectCOuntQd(Integer u_id);
+
+Integer selectUserisok(String u_userName);
 }

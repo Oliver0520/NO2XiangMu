@@ -37,8 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select count(u_id) from user <where>	u_loginName=#{u_loginName}</where>
 	</select>
 	<insert id="insertUser" parameterType="user">
-	insert into user (u_loginName,u_password,u_email,u_phoneNumber,u_createTime)
-	values(#{u_loginName},#{u_password},#{u_email},#{u_phoneNumber},#{u_createTime})
+	insert into user (u_loginName,u_userName,u_password,u_email,u_phoneNumber,u_createTime)
+	values(#{u_loginName},#{u_userName},#{u_password},#{u_email},#{u_phoneNumber},#{u_createTime})
 	</insert>
 	<delete id="deleteUser" parameterType="int">
 	delete from user where u_id=#{u_id}
@@ -202,4 +202,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCOuntQd" parameterType="int" resultType="int">
 	select count(*) from user where u_id=#{u_id} and u_qdstatus not in (1,2,3)
 	</select>
+	
+	<select id="selectUserisok" parameterType="String"	resultType="int">
+	
+	select COUNT(*)  FROM user
+	<where>
+	
+	u_userName=#{u_userName}
+	
+	</where>
+	</select>
+	
+	
 </mapper>

@@ -58,9 +58,23 @@ public class UserController {
       
       @RequestMapping(value="/insertUser",method=RequestMethod.POST)
       @ResponseBody
-      public Integer insertUser(User user) {
+      public  Map<String, Object> insertUser(User user) {
     	  Integer i = userServiceImp.insertUser(user);
-    	  return i;
+    	
+    	  Map<String, Object> map = new HashMap<String, Object>();
+    	  if(i==1) {
+    		  map.put("msg", "添加成功!!!");
+  			  map.put("success", true);
+    	  }
+    	  if(i==2) {
+    		  map.put("msg", "添加失败!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==3) {
+    		  map.put("msg", "该用户已存在!!!");
+  			  map.put("success", false);
+    	  }
+return map;
       }
       
       @RequestMapping(value="/deleteUser",method=RequestMethod.POST)
