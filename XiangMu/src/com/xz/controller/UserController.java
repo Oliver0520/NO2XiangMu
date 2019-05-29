@@ -131,9 +131,15 @@ return map;
       }
       @RequestMapping(value="/xiugaimima",method=RequestMethod.POST)
       @ResponseBody
-      public Map<String, Object> xiugaimima(User user,HttpServletRequest request) {
-    	 Integer i = userServiceImp.updateMima(user, request);
+      public Map<String, Object> xiugaimima(User user,HttpServletRequest request,String phone) {
+    	 
     	  Map<String, Object> map = new HashMap<String, Object>();
+    	  user.setU_phoneNumber(phone);
+    	  Integer i = userServiceImp.updateMima(user, request);
+    	  if(i==6) {
+    		  map.put("msg", "手机号不是当前账号绑定的手机号，请更换尝试!!!");
+  			  map.put("success", false);
+    	  }
     	  if(i==1) {
     		  map.put("msg", "原密码不正确,请重新输入!!!");
   			  map.put("success", false);
@@ -181,6 +187,10 @@ return map;
     	  if(i==3) {
     		  map.put("msg", "签退成功!!!");
   			  map.put("success", true);
+    	  }
+    	  if(i==4) {
+    		  map.put("msg", "该用户未签到，不能进行签退操作!!!");
+  			  map.put("success", false);
     	  }
     	  return map;
       }

@@ -71,6 +71,36 @@ public class MainController {
 		}
     	return map;
     }
+    @RequestMapping(value="/empqt",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object>  empqt(String time,HttpServletRequest request) throws ParseException {
+    	user.setU_qdshijian(time);
+        User usera = (User) request.getSession().getAttribute("usera");  
+        user.setU_id( usera.getU_id());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        String a=df.format(new Date())+" 17:00:00";
+        user.setStime(a);
+        Integer i = mainServiceImp.empqt(user);
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (i == 1) {
+			map.put("msg", "签退成功，祝您生活愉快！");
+			map.put("success", true);
+		}
+		if (i == 2) {
+			map.put("msg", "签退失败，请联系管理员");
+			map.put("success", false);
+		}
+		if (i == 3) {
+			map.put("msg", "您今天未进行签到，不能进行签退操作");
+			map.put("success", false);
+		}
+		if (i == 4) {
+			map.put("msg", "还未到下班时间，不能进行签退操作");
+			map.put("success", false);
+		}
+    	return map;
+    }
+    
     @RequestMapping(value="/sendyanzhengma",method = RequestMethod.POST)
     @ResponseBody
     public Integer sendyanzhengma(String phone,HttpServletRequest request) throws ClientException {
@@ -78,7 +108,7 @@ public class MainController {
     	String templateCode="SMS_165109439";
     	String templateParam="{'code':'"+suijiNum+"'}";
     	SendSmsResponse sendSms = Aliyun.sendSms(phone,templateParam,templateCode);    	
-//    	System.out.println(sendSms.getCode());
+  	System.out.println(sendSms.getCode());
     	String fhz = sendSms.getCode();
     	Integer rez=0;
     	if("OK".equals(fhz)) {

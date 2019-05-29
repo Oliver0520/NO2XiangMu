@@ -59,20 +59,20 @@
 					</td>
 				</tr>
 				<tr>
-					<td>权重:</td>
-					<td><input class="easyui-numberbox" type="text" name="weight1"
-						id="weight1" data-options="required:true"></input></td>
+				<td>模块名称:</td>
+					<td><input type="text" class="easyui-textbox" id="name1"
+						name="name1" data-options="required:true"></td>					
 				</tr>
 				<tr>
 					<td>URL:</td>
 					<td><input class="easyui-textbox" type="text" name="url1"
-						id="url1" data-options="required:true"></input></td>
+						id="url1" ></input></td>
 				</tr>
 
 				<tr>
-					<td>模块名称:</td>
-					<td><input type="text" class="easyui-textbox" id="name1"
-						name="name1" data-options="required:true"></td>
+					<td>权重:</td>
+					<td><input class="easyui-numberbox" type="text" name="weight1"
+						id="weight1" data-options="required:true"></input></td>
 				</tr>
 			</table>
 		</form>

@@ -114,6 +114,12 @@ Integer selectCountQD(Fenye<User> fenye);
  */
 User selectStatusQD(Integer u_id);
 /**
+ * 查询用户是否已经为未签到
+ * @param u_id
+ * @return
+ */
+User selectStatusintwo(Integer u_id);
+/**
  * 帮助员工签退
  * @param u_id
  * @return
@@ -137,6 +143,12 @@ Integer qiantui();
  * @return
  */
 List<User> selectZxs();
+
+/**
+ * 查询出所有角色为咨询师并且签到的用户信息
+ * @return
+ */
+List<User> selectZxsFenpei();
 /**
  * 查询员工的权重相关信息
  * @param fenye
@@ -168,5 +180,8 @@ Integer updateIsFenpei(IsFenpei isfenpei);
  */
 Integer selectCOuntQd(Integer u_id);
 
-Integer selectUserisok(String u_userName);
+Integer selectuserqd(Integer u_id);
+
+Integer updateUsergerenqd(User user);
+
 }

@@ -13,24 +13,7 @@ function init(){
 function xinzeng(){
 	$("#insert-dialog").dialog("open");
 }
-function insertbaocun(){
-	var r_name= $("#rname").textbox("getValue");
-	$.post("selectRolesl",{r_name:r_name},function(res){
-		if(res>0){
-			$.messager.alert('提示','角色名称已被占用，请更换！！！');
-		}else{
-			$.post("insertRoles",{r_name:r_name},function(res){
-				if(res>0){
-					$("#dg").datagrid("reload");
-					$.messager.alert('提示','新增成功');
-					$("#insert-dialog").dialog("close");
-				}else{
-					$.messager.alert('提示','新增失败');
-				}
-			});
-		}
-	},"json");
-}
+
 function caozuoformatter(value,row,index){
 	return " <a href='javascript:void(0)' class='easyui-linkbutton' onclick='shanchu("+index+")'>删除</a>     <a href='javascript:void(0)' class='easyui-linkbutton' onclick='xiugai("+index+")'>编辑</a>  ";
 }
@@ -103,30 +86,3 @@ function kongzhi(index) {
 }
 
 
-function tijiaoModules() {
-	var trees = $("#tt").tree("getChecked", [ "checked", "indeterminate" ]);
-	var ids = "";
-	for (var i = 0; i < trees.length; i++) {
-		if (ids == "") {
-			ids = ids + trees[i].id;
-		} else {
-			ids = ids + "," + trees[i].id;
-		}
-	}
-	$.post("insertRoleModule", {
-		m_id : ids,
-		r_id : jiaoseid
-	}, function(res) {
-		if (res.success) {
-			$.messager.alert("提示", res.msg);
-			$('#quanxiantree').window('close');
-			$("#dg").datagrid("reload");
-			
-		} else {
-			$('#quanxiantree').window('close');
-			$("#dg").datagrid("reload");
-			$.messager.alert("提示", res.msg);
-		}
-	}, "json");
-
-}

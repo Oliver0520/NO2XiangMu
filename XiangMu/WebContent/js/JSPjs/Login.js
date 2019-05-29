@@ -32,18 +32,7 @@ function getVerifiCode() {
 	function exitForget() {
 		$("#forget-dialog").dialog("closed");
 	}
-	function sendyanzhengma(){
-		$.post("sendyanzhengma",
-				{phone:$("#phone").textbox("getValue")},
-				function(res){
-			if(res>0){
-				$.messager.alert("提示","验证码发送失败，请重试！");
-			}else{
-				$.messager.alert("提示","验证码已发送，请注意查收！");				
-			}
-		},"json");
-		
-	}
+	
 	function forgetbaocun() {
 		var loginName = $("#loginName").textbox("getValue");
 		var yanzheng = $("#yanzheng").textbox("getValue");

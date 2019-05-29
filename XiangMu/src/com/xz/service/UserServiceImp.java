@@ -140,28 +140,33 @@ public class UserServiceImp implements UserService {
 		user.setNpwd(MD5Util.string2MD5(user.getNpwd()));
 		Integer jg = 0;
 		User user1 = (User) request.getSession().getAttribute("usera");
-		user.setU_id(user1.getU_id());
-		String yanzhengma = (String) request.getSession().getAttribute("suijiNum");
-		if (user.getYanzheng().equals(yanzhengma)) {
-			if (user.getOpwd().equals(user1.getU_password())) {
-				if (user.getApwd().equals(user.getNpwd())) {
-					if (userMapper.updateMima(user) > 0) {
+		user.setU_id(user1.getU_id());  //获取用户的编号
+		String yanzhengma = (String) request.getSession().getAttribute("suijiNum"); //获取发送给手机的验证码
+		String abc = user.getU_phoneNumber();//获取用户输入的手机号码
+		 String u_phoneNumber = user1.getU_phoneNumber();//获取用户绑定的手机号码
+		
+		if (user.getYanzheng().equals(yanzhengma)) { //判断验证码是否正确
+			 if(u_phoneNumber.equals(abc)) {//判断手机号是否为当前用户绑定的手机号
+			if (user.getOpwd().equals(user1.getU_password())) {//判断旧密码是否正确
+				if (user.getApwd().equals(user.getNpwd())) {//判断两次输入的密码是否相同
+					if (userMapper.updateMima(user) > 0) {//判断修改密码是否成功
 						return jg = 4;
 					} else {
 						return jg = 3;
 					}
 				} else {
 					return jg = 2;
-				}
+				} 
 			} else {
 				return jg = 1;
 			}
 		} else {
+			return jg=6;
+		}
+		} else {
 			return jg = 5;
 		}
-
 	}
-
 	@Override
 	public Fenye<User> selectUserQD(Fenye<User> fenye) {
 		// TODO Auto-generated method stub
@@ -177,15 +182,21 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		Integer jg = 0;
 		User qd = userMapper.selectStatusQD(u_id);
-		if (qd == null) {
-			if (userMapper.qdcaozuo(u_id) > 0) {
-				return jg = 3;
+		User qd2=userMapper.selectStatusintwo(u_id);
+		if(qd2==null) {
+			if (qd == null) {
+				if (userMapper.qdcaozuo(u_id) > 0) {
+					return jg = 3;
+				} else {
+					return jg = 2;
+				}
 			} else {
-				return jg = 2;
+				return jg = 1;
 			}
-		} else {
-			return jg = 1;
+		}else {
+			return jg=4;
 		}
+		
 	}
 
 	@Override

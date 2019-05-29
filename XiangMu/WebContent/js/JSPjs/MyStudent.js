@@ -160,6 +160,7 @@ function chaxun() {
 			$("#dg").datagrid("reload");
 		}
 	}
+<<<<<<< HEAD
 }
 function caozuolei(value, row, index) {
 	var zxid = $("#zxid").textbox("getValue");
@@ -199,6 +200,23 @@ function caozuolei(value, row, index) {
 					+ index
 					+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
 					+ index + ")'>添加日志</a>"
+=======
+ }
+	function caozuolei(value, row, index) {
+		var zxid = $("#zxid").textbox("getValue");
+		var zxglid = $("#zxglid").textbox("getValue");
+		var zxgljsid = $("#zxgljsid").textbox("getValue");
+		if(zxgljsid>0){
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  "
+		}
+		
+		else if(zxglid>0){
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  "
+		 }
+		else{
+			if(zxid>0){
+				return " <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>   "
+>>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
 
 		}
 	}
@@ -375,6 +393,7 @@ function daochuexcel() {
 			}
 		});
 
+<<<<<<< HEAD
 	} else {
 		$.messager.show({
 			title : '我的消息',
@@ -388,3 +407,20 @@ function daochuexcel() {
 		});
 	}
 }
+=======
+		} else {
+			$.messager.show({
+				title : '我的消息',
+				msg : '还未选择学生，请选择！',
+				timeout : 1000,
+				showType : 'slide',
+				style : {
+					top : document.body.scrollTop
+							+ document.documentElement.scrollTop,
+				}
+			});
+		}
+	}
+	
+	
+>>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49

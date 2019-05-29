@@ -40,9 +40,11 @@ public class RoleServiceImp implements RoleService {
 	public Integer insertRole(String r_name) {
 		// TODO Auto-generated method stub
 		Integer jg=0;
-		Integer i =roleMapper.insertRole(r_name);
+		
 		Integer j=roleMapper.selectRname(r_name);
-		if(!(j>0)) {
+		System.out.println(j);
+		if(j==0) {
+			Integer i =roleMapper.insertRole(r_name);
 			if(i>0) {
 				jg=3;
 			}else {
@@ -103,13 +105,20 @@ public class RoleServiceImp implements RoleService {
 		Integer selectMokuai_js_id = roleMapper.selectMoByRid(roleModul);
 		if (mokuailist.get(i).getM_parentId() == 0) {
 			Integer selectMokuai_isyouzi = roleMapper.selectMisnu(mokuailist.get(i).getM_id());
+			
 			if (selectMokuai_isyouzi > 0) {
 				mk.setChecked(false);
 			} else {
 				mk.setChecked(selectMokuai_js_id == 1);
 			}
 		} else {
-			mk.setChecked(selectMokuai_js_id == 1);
+			Integer selectMokuai_isyouzi = roleMapper.selectMisnu(mokuailist.get(i).getM_id());
+		
+			if (selectMokuai_isyouzi > 0) {
+				mk.setChecked(false);
+			} else {
+				mk.setChecked(selectMokuai_js_id == 1);
+			}
 		}
 		ModuleTree fortree = fortree(mokuailist, i, mk, r_id);
 		if (fortree != null) {

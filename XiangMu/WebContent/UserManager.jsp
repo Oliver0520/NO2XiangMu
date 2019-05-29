@@ -55,6 +55,7 @@
 			$('#dg').datagrid('showColumn',strs[i]);
 		}
 			}
+<<<<<<< HEAD
 			function insertbaocun(){
 				var lname=$("#lname").val();
 				var pwd=$("#pwd").textbox("getValue");
@@ -90,6 +91,56 @@
 				},"json");
 				}
 			}
+=======
+			
+			  $.extend($.fn.validatebox.defaults.rules, {
+				    phoneRex: {
+				        validator: function(value){
+				        var rex=/^1[3-8]+\d{9}$/;
+				        //var rex=/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+				        //区号：前面一个0，后面跟2-3位数字 ： 0\d{2,3}
+				        //电话号码：7-8位数字： \d{7,8
+				        //分机号：一般都是3位数字： \d{3,}
+				         //这样连接起来就是验证电话的正则表达式了：/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/        
+				        var rex2=/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+				        if(rex.test(value)||rex2.test(value))
+				        {
+				          // alert('t'+value);
+				          return true;
+				        }else
+				        {
+				         //alert('false '+value);
+				           return false;
+				        }
+				          
+				        },
+				        message: '请输入正确电话或手机格式'
+				    }
+				});
+			  
+			  function updatebaocun(){
+					var email=$("#uemail").val();
+					var phone=$("#uphone").val();
+					var u_id=$("#u_id").textbox("getValue");
+					var forma=$("#upfrm").form("validate");
+					if(forma){
+					$.post("updateUser",{
+						u_email:email,
+						u_phoneNumber:phone,
+						u_id:u_id
+					},function(res){
+						if(res>0){
+							$("#dg").datagrid("reload");
+							$.messager.alert('提示','编辑成功'); 
+							$("#update-dialog").dialog("close");
+						}else{
+							$.messager.alert('提示','编辑失败'); 
+						}
+					},"json");}else{
+					$.messager.alert("提示","格式不正确");	
+					}
+					}
+>>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
 	</script>
 </head>
 <body>
@@ -149,6 +200,7 @@
 				iconCls:'icon-help',
 				handler:function(){exitInsert();}
 			}]">
+			<form id="addfrm">
     <table>
     <tr>
     <td><label>登录名:</label></td>
@@ -168,9 +220,10 @@
     </tr>
     <tr>
     <td><label>手机号:</label></td>
-    <td><input class="easyui-textbox" type="text"  data-options="required:true" id="phone" /></td>
+    <td><input class="easyui-validatebox" data-options="required:true,validType:'phoneRex'" id="phone" /></td>
     </tr>
-    </table>   
+    </table>
+    </form>   
 </div> 
 	
 	
@@ -200,7 +253,7 @@
     </tr>
     <tr>
     <td><label>手机号:</label></td>
-    <td><input class="easyui-textbox" type="text" id="uphone" name="u_phoneNumber" /></td>
+    <td><input class="easyui-validatebox textbox" data-options="required:true,validType:'phoneRex'" id="uphone" name="u_phoneNumber" /></td>
     </tr>
     </table>   
     </form>

@@ -34,7 +34,48 @@ $(function() {
 		$("#insert-dialog").dialog("open");
 	}
 	/* 新增的保存按钮，需要先去后台查询登录名是否重复，如果重复则不能使用，否则进行下一步 */
+<<<<<<< HEAD
 	
+=======
+	function insertbaocun(){
+		var lname=$("#lname").val();
+		var pwd=$("#pwd").textbox("getValue");
+		var email=$("#email").val();
+		var phone=$("#phone").val();
+		var forma=$("#addfrm").form("validate");
+		if(forma){
+		if(lname==null){
+			$.messager.alert('提示','登录名不能为空');
+		}else{
+			
+		$.post("selectCountByLname",{
+			u_loginName:lname
+		},function(res){
+			if(res>0){
+				$.messager.alert('提示','登录名已被占用，请更换！！！');    
+			}else{
+				$.post("insertUser",{
+					u_loginName:lname,
+					u_password:pwd,
+					u_email:email,
+					u_phoneNumber:phone,
+					u_createTime:getNowFormatDate()
+				},function(res){
+					if(res>0){
+						$("#dg").datagrid("reload");
+						$.messager.alert('提示','新增成功'); 
+						$("#insert-dialog").dialog("close");
+					}else{
+						$.messager.alert('提示','新增失败'); 
+					}
+				},"json");
+			}
+		},"json");
+		}}else{
+			$.messager.alert("提示","格式不正确");	
+		}
+	}
+>>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
 	/* 关闭新增dialog窗口 */
 	function exitInsert(){
 		$("#insert-dialog").dialog("close");
@@ -71,24 +112,7 @@ $(function() {
 		$("#upfrm").form("load",row);
 		$("#update-dialog").dialog("open");		
 	}
-	function updatebaocun(){
-		var email=$("#uemail").val();
-		var phone=$("#uphone").textbox("getValue");
-		var u_id=$("#u_id").textbox("getValue");
-		$.post("updateUser",{
-			u_email:email,
-			u_phoneNumber:phone,
-			u_id:u_id
-		},function(res){
-			if(res>0){
-				$("#dg").datagrid("reload");
-				$.messager.alert('提示','编辑成功'); 
-				$("#update-dialog").dialog("close");
-			}else{
-				$.messager.alert('提示','编辑失败'); 
-			}
-		},"json");
-	}
+	
 	function exitUpdate(){
 		$("#update-dialog").dialog("close");
 	}
@@ -201,38 +225,3 @@ $(function() {
 		}
 	}
 	
-/*	function yincang(){
-		$("#abd").window("open");
-	}
-	function hideCol(){
-		var spCodesTemp = "";
-		$('input:checkbox[name=asdf]:checked').each(function(i){
-		if(0==i){
-		spCodesTemp = $(this).val();
-		}else{
-		spCodesTemp += (","+$(this).val());
-		}
-		});
-		var strs= new Array(); //定义一数组 
-		strs=spCodesTemp.split(","); //字符分割 
-		for (i=0;i<strs.length ;i++ ) 
-		{ 
-			$('#dg').datagrid('hideColumn',strs[i]);
-		}
-		 }
-			function showCol(){
-				var spCodesTemp = "";
-		$('input:checkbox[name=asdf]:checked').each(function(i){
-		if(0==i){
-		spCodesTemp = $(this).val();
-		}else{
-		spCodesTemp += (","+$(this).val());
-		}
-		});
-		var strs= new Array(); //定义一数组 
-		strs=spCodesTemp.split(","); //字符分割 
-		for (i=0;i<strs.length ;i++ ) 
-		{ 
-			$('#dg').datagrid('showColumn',strs[i]);
-		}
-			}*/

@@ -15,4 +15,6 @@ public interface MainService {
 	 * @return
 	 */
 	String suijiNum(HttpServletRequest request);
+	
+	Integer empqt(User user) throws ParseException;
 }

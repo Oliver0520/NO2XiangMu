@@ -126,6 +126,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectStatusQD" parameterType="int" resultType="user">
 	select * from user where u_qdstatus='4' and u_id=#{u_id}
 	</select>
+	<select id="selectStatusintwo" parameterType="int" resultType="user">
+	select * from user where u_qdstatus='2' and u_id=#{u_id}
+	</select>
 	<update id="qdcaozuo" parameterType="int" >
 	update user <set>u_qdstatus ="4"</set> where u_id=#{u_id}
 	</update>
@@ -142,14 +145,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</set>
      <where>u_id=#{u_id}</where>
 	</update>
+	<update id="updateUsergerenqd" parameterType="user">
+	update user 
+	<set>
+	<if test="u_qdstatus!=null and u_qdstatus !=''">
+	u_qdstatus=#{u_qdstatus},
+	</if>
+	</set>
+     <where>u_id=#{u_id}</where>
+	</update>
 	<update id="qiantui">
-	update user set u_qdstatus=4 
+	update user set u_qdstatus=4  where u_qdstatus !=2
 	</update>
 	
 	<select id="selectZxs" resultType="user">
 	select u.* from user u INNER JOIN userrole ur INNER JOIN role r on u.u_id =ur.u_id and ur.r_id=r.r_id where r.r_name="咨询师角色"
 	</select>
-	
+	<select id="selectZxsFenpei" resultType="user">
+     select u.* from user u INNER JOIN userrole ur INNER JOIN role r on u.u_id =ur.u_id and ur.r_id=r.r_id where r.r_name="咨询师角色" and u.u_qdstatus in(1,3)
+    </select>
 	<select id="selectUweight" parameterType="fenye" resultType="user">
 	select u.u_id,u.u_userName,u.u_weight,u.u_weightbeizhu from user u INNER JOIN userrole ur INNER JOIN role r on u.u_id =ur.u_id and ur.r_id=r.r_id 
 	<where>
@@ -200,7 +214,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select count(*) from role where r_name=#{r_name}
 	</select>
 	<select id="selectCOuntQd" parameterType="int" resultType="int">
-	select count(*) from user where u_id=#{u_id} and u_qdstatus not in (1,2,3)
+	select count(*) from user where u_id=#{u_id} and u_qdstatus not in (1,3)
+	</select>
+	<select id="selectuserqd" parameterType="int" resultType="int">
+	select count(*) from user where u_id=#{u_id} and u_qdstatus  in (1,3)
 	</select>
 	
 	<select id="selectUserisok" parameterType="String"	resultType="int">
