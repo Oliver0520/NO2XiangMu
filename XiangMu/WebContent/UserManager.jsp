@@ -55,7 +55,7 @@
 			$('#dg').datagrid('showColumn',strs[i]);
 		}
 			}
-<<<<<<< HEAD
+
 			function insertbaocun(){
 				var lname=$("#lname").val();
 				var pwd=$("#pwd").textbox("getValue");
@@ -91,7 +91,7 @@
 				},"json");
 				}
 			}
-=======
+
 			
 			  $.extend($.fn.validatebox.defaults.rules, {
 				    phoneRex: {
@@ -140,7 +140,7 @@
 					$.messager.alert("提示","格式不正确");	
 					}
 					}
->>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
+
 	</script>
 </head>
 <body>

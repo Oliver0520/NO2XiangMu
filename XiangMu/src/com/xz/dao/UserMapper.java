@@ -183,5 +183,6 @@ Integer selectCOuntQd(Integer u_id);
 Integer selectuserqd(Integer u_id);
 
 Integer updateUsergerenqd(User user);
+Integer selectUserisok(String u_userName);
 
 }

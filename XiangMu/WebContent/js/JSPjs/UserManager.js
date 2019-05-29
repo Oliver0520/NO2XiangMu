@@ -34,48 +34,7 @@ $(function() {
 		$("#insert-dialog").dialog("open");
 	}
 	/* 新增的保存按钮，需要先去后台查询登录名是否重复，如果重复则不能使用，否则进行下一步 */
-<<<<<<< HEAD
-	
-=======
-	function insertbaocun(){
-		var lname=$("#lname").val();
-		var pwd=$("#pwd").textbox("getValue");
-		var email=$("#email").val();
-		var phone=$("#phone").val();
-		var forma=$("#addfrm").form("validate");
-		if(forma){
-		if(lname==null){
-			$.messager.alert('提示','登录名不能为空');
-		}else{
-			
-		$.post("selectCountByLname",{
-			u_loginName:lname
-		},function(res){
-			if(res>0){
-				$.messager.alert('提示','登录名已被占用，请更换！！！');    
-			}else{
-				$.post("insertUser",{
-					u_loginName:lname,
-					u_password:pwd,
-					u_email:email,
-					u_phoneNumber:phone,
-					u_createTime:getNowFormatDate()
-				},function(res){
-					if(res>0){
-						$("#dg").datagrid("reload");
-						$.messager.alert('提示','新增成功'); 
-						$("#insert-dialog").dialog("close");
-					}else{
-						$.messager.alert('提示','新增失败'); 
-					}
-				},"json");
-			}
-		},"json");
-		}}else{
-			$.messager.alert("提示","格式不正确");	
-		}
-	}
->>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
+
 	/* 关闭新增dialog窗口 */
 	function exitInsert(){
 		$("#insert-dialog").dialog("close");
