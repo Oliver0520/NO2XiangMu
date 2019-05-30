@@ -94,7 +94,6 @@ function caozuolei(value, row, index) {
 			$('#dg').datagrid('showColumn', strs[i]);
 		}
 	}
-<<<<<<< HEAD
 
 	function xiugai(index) {
 
@@ -441,8 +440,7 @@ function caozuolei(value, row, index) {
 				+ (d < 10 ? ('0' + d) : d);
 	}
 	
- </script>
-=======
+
 	var us_name="${usera.u_userName}";
     var websocket = null;
     //判断当前浏览器是否支持WebSocket
@@ -530,7 +528,6 @@ function caozuolei(value, row, index) {
 	}
 
 </script>
->>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
 </head>
 <body>
 	<input class="easyui-textbox" type="text" id="zxid"

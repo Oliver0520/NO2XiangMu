@@ -160,67 +160,9 @@ function chaxun() {
 			$("#dg").datagrid("reload");
 		}
 	}
-<<<<<<< HEAD
 }
-function caozuolei(value, row, index) {
-	var zxid = $("#zxid").textbox("getValue");
-	var zxglid = $("#zxglid").textbox("getValue");
-	var zxgljsid = $("#zxgljsid").textbox("getValue");
-	if (zxgljsid > 0) {
-		return "<a href='javascript:void(0)'  onclick='shanchu("
-				+ index
-				+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("
-				+ index
-				+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
-				+ index
-				+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
-				+ index
-				+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
-				+ index + ")'>添加日志</a>"
-	}
 
-	else if (zxglid > 0) {
-		return "<a href='javascript:void(0)'  onclick='shanchu("
-				+ index
-				+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("
-				+ index
-				+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
-				+ index
-				+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
-				+ index
-				+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
-				+ index + ")'>添加日志</a>"
-	} else {
-		if (zxid > 0) {
-			return " <a href='javascript:void(0)' onclick='chakan("
-					+ index
-					+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
-					+ index
-					+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
-					+ index
-					+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
-					+ index + ")'>添加日志</a>"
-=======
- }
-	function caozuolei(value, row, index) {
-		var zxid = $("#zxid").textbox("getValue");
-		var zxglid = $("#zxglid").textbox("getValue");
-		var zxgljsid = $("#zxgljsid").textbox("getValue");
-		if(zxgljsid>0){
-			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  "
-		}
-		
-		else if(zxglid>0){
-			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>  "
-		 }
-		else{
-			if(zxid>0){
-				return " <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("+ index + ")'>添加日志</a>   "
->>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
-
-		}
-	}
-}
+	
 /*
  * function shanchu(index) { var data = $("#dg").datagrid("getData"); var row =
  * data.rows[index];
@@ -332,37 +274,7 @@ function chakanrizhi(index) {
 	});
 }
 
-function rizhibaocun() {
-	var s_id = $("#s_ida").textbox("getValue");
-	var u_id = $("#u_ida").textbox("getValue");
-	var l_id = $("#l_id").textbox("getValue");
-	var l_genzongstartshijian = $("#l_genzongstartshijian").textbox("getValue");
-	var l_genzongendshijian = $("#l_genzongendshijian").textbox("getValue");
-	var l_huifang = $("#l_huifang").textbox("getValue");
-	var l_fangshi = $("#l_fangshi").textbox("getValue");
-	var l_xcshijian = $("#l_xcshijian").textbox("getValue");
-	var l_neirong = $("#l_neirong").textbox("getValue");
-	$.post("insertRizhi", {
-		u_id : u_id,
-		s_id : s_id,
-		l_id : l_id,
-		l_genzongstartshijian : l_genzongstartshijian,
-		l_genzongendshijian : l_genzongendshijian,
-		l_huifang : l_huifang,
-		l_fangshi : l_fangshi,
-		l_xcshijian : l_xcshijian,
-		l_neirong : l_neirong,
-	}, function(res) {
-		if (res > 0) {
-			$("#dg").datagrid("reload");
-			$.messager.alert('提示', '添加成功');
-			$("#tjrizhi-dialog").dialog("close");
-		} else {
-			$.messager.alert('提示', '添加失败');
-		}
-	}, "json");
-	$("#tjrizhifrm").form("clear");
-}
+
 function tuichu() {
 	$("#tjrizhi-dialog").dialog("close");
 }
@@ -387,13 +299,14 @@ function daochuexcel() {
 				s_ids = s_ids + "," + row[i].s_id;
 			}
 		}
+		
 		$.messager.confirm('确认', '您确认想要把当前数据导出Excel吗？', function(r) {
 			if (r) {
 				window.location.href = "daochuexcel?s_ids=" + s_ids;
 			}
 		});
 
-<<<<<<< HEAD
+
 	} else {
 		$.messager.show({
 			title : '我的消息',
@@ -407,20 +320,7 @@ function daochuexcel() {
 		});
 	}
 }
-=======
-		} else {
-			$.messager.show({
-				title : '我的消息',
-				msg : '还未选择学生，请选择！',
-				timeout : 1000,
-				showType : 'slide',
-				style : {
-					top : document.body.scrollTop
-							+ document.documentElement.scrollTop,
-				}
-			});
-		}
-	}
+
+		
 	
 	
->>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49

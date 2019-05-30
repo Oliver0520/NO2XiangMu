@@ -52,7 +52,7 @@
 			$('#dg').datagrid('showColumn', strs[i]);
 		}
 	}
-<<<<<<< HEAD
+
 
 	function xiugai(index) {
 
@@ -75,11 +75,9 @@
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
 
-=======
+
 	
-	
-</script>
->>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
+
 	
 		$("#xiugaixs").form("load", row);
 		$("#upbaobei").combobox("setValue", row.s_baobei == 2 ? "是" : "否");
@@ -125,6 +123,26 @@
 			}
 		}
 	}
+	
+	function caozuolei(value, row, index) {
+		var zxid = $("#zxid").textbox("getValue");
+		var zxglid = $("#zxglid").textbox("getValue");
+		var zxgljsid = $("#zxgljsid").textbox("getValue");
+		if(zxgljsid>0){
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>    "
+		}
+		
+		else if(zxglid>0){
+			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>    "
+		 }
+		else{
+			if(zxid>0){
+				return " <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>   "
+
+
+		}
+	}
+}
 	$.extend($.fn.validatebox.defaults.rules, {
 		phoneRex : {
 			validator : function(value) {
@@ -1273,7 +1291,7 @@
 		style="width: 600px; height: 400px;"
 		data-options="resizable:true,modal:true,closed:true">
 		<form id="rizhixiangxifrm">
-<<<<<<< HEAD
+
 
 			<table>
 				<tr style="display: none">
@@ -1311,46 +1329,7 @@
 		</form>
 	</div>
 
-=======
-			
-				<table>
-					<tr style="display: none">
-						<td><input class="easyui-textbox" type="text" 
-							name="l_id"></td>
-					</tr>
-					<tr>
-						<td><label>学生名称:</label></td>
-				
-						<td><input class="easyui-textbox" type="text" 
-							name="rzname" disabled="disabled"></td>
-					</tr>
-					<tr>
-						<td><label>回访开始时间:</label></td>
-						<td><input class="easyui-textbox" type="text" 
-							name="l_genzongstartshijian" disabled="disabled" /></td>
-					</tr>
-					<tr>
-						<td><label>回访结束时间:</label></td>
-						<td><input class="easyui-textbox" type="text" 
-							name="l_genzongendshijian" disabled="disabled" /></td>
-					</tr>
-					<tr>
-						<td><label>回访内容:</label></td>
-						<td><input class="easyui-textbox" type="text" 
-							name="l_neirong" disabled="disabled" /></td>
-					</tr>
-					<tr>
-						<td><label>下次回访时间:</label></td>
-						<td><input class="easyui-textbox" type="text"
-							name="l_xcshijian" disabled="disabled" /></td>
-					</tr>
-					
-				</table>
-			
-		</form>
-	</div>
-	
->>>>>>> a44917acb83b1d609cbaef6f82ed594166a7ab49
+
 	<div class="easyui-window" id="abd"
 		data-options="modal:true,closed:true,iconCls:'icon-save'"
 		style="width: 700px; height: 300px; padding: 10px;">
