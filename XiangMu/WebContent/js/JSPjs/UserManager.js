@@ -49,22 +49,7 @@ $(function() {
 	function caozuoformatter(value,row,index){
 		return " <a href='javascript:void(0)' class='easyui-linkbutton' onclick='shanchu("+index+")'>删除</a>     <a href='javascript:void(0)' class='easyui-linkbutton' onclick='xiugai("+index+")'>编辑</a>  ";
 	}
-	function shanchu(index){
-		var data=$("#dg").datagrid("getData");
-		var row=data.rows[index];
-		$.messager.confirm('确认','您确认想要删除记录吗？',function(r){    
-		    if (r){    
-		    	$.post("deleteUser",{u_id:row.u_id},function(res){
-					if(res>0){
-						$("#dg").datagrid("reload");
-						$.messager.alert('提示','删除成功'); 
-					}else{
-						$.messager.alert('提示','删除失败'); 
-					}
-				},"json");
-		    }    
-		}); 	
-	}
+	
 	function xiugai(index){
 		var data=$("#dg").datagrid("getData");
 		var row=data.rows[index];

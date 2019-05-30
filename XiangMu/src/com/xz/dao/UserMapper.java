@@ -185,4 +185,10 @@ Integer selectuserqd(Integer u_id);
 Integer updateUsergerenqd(User user);
 Integer selectUserisok(String u_userName);
 
+/**
+ * 查询当前用户下是否有学生
+ * @param u_id
+ * @return
+ */
+Integer selectStudentOfUser(Integer u_id);
 }

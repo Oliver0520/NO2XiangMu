@@ -79,9 +79,22 @@ return map;
       
       @RequestMapping(value="/deleteUser",method=RequestMethod.POST)
       @ResponseBody
-      public Integer deleteUser(Integer u_id) {
+      public Map<String, Object> deleteUser(Integer u_id) {
     	  Integer i = userServiceImp.deleteUser(u_id);
-    	  return i;
+    	  Map<String, Object> map = new HashMap<String, Object>();
+    	  if(i==3) {
+    		  map.put("msg", "删除成功!!!");
+  			  map.put("success", true);
+    	  }
+    	  if(i==2) {
+    		  map.put("msg", "删除失败!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==1) {
+    		  map.put("msg", "该用户下还有学生，请先将学生分配给其他咨询师才能删除!!!");
+  			  map.put("success", false);
+    	  }
+    	  return map;
       }
       @RequestMapping(value="/updateUser",method=RequestMethod.POST)
       @ResponseBody
