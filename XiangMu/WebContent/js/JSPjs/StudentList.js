@@ -7,9 +7,9 @@ $(function() {
 
 	});
 	inint();
-	$('#zxid').next().hide();
+/*	$('#zxid').next().hide();
 	$('#zxglid').next().hide();
-	$('#zxgljsid').next().hide();
+	$('#zxgljsid').next().hide();*/
 });
 function inint() {
 

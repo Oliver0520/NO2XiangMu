@@ -23,6 +23,7 @@ function caozuolei(value, row, index) {
 	var zxid = $("#zxid").textbox("getValue");
 	var zxglid = $("#zxglid").textbox("getValue");
 	var zxgljsid = $("#zxgljsid").textbox("getValue");
+	
 	if (zxgljsid > 0) {
 		return "<a href='javascript:void(0)'  onclick='shanchu("
 				+ index
