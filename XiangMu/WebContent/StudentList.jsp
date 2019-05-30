@@ -439,61 +439,6 @@ function caozuolei(value, row, index) {
 		return y + '-' + (m < 10 ? ('0' + m) : m) + '-'
 				+ (d < 10 ? ('0' + d) : d);
 	}
-	
-
-	var us_name="${usera.u_userName}";
-    var websocket = null;
-    //判断当前浏览器是否支持WebSocket
-    if ('WebSocket' in window) {
-        websocket = new WebSocket("ws:localhost:8080/XiangMu/dynamic/"+us_name);
-    }
-    else {
-        alert('当前浏览器 Not support websocket')
-    }
-
-    //连接发生错误的回调方法
-    websocket.onerror = function () {
-        //setMessageInnerHTML("WebSocket连接发生错误");
-    };
-
-    //连接成功建立的回调方法
-    websocket.onopen = function () {
-        //setMessageInnerHTML("您已进入聊天室！");
-        //websocket.send("您已进入聊天室！");
-        //send();
-        
-    }
-
-    //接收到消息的回调方法
-    websocket.onmessage = function (event) {
-    	//alert("111")
-       // setMessageInnerHTML(event.data);
-    }
-
-    //连接关闭的回调方法
-    websocket.onclose = function () {
-       // setMessageInnerHTML("您已离开入聊天室！");
-    }
-
-    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-    window.onbeforeunload = function () {
-        closeWebSocket();
-    }
-
-    //将消息显示在网页上
-    function setMessageInnerHTML(innerHTML) {
-        document.getElementById('message').innerHTML += innerHTML + '<br/>';
-    }
-
-    //关闭WebSocket连接
-    function closeWebSocket() {
-        websocket.close();
-    }
-    //发送消息
-    function send(jsr) {
-        //var message = $("#nr_lt_neirong").val();
-        websocket.send(jsr);
-    }
     function insertDynamic(index){
 		var data=$("#dg").datagrid("getData");
 		var row=data.rows[index];
@@ -516,7 +461,6 @@ function caozuolei(value, row, index) {
 				$.messager.alert("提示",res.msg);
 				$("#dynamic-dialog").dialog("close");
 				$("#dynamicfrm").form("clear");
-				send(uname);
 			}else{
 				$.messager.alert("提示",res.msg);
 			}
