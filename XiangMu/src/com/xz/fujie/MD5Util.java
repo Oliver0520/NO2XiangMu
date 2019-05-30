@@ -68,7 +68,7 @@ public class MD5Util {
 
        
 
-        String s = new String("admin");  
+        String s = new String("e");  
 
         System.out.println("Ô­Ê¼£º" + s);  
         System.out.println("MD5ºó£º" + string2MD5(s));  

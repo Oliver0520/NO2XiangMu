@@ -52,7 +52,9 @@ public class UserServiceImp implements UserService {
 		String u_loginName = user.getU_loginName();
 		String string2md5 = MD5Util.string2MD5(u_loginName);
 		user.setU_loginName(string2md5);
-		
+		String u_password=user.getU_password();
+		String string2md52 = MD5Util.string2MD5(u_password);
+		user.setU_password(string2md52);
 		Integer j=userMapper.selectUserisok(user.getU_userName());
 		Integer pd=0;
 		if(j==0) {

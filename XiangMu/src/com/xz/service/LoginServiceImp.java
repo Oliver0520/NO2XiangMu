@@ -40,6 +40,7 @@ public class LoginServiceImp implements LoginService {
 		String upsd = user.getU_password();
 		String ulname = user.getU_loginName();
 		String lname = MD5Util.string2MD5(user.getU_loginName());
+		
 		String yanz = (String) request.getSession().getAttribute("text");
 		if (!("asdfas".equals(y)))  {
 			paduanyong= MD5Util.string2MD5(paduanyong);
