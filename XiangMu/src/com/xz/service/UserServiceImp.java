@@ -78,7 +78,7 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		Integer jg=0;
 		Integer isorno = userMapper.selectStudentOfUser(u_id);
-		if(isorno>0) {
+		if(isorno==0) {
 			Integer i = userMapper.deleteUser(u_id);
 			if(i>0) {
 				jg=3;
