@@ -140,7 +140,22 @@
 					$.messager.alert("提示","格式不正确");	
 					}
 					}
-
+			  function shanchu(index){
+					var data=$("#dg").datagrid("getData");
+					var row=data.rows[index];
+					$.messager.confirm('确认','您确认想要删除记录吗？',function(r){    
+					    if (r){    
+					    	$.post("deleteUser",{u_id:row.u_id},function(res){
+								if(res.success){
+									$("#dg").datagrid("reload");
+									$.messager.alert('提示',res.msg); 
+								}else{
+									$.messager.alert('提示',res.msg); 
+								}
+							},"json");
+					    }    
+					}); 	
+				}
 	</script>
 </head>
 <body>

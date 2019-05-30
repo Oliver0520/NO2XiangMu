@@ -76,7 +76,19 @@ public class UserServiceImp implements UserService {
 	@Override
 	public Integer deleteUser(Integer u_id) {
 		// TODO Auto-generated method stub
-		return userMapper.deleteUser(u_id);
+		Integer jg=0;
+		Integer isorno = userMapper.selectStudentOfUser(u_id);
+		if(isorno>0) {
+			Integer i = userMapper.deleteUser(u_id);
+			if(i>0) {
+				jg=3;
+			}else {
+				jg=2;
+			}
+		}else {
+			jg=1;
+		}
+		return jg;
 	}
 
 	@Override

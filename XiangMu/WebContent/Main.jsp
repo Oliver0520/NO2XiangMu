@@ -195,7 +195,7 @@ function updatebaocun(){
 	<div id="weidu-window" class="easyui-window" title="My Window" style="width:250px;height:140px"   
         data-options="iconCls:'icon-save',modal:true,close:true">   
    <table>
-				<tr >
+				<tr>
 					<td colspan="2">您有${weidu}条未读消息</td>
 					<td></td>
 				</tr>

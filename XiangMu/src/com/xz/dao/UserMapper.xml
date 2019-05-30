@@ -229,6 +229,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</where>
 	</select>
-	
+	<select id="selectStudentOfUser" parameterType="int" resultType="int">
+	select count(*) from student where u_id=#{u_id}
+	</select>
 	
 </mapper>
