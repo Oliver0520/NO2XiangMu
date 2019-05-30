@@ -71,7 +71,7 @@ public class UserController {
   			  map.put("success", false);
     	  }
     	  if(i==3) {
-    		  map.put("msg", "该用户已存在!!!");
+    		  map.put("msg", "该用户已被占用，请更换!!!");
   			  map.put("success", false);
     	  }
 return map;

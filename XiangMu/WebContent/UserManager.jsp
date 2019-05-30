@@ -90,6 +90,7 @@
 					}
 				},"json");
 				}
+				$("#addfrm").form("clear");
 			}
 
 			
