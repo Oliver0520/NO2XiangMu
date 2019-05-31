@@ -84,9 +84,10 @@ public class ModuleServiceImp implements ModuleService {
 	public Integer deleteMod(Integer m_id) {
 		// TODO Auto-generated method stub
 		Integer  jg=0;
-		Integer dm = moduleMapper.deleteMod(m_id);
+		
 		Integer in = moduleMapper.selectMidIsNo(m_id);
 		if(!(in>0)) {
+			Integer dm = moduleMapper.deleteMod(m_id);
 			if(in>0) {
 				jg=1;
 			}else {

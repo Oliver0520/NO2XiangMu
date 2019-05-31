@@ -7,9 +7,10 @@ $(function() {
 
 	});
 	inint();
-/*	$('#zxid').next().hide();
+	$('#zxid').next().hide();
 	$('#zxglid').next().hide();
-	$('#zxgljsid').next().hide();*/
+	$('#zxgljsid').next().hide();
+	$('#wlzxid').next().hide();
 });
 function inint() {
 
@@ -52,6 +53,7 @@ function chaxun() {
 	var zxglid = $("#zxglid").textbox("getValue");
 	var zxgljsid = $("#zxgljsid").textbox("getValue");
 	var dengluren = $("#zxname").textbox("getValue");
+	var wlzxid=$("#wlzxid").textbox("getValue");
 	if (zxgljsid > 0) {
 		var hf = $("#sfhuifang").combobox("getValue");
 		var yx = $("#sfyouxiao").combobox("getValue");
@@ -155,6 +157,44 @@ function chaxun() {
 			$("#str").form("clear");
 		}
 		if (zxid > 0 && dengluren != "") {
+			alert("您没有权限根据咨询师姓名查询！！！");
+			$("#str").form("clear");
+			$("#dg").datagrid("reload");
+		}
+		else if(wlzxid>0 && dengluren == ""){
+			var hf = $("#sfhuifang").combobox("getValue");
+			var yx = $("#sfyouxiao").combobox("getValue");
+			var jf = $("#sfjiaofei").combobox("getValue");
+			if (hf == "aa") {
+				hf = null;
+			}
+			if (yx == "aa") {
+				yx = null;
+			}
+			if (jf == "aa") {
+				jf = null;
+			}
+			$('#dg').datagrid({
+				url : 'chaxunasd',
+				method : "post",
+				pagination : true,
+				toolbar : "#bar",
+				singleSelect : true,
+				queryParams : {
+					s_name : $("#Sname").textbox("getValue"),
+					s_phone : $("#Sphone").textbox("getValue"),
+					s_qq : $("#sqq").textbox("getValue"),
+					u_id : $("#zxname").combobox("getValue"),
+					stime : $("#stime").textbox("getValue"),
+					etime : $("#etime").textbox("getValue"),
+					s_huifang : hf,
+					s_youxiao : yx,
+					s_jiaofei : jf
+				}
+			});
+			$("#str").form("clear");
+		}
+		else if(wlzxid>0 && dengluren != ""){
 			alert("您没有权限根据咨询师姓名查询！！！");
 			$("#str").form("clear");
 			$("#dg").datagrid("reload");

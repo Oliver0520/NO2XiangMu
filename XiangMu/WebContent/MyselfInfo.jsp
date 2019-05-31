@@ -27,6 +27,7 @@
 	});
 	function init(){
 		var a = ${sessionScope.usera.u_qdstatus};
+		var w =  ${sessionScope.usera.u_isLockout};
 		if(a==1){
 			$("#u_qdstatus").textbox("setValue","已签到");
 		}
@@ -38,6 +39,62 @@
 		}
 		if(a==4){
 			$("#u_qdstatus").textbox("setValue","已签退");
+		}
+		if(w==0){
+			$("#u_isLockout").textbox("setValue","否");	
+		}
+		if(w==1){
+			$("#u_isLockout").textbox("setValue","否");	
+		}
+		}
+		
+	function chongzhi(){
+		$("#upfrm").form("reset");
+		
+	}
+	$.extend($.fn.validatebox.defaults.rules, {
+		phoneRex : {
+			validator : function(value) {
+				var rex = /^1[3-8]+\d{9}$/;
+				//var rex=/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+				//区号：前面一个0，后面跟2-3位数字 ： 0\d{2,3}
+				//电话号码：7-8位数字： \d{7,8
+				//分机号：一般都是3位数字： \d{3,}
+				//这样连接起来就是验证电话的正则表达式了：/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/        
+				var rex2 = /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+				if (rex.test(value) || rex2.test(value)) {
+					// alert('t'+value);
+					return true;
+				} else {
+					//alert('false '+value);
+					return false;
+				}
+
+			},
+			message : '请输入正确电话或手机格式'
+		}
+	});
+	function updateMy(){
+		var email=$("#uemail").val();
+		var phone=$("#uphone").val();
+		var u_id=$("#u_id").textbox("getValue");
+		 var fromup = $("#upfrm").form("validate"); 
+		if(fromup){
+		$.post("updateUser",{
+			u_email:email,
+			u_phoneNumber:phone,
+			u_id:u_id
+		},function(res){
+			if(res>0){
+				$("#dg").datagrid("reload");
+				$.messager.alert('提示','编辑成功'); 
+				$("#update-dialog").dialog("close");
+			}else{
+				$.messager.alert('提示','编辑失败'); 
+			}
+		},"json");}
+		else {
+			$.messager.alert("提示", "格式不正确");
 		}
 	}
 	</script>
@@ -63,8 +120,8 @@
 			</tr>
 			<tr>
 				<td><label>是否锁定:</label></td>
-				<td><input class="easyui-textbox" type="text" id="u_isLockout" name="u_isLockout"
-					value="${usera.u_isLockout}" disabled="disabled" /></td>
+				<td><input class="easyui-textbox" type="text" id="u_isLockout"
+					disabled="disabled" /></td>
 			</tr>
 			<tr>
 				<td><label>最后一次登录时间:</label></td>
@@ -85,7 +142,7 @@
 			<tr>
 				<td><label>手机号:</label></td>
 				<td><input class="easyui-textbox" type="text" id="uphone"
-					value="${usera.u_phoneNumber}" /></td>
+					data-options="required:true,validType:'phoneRex'" value="${usera.u_phoneNumber}" /></td>
 			</tr>
 			<tr>
 				<td><label>签到时间:</label></td>

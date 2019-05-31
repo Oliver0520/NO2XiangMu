@@ -19,6 +19,60 @@
 <script type="text/javascript" src="js/test.js"></script>
 <script type="text/javascript" src="js/JSPjs/StudentList.js"></script>
 <script type="text/javascript">
+function caozuolei(value, row, index) {
+	var zxid = $("#zxid").textbox("getValue");
+	var zxglid = $("#zxglid").textbox("getValue");
+	var zxgljsid = $("#zxgljsid").textbox("getValue");
+	var wlzxid=$("#wlzxid").textbox("getValue");
+	
+	if (zxgljsid > 0) {
+		return "<a href='javascript:void(0)'  onclick='shanchu("
+				+ index
+				+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("
+				+ index
+				+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
+				+ index
+				+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
+				+ index
+				+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
+				+ index + ")'>添加日志</a>  <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+	}
+
+	else if (zxglid > 0) {
+		return "<a href='javascript:void(0)'  onclick='shanchu("
+				+ index
+				+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("
+				+ index
+				+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
+				+ index
+				+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
+				+ index
+				+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
+				+ index + ")'>添加日志</a>   <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+	} else {
+		if (zxid > 0) {
+			return " <a href='javascript:void(0)' onclick='chakan("
+					+ index
+					+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
+					+ index
+					+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
+					+ index
+					+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
+					+ index + ")'>添加日志</a>   <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+
+		}
+		else if(wlzxid>0){
+			return " <a href='javascript:void(0)' onclick='chakan("
+			+ index
+			+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("
+			+ index
+			+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("
+			+ index
+			+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
+			+ index + ")'>添加日志</a>   <a href='javascript:void(0)' onclick='insertDynamic("+ index+ ")'>添加动态</a>"
+		}
+	}
+}
 	function yincang() {
 		$("#abd").window("open");
 	}
@@ -53,7 +107,6 @@
 		}
 	}
 
-
 	function xiugai(index) {
 
 		$('#zxname1').combobox({
@@ -72,11 +125,9 @@
 		var zxid = $("#zxid").textbox("getValue");
 		var zxglid = $("#zxglid").textbox("getValue");
 		var zxgljsid = $("#zxgljsid").textbox("getValue");
+		var wlzxid=$("#wlzxid").textbox("getValue");
 		var data = $("#dg").datagrid("getData");
 		var row = data.rows[index];
-
-
-	
 
 	
 		$("#xiugaixs").form("load", row);
@@ -121,31 +172,31 @@
 				});
 
 			}
+			else if(wlzxid>0){
+				$("#xiugai-dialog").dialog("open");
+				$('input', $('form[id="xiugaizxs"]')).prop('disabled', true);
+				$('#zxname1').combobox('disable');
+				$('#ups_quyu').combobox('disable');
+				$('#ups_bumen').combobox('disable');
+				$('#ups_kecheng').combobox('disable');
+				$('#upyouxiao').combobox('disable');
+				$('#ups_dafen').combobox('disable');
+				$('#uphuifang').combobox('disable');
+				$('#upshangmen').combobox('disable');
+				$('#upjiaofei').combobox('disable');
+				$('#uptuifei').combobox('disable');
+				$('#upjinban').combobox('disable');
+				$('#zxname2').combobox('disable');
+				$('#ups_huifangshijian').datebox({
+					disabled : true
+				});
+				$('#ups_shangmenshijian').datebox({
+					disabled : true
+				});
+
+			}
 		}
 	}
-	
-	function caozuolei(value, row, index) {
-		var zxid = $("#zxid").textbox("getValue");
-		var zxglid = $("#zxglid").textbox("getValue");
-		var zxgljsid = $("#zxgljsid").textbox("getValue");
-		if(zxgljsid>0){
-			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>  <a href='javascript:void(0)' onclick='insertrizhi("
-			+ index + ")'>添加日志</a>   "
-		}
-		
-		else if(zxglid>0){
-			return "<a href='javascript:void(0)'  onclick='shanchu("+ index+ ")'>删除</a>  <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a>   <a href='javascript:void(0)' onclick='insertrizhi("
-			+ index + ")'>添加日志</a>  "
-		 }
-		else{
-			if(zxid>0){
-				return " <a href='javascript:void(0)' onclick='chakan("+ index+ ")'>查看</a>  <a href='javascript:void(0)' onclick='xiugai("+ index+ ")'>修改</a> <a href='javascript:void(0)' onclick='chakanrizhi("+ index+ ")'>查看日志</a> <a href='javascript:void(0)' onclick='insertrizhi("
-				+ index + ")'>添加日志</a>   "
-
-
-		}
-	}
-}
 	$.extend($.fn.validatebox.defaults.rules, {
 		phoneRex : {
 			validator : function(value) {
@@ -169,6 +220,14 @@
 		}
 	});
 	function insert(index) {
+ 		$('#lururenname').textbox({
+			url : 'selectUname',
+			method : "post",
+			valueField : 'u_id',
+			textField : 'u_userName',
+		}); 
+		
+	
 	var s_sex = $("#tjs_sex").textbox("getValue");
 		if(s_sex=="0"){
 			s_sex=null
@@ -191,6 +250,7 @@
 		var s_weChat = $("#tjs_weChat").textbox("getValue");
 		var baobei = $("#tjbaobei").combobox("getValue");
 		var s_beizhu = $("#tjs_beizhu").textbox("getValue");
+		var lururen=$("#lururenname").textbox("getValue");
 		var forma = $("#insertfrm").form("validate");
 		if (s_education == "aa") {
 			s_education = null;
@@ -221,6 +281,7 @@
 			s_sex = 2
 		}
 		if (forma) {
+		
 			$.post("insertStudent", {
 				s_id : s_id,
 				s_name : s_name,
@@ -235,11 +296,13 @@
 				s_qq : s_qq,
 				s_weChat : s_weChat,
 				s_baobei : baobei,
+				s_string:lururen,
 			}, function(res) {
 				if (res > 0) {
 					$("#dg").datagrid("reload");
 					$.messager.alert('提示', '添加成功');
 					$("#insert-dialog").dialog("close");
+					$("#insertfrm").form("clear");
 				} else {
 					$.messager.alert('提示', '添加失败');
 				}
@@ -424,8 +487,39 @@
 		return y + '-' + (m < 10 ? ('0' + m) : m) + '-'
 				+ (d < 10 ? ('0' + d) : d);
 	}
-	
- </script>
+    function insertDynamic(index){
+		var data=$("#dg").datagrid("getData");
+		var row=data.rows[index];
+		$("#sid").textbox("setValue",row.s_id);
+		$("#sname").textbox("setValue",row.s_name);
+		$("#uname").textbox("setValue",row.name);
+		$("#dynamic-dialog").dialog("open");
+	}
+    function sendDynamic(){
+		var s_id=$("#sid").val();
+		var s_name=$("#sname").val();
+		var d_body=$("#d_body").val();
+		var uname=$("#uname").val();
+		$.post("SendDynamic",{
+			s_id:s_id,
+			s_name:s_name,
+			d_body:d_body
+		},function(res){
+			if(res.success){
+				$.messager.alert("提示",res.msg);
+				$("#dynamic-dialog").dialog("close");
+				$("#dynamicfrm").form("clear");
+			}else{
+				$.messager.alert("提示",res.msg);
+			}
+		},"json");
+	}
+   
+	function exitDynamic(){
+		$("#dynamic-dialog").dialog("close");
+	}
+
+</script>
 </head>
 <body>
 	<input class="easyui-textbox" type="text" id="zxid"
@@ -434,6 +528,9 @@
 		value="<%=session.getAttribute("zxgl")%>" />
 	<input class="easyui-textbox" type="text" id="zxgljsid"
 		value="<%=session.getAttribute("zxgljs")%>" />
+		<input class="easyui-textbox" type="text" id="wlzxid"
+		value="<%=session.getAttribute("wlzx")%>" />
+		
 
 	<table class="easyui-datagrid" id="dg">
 		<thead>
@@ -477,6 +574,8 @@
 				<th data-options="field:'s_guanzhu',width:110">学生关注</th>
 				<th data-options="field:'name2',width:110">咨询师(面见)</th>
 				<th data-options="field:'s_zixunbeizhu',width:110">咨询师备注</th>
+				<th data-options="field:'s_string',width:110">录入人</th>
+				
 				<th data-options="field:'caozuo',title:'操作',formatter:caozuolei"></th>
 			</tr>
 		</thead>
@@ -530,7 +629,7 @@
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="daochuexcel()" data-options="iconCls:'icon-redo'">导出Excel</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
-				data-options="iconCls:'icon-add',plain:true" onclick="yincang()">隐藏</a>
+				data-options="iconCls:'icon-remove',plain:true" onclick="yincang()">隐藏</a>
 		</form>
 	</div>
 
@@ -1221,6 +1320,16 @@
 					<td><input class="easyui-textbox" type="text" id="tjs_beizhu"
 						name="s_beizhu" /></td>
 				</tr>
+					<tr style="display: none">
+					<td><label>录入人:</label></td>
+					<td><!-- <input class="easyui-textbox" type="text" id="lururen"
+						name="name3" /> -->
+					 <input class="easyui-textbox" type="text" id="lururenname"
+		value="<%=session.getAttribute("lururen")%>" /> </td>
+						
+						
+	
+				</tr>
 
 			</table>
 		</form>
@@ -1295,7 +1404,6 @@
 		data-options="resizable:true,modal:true,closed:true">
 		<form id="rizhixiangxifrm">
 
-
 			<table>
 				<tr style="display: none">
 					<td><input class="easyui-textbox" type="text" name="l_id"></td>
@@ -1331,7 +1439,6 @@
 
 		</form>
 	</div>
-
 
 	<div class="easyui-window" id="abd"
 		data-options="modal:true,closed:true,iconCls:'icon-save'"
@@ -1416,6 +1523,44 @@
 				</td>
 			</tr>
 		</table>
+	</div>
+<div id="dynamic-dialog" class="easyui-dialog" title="查看日志详细信息"
+		style="width: 600px; height: 400px;"
+		data-options="resizable:true,modal:true,closed:true,toolbar:[{
+				text:'发送',
+				iconCls:'icon-edit',
+				handler:function(){sendDynamic();}
+			},{
+				text:'取消',
+				iconCls:'icon-help',
+				handler:function(){exitDynamic();}
+			}]">
+		<form id="dynamicfrm">
+			
+				<table>
+					<tr style="display:none">
+						<td><label>学生编号:</label></td>
+				
+						<td><input class="easyui-textbox" type="text" 
+							id="sid" disabled="disabled"></td>
+							<td><input class="easyui-textbox" type="text" 
+							id="uname" disabled="disabled"></td>
+					</tr>
+					<tr style="display:none">
+						<td><label>学生名称:</label></td>
+				
+						<td><input class="easyui-textbox" type="text" 
+							id="sname" disabled="disabled"></td>
+					</tr>
+					<tr>
+						<td><label>动态内容:</label></td>
+						<td><textarea id="d_body" cols="80" rows="11"></textarea></td>
+					</tr>
+					
+					
+				</table>
+			
+		</form>
 	</div>
 
 </body>

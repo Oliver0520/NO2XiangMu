@@ -10,6 +10,7 @@ $(function() {
 	$('#zxid').next().hide();
 	$('#zxglid').next().hide();
 	$('#zxgljsid').next().hide();
+	$('#wlzxid').next().hide();
 });
 function inint() {
 
@@ -52,6 +53,7 @@ function chaxun() {
 	var zxglid = $("#zxglid").textbox("getValue");
 	var zxgljsid = $("#zxgljsid").textbox("getValue");
 	var dengluren = $("#zxname").textbox("getValue");
+	var wlzxid=$("#wlzxid").textbox("getValue");
 	if (zxgljsid > 0) {
 		var hf = $("#sfhuifang").combobox("getValue");
 		var yx = $("#sfyouxiao").combobox("getValue");
@@ -159,10 +161,47 @@ function chaxun() {
 			$("#str").form("clear");
 			$("#dg").datagrid("reload");
 		}
+		else if(wlzxid>0 && dengluren == ""){
+			var hf = $("#sfhuifang").combobox("getValue");
+			var yx = $("#sfyouxiao").combobox("getValue");
+			var jf = $("#sfjiaofei").combobox("getValue");
+			if (hf == "aa") {
+				hf = null;
+			}
+			if (yx == "aa") {
+				yx = null;
+			}
+			if (jf == "aa") {
+				jf = null;
+			}
+			$('#dg').datagrid({
+				url : 'chaxunasd',
+				method : "post",
+				pagination : true,
+				toolbar : "#bar",
+				singleSelect : true,
+				queryParams : {
+					s_name : $("#Sname").textbox("getValue"),
+					s_phone : $("#Sphone").textbox("getValue"),
+					s_qq : $("#sqq").textbox("getValue"),
+					u_id : $("#zxname").combobox("getValue"),
+					stime : $("#stime").textbox("getValue"),
+					etime : $("#etime").textbox("getValue"),
+					s_huifang : hf,
+					s_youxiao : yx,
+					s_jiaofei : jf
+				}
+			});
+			$("#str").form("clear");
+		}
+		else if(wlzxid>0 && dengluren != ""){
+			alert("您没有权限根据咨询师姓名查询！！！");
+			$("#str").form("clear");
+			$("#dg").datagrid("reload");
+		}
 	}
 }
 
-	
 /*
  * function shanchu(index) { var data = $("#dg").datagrid("getData"); var row =
  * data.rows[index];
@@ -274,7 +313,37 @@ function chakanrizhi(index) {
 	});
 }
 
-
+function rizhibaocun() {
+	var s_id = $("#s_ida").textbox("getValue");
+	var u_id = $("#u_ida").textbox("getValue");
+	var l_id = $("#l_id").textbox("getValue");
+	var l_genzongstartshijian = $("#l_genzongstartshijian").textbox("getValue");
+	var l_genzongendshijian = $("#l_genzongendshijian").textbox("getValue");
+	var l_huifang = $("#l_huifang").textbox("getValue");
+	var l_fangshi = $("#l_fangshi").textbox("getValue");
+	var l_xcshijian = $("#l_xcshijian").textbox("getValue");
+	var l_neirong = $("#l_neirong").textbox("getValue");
+	$.post("insertRizhi", {
+		u_id : u_id,
+		s_id : s_id,
+		l_id : l_id,
+		l_genzongstartshijian : l_genzongstartshijian,
+		l_genzongendshijian : l_genzongendshijian,
+		l_huifang : l_huifang,
+		l_fangshi : l_fangshi,
+		l_xcshijian : l_xcshijian,
+		l_neirong : l_neirong,
+	}, function(res) {
+		if (res > 0) {
+			$("#dg").datagrid("reload");
+			$.messager.alert('提示', '添加成功');
+			$("#tjrizhi-dialog").dialog("close");
+		} else {
+			$.messager.alert('提示', '添加失败');
+		}
+	}, "json");
+	$("#tjrizhifrm").form("clear");
+}
 function tuichu() {
 	$("#tjrizhi-dialog").dialog("close");
 }
@@ -299,13 +368,11 @@ function daochuexcel() {
 				s_ids = s_ids + "," + row[i].s_id;
 			}
 		}
-		
 		$.messager.confirm('确认', '您确认想要把当前数据导出Excel吗？', function(r) {
 			if (r) {
 				window.location.href = "daochuexcel?s_ids=" + s_ids;
 			}
 		});
-
 
 	} else {
 		$.messager.show({
@@ -320,7 +387,3 @@ function daochuexcel() {
 		});
 	}
 }
-
-		
-	
-	

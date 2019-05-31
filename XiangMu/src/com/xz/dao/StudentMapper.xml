@@ -88,6 +88,8 @@
 			u.u_id=s.u_id and s.s_id=#{s_id}
 		</where>
 	</select>
+		
+	
 
 	<delete id="deleteStudent" parameterType="student">
 		delete from student
@@ -227,8 +229,8 @@
 
 	<insert id="insertStudent" parameterType="student">
 		insert into
-		student(s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,u_id)
-		values(#{s_name},#{s_age},#{s_sex},#{s_phone},#{s_education},#{s_status},#{s_qudao},#{s_wangzhan},#{s_guanjian},#{s_qq},#{s_weChat},#{s_baobei},#{u_id});
+		student(s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,u_id,s_string)
+		values(#{s_name},#{s_age},#{s_sex},#{s_phone},#{s_education},#{s_status},#{s_qudao},#{s_wangzhan},#{s_guanjian},#{s_qq},#{s_weChat},#{s_baobei},#{u_id},#{s_string});
 	</insert>
 	<select id="selectjs" parameterType="int" resultType="int">
 		select count(*) from userrole where
@@ -248,6 +250,13 @@
 		select count(*) from userrole where
 		(select r_id from role where
 		r_name="管理员角色")
+		in (select r_id from userrole where u_id=#{u_id})
+	</select>
+		
+	<select id="selectjs3" parameterType="int" resultType="int">
+		select count(*) from userrole where
+		(select r_id from role where
+		r_name="网络咨询角色")
 		in (select r_id from userrole where u_id=#{u_id})
 	</select>
 	<select id="selectMyStudent" parameterType="fenye" resultType="student">
@@ -367,7 +376,7 @@
 	<select id="selectStudent_xuanzhong" parameterType="list"
 		resultType="student">
 		SELECT
-		s_id,s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,s_beizhu,u_id,s_quyu,s_bumen,s_kecheng,s_youxiao,s_dafen,s_huifang,s_huifangshijian,s_shangmen,s_shangmenshijian,s_wuxiaoyuanyin,s_jiaofei,s_jiaofeishijian,s_price,s_tuifei,s_jinban,s_jinbanshijian,s_jinbanbeizhu,s_tuifeiyuanyin,s_dingjin,s_dingjinshijian,s_guanzhu,u_idw,s_zixunbeizhu
+		s_id,s_name,s_age,s_sex,s_phone,s_education,s_status,s_qudao,s_wangzhan,s_guanjian,s_qq,s_weChat,s_baobei,s_beizhu,u_id,s_quyu,s_bumen,s_kecheng,s_youxiao,s_dafen,s_huifang,s_huifangshijian,s_shangmen,s_shangmenshijian,s_wuxiaoyuanyin,s_jiaofei,s_jiaofeishijian,s_price,s_tuifei,s_jinban,s_jinbanshijian,s_jinbanbeizhu,s_tuifeiyuanyin,s_dingjin,s_dingjinshijian,s_guanzhu,u_idw,s_zixunbeizhu,s_string
 		FROM student WHERE s_id in
 		<foreach collection="list" item="item" open="(" separator=","
 			close=")">

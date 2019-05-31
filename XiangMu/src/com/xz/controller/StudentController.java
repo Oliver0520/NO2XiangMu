@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xz.dao.StudentMapper;
 import com.xz.entity.Fenye;
 import com.xz.entity.Student;
 import com.xz.entity.User;
@@ -23,6 +24,7 @@ import com.xz.service.StudentServiceImp;
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
+
 	@Autowired
 	private Fenye<Student> fenye;
 
@@ -32,9 +34,13 @@ public class StudentController {
 		Integer i = studentService.selectjs(user.getU_id());
 		Integer j = studentService.selectjs1(user.getU_id());
 		Integer g = studentService.selectjs2(user.getU_id());
+		Integer q = studentService.selectjs3(user.getU_id());
+		String lururen=user.getU_userName();
 		Request.getSession().setAttribute("zx", i);
 		Request.getSession().setAttribute("zxgl", j);
 		Request.getSession().setAttribute("zxgljs", g);
+		Request.getSession().setAttribute("lururen", lururen);
+		Request.getSession().setAttribute("wlzx", q);
 		return "MyStudent";
 	}
 	@RequestMapping(value = "/StudentList")
@@ -43,9 +49,14 @@ public class StudentController {
 		Integer i = studentService.selectjs(user.getU_id());
 		Integer j = studentService.selectjs1(user.getU_id());
 		Integer g = studentService.selectjs2(user.getU_id());
+		Integer q = studentService.selectjs3(user.getU_id());
+		String lururen=user.getU_userName();
 		Request.getSession().setAttribute("zx", i);
 		Request.getSession().setAttribute("zxgl", j);
 		Request.getSession().setAttribute("zxgljs", g);
+		Request.getSession().setAttribute("lururen", lururen);
+		Request.getSession().setAttribute("wlzx", q);
+
 		return "StudentList";
 	}
 
@@ -59,6 +70,8 @@ public class StudentController {
 		Integer i = studentService.selectjs(user.getU_id());
 		Integer j = studentService.selectjs1(user.getU_id());
 		Integer g=studentService.selectjs2(user.getU_id());
+		Integer q = studentService.selectjs3(user.getU_id());
+		
 		if(g>0) {
 			
 			fenye = studentService.getStudent(fenye);
@@ -68,6 +81,10 @@ public class StudentController {
 			fenye = studentService.getStudent(fenye);
 		} else {
 			if (i > 0) {
+				student.setU_id(user.getU_id());
+				fenye = studentService.getzxjs(fenye);
+			}
+			else if(q>0) {
 				student.setU_id(user.getU_id());
 				fenye = studentService.getzxjs(fenye);
 			}

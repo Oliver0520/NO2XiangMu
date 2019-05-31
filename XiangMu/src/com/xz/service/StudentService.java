@@ -43,10 +43,32 @@ Integer updateStudent(Student student);
  */
 Integer insertStudent(Student student);
 
+/**
+ * 查询咨询师角色在该用户角色中的数量
+ * @param u_id
+ * @return
+ */
 Integer selectjs(Integer u_id);
+/**
+ * 查询咨询师经理角色在该用户角色中的数量
+ * @param u_id
+ * @return
+ */
 
 Integer selectjs1(Integer u_id);
+/**
+ * 查询管理员角色在该用户角色中的数量
+ * @param u_id
+ * @return
+ */
 Integer selectjs2(Integer u_id);
+/**
+ * 查询网络咨询师角色在该用户角色中的数量
+ * @param u_id
+ * @return
+ */
+Integer selectjs3(Integer u_id);
+
 Fenye<Student> getzxjs(Fenye<Student> fenye);
 
 
