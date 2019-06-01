@@ -152,7 +152,7 @@ public class UserServiceImp implements UserService {
 		user.setOpwd(MD5Util.string2MD5(user.getOpwd()));
 		user.setApwd(MD5Util.string2MD5(user.getApwd()));
 		user.setNpwd(MD5Util.string2MD5(user.getNpwd()));
-		Integer jg = 0;
+		Integer jg = 0; 
 		User user1 = (User) request.getSession().getAttribute("usera");
 		user.setU_id(user1.getU_id());  //获取用户的编号
 		String yanzhengma = (String) request.getSession().getAttribute("suijiNum"); //获取发送给手机的验证码

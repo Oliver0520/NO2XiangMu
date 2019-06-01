@@ -164,7 +164,7 @@
 		<thead>
 			<tr>
 				<th data-options="field:'u_id'">编号</th>
-				<th data-options="field:'u_loginName'">登录名</th>
+				<!-- <th data-options="field:'u_loginName'">登录名</th> -->
 				<th data-options="field:'u_userName'">用户名</th>
 				<th data-options="field:'isLockout',formatter:isLockformatter">是否锁定</th>
 				<th data-options="field:'u_lastLoginTime'">最后一次登录时间</th>
