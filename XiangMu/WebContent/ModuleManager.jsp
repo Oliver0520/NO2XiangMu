@@ -90,6 +90,12 @@
 		style="width: 500px; height: 300px; padding: 10px;">
 		<form id="updateuserForm">
 			<table cellpadding="5">
+			<tr style="display: none;">
+					<td>父ID:</td>
+					<td><input class="easyui-numberbox" type="text"
+						name="m_parentId" id="parentId" data-options="required:true"></input>
+					</td>
+				</tr>
 				<tr>
 					<td>权重:</td>
 					<td><input class="easyui-numberbox" type="text"
@@ -119,5 +125,30 @@
 				class="easyui-linkbutton" onclick="uclearModuleForm()">取消</a>
 		</div>
 	</div>
+	<script type="text/javascript">
+	function submitupdateUserForm() {
+		var weight = $("#weight").textbox("getValue");
+		var mkurl = $("#url").textbox("getValue");
+		var name = $("#namey").textbox("getValue");
+		var m_id = $("#m_id").textbox("getValue");
+		var m_parentId = $("#parentId").textbox("getValue");
+		$.post("updateModu", {
+			m_id : m_id,
+			m_name : name,
+			m_path : mkurl,
+			m_weight : weight,
+			m_parentId:m_parentId
+		}, function(res) {
+			if (res.success) {
+				$('#update_window').window('close');
+				myTree();
+				$.messager.alert("提示", res.msg);
+			} else {
+				$.messager.alert("提示", res.msg);
+			}
+		}, "json");
+
+	}
+	</script>
 </body>
 </html>

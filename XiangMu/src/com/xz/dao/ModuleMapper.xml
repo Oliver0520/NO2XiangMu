@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xz.dao.ModuleMapper">
 <select id="selectModule" resultType="module">
-select * from module 
+select * from module ORDER BY m_weight DESC
 </select>
 <insert id="insertMod" parameterType="module">
 insert into module (m_name,m_path,m_weight,m_parentId)values(#{m_name},#{m_path},#{m_weight},#{m_parentId}) 
@@ -44,5 +44,8 @@ delete from module where m_id=#{m_id}
 		</select>
 <select id="selectMidIsNo" parameterType="int" resultType="int">
 select count(*) from rolemodule WHERE m_id=#{m_id}
+</select>
+<select id="selectModuleName" parameterType="module" resultType="int">
+select count(*) from module where m_name=#{m_name} and m_parentId=#{m_parentId}
 </select>
 </mapper>

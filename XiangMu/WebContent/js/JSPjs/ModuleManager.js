@@ -83,27 +83,7 @@ var mokuai = null;
 
 	}
 
-	function submitupdateUserForm() {
-		var weight = $("#weight").textbox("getValue");
-		var mkurl = $("#url").textbox("getValue");
-		var name = $("#namey").textbox("getValue");
-		var m_id = $("#m_id").textbox("getValue");
-		$.post("updateModu", {
-			m_id : m_id,
-			m_name : name,
-			m_path : mkurl,
-			m_weight : weight
-		}, function(res) {
-			if (res > 0) {
-				$('#update_window').window('close');
-				myTree();
-				$.messager.alert("提示", "更新成功");
-			} else {
-				$.messager.alert("提示", "更新失败");
-			}
-		}, "json");
-
-	}
+	
 	function uclearModuleForm() {
 		$("#update_window").window("close");
 	}

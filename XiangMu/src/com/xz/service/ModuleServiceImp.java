@@ -62,22 +62,24 @@ public class ModuleServiceImp implements ModuleService {
 	@Override
 	public Integer updateModu(Module module) {
 		// TODO Auto-generated method stub
-		return moduleMapper.updateModu(module);
+		Integer jg=0;
+		Integer a = moduleMapper.selectModuleName(module);
+		if(a==0) {
+			Integer i = moduleMapper.updateModu(module);
+			if(i>0) {
+				jg=1;
+			}else {
+				jg=2;
+			}
+		}else {
+			jg=3;
+		}
+		return jg;
 	}
 	@Override
 	public Module selectByid(Integer m_id) {
 		// TODO Auto-generated method stub
 	Module a = moduleMapper.selectByid(m_id);
-		/*"{'message':'{\'m_id\':"+a.get(0).getM_id()+",\'m_name\':\'"+a.get(0).getM_name()+"\',\'m_parentId\':"+a.get(0).getM_parentId()+",\'m_path\':"+a.get(0).getM_path()+"',\'m_weight\':"+a.get(0).getM_weight()+"}','remark':'','success':true}";
-				*/
-		
-		/*
-		 * String message=
-		 * "'{\'m_id\':"+a.get(0).getM_id()+",\'m_name\':\'"+a.get(0).getM_name()+
-		 * "\',\'m_parentId\':"+a.get(0).getM_parentId()+",\'m_path\':\'"+a.get(0).
-		 * getM_path()+"',\'m_weight\':"+a.get(0).getM_weight()+"}'";
-		 */
-		 
 		return a;
 	}
 	@Override

@@ -164,7 +164,6 @@
 		<thead>
 			<tr>
 				<th data-options="field:'u_id'">编号</th>
-				<!-- <th data-options="field:'u_loginName'">登录名</th> -->
 				<th data-options="field:'u_userName'">用户名</th>
 				<th data-options="field:'isLockout',formatter:isLockformatter">是否锁定</th>
 				<th data-options="field:'u_lastLoginTime'">最后一次登录时间</th>
@@ -172,7 +171,6 @@
 				<th data-options="field:'u_email'">邮箱</th>
 				<th data-options="field:'u_phoneNumber'">手机号码</th>
 				<th data-options="field:'u_qdshijian'">签到时间</th>
-				<th data-options="field:'u_qdstatus'">签到状态</th>
 				<th data-options="field:'u_weight'">权重</th>
 				<th data-options="field:'u_weightbeizhu'">权重备注</th>
 				<th data-options="field:'caozuo',formatter:caozuoformatter,align:'ceter',title:'操作'"></th>
@@ -316,9 +314,6 @@
 						<input type="checkbox" value="u_id" name="asdf" />编号
 					</td>
 					<td>
-						<input type="checkbox" value="u_loginName" name="asdf" />登录名
-					</td>
-					<td>
 						<input type="checkbox" value="u_userName" name="asdf" />用户名
 					</td>
 					<td>
@@ -340,9 +335,6 @@
 					</td>
 					<td>
 						<input type="checkbox" value="u_qdshijian" name="asdf" />签到时间
-					</td>
-					<td>
-						<input type="checkbox" value="u_qdstatus" name="asdf" />签到状态
 					</td>
 					<td>
 						<input type="checkbox" value="u_weight" name="asdf" />权重

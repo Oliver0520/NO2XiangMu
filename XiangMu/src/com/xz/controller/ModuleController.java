@@ -49,8 +49,22 @@ public class ModuleController {
      }
      @RequestMapping(value="/updateModu",method=RequestMethod.POST)
      @ResponseBody
-     public Integer updateModu(Module module) {
-    	 return moduleServiceImp.updateModu(module);
+     public  Map<String, Object> updateModu(Module module) {
+    	 Integer i=moduleServiceImp.updateModu(module);
+    	 Map<String, Object> map = new HashMap<String, Object>();
+  		if (i == 1) {
+  			map.put("msg", "修改成功");
+  			map.put("success", true);
+  		}
+  		if (i == 2) {
+  			map.put("msg", "修改失败");
+  			map.put("success", false);
+  		}
+  		if (i == 3) {
+  			map.put("msg", "同一父节点下模块名不能重复，请更换");
+  			map.put("success", false);
+  		}
+     	 return map;
      }
      @RequestMapping(value="/selectByid",method=RequestMethod.POST)
      @ResponseBody

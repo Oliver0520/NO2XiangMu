@@ -52,4 +52,10 @@ List<Module> selectByUserid(List<Integer> list);
  * @return
  */
 Integer selectMidIsNo(Integer m_id);
+/**
+ * 查询同一父节点下是否有重复模块名
+ * @param module
+ * @return
+ */
+Integer selectModuleName(Module module);
 }
