@@ -29,13 +29,3 @@ function xiugai(index){
 	},"json");
 	
 }
-function qiantui(){
-	$.post("qiantui",function(res){
-		if(res>0){
-			$.messager.alert("提示","所有员工签退成功");
-			$("#dg").datagrid("reload");
-		}else{
-			$.messager.alert("提示","签退失败，请重试");
-		}		
-	},"json");
-}

@@ -41,10 +41,12 @@ public class StudentServiceImp implements StudentService {
 		//循环查询学生ID，通过学生ID分别去查对应的咨询师姓名，再把查询出的咨询师姓名Set进学生ID里
 		for (int i = 0; i < student.size(); i++) {
 			Integer s_id = student.get(i).getS_id();
+		
 			String name = studentMapper.selectname(s_id);
 			student.get(i).setName(name);
 			String name2 = studentMapper.selectname2(s_id);
 			student.get(i).setName2(name2);
+			
 		}
 		fenye.setTotal(countStu);
 		fenye.setRows(student);
@@ -91,7 +93,16 @@ public class StudentServiceImp implements StudentService {
 		// TODO Auto-generated method stub
 		return studentMapper.selectjs1(u_id);
 	}
-
+	@Override
+	public Integer selectjs2(Integer u_id) {
+		// TODO Auto-generated method stub
+		return studentMapper.selectjs2(u_id);
+	}
+	@Override
+	public Integer selectjs3(Integer u_id) {
+		// TODO Auto-generated method stub
+		return studentMapper.selectjs3(u_id);
+	}
 	@Override
 	public Fenye<Student> getzxjs(Fenye<Student> fenye) {
 		// TODO Auto-generated method stub
@@ -126,11 +137,7 @@ public class StudentServiceImp implements StudentService {
 		return studentMapper.fenpeizx(student);
 	}
 
-	@Override
-	public Integer selectjs2(Integer u_id) {
-		// TODO Auto-generated method stub
-		return studentMapper.selectjs2(u_id);
-	}
+
 
 	
 	
@@ -145,9 +152,9 @@ public class StudentServiceImp implements StudentService {
 		List<Student> studentlist = studentMapper.selectStudent_xuanzhong(list);
 		for (int i = 0; i < studentlist.size(); i++) {
 			User name = studentMapper.selectUseru_id(studentlist.get(i).getU_id());
-			User name2 = studentMapper.selectUseru_id(studentlist.get(i).getU_idw());
-			studentlist.get(i).setName(name.getU_userName());
-			studentlist.get(i).setName2(name2.getU_userName());
+			User name2 = studentMapper.selectUseru_id(studentlist.get(i).getU_id());
+			studentlist.get(i).setU_id(name.getU_id());
+			studentlist.get(i).setU_id(name2.getU_id());
 		}
 
 		// 创建HSSFWorkbook对象(excel的文档对象)
@@ -174,7 +181,7 @@ public class StudentServiceImp implements StudentService {
 		 */
 
 		String columnStr = "姓名，年龄，性别，电话，学历，状态，来源渠道，来源网站，来源关键字，"+ "qq，微信，是否报备，备注，咨询师，所在区域，来源部门，课程方向，是否有效，打分，" + "是否回访，首次回访时间，是否上门，上门时间，无效原因，是否缴费，缴费时间，金额，是否退费，"
-				+ "是否进班，进班时间，进班备注，退费原因，定金金额，定金时间，学生关注，网络咨询师，咨询师备注";
+				+ "是否进班，进班时间，进班备注，退费原因，定金金额，定金时间，学生关注，网络咨询师，咨询师备注，录入人";
 		String[] heads = columnStr.split("，");
 		for (int i = 0; i < heads.length; i++) {
 			row2.createCell(i).setCellValue("" + heads[i] + "");
@@ -182,6 +189,7 @@ public class StudentServiceImp implements StudentService {
 		for (int i = 0; i < studentlist.size(); i++) {
 			HSSFRow row3 = sheet.createRow(i + 2);
 			Student stu = studentlist.get(i);
+			/* System.out.println(stu.getS_string()+"...."); */
 			row3.createCell(0).setCellValue(stu.getS_name() == null ? "" : stu.getS_name());
 			row3.createCell(1).setCellValue(stu.getS_sex() == null ? "" : (stu.getS_sex() == 1 ? "男" : "女"));
 			row3.createCell(2).setCellValue(stu.getS_age() == null ? "" : "" + stu.getS_age());
@@ -217,8 +225,9 @@ public class StudentServiceImp implements StudentService {
 			row3.createCell(32).setCellValue(stu.getS_dingjin() == null ? 0 : stu.getS_dingjin());
 			row3.createCell(33).setCellValue(stu.getS_dingjinshijian() == null ? "" : stu.getS_dingjinshijian());
 			row3.createCell(34).setCellValue(stu.getS_guanzhu() == null ? "" : stu.getS_guanzhu());
-			row3.createCell(35).setCellValue(stu.getName2() == null ? "暂无网络咨询师" : stu.getName2());
+			row3.createCell(35).setCellValue(stu.getName2() == null ? "暂无面见咨询师" : stu.getName2());
 			row3.createCell(36).setCellValue(stu.getS_zixunbeizhu() == null ? "" : stu.getS_zixunbeizhu());
+			row3.createCell(37).setCellValue(stu.getS_string()== null ? "暂无录入人" : stu.getS_string());
 		}
 		// 输出Excel文件
 		OutputStream output = response.getOutputStream();
@@ -232,15 +241,5 @@ public class StudentServiceImp implements StudentService {
 
 
 
-	
-
-	
-
-	
-
-	/*
-	 * @Override public String selectname(Integer s_id) { // TODO Auto-generated
-	 * method stub return studentMapper.selectname(s_id); }
-	 */
 
 }

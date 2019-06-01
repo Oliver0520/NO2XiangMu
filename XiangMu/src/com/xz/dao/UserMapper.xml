@@ -39,9 +39,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertUser" parameterType="user">
 
 
-	insert into user (u_loginName,u_userName,u_password,u_email,u_phoneNumber,u_createTime,u_psdWrongTime,u_isLockout)
+	insert into user (u_loginName,u_userName,u_password,u_email,u_phoneNumber,u_createTime,u_psdWrongTime,u_isLockout,u_qdstatus,u_weight)
 
-	values(#{u_loginName},#{u_userName},#{u_password},#{u_email},#{u_phoneNumber},#{u_createTime},0,0)
+	values(#{u_loginName},#{u_userName},#{u_password},#{u_email},#{u_phoneNumber},#{u_createTime},0,0,2,50)
 	</insert>
 	<delete id="deleteUser" parameterType="int">
 	delete from user where u_id=#{u_id}

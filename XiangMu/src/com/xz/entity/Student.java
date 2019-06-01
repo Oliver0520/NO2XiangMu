@@ -47,21 +47,9 @@ public class Student {
 	private String s_string;
 	private String name;
 	private String name2;
+	
 	private String stime;
 	private String etime;
-	
-	public String getStime() {
-		return stime;
-	}
-	public void setStime(String stime) {
-		this.stime = stime;
-	}
-	public String getEtime() {
-		return etime;
-	}
-	public void setEtime(String etime) {
-		this.etime = etime;
-	}
 	public Integer getS_id() {
 		return s_id;
 	}
@@ -320,6 +308,18 @@ public class Student {
 	public void setName2(String name2) {
 		this.name2 = name2;
 	}
+	public String getStime() {
+		return stime;
+	}
+	public void setStime(String stime) {
+		this.stime = stime;
+	}
+	public String getEtime() {
+		return etime;
+	}
+	public void setEtime(String etime) {
+		this.etime = etime;
+	}
 	@Override
 	public String toString() {
 		return "Student [s_id=" + s_id + ", s_name=" + s_name + ", s_age=" + s_age + ", s_sex=" + s_sex + ", s_phone="
@@ -334,8 +334,9 @@ public class Student {
 				+ ", s_jinbanbeizhu=" + s_jinbanbeizhu + ", s_tuifeiyuanyin=" + s_tuifeiyuanyin + ", s_dingjin="
 				+ s_dingjin + ", s_dingjinshijian=" + s_dingjinshijian + ", s_guanzhu=" + s_guanzhu + ", u_idw=" + u_idw
 				+ ", s_zixunbeizhu=" + s_zixunbeizhu + ", l_id=" + l_id + ", s_int=" + s_int + ", s_string=" + s_string
-				+ ", name=" + name + ", name2=" + name2 + "]";
+				+ ", name=" + name + ", name2=" + name2 + ", stime=" + stime + ", etime=" + etime + "]";
 	}
+	
 	
 
 }
