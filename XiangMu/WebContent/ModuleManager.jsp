@@ -29,7 +29,7 @@
 				href="javascript:void(0)" class="easyui-linkbutton"
 				iconCls="icon-update" plain="true" onclick="updateInfo()">修改</a> <a
 				href="javascript:void(0)" class="easyui-linkbutton"
-				iconCls="icon-ok" plain="true" onclick="Info()">删除</a>
+				iconCls="icon-remove" plain="true" onclick="Info()">删除</a>
 
 			<div id="menuTree">
 				<!--这个地方显示树状结构-->

@@ -31,9 +31,10 @@ public class RoleController {
 	
 	@RequestMapping(value="/selectAll",method=RequestMethod.POST)
 	@ResponseBody
-	public Fenye<Role> selectAll(Integer page,Integer  rows){
+	public Fenye<Role> selectAll(Integer page,Integer  rows,Role role){
 		fenye.setPage((page-1)*rows);
 		fenye.setPageSize(rows);
+		fenye.setT(role);
 		fenye=roleServiceImp.selectAll(fenye);
 		return fenye;
 	}

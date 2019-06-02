@@ -55,10 +55,11 @@ public class DynamicServiceImp implements DynamicService {
 		Integer jg=0;
 		User user = (User) request.getSession().getAttribute("usera");	
 		Integer i = dynamicMapper.selectDyCount(user.getU_id());
-		if(i>0) {
+		System.out.println(i);
+		if(i!=0) {
 			jg=i;
 		}else {
-			jg=1;
+			jg=-1;
 		}
 		return jg;
 	}

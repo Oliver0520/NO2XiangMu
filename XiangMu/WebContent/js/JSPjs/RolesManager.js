@@ -1,15 +1,4 @@
-$(function(){
-	init();
-})
 
-function init(){
-	$("#dg").datagrid({
-		url : "selectAll",
-		method : "post",
-		pagination : true,
-		toolbar : "#bar",
-		singleSelect:true});
-}
 function xinzeng(){
 	$("#insert-dialog").dialog("open");
 }

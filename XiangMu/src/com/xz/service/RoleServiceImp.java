@@ -25,7 +25,7 @@ public class RoleServiceImp implements RoleService {
 	@Override
 	public Fenye<Role> selectAll(Fenye<Role> fenye) {
 		// TODO Auto-generated method stub
-		Integer total = roleMapper.selectCount();
+		Integer total = roleMapper.selectCount(fenye);
 		List<Role> rows = roleMapper.selectRoleAll(fenye);
 		fenye.setTotal(total);
 		fenye.setRows(rows);

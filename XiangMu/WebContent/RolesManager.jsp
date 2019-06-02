@@ -31,6 +31,12 @@
 	</table>
 	
 	<div id="bar">
+	<form id="str">
+			<label>角色名:</label> <input class="easyui-textbox" type="text"
+				id="rname" /> 
+	</form>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="init()" data-options="iconCls:'icon-search',plain:true">查询</a>
    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="xinzeng()" data-options="iconCls:'icon-add',plain:true">新增</a>
 	</div>
 	
@@ -97,6 +103,23 @@
 	</div>
 </body>
 <script type="text/javascript">
+$(function(){
+	init();
+})
+
+function init(){
+	$("#dg").datagrid({
+		url : "selectAll",
+		method : "post",
+		pagination : true,
+		toolbar : "#bar",
+		singleSelect:true,
+		queryParams : {
+			r_name : $("#rname").textbox("getValue")
+		}
+		});
+	$("#str").form("clear");
+}
 function insertbaocun(){
 	var r_name= $("#rname").textbox("getValue");
 	

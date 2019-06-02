@@ -18,7 +18,7 @@ List<Role> selectRoleAll(Fenye<Role> fenye);
  * 查询总条数
  * @return
  */
-Integer selectCount();
+Integer selectCount(Fenye<Role> fenye);
 /**
  * 查询角色名是否重复
  * @param r_name

@@ -48,13 +48,15 @@ public class DynamicController {
 	public Map<String, Object> CopyCount(HttpServletRequest request) {
 		Integer i = dynamicServiceImp.copyDynamicCount(request);
 		Map<String, Object> map = new HashMap<String, Object>();
-        if (i == 1) {
+        if (i == -1) {
 			map.put("msg", "暂时没有消息！");
 			map.put("success", false);
+			
 		}
         else {
-			map.put("success", true);
+			
 			request.getSession().setAttribute("weidu", i);
+			map.put("success", true);
 		}
     	return map;
 	}

@@ -75,9 +75,10 @@ public class StudentServiceImp implements StudentService {
 	public Integer insertStudent(Student student) {
 		// TODO Auto-generated method stub
 	   List<User> zxs = userMapper.selectZxsFenpei();
-	   User fenpei = FenPei.fenpei(zxs);
-	   Integer u_id = fenpei.getU_id();
+	   
 	   if(studentMapper.isORnot().getFenpei()==2) {
+		   User fenpei = FenPei.fenpei(zxs);
+		   Integer u_id = fenpei.getU_id();
 	   student.setU_id(u_id);}
 		return studentMapper.insertStudent(student);
 	}

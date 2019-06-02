@@ -197,7 +197,7 @@
 				onclick="init()" data-options="iconCls:'icon-search',plain:true">查询</a>
 			<a href="javascript:void(0)" class="easyui-linkbutton"
 				onclick="xinzeng()" data-options="iconCls:'icon-add',plain:true">新增</a>
-				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="yincang()">隐藏</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="yincang()">隐藏</a>
 		</form>
 	</div>
 	
