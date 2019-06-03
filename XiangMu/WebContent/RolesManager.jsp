@@ -51,12 +51,14 @@
 				iconCls:'icon-help',
 				handler:function(){exitInsert();}
 			}]">
+			<form id="addfrm">
     <table>
     <tr>
     <td><label>角色名:</label></td>
     <td><input class="easyui-textbox" type="text" id="rnameadd" /> </td>
     </tr>
     </table>   
+    </form>
 </div> 
 
 <!-- 修改信息的dialog -->
@@ -127,6 +129,7 @@ function insertbaocun(){
 				if(res.success){
 					$("#dg").datagrid("reload");
 					$.messager.alert('提示',res.msg);
+					$("#addfrm").form("clear");
 					$("#insert-dialog").dialog("close");
 				}else{
 					$.messager.alert('提示',res.msg);
