@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -186,7 +187,7 @@ return map;
       }
       @RequestMapping(value="/qdCaozuo",method=RequestMethod.POST)
       @ResponseBody
-      public Map<String, Object> qdCaozuo(Integer u_id){
+      public Map<String, Object> qdCaozuo(Integer u_id,HttpServletRequest  request){
     	  Integer i = userServiceImp.updaetQD(u_id);
     	  Map<String, Object> map = new HashMap<String, Object>();
     	  if(i==1) {
@@ -198,11 +199,17 @@ return map;
   			  map.put("success", false);
     	  }
     	  if(i==3) {
+    		  request.getSession().setAttribute("qdstatus", 2);
     		  map.put("msg", "签退成功!!!");
   			  map.put("success", true);
+  			  
     	  }
     	  if(i==4) {
     		  map.put("msg", "该用户未签到，不能进行签退操作!!!");
+  			  map.put("success", false);
+    	  }
+    	  if(i==5) {
+    		  map.put("msg", "该用户签到时间不够10分钟，不能进行签退操作!!!");
   			  map.put("success", false);
     	  }
     	  return map;

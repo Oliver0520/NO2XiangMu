@@ -191,4 +191,10 @@ Integer selectUserisok(String u_userName);
  * @return
  */
 Integer selectStudentOfUser(Integer u_id);
+/**
+ * 查询当前用户的签到时间距离现在有几分钟
+ * @param u_id
+ * @return
+ */
+Integer selectqdshijianNow(Integer u_id);
 }

@@ -19,6 +19,44 @@
 <script type="text/javascript" src="js/test.js"></script>
 <script type="text/javascript" src="js/JSPjs/StudentList.js"></script>
 <script type="text/javascript">
+function inint() {
+
+	var hf = $("#sfhuifang").combobox("getValue");
+	var yx = $("#sfyouxiao").combobox("getValue");
+	var jf = $("#sfjiaofei").combobox("getValue");
+	if (hf == "aa") {
+		hf = null;
+	}
+	if (yx == "aa") {
+		yx = null;
+	}
+	if (jf == "aa") {
+		jf = null;
+	}
+	$('#dg').datagrid({
+		url : 'chaxunasd',
+		method : "post",
+		pagination : true,
+		toolbar : "#bar",
+
+		checkbox : true,
+		queryParams : {
+			s_name : $("#Sname").textbox("getValue"),
+			s_phone : $("#Sphone").textbox("getValue"),
+			s_qq : $("#sqq").textbox("getValue"),
+			u_id : $("#zxname").combobox("getValue"),
+			stime : $("#stime").textbox("getValue"),
+			etime : $("#etime").textbox("getValue"),
+			s_huifang : hf,
+			s_youxiao : yx,
+			s_jiaofei : jf
+		}, onDblClickRow:function(rowIndex){
+			 chakan(rowIndex);
+		 }
+	});
+	$("#str").form("clear");
+}
+
 function caozuolei(value, row, index) {
 	var zxid = $("#zxid").textbox("getValue");
 	var zxglid = $("#zxglid").textbox("getValue");
@@ -518,7 +556,7 @@ function caozuolei(value, row, index) {
 	function exitDynamic(){
 		$("#dynamic-dialog").dialog("close");
 	}
-
+	
 </script>
 </head>
 <body>

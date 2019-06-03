@@ -36,6 +36,9 @@ public class MainController {
    @ResponseBody
     public String hometree(String treeUlId, HttpServletRequest request) {
 		String hometree = mainServiceImp.hometree(treeUlId, request);
+		request.getSession().getAttribute("usera");
+		Integer qdstatus = user.getU_qdstatus();
+		request.getSession().setAttribute("qdstatus", qdstatus);
 		return hometree;
 	}
     

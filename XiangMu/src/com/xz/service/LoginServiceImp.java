@@ -71,8 +71,6 @@ public class LoginServiceImp implements LoginService {
 						}
 						user.setRole(selectJuese);
 						request.getSession().setAttribute("usera", user);
-						Integer qdstatus = user.getU_qdstatus();
-						request.getSession().setAttribute("qdstatus", qdstatus);
 						User deuid = loginMapper.selectUserLoginName(paduanyong);
 						loginMapper.chongzhiUpsdWrongTime(deuid.getU_id());
 					} else {

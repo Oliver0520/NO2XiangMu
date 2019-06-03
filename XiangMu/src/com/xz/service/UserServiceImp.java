@@ -197,12 +197,17 @@ public class UserServiceImp implements UserService {
 		Integer jg = 0;
 		User qd = userMapper.selectStatusQD(u_id);
 		User qd2=userMapper.selectStatusintwo(u_id);
+		Integer selectqdshijianNow = userMapper.selectqdshijianNow(u_id);
 		if(qd2==null) {
 			if (qd == null) {
+				if(selectqdshijianNow>0) {
 				if (userMapper.qdcaozuo(u_id) > 0) {
 					return jg = 3;
 				} else {
 					return jg = 2;
+				}
+				}else {
+					return jg=5;
 				}
 			} else {
 				return jg = 1;
