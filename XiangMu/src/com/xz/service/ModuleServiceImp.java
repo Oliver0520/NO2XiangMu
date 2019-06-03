@@ -90,7 +90,8 @@ public class ModuleServiceImp implements ModuleService {
 		Integer in = moduleMapper.selectMidIsNo(m_id);
 		if(!(in>0)) {
 			Integer dm = moduleMapper.deleteMod(m_id);
-			if(in>0) {
+			System.out.println("ÊÇ·ñÉ¾³ý"+dm);
+			if(dm>0) {
 				jg=1;
 			}else {
 				jg=2;

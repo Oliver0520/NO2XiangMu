@@ -54,7 +54,7 @@
     <table>
     <tr>
     <td><label>角色名:</label></td>
-    <td><input class="easyui-textbox" type="text" id="rname" /> </td>
+    <td><input class="easyui-textbox" type="text" id="rnameadd" /> </td>
     </tr>
     </table>   
 </div> 
@@ -121,7 +121,7 @@ function init(){
 	$("#str").form("clear");
 }
 function insertbaocun(){
-	var r_name= $("#rname").textbox("getValue");
+	var r_name= $("#rnameadd").textbox("getValue");
 	
 			$.post("insertRoles",{r_name:r_name},function(res){
 				if(res.success){
