@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xz.dao.LogoMapper">
 	<select id="selectLogo" parameterType="fenye" resultType="logo">
-		select * from Logo
+		select * from `logo`
 		<where>
 			and s_id=#{t.s_id}
 		</where>
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectCount" parameterType="fenye" resultType="int">
-		select count(*) from logo
+		select count(*) from `logo`
 		<where>
 			and s_id=#{t.s_id}
 		</where>

@@ -59,9 +59,10 @@ public class RoleServiceImp implements RoleService {
 	public Integer deleteRoles(Integer r_id) {
 		// TODO Auto-generated method stub
 		Integer jg=0;
-		Integer i = roleMapper.deleteRoles(r_id);
+		
 		Integer j=roleMapper.selectIShere(r_id);
 		if(!(j>0)) {
+			Integer i = roleMapper.deleteRoles(r_id);
 			if(i>0) {
 				jg=3;
 			}else {

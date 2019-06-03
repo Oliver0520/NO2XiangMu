@@ -31,6 +31,7 @@ public class StudentController {
 	@RequestMapping(value = "/MyStudent")
 	private String MyStudent(HttpServletRequest Request) {
 		User user = (User) Request.getSession().getAttribute("usera");
+		
 		Integer i = studentService.selectjs(user.getU_id());
 		Integer j = studentService.selectjs1(user.getU_id());
 		Integer g = studentService.selectjs2(user.getU_id());
