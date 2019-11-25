@@ -83,6 +83,10 @@ return map;
       public Map<String, Object> deleteUser(Integer u_id) {
     	  Integer i = userServiceImp.deleteUser(u_id);
     	  Map<String, Object> map = new HashMap<String, Object>();
+    	  if(i==4) {
+    		  map.put("msg", "删除失败,该用户还拥有角色，请解绑重试!!!");
+  			  map.put("success", false);
+    	  }
     	  if(i==3) {
     		  map.put("msg", "删除成功!!!");
   			  map.put("success", true);

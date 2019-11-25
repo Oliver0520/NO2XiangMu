@@ -197,4 +197,10 @@ Integer selectStudentOfUser(Integer u_id);
  * @return
  */
 Integer selectqdshijianNow(Integer u_id);
+/**
+ * 查询当前用户是否仍然拥有角色
+ * @param u_id
+ * @return
+ */
+Integer selectUserRole(Integer u_id);
 }

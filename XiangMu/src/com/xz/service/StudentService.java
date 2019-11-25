@@ -2,6 +2,7 @@ package com.xz.service;
 
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,7 @@ public interface StudentService {
 	 * @param fenye
 	 * @return
 	 */
-Fenye<Student> getStudent(Fenye<Student> fenye);
+Fenye<Student> getStudent(Fenye<Student> fenye) throws ParseException;
 /**
  * 删除学生信息
  * @param s_id

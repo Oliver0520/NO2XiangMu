@@ -52,22 +52,20 @@ public class UserServiceImp implements UserService {
 		String u_loginName = user.getU_loginName();
 		String string2md5 = MD5Util.string2MD5(u_loginName);
 		user.setU_loginName(string2md5);
-		String u_password=user.getU_password();
+		String u_password = user.getU_password();
 		String string2md52 = MD5Util.string2MD5(u_password);
 		user.setU_password(string2md52);
-		Integer j=userMapper.selectUserisok(user.getU_userName());
-		Integer pd=0;
-		if(j==0) {
-			Integer i=userMapper.insertUser(user);
-			if(i>0) {
-				pd=1;
+		Integer j = userMapper.selectUserisok(user.getU_userName());
+		Integer pd = 0;
+		if (j == 0) {
+			Integer i = userMapper.insertUser(user);
+			if (i > 0) {
+				pd = 1;
+			} else {
+				pd = 2;
 			}
-				else {
-				pd=2;
-				}
-		}
-		else {
-			pd=3;
+		} else {
+			pd = 3;
 		}
 
 		return pd;
@@ -76,17 +74,24 @@ public class UserServiceImp implements UserService {
 	@Override
 	public Integer deleteUser(Integer u_id) {
 		// TODO Auto-generated method stub
-		Integer jg=0;
+		// 要判断用户是否还拥有学生，然后查询他是否拥有角色，无论哪一个存在都不能删除
+		Integer jg = 0;
 		Integer isorno = userMapper.selectStudentOfUser(u_id);
-		if(isorno==0) {
-			Integer i = userMapper.deleteUser(u_id);
-			if(i>0) {
-				jg=3;
-			}else {
-				jg=2;
+		Integer userRole = userMapper.selectUserRole(u_id);
+		if (isorno == 0) {
+			if (userRole == 0) {
+				Integer i = userMapper.deleteUser(u_id);
+				if (i > 0) {
+					jg = 3;
+				} else {
+					jg = 2;
+				}
+			} else {
+				jg = 4;
 			}
-		}else {
-			jg=1;
+
+		} else {
+			jg = 1;
 		}
 		return jg;
 	}
@@ -152,35 +157,36 @@ public class UserServiceImp implements UserService {
 		user.setOpwd(MD5Util.string2MD5(user.getOpwd()));
 		user.setApwd(MD5Util.string2MD5(user.getApwd()));
 		user.setNpwd(MD5Util.string2MD5(user.getNpwd()));
-		Integer jg = 0; 
+		Integer jg = 0;
 		User user1 = (User) request.getSession().getAttribute("usera");
-		user.setU_id(user1.getU_id());  //获取用户的编号
-		String yanzhengma = (String) request.getSession().getAttribute("suijiNum"); //获取发送给手机的验证码
-		String abc = user.getU_phoneNumber();//获取用户输入的手机号码
-		 String u_phoneNumber = user1.getU_phoneNumber();//获取用户绑定的手机号码
-		
-		if (user.getYanzheng().equals(yanzhengma)) { //判断验证码是否正确
-			 if(u_phoneNumber.equals(abc)) {//判断手机号是否为当前用户绑定的手机号
-			if (user.getOpwd().equals(user1.getU_password())) {//判断旧密码是否正确
-				if (user.getApwd().equals(user.getNpwd())) {//判断两次输入的密码是否相同
-					if (userMapper.updateMima(user) > 0) {//判断修改密码是否成功
-						return jg = 4;
+		user.setU_id(user1.getU_id()); // 获取用户的编号
+		String yanzhengma = (String) request.getSession().getAttribute("suijiNum"); // 获取发送给手机的验证码
+		String abc = user.getU_phoneNumber();// 获取用户输入的手机号码
+		String u_phoneNumber = user1.getU_phoneNumber();// 获取用户绑定的手机号码
+
+		if (user.getYanzheng().equals(yanzhengma)) { // 判断验证码是否正确
+			if (u_phoneNumber.equals(abc)) {// 判断手机号是否为当前用户绑定的手机号
+				if (user.getOpwd().equals(user1.getU_password())) {// 判断旧密码是否正确
+					if (user.getApwd().equals(user.getNpwd())) {// 判断两次输入的密码是否相同
+						if (userMapper.updateMima(user) > 0) {// 判断修改密码是否成功
+							return jg = 4;
+						} else {
+							return jg = 3;
+						}
 					} else {
-						return jg = 3;
+						return jg = 2;
 					}
 				} else {
-					return jg = 2;
-				} 
+					return jg = 1;
+				}
 			} else {
-				return jg = 1;
+				return jg = 6;
 			}
-		} else {
-			return jg=6;
-		}
 		} else {
 			return jg = 5;
 		}
 	}
+
 	@Override
 	public Fenye<User> selectUserQD(Fenye<User> fenye) {
 		// TODO Auto-generated method stub
@@ -196,26 +202,26 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		Integer jg = 0;
 		User qd = userMapper.selectStatusQD(u_id);
-		User qd2=userMapper.selectStatusintwo(u_id);
+		User qd2 = userMapper.selectStatusintwo(u_id);
 		Integer selectqdshijianNow = userMapper.selectqdshijianNow(u_id);
-		if(qd2==null) {
+		if (qd2 == null) {
 			if (qd == null) {
-				if(selectqdshijianNow>0) {
-				if (userMapper.qdcaozuo(u_id) > 0) {
-					return jg = 3;
+				if (selectqdshijianNow > 0) {
+					if (userMapper.qdcaozuo(u_id) > 0) {
+						return jg = 3;
+					} else {
+						return jg = 2;
+					}
 				} else {
-					return jg = 2;
-				}
-				}else {
-					return jg=5;
+					return jg = 5;
 				}
 			} else {
 				return jg = 1;
 			}
-		}else {
-			return jg=4;
+		} else {
+			return jg = 4;
 		}
-		
+
 	}
 
 	@Override
@@ -272,7 +278,5 @@ public class UserServiceImp implements UserService {
 		Integer fenpei = studentMapper.isORnot().getFenpei();
 		return fenpei;
 	}
-
-	
 
 }

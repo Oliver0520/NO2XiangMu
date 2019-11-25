@@ -58,4 +58,10 @@ Integer selectMidIsNo(Integer m_id);
  * @return
  */
 Integer selectModuleName(Module module);
+/**
+ * 查询当前模块下是否拥有子模块
+ * @param m_id
+ * @return
+ */
+Integer selectModuleChiledren(Integer m_id);
 }

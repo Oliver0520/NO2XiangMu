@@ -575,7 +575,7 @@ function caozuolei(value, row, index) {
 				<th data-options="field:'checkbox',checkbox:true">选择</th>
 				<th data-options="field:'s_id',width:110">学生编号</th>
 				<th data-options="field:'s_name',width:110">姓名</th>
-				<th data-options="field:'s_age',width:110">年龄</th>
+				<th data-options="field:'s_int',width:110">年龄</th>
 				<th data-options="field:'s_sex',width:110,formatter:xingbie">性别</th>
 				<th data-options="field:'s_phone',width:110">电话</th>
 				<th data-options="field:'s_education',width:110">学历</th>

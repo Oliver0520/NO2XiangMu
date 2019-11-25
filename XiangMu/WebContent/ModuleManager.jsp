@@ -20,7 +20,6 @@
 </head>
 <body>
 	<div class="easyui-layout" style="width: 100%; height: 700px;">
-
 		<div id="centerTabs"
 			data-options="region:'center',iconCls:'icon-ok',title:'模块信息'"
 			style="width: 530px;">

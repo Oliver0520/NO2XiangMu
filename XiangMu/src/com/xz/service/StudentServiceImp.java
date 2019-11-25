@@ -2,6 +2,7 @@ package com.xz.service;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import com.xz.dao.UserMapper;
 import com.xz.entity.Fenye;
 import com.xz.entity.Student;
 import com.xz.entity.User;
+import com.xz.fujie.Age;
 import com.xz.fujie.FenPei;
 
 @Service
@@ -34,10 +36,11 @@ public class StudentServiceImp implements StudentService {
 	private UserMapper userMapper;
     
 	@Override
-	public Fenye<Student> getStudent(Fenye<Student> fenye) {
+	public Fenye<Student> getStudent(Fenye<Student> fenye) throws ParseException {
 		// TODO Auto-generated method stub
 		Integer countStu = studentMapper.selectCountStu(fenye);
 		List<Student> student = studentMapper.selectStudent(fenye);
+		Age age=new Age();
 		//循环查询学生ID，通过学生ID分别去查对应的咨询师姓名，再把查询出的咨询师姓名Set进学生ID里
 		for (int i = 0; i < student.size(); i++) {
 			Integer s_id = student.get(i).getS_id();
@@ -46,7 +49,9 @@ public class StudentServiceImp implements StudentService {
 			student.get(i).setName(name);
 			String name2 = studentMapper.selectname2(s_id);
 			student.get(i).setName2(name2);
-			
+			String s_age = student.get(i).getS_age();
+			Integer old = age.yearsold(s_age);
+			student.get(i).setS_int(old);
 		}
 		fenye.setTotal(countStu);
 		fenye.setRows(student);

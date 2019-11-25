@@ -239,4 +239,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT TIMESTAMPDIFF(MINUTE,u_qdshijian,NOW()) FROM `user` WHERE
 		u_id=#{u_id}
 	</select>
+	<select id="selectUserRole" parameterType="int" resultType="int">
+	select count(u_id) from userrole where u_id=#{u_id}
+	</select>
 </mapper>

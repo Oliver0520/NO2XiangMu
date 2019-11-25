@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class Student {
 	private Integer s_id;
 	private String s_name;
-	private Integer s_age;
+	private String s_age;
 	private Integer s_sex;
 	private String s_phone;
 	private String s_education;
@@ -62,10 +62,10 @@ public class Student {
 	public void setS_name(String s_name) {
 		this.s_name = s_name;
 	}
-	public Integer getS_age() {
+	public String getS_age() {
 		return s_age;
 	}
-	public void setS_age(Integer s_age) {
+	public void setS_age(String s_age) {
 		this.s_age = s_age;
 	}
 	public Integer getS_sex() {

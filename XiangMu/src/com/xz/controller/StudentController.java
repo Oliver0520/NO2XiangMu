@@ -1,6 +1,7 @@
 package com.xz.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,7 +64,7 @@ public class StudentController {
 
 	@RequestMapping(value = "/chaxunasd", method = RequestMethod.POST)
 	@ResponseBody
-	public Fenye<Student> getStudent(Integer page, Integer rows, Student student, HttpServletRequest Request) {
+	public Fenye<Student> getStudent(Integer page, Integer rows, Student student, HttpServletRequest Request) throws ParseException {
 		fenye.setPage((page - 1) * rows);
 		fenye.setPageSize(rows);
 		fenye.setT(student);

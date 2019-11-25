@@ -48,4 +48,7 @@ select count(*) from rolemodule WHERE m_id=#{m_id}
 <select id="selectModuleName" parameterType="module" resultType="int">
 select count(*) from module where m_name=#{m_name} and m_parentId=#{m_parentId}
 </select>
+<select id="selectModuleChiledren" parameterType="int" resultType="int">
+select count(m_id) from module where m_parentId=#{m_id}
+</select>
 </mapper>
